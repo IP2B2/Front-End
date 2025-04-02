@@ -26,6 +26,9 @@ export default function RootHome() {
             <li>
                 <Link href='/auth/pending'>Pending</Link>
             </li>
+            <li>
+                <Link href='/home/'>Home/Landing page</Link>
+            </li>
         </ul>
     </div>
   );

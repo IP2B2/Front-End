@@ -1,0 +1,23 @@
+
+
+.sidebar {
+    width: 300px;
+    height: 100%; 
+
+    padding: 30px 20px 20px 20px;
+
+    display: flex;
+    flex-flow: column nowrap;
+}
+.sidebar > * {
+    width: 100%;
+}
+.sidebarTitle {
+    font-size: var(--font-size-md);
+    text-align: center;
+}
+
+.sidebarUser {
+    margin-top: auto;
+    padding: 20px;
+}

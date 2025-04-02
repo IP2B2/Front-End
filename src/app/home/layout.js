@@ -3,8 +3,7 @@ import '@/app/globals.css'
 import styles from "./homeLayout.module.css"
 import Head from 'next/head'
 
-import { InterHeading } from '@/lib/fonts/Inter'
-import { HorizontalDivider } from '@/lib/components/Divider'
+import Sidebar from '@/lib/components/home/Sidebar'
 
 export default function HomeLayout({ children }) {
     return (
@@ -12,20 +11,10 @@ export default function HomeLayout({ children }) {
             <Head>
                 <title>Acasa - Proiect IP</title>
             </Head>
-            <SideBar />
+            <Sidebar />
             <div className={styles.mainContainer}>
                 {children}
             </div>
         </div>
     );
-}
-
-const SideBar = () => {
-    return <div className={styles.sidebar + ' ' + 'border-rounded' + ' ' + 'border-gray'}>
-        <div className={styles.sidebarTitle + ' ' + InterHeading}>Proiect IP</div>
-        <HorizontalDivider />
-        <div className={styles.sidebarUser + ' ' + 'border-rounded' + ' ' + 'border-gray'}>
-            User
-        </div>
-    </div>
 }
