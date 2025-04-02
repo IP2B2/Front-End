@@ -1,0 +1,28 @@
+
+.layoutContainer {
+    width: 100vw;
+    height: 100vh;
+    
+    margin: 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.layoutContainer > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bannerContainer {
+    background-color: var(--foreground);
+    color: #fff;
+}
+.bannerAppTitle {
+    font-size: var(--font-size-lg);
+}
+
+@media screen and (max-width: 800px) {
+    .layoutContainer {
+        grid-template-columns: 1fr 0;
+    }
+}

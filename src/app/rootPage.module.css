@@ -1,0 +1,10 @@
+
+.container {
+    padding: 10px;
+
+    font-size: var(--font-size-sm);
+}
+
+.usefulLinksContainer > li {
+    margin-bottom: 10px;
+}
