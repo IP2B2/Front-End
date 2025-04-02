@@ -6,16 +6,18 @@ import Head from 'next/head'
 import { InterHeading } from '@/lib/fonts/Inter'
 import { HorizontalDivider } from '@/lib/components/Divider'
 
-export default function HomeLayout(props) {
-    return <div className={styles.layoutContainer}>
-        <Head>
-            <title>Acasa - Proiect IP</title>
-        </Head>
-        <SideBar />
-        <div className={styles.mainContainer}>
-            {props.children}
+export default function HomeLayout({ children }) {
+    return (
+        <div className={styles.layoutContainer}>
+            <Head>
+                <title>Acasa - Proiect IP</title>
+            </Head>
+            <SideBar />
+            <div className={styles.mainContainer}>
+                {children}
+            </div>
         </div>
-    </div>
+    );
 }
 
 const SideBar = () => {
