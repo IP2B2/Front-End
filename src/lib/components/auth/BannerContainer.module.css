@@ -1,0 +1,12 @@
+.bannerContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+
+    background-color: var(--foreground);
+    
+    color: #fff;
+}
+.bannerAppTitle {
+    font-size: var(--font-size-lg);
+}
