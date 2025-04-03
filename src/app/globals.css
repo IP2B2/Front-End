@@ -3,7 +3,7 @@
   --foreground: #09090B;
   --border-gray: #e4e4e7;
   --text-gray:  #09090B;
-  --font-size-lg: 38px;
+  --font-size-lg: 30px;
   --font-size-md: 24px;
   --font-size-sm: 16px;
   --font-size-xs: 14px;
@@ -19,7 +19,7 @@ body {
 }
 
 .border-rounded {
-  border-radius: 6px;
+  border-radius: 8px;
 }
 .border-gray {
   border: 1px solid var(--border-gray);

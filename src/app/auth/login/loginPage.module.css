@@ -1,0 +1,28 @@
+.formButton{
+    font-size: var(--font-size-sm);
+}
+
+.title{
+    font-size: var(--font-size-lg);
+}
+
+.subtitle{
+    font-size: var(--font-size-sm);
+}
+
+.link {
+    color: var(--text-gray);
+    text-decoration: none;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form > input {
+    width: 480px;
+    height: 64px;
+    padding: 24px; 
+}
