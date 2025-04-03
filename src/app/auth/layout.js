@@ -3,7 +3,6 @@ import '@/app/globals.css'
 import styles from './authLayout.module.css'
 import Image from 'next/image';
 
-import { InterHeading } from '@/lib/fonts/Inter'
 import { Montserrat400 } from '@/lib/fonts/Montserrat';
 
 export default function AccountCreationLayout(props) {
