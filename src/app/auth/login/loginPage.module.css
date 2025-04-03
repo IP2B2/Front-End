@@ -1,5 +1,19 @@
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
 .formButton{
+    padding: 20px;
+
+    background-color: var(--foreground);
+    border: 1px solid var(--foreground);
+    outline: none;
+
     font-size: var(--font-size-sm);
+    color: white;
 }
 
 .title{
@@ -8,21 +22,30 @@
 
 .subtitle{
     font-size: var(--font-size-sm);
+    color: var(--text-gray);
 }
 
 .link {
     color: var(--text-gray);
     text-decoration: none;
+    font-size: var(--font-size-xs);
 }
 
 .form {
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     gap: 10px;
 }
 
 .form > input {
     width: 480px;
     height: 64px;
+
     padding: 24px; 
+}
+
+.linkWrapper {
+    display: flex;
+    justify-content: center;
 }
