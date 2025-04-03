@@ -5,8 +5,13 @@
     gap: 10px;
 }
 
-.formButton{
+.formLabel {
+    font-size: var(--font-size-sm);
+}
+
+.formButton {
     padding: 20px;
+    margin: 10px 0;
 
     background-color: var(--foreground);
     border: 1px solid var(--foreground);
@@ -16,11 +21,11 @@
     color: white;
 }
 
-.title{
+.title {
     font-size: var(--font-size-lg);
 }
 
-.subtitle{
+.subtitle {
     font-size: var(--font-size-sm);
     color: var(--text-gray);
 }
@@ -36,6 +41,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 10px;
+    margin: 10px 0;
 }
 
 .form > input {
@@ -43,9 +49,17 @@
     height: 64px;
 
     padding: 24px; 
+
+    font-size: var(--font-size-sm);
 }
 
 .linkWrapper {
     display: flex;
     justify-content: center;
+}
+
+.formHeaderContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
 }
