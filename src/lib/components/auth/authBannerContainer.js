@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Montserrat400 } from '@/lib/fonts/Montserrat';
 
 import '@/app/globals.css'
-import styles from './BannerContainer.module.css'
+import styles from './authBannerContainer.module.css'
 
 const BannerContainer = () => {
     return <div className={styles.bannerContainer}>

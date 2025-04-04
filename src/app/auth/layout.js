@@ -2,7 +2,7 @@
 import '@/app/globals.css'
 import styles from './authLayout.module.css'
 
-import BannerContainer from '@/lib/components/auth/BannerContainer'
+import BannerContainer from '@/lib/components/auth/authBannerContainer'
 
 export default function AccountCreationLayout(props) {
     return <div className={styles.layoutContainer}>
