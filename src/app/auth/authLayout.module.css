@@ -13,13 +13,7 @@
     justify-content: center;
     align-items: center;
 }
-.bannerContainer {
-    background-color: var(--foreground);
-    color: #fff;
-}
-.bannerAppTitle {
-    font-size: var(--font-size-lg);
-}
+
 
 @media screen and (max-width: 800px) {
     .layoutContainer {
