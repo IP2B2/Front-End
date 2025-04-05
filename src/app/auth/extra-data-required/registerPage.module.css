@@ -14,11 +14,14 @@
 .formButton 
 {
     width: 100%;
+
     padding: 20px;
     margin: 10px 0;
+
     background-color: var(--foreground);
     border: 1px solid var(--foreground);
     outline: none;
+
     font-size: var(--font-size-sm);
     color: white;
 }
@@ -45,19 +48,25 @@
 {
     width: 100%;
     height: 64px;
+
     padding: 24px;
+
     font-size: var(--font-size-sm);
 }
 
-.formGroup > input {
+.formGroup > input 
+{
     width: 343px;
     height: 64px;
+
     padding: 24px;
+
     font-size: var(--font-size-sm);
 }
 
 
-.formRow {
+.formRow 
+{
     display: flex;
     flex-direction: row;
     gap: 28px;
@@ -75,7 +84,9 @@
 {
     width: 100%;
     height: 64px;
+
     padding: 24px;
+
     font-size: var(--font-size-sm);
 }
 
@@ -83,11 +94,14 @@
 {
     width: 343px;
     height: 64px;
+
     padding: 24px;
+
     font-size: var(--font-size-sm);
 }
 
-.formHeaderContainer {
+.formHeaderContainer 
+{
     display: flex;
     flex-flow: column nowrap;
     gap: 10px;
