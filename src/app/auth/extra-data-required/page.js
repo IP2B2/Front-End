@@ -14,32 +14,32 @@ export default function ExtraDataRequired()
             <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                     <div className={styles.formLabel}>Prenume</div>
-                    <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter600.className} placeholder="ex: Alexandru"></input>
+                    <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="ex: Alexandru"></input>
                 </div>
                 <div className={styles.formGroup}>
                     <div className={styles.formLabel}>Nume de familie</div>
-                    <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter600.className} placeholder="ex: Popescu"></input>
+                    <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="ex: Popescu"></input>
                 </div>
             </div>
 
             <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                     <div className={styles.formLabel}>Rol</div>
-                    <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter600.className} placeholder="ex: student"></input>
+                    <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="ex: student"></input>
                 </div>
                 <div className={styles.formGroup}>
                     <div className={styles.formLabel}>Facultate</div>
-                    <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter600.className} placeholder="ex: Facultatea de informatica Iasi"></input>
+                    <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="ex: Facultatea de informatica Iasi"></input>
                 </div>
             </div>
 
             <div className={styles.formLabel}>Parola</div>
-            <input type="password" className={"border-rounded" + " " + "border-gray" + " " + Inter600.className} placeholder="***************"></input>
+            <input type="password" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="***************"></input>
             
             <div className={styles.formLabel}>Confirmare parola</div>
-            <input type="password" className={"border-rounded" + " " + "border-gray" + " " + Inter600.className} placeholder="***************"></input>
+            <input type="password" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="***************"></input>
             
-            <button type="submit" className={styles.formButton + " " + "border-rounded" + " " + Inter600.className}>Finalizeaza</button>
+            <button type="submit" className={styles.formButton + " " + "border-rounded" + " " + Inter500.className}>Finalizeaza</button>
         </form>
     </div>;
 }
