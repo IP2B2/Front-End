@@ -1,0 +1,70 @@
+.registerContainer 
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 28px;
+}
+
+.formLabel 
+{
+    font-size: var(--font-size-sm);
+}
+
+.formButton 
+{
+    padding: 20px;
+    margin: 10px 0;
+    background-color: var(--foreground);
+    border: 1px solid var(--foreground);
+    outline: none;
+    font-size: var(--font-size-sm);
+    color: white;
+}
+
+.title 
+{
+    font-size: var(--font-size-lg);
+}
+
+.subtitle 
+{
+    font-size: var(--font-size-sm);
+    color: var(--text-gray);
+}
+
+.form 
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin: 10px 0;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.form > input, 
+.formGroup > input {
+    width: 343px;
+    height: 64px;
+    padding: 24px; 
+    font-size: var(--font-size-sm);
+}
+
+.formHeaderContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
