@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # this is for compatbility with next.js
+          node-version: '20' # this is for compatbility with next.js
 
       - name: Install dependencies
         run: npm install
