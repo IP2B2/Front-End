@@ -3,7 +3,10 @@ import styles from "./loginPage.module.css";
 import '@/app/globals.css';
 import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 
-export default function PasswordReset() {
+
+
+
+export default function Login() {
 
     return <div className={styles.loginContainer}>
         <div className={styles.formHeaderContainer}>
