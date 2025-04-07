@@ -52,6 +52,9 @@
 
     font-size: var(--font-size-sm);
 }
+.form > input:focus-visible {
+    outline: none;
+}
 
 .linkWrapper {
     display: flex;
@@ -62,4 +65,16 @@
     display: flex;
     flex-flow: column nowrap;
     gap: 10px;
+}
+.errorMessage {
+    color:  #FF0000;
+    font-size: var(--font-size-sm);
+    height: 24px;
+}
+
+.errorInput {
+    border-color: #FF0000;
+}
+.errorInput:focus-visible {
+    outline: none;
 }
