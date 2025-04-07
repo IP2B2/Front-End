@@ -41,7 +41,7 @@ export default function Login() {
     const handleInputChange = useEffect(() => {
         checkValidData();
     }, [emailField, passwordField]);
-    
+
     const handleSubmittedChange = useEffect(() => {
         checkValidData();
     }, [hasSubmittedOnce]);
@@ -52,7 +52,7 @@ export default function Login() {
             <div className={styles.subtitle + " " + Inter500.className}>Introdu datele de autentificare în formularul de mai jos</div>
         </div>
         {
-            isError ? <div className={styles.errorMessage}>Aici va fi mesajul de "incorrect email or password"</div> : ''
+            isError ? <div><small>Aici va fi mesajul de</small> "incorrect email or password" <small>dupa implementare backend</small></div> : ''
         }
         <form className={styles.form + " " + Inter600 .className}>
 
