@@ -51,9 +51,11 @@ export default function Login() {
             <div className={styles.title + " " + Inter700.className}> Autentificare </div>
             <div className={styles.subtitle + " " + Inter500.className}>Introdu datele de autentificare în formularul de mai jos</div>
         </div>
+        <div className={styles.errorMessage} >
         {
-            isError ? <div><small>Aici va fi mesajul de</small> "incorrect email or password" <small>dupa implementare backend</small></div> : ''
+            isError ? <small>Aici va fi mesajul de "incorrect email or password"dupa implementare backend</small> : ''
         }
+        </div>
         <form className={styles.form + " " + Inter600 .className}>
 
             <div className={styles.formLabel}>Email</div>

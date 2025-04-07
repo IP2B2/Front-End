@@ -1,4 +1,6 @@
 .loginContainer {
+    width: 480px;
+
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
