@@ -1,37 +1,26 @@
 
 
 
-const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.(?:[a-zA-Z0-9-]+)+$/;
+const emailRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.(?:[a-zA-Z0-9-]+)+$/)
 
-export const testValidEmailFormat = (inputEmail) => {
-    if(!new RegExp(emailRegex).test(inputEmail)){
-        return false;
-    }
-    return true;
-}
+const testValidEmailFormat = (inputEmail) => !!emailRegex.test(inputEmail);
 
 export const testValidEmail = (inputEmail) => {
+    if(!inputEmail) return "";
     if(!testValidEmailFormat(inputEmail)) {
         return "Format invalid."
     }
     return "";
 }
 
-const validCharactersRegex = /^[A-Za-z0-9~`!@#$%^&*()_\-+={[}\ \]|\\:;"'<,>\.?/]+$/;
+const validCharactersRegex = new RegExp(/^[A-Za-z0-9~`!@#$%^&*()_\-+={[}\ \]|\\:;"'<,>\.?/]+$/);
 
-export const testValidPasswordCharacters = (inputPassword) => {
-    var regexp = new RegExp(validCharactersRegex);
-    return !!(regexp.test(inputPassword));
-}
+const testValidPasswordCharacters = (inputPassword) => !!(validCharactersRegex.test(inputPassword));
 
-export const testValidPasswordLength = (inputPassword) => {
-    if(inputPassword?.length < 3 || inputPassword?.length > 32) {
-        return false;
-    }
-    return true;
-}
+const testValidPasswordLength = (inputPassword) => inputPassword?.length > 2 && inputPassword?.length < 33;
 
 export const testValidPassword = (inputPassword) => {
+    if(!inputPassword) return "";
     if(!testValidPasswordLength(inputPassword)) {
         return "Parola trebuie sa contina intre 3 si 32 de caractere."
     }
