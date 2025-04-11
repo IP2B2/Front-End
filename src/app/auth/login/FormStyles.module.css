@@ -1,0 +1,66 @@
+
+.formInputGroup {
+    width: 100%;
+}
+.formInputGroup > * {
+    width: 100%;
+}
+.formInputGroup > label {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+
+    font-size: var(--font-size-sm);
+}
+
+.formInput {
+    width: 100%;
+
+    padding: 24px;
+
+    font-size: var(--font-size-sm);
+}
+.formInput:focus-visible {
+    outline: none;
+}
+.formInput:autofill {
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.formInputError {
+    border-color: #FF0000;
+}
+.formInputError:focus-visible {
+    outline: none;
+}
+.formInputErrorMessage {
+    height: 24px;
+
+    color:  #FF0000;
+    font-size: var(--font-size-sm);
+}
+
+.linkWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.link {
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: var(--font-size-xs);
+}
+
+.formButton {
+    padding: 20px;
+    margin: 10px 0;
+
+    background-color: var(--foreground);
+    border: 1px solid var(--foreground);
+    outline: none;
+
+    font-size: var(--font-size-sm);
+    color: white;
+}
