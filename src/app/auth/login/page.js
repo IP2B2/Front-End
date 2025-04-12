@@ -24,7 +24,7 @@ export default function LoginPage() {
             title={"Autentificare"}
             subtitle={"Introdu datele de autentificare în formularul de mai jos"}
             showError={isSubmitError}
-            errorMessage={"Aici va fi mesajul de \"incorrect email or password\" dupa implementare backend"}
+            errorMessage={"Aici va fi mesajul de eroare dupa implementare backend"}
         >
             <FormContainer>
                 <FormField 
