@@ -36,6 +36,7 @@
   border-radius: 8px;
 
   background-color: var(--background);
+
   font-size: var(--font-size-sm);
   font-weight: 500;
   color:var(--text-gray);
@@ -56,6 +57,7 @@
   border-radius: 8px;
 
   background-color: var(--foreground);
+  
   color: #FAFAFA;
   font-size: var(--font-size-sm);
   font-weight: 600;

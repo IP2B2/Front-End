@@ -10,16 +10,12 @@ function RegisterPage() {
   return (
     <div className={`${styles.formContainer} ${InterText.className}`}>
       
-      {}
       <h1 className={styles.title}>Creeaza cont</h1>
       <p className={styles.subtitle}>
         Completeaza formularul de mai jos pentru a crea un cont
       </p>
 
-      {}
       <form className={styles.form}>
-        
-        {}
         <label className={styles.label}>
           Email
           <input
@@ -29,7 +25,6 @@ function RegisterPage() {
           />
         </label>
         
-        {}
         <label className={styles.label}>
           Numar matricol
           <input
@@ -38,12 +33,10 @@ function RegisterPage() {
           />
         </label>
 
-        {}
         <button type="submit" className={styles.button}>
           Creeaza cont
         </button>
 
-        {}
         <Link
           href="https://google.com"
           className={styles.loginHint}
