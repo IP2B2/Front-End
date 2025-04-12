@@ -1,6 +1,31 @@
 
+.defaultFormLayoutContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 28px;
+}
+.formHeaderWrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+
+.formContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 24px;
+}
+.formContainer > * {
+    width: 100%;
+}
+
+
 .formInputGroup {
     width: 100%;
+    
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
 }
 .formInputGroup > * {
     width: 100%;
@@ -35,6 +60,7 @@
 .formInputError:focus-visible {
     outline: none;
 }
+
 .formInputErrorMessage {
     height: 24px;
 
@@ -42,12 +68,12 @@
     font-size: var(--font-size-sm);
 }
 
-.linkWrapper {
+.formLinkWrapper {
     display: flex;
     justify-content: center;
 }
 
-.link {
+.formLink {
     color: var(--text-gray);
     text-decoration: none;
     font-size: var(--font-size-xs);
@@ -63,4 +89,13 @@
 
     font-size: var(--font-size-sm);
     color: white;
+}
+
+.formTitle {
+    font-size: var(--font-size-lg);
+}
+
+.formSubtitle {
+    font-size: var(--font-size-sm);
+    color: var(--text-gray);
 }
