@@ -20,47 +20,77 @@ export default function LoginPage() {
 
     return (
     <div className={styles.loginContainer}>
-        <div className={styles.title + " " + Inter700.className}> Autentificare </div>
-        <div className={styles.subtitle + " " + Inter500.className}>Introdu datele de autentificare în formularul de mai jos</div>
-        <div className={styles.errorMessage}>
-        {
-            isSubmitError ? <small>Aici va fi mesajul de "incorrect email or password"dupa implementare backend</small> : ''
-        }
-        </div>
-        <form className={styles.form}>
-            <FormField 
-                type={"text"} 
-                label={"Email"} 
-                placeholder={"exemplu@gmail.com"}
-                setState={setEmailField} 
-                trim
-                validator={testValidEmail}
-                validate={hasSubmitted}
-                />
-            <FormField
-                type={"password"} 
-                label={"Parola"}
-                placeholder={"*************"}
-                setState={setPasswordField}
-                validator={testValidPassword}
-                validate={hasSubmitted}
-                />
-            <FormButton onClick={() => setHasSubmitted(true)}>
-                Autentificare
-            </FormButton>
-        </form>
-        <FormLink>Ai uitat parola?</FormLink>
-        <FormLink>Nu ai un cont?</FormLink>
+        <DefaultFormLayout
+            title={"Autentificare"}
+            subtitle={"Introdu datele de autentificare în formularul de mai jos"}
+            showError={isSubmitError}
+            errorMessage={"Aici va fi mesajul de eroare dupa implementare backend"}
+        >
+            <FormContainer>
+                <FormField 
+                    type={"email"} 
+                    label={"Email"} 
+                    placeholder={"exemplu@gmail.com"}
+                    setState={setEmailField} 
+                    trim
+                    validator={testValidEmail}
+                    validate={hasSubmitted}
+                    />
+                <FormField
+                    type={"password"} 
+                    label={"Parola"}
+                    placeholder={"*************"}
+                    setState={setPasswordField}
+                    validator={testValidPassword}
+                    validate={hasSubmitted}
+                    />
+                <FormButton onClick={() => setHasSubmitted(true)}>
+                    Autentificare
+                </FormButton>
+            </FormContainer>
+
+            <FormLink>Ai uitat parola?</FormLink>
+            <FormLink>Nu ai un cont?</FormLink>
+
+        </DefaultFormLayout>
     </div>
     );
 }
 
+const DefaultFormLayout = (
+    { 
+        title,
+        subtitle,
+        showError, 
+        errorMessage,
+        children
+    }
+) => {
+    return (
+        <div className={formStyles.defaultFormLayoutContainer}>
+            <div className={formStyles.formHeaderWrapper}>
+                <div className={`${formStyles.formTitle} ${Inter700.className}`}>{title}</div>
+                <div className={`${formStyles.formSubtitle} ${Inter500.className}`}>{subtitle}</div>
+            </div>
+            {children}
+        </div>
+    )
+}
+
+const FormContainer = ({ children }) => {
+    return (
+        <form className={formStyles.formContainer} noValidate> { /* nu scoate 'noValidate'= face ca html sa nu valideze singur - ci vom valida programatic din react cu functii */}
+            {children}
+        </form>
+    )
+}
+
 const FormLink = ({ href = '', children }) => {
     return (
-        <div className={`${formStyles.linkWrapper} ${Inter500.className}`}> 
+        <div className={`${formStyles.formLinkWrapper} ${Inter500.className}`}> 
             <Link 
                 href={href} 
-                className={formStyles.link}
+                className={formStyles.formLink}
                 >
                 {children}
             </Link>
@@ -107,8 +137,7 @@ const FormField = ({ type, placeholder, validator, setState, trim, label, valida
         if(!validationMessage || validationMessage?.length < 1)
             setInputError(null);
         else setInputError(validationMessage);
-
-    }, [inputValue]);
+    }, [inputValue, validate]);
 
     useEffect(() => {
         setIsInputError(!!inputError);
@@ -125,7 +154,7 @@ const FormField = ({ type, placeholder, validator, setState, trim, label, valida
                     onChange={handleInputChange}/>
             </label>
             <div className={`${formStyles.formInputErrorMessage}`}>
-                {isInputError ? inputError : ''}
+                { validate && isInputError ? inputError : ''}
             </div>
         </div>
     );
