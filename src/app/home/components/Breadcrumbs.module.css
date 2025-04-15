@@ -1,0 +1,60 @@
+.breadcrumb {
+  margin-bottom: 12px;
+  padding-left: 20px; 
+
+  display: flex;
+  align-items: center;
+
+  font-size: var(--font-size-xs);
+  line-height: var(--font-size-md);
+  font-family: 'Inter', sans-serif;
+  }
+  
+  .label {
+    color: var(--text-gray);       
+    font-weight: 400;
+  }
+  
+  .separator {
+    margin: 0 4px;
+
+    color: var(--text-gray);     
+  }
+  
+  .current {
+    color: #000000;        
+    font-weight: 600;
+  }
+
+  .buttonWrapper {
+    position: absolute;
+    top: 10px;
+    right: var(--font-size-lg);
+
+    display: flex;
+    gap: 10px;
+  }
+  
+  .infoButton,
+  .logoutButton,
+  .userButton {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    max-width: 40px;
+
+    padding: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9999px;
+    border: 1px solid var(--border-gray);
+
+    background-color: var(--background);
+    text-decoration: none;
+
+    cursor: pointer;
+  }
+  

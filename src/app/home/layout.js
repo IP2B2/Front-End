@@ -2,8 +2,7 @@
 import '@/app/globals.css'
 import styles from "./homeLayout.module.css"
 import Head from 'next/head'
-
-import Sidebar from '@/lib/components/home/Sidebar'
+import Sidebar from '@/app/home/components/Sidebar'
 
 export default function HomeLayout({ children }) {
     return (
