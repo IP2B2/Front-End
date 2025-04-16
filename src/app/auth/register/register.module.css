@@ -42,6 +42,10 @@
   color:var(--text-gray);
 }
 
+.input:focus-visible {
+  outline: none;
+}
+
 .inputError {
   border-color: #EF4444;
 }
@@ -83,6 +87,7 @@
   line-height: 20px;
   color: var(--text-gray);
   text-align: center;
+  text-decoration: none;
 }
 
 .title {
@@ -106,6 +111,8 @@
 }
 
 .error {
+  height: var(--font-size-sm);
+
   font-size: var(--font-size-sm);
   font-weight: 600;
   line-height: var(--font-size-md);
