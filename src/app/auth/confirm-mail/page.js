@@ -1,31 +1,59 @@
-import Link from "next/link";
-import styles from "./loginPage.module.css";
+'use client'; // Adaugă această linie în partea de sus a fișierului
+
+import styles from './confirmMail.module.css';
 import '@/app/globals.css';
-import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
+import { Inter700, Inter500 } from '@/lib/fonts/Inter';
 
-export default function PasswordReset() {
+import { useState, useEffect } from 'react';
 
-    return <div className={styles.loginContainer}>
-        <div className={styles.formHeaderContainer}>
-            <div className={styles.title + " " + Inter700.className}> Autentificare </div>
-            <div className={styles.subtitle + " " + Inter500.className}>Introdu datele de autentificare în formularul de mai jos</div>
-        </div>
+export default function ConfirmEmailPage() {
+  const [timeLeft, setTimeLeft] = useState(5);
+  const [canResend, setCanResend] = useState(false);
 
-        <form className={styles.form + " " + Inter600 .className}>
-            <div className={styles.formLabel}>Email</div>
-            <input type={"email"} className={"border-rounded" + " " + "border-gray"} placeholder={"exemplu@gmail.com"}></input>
-            <div className={styles.formLabel}>Parola</div>
-            <input type={"password"} className={"border-rounded" + " " + "border-gray"} placeholder={"*************"}></input>
-            <button type={"submit"} className={styles.formButton + " " + "border-rounded" + " " + Inter600 .className}>Autentificare</button>
-        </form>
-        
-        <div className={styles.linkWrapper + " " + Inter500.className}>
-            <Link href={"google.com"} className={styles.link} >Ai uitat parola?</Link>
-        </div>
-        
-        <div className={styles.linkWrapper  + " " + Inter500.className}> 
-            <Link href={"google.com"} className={styles.link}>Nu ai un cont?</Link>
-        </div>
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timer = setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setCanResend(true);
+    }
+  }, [timeLeft]);
 
-    </div>;
+  const handleResend = () => {
+    if (canResend) {
+      // Aici ar trebui să fie logica de re-trimitere a emailului
+      console.log('Email retrimis!');
+      setTimeLeft(5);
+      setCanResend(false);
+    }
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.title + " " + Inter700.className}>Cerere de confirmare trimisă</div>
+      <div className={styles.subtitle + " " + Inter500.className}>
+        Ți-am trimis un email de confirmare la adresa [adresa de email a userului].
+        <br />
+        Te rugăm să verifici inbox-ul (și folderul de spam) și să urmezi
+        link-ul din mesaj pentru a-ți confirma contul.
+      </div>
+
+      <div className={styles.resendContainer}>
+        <div className={styles.resendText}>Nu ai primit emailul?</div>
+        <button
+          className={styles.resendButton}
+          onClick={handleResend}
+          disabled={!canResend && timeLeft > 0}
+        >
+          Trimite din nou {timeLeft > 0 && `(${timeLeft}s)`}
+        </button>
+      </div>
+
+      <div className={styles.backToLogin}>
+        <button className={styles.backToLoginButton}>Înapoi la autentificare</button>
+      </div>
+    </div>
+  );
 }
