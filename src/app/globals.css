@@ -7,6 +7,8 @@
   --font-size-md: 24px;
   --font-size-sm: 16px;
   --font-size-xs: 14px;
+  --font-family: 'Inter', sans-serif;
+  /* utilizati font-family doar pentru cazuri de override precum input-uri*/
 }
 
 * {
