@@ -1,58 +1,59 @@
-// src/app/auth/register/page.js
+'use client'
+
+import {useState} from 'react';
 
 import styles from './register.module.css';
 import Link from "next/link";
 import { InterText } from '@/lib/fonts/Inter';
 
-
+import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
+import { testValidEmail, testValidMatricol } from '@/lib/logic/AuthValidators';
 
 function RegisterPage() {
+
+  const [emailField, setEmailField] = useState("");
+  const [matricolField, setMatricolField] = useState("");
+
+  const [isSubmitError, setIsSubmitError] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
   return (
-    <div className={`${styles.formContainer} ${InterText.className}`}>
-      
-      {}
-      <h1 className={styles.title}>Creeaza cont</h1>
-      <p className={styles.subtitle}>
-        Completeaza formularul de mai jos pentru a crea un cont
-      </p>
-
-      {}
-      <form className={styles.form}>
-        
-        {}
-        <label className={styles.label}>
-          Email
-          <input
-            type="email"
-            placeholder="exemplu@info.uaic.ro"
-            className={styles.input}
-          />
-        </label>
-        
-        {}
-        <label className={styles.label}>
-          Numar matricol
-          <input
-            type="password"
-            className={styles.input}
-          />
-        </label>
-
-        {}
-        <button type="submit" className={styles.button}>
-          Creeaza cont
-        </button>
-
-        {}
-        <Link
-          href="https://google.com"
-          className={styles.loginHint}
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className={styles.registerContainer}>
+      <DefaultFormLayout
+        title={'Creeaza cont'}
+        subtitle={'Completeaza formularul de mai jos pentru a crea un cont'}
+        showError={false}
+      >
+      </DefaultFormLayout>
+      <FormContainer>
+        <FormField
+          type={"email"} 
+          label={"Email"} 
+          placeholder={"exemplu@gmail.com"}
+          setState={setEmailField} 
+          trim
+          validator={testValidEmail}
+          validate={hasSubmitted}
         >
-          Ai deja un cont?
-        </Link>
-      </form>
+        </FormField>
+
+        <FormField
+          type={"matricol"}
+          label={"Numar matricol"}
+          placeholder={"*************"}
+          setState={setMatricolField}
+          validator={testValidMatricol}
+          validate={hasSubmitted}
+        >
+        </FormField>
+
+        <FormButton onClick={() => setHasSubmitted(true)}>
+            Creeaza cont
+        </FormButton>
+
+        <FormLink> Ai deja un cont? </FormLink>
+
+      </FormContainer>
     </div>
   );
 }

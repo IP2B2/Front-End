@@ -1,0 +1,122 @@
+
+.defaultFormLayoutContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 28px;
+}
+.formHeaderWrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+
+.formContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 24px;
+}
+.formContainer > * {
+    width: 100%;
+}
+
+
+.formInputGroup {
+    width: 100%;
+    
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+}
+.formInputGroup > * {
+    width: 100%;
+}
+.formInputGroup > label {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
+
+    font-size: var(--font-size-sm);
+}
+
+.formInput {
+    width: 100%;
+
+    padding: 24px;
+
+    font-size: var(--font-size-sm);
+}
+.formInput:focus-visible {
+    outline: none;
+}
+.formInput:autofill {
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.formInputError {
+    border-color: #FF0000;
+}
+.formInputError:focus-visible {
+    outline: none;
+}
+
+.formInputErrorMessage {
+    height: 24px;
+
+    color:  #FF0000;
+    font-size: var(--font-size-sm);
+}
+
+.formLinkWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.formLink {
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: var(--font-size-xs);
+}
+
+.formButton {
+    padding: 20px;
+    margin: 10px 0;
+
+    background-color: var(--foreground);
+    border: 1px solid var(--foreground);
+    outline: none;
+
+    font-size: var(--font-size-sm);
+    color: white;
+
+    cursor: pointer;
+}
+
+.formTitle {
+    font-size: var(--font-size-lg);
+}
+
+.formSubtitle {
+    font-size: var(--font-size-sm);
+    color: var(--text-gray);
+}
+
+@media (max-width: 1150px) {
+    .formContainer {
+        gap: 18px;
+    }
+    .formInputGroup > label {
+        gap: 2px;
+    }
+    
+}
+
+@media (max-width: 860px) {
+    .formContainer {
+        gap: 8px;
+    }
+    .formInputGroup {
+        gap: 0px;
+    }
+}

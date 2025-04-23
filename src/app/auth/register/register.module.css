@@ -1,139 +1,20 @@
-.formContainer {
-  width: 100%;
-  max-width: 480px;
-
-  margin: 100px auto;
-  padding: 2rem;
-
-  border-radius: 10px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.label {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  line-height: var(--font-size-md);
-  color: var(--foreground);
-}
-
-.input {
-  width: 100%;
-  max-width: 480px;
-  height: 64px;
-
-  padding: 20px;      
-
-  border: 1px solid #ccc;
-  border-radius: 8px;
-
-  background-color: var(--background);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  color:var(--text-gray);
-}
-
-.inputError {
-  border-color: #EF4444;
-}
-
-.button {
-  width: 100%;
-  max-width: 480px;
-  height: 64px;
-
-  padding: 20px var(--font-size-sm);
-
-  border: none;
-  border-radius: 8px;
-
-  background-color: var(--foreground);
-  color: #FAFAFA;
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  line-height: var(--font-size-md);
-  text-align: center;
-
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.button:hover {
-  background-color: #1a1a1a;
-  text-decoration: none;
-}
-
-.loginHint {
-  max-width: 480px;
-
-  margin-top: 1rem;
-
-  font-size: var( --font-size-xs);
-  font-weight: 500;
-  line-height: 20px;
-  color: var(--text-gray);
-  text-align: center;
-}
-
-.title {
-  margin-bottom: 0.5rem;
-
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  line-height: 36px;
-  color: var(--foreground);
-}
-
-.subtitle {
-  max-width: 480px;
-
-  margin-bottom: 1.5rem;
-
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  line-height: var(--font-size-md);
-  color: var(--text-gray);
-}
-
-.error {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  line-height: var(--font-size-md);
-  color: #FF0000;
-}
-
-.link {
-  color: var(--text-gray);
-  text-decoration: none;
-  font-size: var(--font-size-xs);
-}
-
-
-.linkWrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.formHeaderContainer {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 10px;
-}
-
-
-.form > input {
+.registerContainer {
   width: 480px;
-  height: 64px;
 
-  padding: var(--font-size-md);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
 
-  font-size: var(--font-size-sm);
+@media (max-width: 1150px) {
+  .registerContainer {
+      gap: 8px;
+  }
+}
+
+@media (max-width: 680px) {
+  .registerContainer {
+      width: 326px;
+  }
 }
