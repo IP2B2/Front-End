@@ -1,9 +1,15 @@
 
 
 
-const emailRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.(?:[a-zA-Z0-9-]+)+$/)
+const emailRegex = new RegExp(/^[a-zA-Z0-9\.:=*&/?\-]+@[a-zA-Z0-9]+[a-zA-Z0-9-]*[a-zA-Z0-9]+\.(?:[a-zA-Z0-9]+)+$/);
 
-const testValidEmailFormat = (inputEmail) => !!emailRegex.test(inputEmail);
+/**
+ * Verifies if string is a valid email address
+ * @param {string} inputEmail 
+ * @returns boolean true if valid 
+ */
+
+const testValidEmailFormat = (inputEmail) => !!emailRegex.test(inputEmail) && !inputEmail.includes('..') && !inputEmail.includes('-@') && !inputEmail.includes('@-') && !inputEmail.includes('@.') && !inputEmail.includes('.@');
 
 export const testValidEmail = (inputEmail) => {
     if(!inputEmail) return "";
