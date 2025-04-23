@@ -1,10 +1,8 @@
 'use client'
 
-import {useState} from 'react';
+import { useState } from 'react';
 
 import styles from './register.module.css';
-import Link from "next/link";
-import { InterText } from '@/lib/fonts/Inter';
 
 import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
 import { testValidEmail, testValidMatricol } from '@/lib/logic/AuthValidators';

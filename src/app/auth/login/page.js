@@ -1,13 +1,9 @@
 'use client';
 
-import { useEffect, useState } from "react";
-
-import Link from "next/link";
+import { useState } from "react";
 
 import styles from "./loginPage.module.css";
-import formStyles from "./FormStyles.module.css"
 import '@/app/globals.css';
-import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 
 import { testValidEmail, testValidPassword } from "@/lib/logic/AuthValidators";
 
