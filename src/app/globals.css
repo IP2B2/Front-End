@@ -47,3 +47,12 @@ body {
   height: 70px;
   border-radius: 100%;
 }
+
+@media (max-width: 680px) {
+  :root {
+    --font-size-lg: 24px;
+    --font-size-md: 24px;
+    --font-size-sm: 16px;
+    --font-size-xs: 14px;
+  }
+}
