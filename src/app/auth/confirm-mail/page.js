@@ -7,7 +7,7 @@ import { Inter700, Inter500 } from '@/lib/fonts/Inter';
 import { useState, useEffect } from 'react';
 
 export default function ConfirmEmailPage() {
-  const [timeLeft, setTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
 
   useEffect(() => {
@@ -23,9 +23,8 @@ export default function ConfirmEmailPage() {
 
   const handleResend = () => {
     if (canResend) {
-      // Aici ar trebui să fie logica de re-trimitere a emailului
       console.log('Email retrimis!');
-      setTimeLeft(5);
+      setTimeLeft(60);
       setCanResend(false);
     }
   };
