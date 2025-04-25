@@ -99,3 +99,22 @@
     font-size: var(--font-size-sm);
     color: var(--text-gray);
 }
+
+@media (max-width: 1150px) {
+    .formContainer {
+        gap: 18px;
+    }
+    .formInputGroup > label {
+        gap: 2px;
+    }
+    
+}
+
+@media (max-width: 860px) {
+    .formContainer {
+        gap: 8px;
+    }
+    .formInputGroup {
+        gap: 0px;
+    }
+}

@@ -30,7 +30,7 @@ export default function LoginPage() {
                 <FormField 
                     type={"email"} 
                     label={"Email"} 
-                    placeholder={"exemplu@gmail.com"}
+                    placeholder={"exemplu@info.uaic.ro"}
                     setState={setEmailField} 
                     trim
                     validator={testValidEmail}
