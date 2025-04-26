@@ -50,7 +50,7 @@ export const FormButton = ({ onClick, children }) => {
 
     const buttonBehaviour = (event) => {
         event.preventDefault();
-        onClick?.(e);
+        onClick?.(event);
     }
 
     return (
@@ -60,6 +60,14 @@ export const FormButton = ({ onClick, children }) => {
             className={`${formStyles.formButton} border-rounded ${Inter600.className}`}>
             {children}
         </button>
+    )
+}
+export const FormMultiColumn = ({ cols, children }) => {
+    return (
+        <div className={`${formStyles.multiColumnContainer}`}
+            style={{gridTemplateColumns: `repeat(${(parseInt(cols) != NaN ? cols : 2)}, 1fr)`}}>
+                {children}
+            </div>
     )
 }
 
