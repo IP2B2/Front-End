@@ -35,7 +35,7 @@ export const FormContainer = ({ children }) => {
     )
 }
 
-export const FormLink = ({ href = '', children }) => {
+export const FormLink = ({ href = '#', children }) => { 
     return (
         <div className={`${formStyles.formLinkWrapper} ${Inter500.className}`}> 
             <Link 
