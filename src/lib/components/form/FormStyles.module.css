@@ -13,13 +13,17 @@
 .formContainer {
     display: flex;
     flex-flow: column nowrap;
-    gap: 24px;
+    gap: 0px;
 }
 .formContainer > * {
     width: 100%;
 }
+.multiColumnContainer {
+    width: 100%;
 
-
+    display: grid;
+    gap: 20px;
+}
 .formInputGroup {
     width: 100%;
     
@@ -103,19 +107,20 @@
 }
 
 @media (max-width: 1150px) {
-    .formContainer {
-        gap: 18px;
-    }
     .formInputGroup > label {
         gap: 2px;
     }
     
 }
 
-@media (max-width: 860px) {
-    .formContainer {
-        gap: 8px;
+@media (max-width: 500px) {
+    .multiColumnContainer {
+        grid-template-columns: 100% !important;
+        gap: 0px;
     }
+}
+
+@media (max-width: 860px) {
     .formInputGroup {
         gap: 0px;
     }
