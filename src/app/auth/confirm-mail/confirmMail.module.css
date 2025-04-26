@@ -20,7 +20,7 @@
   font-size: var(--font-size-lg);
   line-height: 24px;
   letter-spacing: 0%;
-  color: #09090B;
+  color: var(--foreground);
 }
 
 .subtitle {
@@ -34,7 +34,7 @@
   font-size: var(--font-size-sm);
   line-height: 24px;
   letter-spacing: 0%;
-  color: #71717A;
+  color: var(--text-gray);
 }
 
 .resendContainer {
@@ -54,7 +54,7 @@
 
   font-size: var(--font-size-sm);
   line-height: 24px;
-  color: #09090B;
+  color: var(--foreground);
 }
 
 .resendButton {
@@ -67,9 +67,9 @@
   justify-content: center;
   align-items: center;
 
-  border: 1px solid #E4E4E7;
+  border: 1px solid var(--border-gray);
   border-radius: 8px;
-  background-color: #FFFFFF;
+  background-color: var(--background);
 
   text-align: center;
   font-size: var(--font-size-sm);
@@ -103,7 +103,7 @@
 
   border: none;
   border-radius: 8px;
-  background-color: #09090B;
+  background-color: var(--foreground);
 
   text-align: center;
   font-size: var(--font-size-sm);
