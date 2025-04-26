@@ -1,8 +1,8 @@
-'use client'; // Adaugă această linie în partea de sus a fișierului
+'use client';
 
 import styles from './confirmMail.module.css';
 import '@/app/globals.css';
-import { Inter700, Inter500 } from '@/lib/fonts/Inter';
+import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 
 import { useState, useEffect } from 'react';
 
@@ -42,7 +42,7 @@ export default function ConfirmEmailPage() {
       <div className={styles.resendContainer}>
         <div className={styles.resendText}>Nu ai primit emailul?</div>
         <button
-          className={styles.resendButton}
+          className={styles.resendButton + " " + Inter600.className}
           onClick={handleResend}
           disabled={!canResend && timeLeft > 0}
         >
@@ -51,7 +51,8 @@ export default function ConfirmEmailPage() {
       </div>
 
       <div className={styles.backToLogin}>
-        <button className={styles.backToLoginButton}>Înapoi la autentificare</button>
+        <button className={styles.backToLoginButton + " " + Inter600.className}>
+          Înapoi la autentificare</button>
       </div>
     </div>
   );
