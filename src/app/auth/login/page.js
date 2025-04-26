@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-
+import { useRouter } from 'next/navigation'; 
 import Link from "next/link";
 
 import styles from "./loginPage.module.css";
@@ -12,11 +12,28 @@ import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 import { testValidEmail, testValidPassword } from "@/lib/logic/AuthValidators";
 
 export default function LoginPage() {
+    const router = useRouter(); 
     const [emailField, setEmailField] = useState("");
     const [passwordField, setPasswordField] = useState("");
 
     const [isSubmitError, setIsSubmitError] = useState(false);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+
+    const handleLogin = async () => {
+        setHasSubmitted(true);
+
+        const emailError = testValidEmail(emailField);
+        const passwordError = testValidPassword(passwordField);
+
+        if (!emailError && !passwordError) {
+            console.log("Login successful, redirecting...");
+            router.push('/home'); 
+            setIsSubmitError(false);
+        } else {
+            console.log("Login failed validation");
+            setIsSubmitError(true); 
+        }
+    };
 
     return (
     <div className={styles.loginContainer}>
@@ -24,7 +41,7 @@ export default function LoginPage() {
             title={"Autentificare"}
             subtitle={"Introdu datele de autentificare în formularul de mai jos"}
             showError={isSubmitError}
-            errorMessage={"Aici va fi mesajul de eroare dupa implementare backend"}
+            errorMessage={"Email sau parola invalida."}
         >
             <FormContainer>
                 <FormField 
@@ -44,13 +61,13 @@ export default function LoginPage() {
                     validator={testValidPassword}
                     validate={hasSubmitted}
                     />
-                <FormButton onClick={() => setHasSubmitted(true)}>
+                <FormButton onClick={handleLogin}>
                     Autentificare
                 </FormButton>
             </FormContainer>
 
-            <FormLink>Ai uitat parola?</FormLink>
-            <FormLink>Nu ai un cont?</FormLink>
+            <FormLink href="#">Ai uitat parola?</FormLink>
+            <FormLink href="/auth/register">Nu ai un cont?</FormLink>
 
         </DefaultFormLayout>
     </div>
@@ -85,7 +102,7 @@ const FormContainer = ({ children }) => {
     )
 }
 
-const FormLink = ({ href = '', children }) => {
+const FormLink = ({ href = '#', children }) => { 
     return (
         <div className={`${formStyles.formLinkWrapper} ${Inter500.className}`}> 
             <Link 
