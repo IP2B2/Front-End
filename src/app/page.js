@@ -29,6 +29,9 @@ export default function RootHome() {
             <li>
                 <Link href='/home/'>Home/Landing page</Link>
             </li>
+            <li>
+                <Link href='/auth/confirm-mail'>Confirm Mail</Link>
+            </li>
         </ul>
     </div>
   );
