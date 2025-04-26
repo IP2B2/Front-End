@@ -45,7 +45,7 @@ const testValidPasswordCharacters = (inputPassword) => !!(validCharactersRegex.t
 const testValidPasswordLength = (inputPassword) => inputPassword?.length > 2 && inputPassword?.length < 33;
 
 export const testValidPassword = (inputPassword) => {
-    if(!inputPassword) return "";
+    if(typeof(inputPassword) === 'undefined') return "";
     if(!testValidPasswordLength(inputPassword)) {
         return "Parola trebuie sa contina intre 3 si 32 de caractere."
     }
@@ -59,7 +59,7 @@ const validMatricolCharactersRegex = new RegExp(/^[A-Za-z0-9]+$/);
  const testValidMatricolCharacters = (inputMatricol) => !!(validMatricolCharactersRegex.test(inputMatricol));
  const testValidMatricolLength = (inputMatricol) => inputMatricol?.length > 6 && inputMatricol?.length < 19;
  
- export const testValidMatricol = (inputMatricol) => {
+export const testValidMatricol = (inputMatricol) => {
      if(!inputMatricol) return "";
      if(!testValidMatricolLength(inputMatricol)){
          return "Lungime necorespunzătoare.";

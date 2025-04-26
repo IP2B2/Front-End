@@ -26,6 +26,7 @@ export default function LoginPage() {
         const passwordError = testValidPassword(passwordField);
 
         if (!emailError && !passwordError) {
+            console.log(passwordError);
             console.log("Login successful, redirecting...");
             router.push('/home'); 
             setIsSubmitError(false);
