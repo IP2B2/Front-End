@@ -1,6 +1,8 @@
 .registerContainer {
   width: 480px;
 
+  margin: 0 20px;
+
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
