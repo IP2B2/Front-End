@@ -89,6 +89,8 @@
 
     font-size: var(--font-size-sm);
     color: white;
+
+    cursor: pointer;
 }
 
 .formTitle {

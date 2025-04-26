@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import styles from './confirmMail.module.css';
 import '@/app/globals.css';
 import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
@@ -7,6 +9,8 @@ import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 import { useState, useEffect } from 'react';
 
 export default function ConfirmEmailPage() {
+  const router = useRouter();
+
   const [timeLeft, setTimeLeft] = useState(60);
   const [canResend, setCanResend] = useState(false);
 
@@ -51,7 +55,7 @@ export default function ConfirmEmailPage() {
       </div>
 
       <div className={styles.backToLogin}>
-        <button className={styles.backToLoginButton + " " + Inter600.className}>
+        <button className={styles.backToLoginButton + " " + Inter600.className} onClick={() => router.push('/auth/login')}>
           Înapoi la autentificare</button>
       </div>
     </div>
