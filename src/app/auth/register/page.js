@@ -1,9 +1,6 @@
 'use client'
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation'; 
-
-import { useState } from 'react'; 
+import { useState,useCallback } from 'react';
 import { useRouter } from 'next/navigation'; 
 import styles from './register.module.css';
 
@@ -18,18 +15,19 @@ function RegisterPage() {
   const [isSubmitError, setIsSubmitError] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = useCallback((event) => {
     event.preventDefault(); 
-    const validationError = testValidEmail(email);
-    setEmailError(validationError);
+    setHasSubmitted(true);
 
-    if (!validationError) {
+    if (testValidEmail(emailField) === "" && testValidMatricol(matricolField) === "") {
       console.log("Register part 1 successful, redirecting...");
-      router.push('/auth/extra-data-required'); 
+      router.push('/auth/confirm-mail');
+      return;
     } else {
       console.log("Register part 1 validation failed");
+      setIsSubmitError(true);
     }
-  };
+  }, [emailField, router]);
 
   return (
     <div className={styles.registerContainer}>
@@ -52,7 +50,7 @@ function RegisterPage() {
         </FormField>
 
         <FormField
-          type={"matricol"}
+          type={"password"}
           label={"Numar matricol"}
           placeholder={"*************"}
           setState={setMatricolField}
@@ -61,7 +59,7 @@ function RegisterPage() {
         >
         </FormField>
 
-        <FormButton onClick={() => setHasSubmitted(true)}>
+        <FormButton onClick={handleSubmit}>
             Creeaza cont
         </FormButton>
 
