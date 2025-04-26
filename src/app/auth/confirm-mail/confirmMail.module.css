@@ -54,7 +54,7 @@
 
   font-size: var(--font-size-sm);
   line-height: 24px;
-  color: var(--foreground);
+  color: var(--text-gray);
 }
 
 .resendButton {
