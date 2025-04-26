@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import UserBox from './UserBox'
 
-export default function Breadcrumbs({ page }) {
+export default function TabletBreadcrumbs({ page }) {
   return (
     <div className={styles.breadcrumbsContainer}>
       <div>
@@ -18,9 +18,7 @@ export default function Breadcrumbs({ page }) {
           />
           <span className={styles.current}>{page}</span>
         </div>
-        <div className={styles.pageTitle}>Acasa</div>
       </div>
-      <UserBox />
     </div>
   )
 }

@@ -1,0 +1,29 @@
+
+
+
+.buttonWrapper {
+    display: flex;
+    gap: 10px;
+}
+  
+.infoButton,
+.logoutButton,
+.userButton {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    max-width: 40px;
+  
+    padding: 8px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+  
+    border: 1px solid var(--border-gray);
+    background-color: var(--background);
+    text-decoration: none;
+    cursor: pointer;
+}
+  

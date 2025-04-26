@@ -17,3 +17,35 @@
     padding: 10px 0 0 0;
     
 }
+.showStartTablet {
+    width: 100%;
+    
+    padding: 10px 0;
+    
+    flex-flow: column nowrap;
+    gap: 10px;
+
+}
+
+.showStartTablet {
+    display: none;
+}
+@media (max-width: 860px) {
+    .layoutContainer > *:not(.mainContainer) {
+        display: none;
+    }
+    .layoutContainer {
+        padding: 0px;
+    }
+    .mainContainer {
+        padding: 0px;
+    }
+    .showDesktop {
+        display: none;
+    }
+    .showStartTablet {
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+}
