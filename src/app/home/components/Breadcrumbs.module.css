@@ -1,60 +1,64 @@
-.breadcrumb {
+.breadcrumbsContainer {
   margin-bottom: 12px;
   padding-left: 20px; 
 
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.pageTitle {
+  margin-left: 5px;
+
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+.breadcrumbs {
   display: flex;
   align-items: center;
 
   font-size: var(--font-size-xs);
   line-height: var(--font-size-md);
   font-family: 'Inter', sans-serif;
-  }
-  
-  .label {
-    color: var(--text-gray);       
-    font-weight: 400;
-  }
-  
-  .separator {
-    margin: 0 4px;
+}
 
-    color: var(--text-gray);     
-  }
-  
-  .current {
-    color: #000000;        
-    font-weight: 600;
-  }
+.label {
+  color: var(--text-gray);       
+  font-weight: 400;
+}
 
-  .buttonWrapper {
-    position: absolute;
-    top: 10px;
-    right: var(--font-size-lg);
+.separator {
+  margin: 0 4px;
+  color: var(--text-gray);     
+}
 
-    display: flex;
-    gap: 10px;
-  }
-  
-  .infoButton,
-  .logoutButton,
-  .userButton {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    max-width: 40px;
+.current {
+  color: #000000;        
+  font-weight: 600;
+}
+.buttonWrapper {
+  display: flex;
+  gap: 10px;
+}
 
-    padding: 8px;
+.infoButton,
+.logoutButton,
+.userButton {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  max-width: 40px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  padding: 8px;
 
-    border-radius: 9999px;
-    border: 1px solid var(--border-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
 
-    background-color: var(--background);
-    text-decoration: none;
-
-    cursor: pointer;
-  }
-  
+  border: 1px solid var(--border-gray);
+  background-color: var(--background);
+  text-decoration: none;
+  cursor: pointer;
+}

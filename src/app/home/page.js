@@ -6,7 +6,6 @@ export default function Home() {
     return (
         <>
          <Breadcrumbs page = "Acasa" />
-         <h1 className={styles.pageTitle}>Acasa</h1>
         </>
     );
 }

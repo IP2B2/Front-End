@@ -4,17 +4,20 @@ import Link from 'next/link'
 
 export default function Breadcrumb({ page }) {
   return (
-    <div className={styles.breadcrumbContainer}>
-      <div className={styles.breadcrumb}>
-        <span className={styles.label}>Pagini</span>
-        <Image
-          src="/icons/slash-icon.png"
-          alt="/"
-          width={16}
-          height={16}
-          className={styles.separator}
-        />
-        <span className={styles.current}>{page}</span>
+    <div className={styles.breadcrumbsContainer}>
+      <div>
+        <div className={styles.breadcrumbs}>
+          <span className={styles.label}>Pagini</span>
+          <Image
+            src="/icons/slash-icon.png"
+            alt="/"
+            width={16}
+            height={16}
+            className={styles.separator}
+          />
+          <span className={styles.current}>{page}</span>
+        </div>
+        <div className={styles.pageTitle}>Acasa</div>
       </div>
       <div className={styles.buttonWrapper}>
           <Link href="https://www.google.com/" className={styles.logoutButton}>
