@@ -1,18 +1,37 @@
 
 
 
-const emailRegex = new RegExp(/^[a-zA-Z0-9\.\-]+@[a-zA-Z0-9]+[a-zA-Z0-9-]*[a-zA-Z0-9]+\.(?:[a-zA-Z0-9]+)+$/);
+const emailRegex = new RegExp(/^[a-zA-Z0-9\.\-]+@(?:[a-zA-Z0-9-]+\.)*uaic.ro$/);
 
 /**
  * Verifies if string is a valid email address
  * @param {string} inputEmail 
  * @returns boolean true if valid 
  */
+const testEmailInvalidFirstChar = (inputEmail) => inputEmail.charAt(0) === '.' || inputEmail.charAt(0) === '-';
 
-const testValidEmailFormat = (inputEmail) => !!emailRegex.test(inputEmail) && !inputEmail.charAt(0) != '.' && !inputEmail.charAt(0) != '-' && !inputEmail.includes('..') && !inputEmail.includes('-@') && !inputEmail.includes('@-') && !inputEmail.includes('@.') && !inputEmail.includes('.@') && !inputEmail.includes('-.') && !inputEmail.includes('.-');
+const testValidEmailFormat = (inputEmail) => 
+    !!emailRegex.test(inputEmail) 
+    && !testEmailInvalidFirstChar(inputEmail) 
+    && !inputEmail.includes('..') 
+    && !inputEmail.includes('-.') 
+    && !inputEmail.includes('.-')
+    && !inputEmail.includes('--')
+    && !inputEmail.includes('-@') 
+    && !inputEmail.includes('@-')
+    && !inputEmail.includes('@.') 
+    && !inputEmail.includes('.@'); 
 
+/**
+ * Tests if string is in valid email format
+ * @param {string} inputEmail 
+ * @returns error or "" if no errors
+ */
 export const testValidEmail = (inputEmail) => {
     if(!inputEmail) return "";
+    if(!inputEmail.endsWith('uaic.ro')) {
+        return "Furnizati un email uaic.ro";
+    }
     if(!testValidEmailFormat(inputEmail)) {
         return "Format invalid."
     }
