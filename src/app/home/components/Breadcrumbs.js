@@ -20,7 +20,7 @@ export default function Breadcrumb({ page }) {
         <div className={styles.pageTitle}>Acasa</div>
       </div>
       <div className={styles.buttonWrapper}>
-          <Link href="https://www.google.com/" className={styles.logoutButton}>
+          <Link href="/auth/login" className={styles.logoutButton}>
             <Image 
               src="/icons/buton-logout.png" 
               alt="Logout"
@@ -29,7 +29,7 @@ export default function Breadcrumb({ page }) {
             />
           </Link>
 
-          <Link href="https://www.google.com/" target="_blank" className={styles.infoButton}>
+          <Link href="/home" target="_blank" className={styles.infoButton}>
             <Image
               src="/icons/buton-info.png"
               alt="Information"
@@ -38,7 +38,7 @@ export default function Breadcrumb({ page }) {
             />
           </Link>
 
-          <Link href="https://www.google.com/" target="_blank" className={styles.userButton}>
+          <Link href="/home" target="_blank" className={styles.userButton}>
             <Image
               src="/icons/buton-user-name.png"
               alt="User-name"
