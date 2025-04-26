@@ -54,3 +54,18 @@ export const testValidPassword = (inputPassword) => {
     }
     return "";
 }
+
+const validMatricolCharactersRegex = new RegExp(/^[A-Za-z0-9]+$/);
+ const testValidMatricolCharacters = (inputMatricol) => !!(validMatricolCharactersRegex.test(inputMatricol));
+ const testValidMatricolLength = (inputMatricol) => inputMatricol?.length > 6 && inputMatricol?.length < 19;
+ 
+ export const testValidMatricol = (inputMatricol) => {
+     if(!inputMatricol) return "";
+     if(!testValidMatricolLength(inputMatricol)){
+         return "Lungime necorespunzătoare.";
+     }
+     if(!testValidMatricolCharacters(inputMatricol)){
+         return "Contine caractere necorespunzătoare."
+     }
+     return "";
+ }

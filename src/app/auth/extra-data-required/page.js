@@ -49,7 +49,7 @@ export default function ExtraDataRequired() {
                 <div className={styles.formLabel}>Confirmare parola</div>
                 <input type="password" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="***************"></input>
                 
-                <button type="submit" className={styles.formButton + " " + "border-rounded" + " " + Inter500.className}>Finalizeaza</button>
+                <button type="submit" className={styles.formButton + " " + "border-rounded" + " " + Inter500.className} onClick={handleSubmit}>Finalizeaza</button>
             </form>
         </div>
     );
