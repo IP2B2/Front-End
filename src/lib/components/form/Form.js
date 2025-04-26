@@ -39,7 +39,7 @@ export const FormLink = ({ href = '#', children }) => {
     return (
         <Link
             href={href} 
-            className={`${formStyles.formLinkWrapper} ${formStyles.formLink}  ${Inter500.className}`}
+            className={`${formStyles.formLinkWrapper} ${formStyles.formLink} ${Inter500.className}`}
             >
             {children}
         </Link>
