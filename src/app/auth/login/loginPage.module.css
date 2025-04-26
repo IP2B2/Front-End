@@ -1,6 +1,8 @@
 .loginContainer {
     width: 480px;
 
+    margin: 0 20px;
+
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -15,6 +17,6 @@
 
 @media (max-width: 680px) {
     .loginContainer {
-        width: 326px;
+        width: 400px;
     }
 }
