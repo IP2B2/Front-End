@@ -56,8 +56,8 @@ export const testValidPassword = (inputPassword) => {
 }
 
 const validMatricolCharactersRegex = new RegExp(/^[A-Za-z0-9]+$/);
- const testValidMatricolCharacters = (inputMatricol) => !!(validMatricolCharactersRegex.test(inputMatricol));
- const testValidMatricolLength = (inputMatricol) => inputMatricol?.length > 6 && inputMatricol?.length < 19;
+const testValidMatricolCharacters = (inputMatricol) => !!(validMatricolCharactersRegex.test(inputMatricol));
+const testValidMatricolLength = (inputMatricol) => inputMatricol?.length > 6 && inputMatricol?.length < 19;
  
 export const testValidMatricol = (inputMatricol) => {
      if(typeof(inputMatricol) === 'undefined') return "";

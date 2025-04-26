@@ -18,12 +18,14 @@
 .formContainer > * {
     width: 100%;
 }
+
 .multiColumnContainer {
     width: 100%;
 
     display: grid;
     gap: 20px;
 }
+
 .formInputGroup {
     width: 100%;
     
@@ -112,7 +114,6 @@
     }
     
 }
-
 @media (max-width: 500px) {
     .multiColumnContainer {
         grid-template-columns: 100% !important;
