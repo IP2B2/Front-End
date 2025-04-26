@@ -37,29 +37,26 @@ export const FormContainer = ({ children }) => {
 
 export const FormLink = ({ href = '#', children }) => { 
     return (
-        <div className={`${formStyles.formLinkWrapper} ${Inter500.className}`}> 
-            <Link 
-                href={href} 
-                className={formStyles.formLink}
-                >
-                {children}
-            </Link>
-        </div>
+        <Link
+            href={href} 
+            className={`${formStyles.formLinkWrapper} ${formStyles.formLink}  ${Inter500.className}`}
+            >
+            {children}
+        </Link>
     );
 } 
 
 export const FormButton = ({ onClick, children }) => {
 
-    const buttonBehavior = (event) => {
+    const buttonBehaviour = (event) => {
         event.preventDefault();
-        if(onClick)
-            return onClick(event);
+        onClick?.(e);
     }
 
     return (
         <button 
             type={"submit"} 
-            onClick={buttonBehavior} 
+            onClick={buttonBehaviour} 
             className={`${formStyles.formButton} border-rounded ${Inter600.className}`}>
             {children}
         </button>
