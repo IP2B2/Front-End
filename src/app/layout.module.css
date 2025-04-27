@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    background: #fff;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    gap: 40px;
+  }
+  
+  .main {
+    flex: 1;
+    padding: 40px;
+  }

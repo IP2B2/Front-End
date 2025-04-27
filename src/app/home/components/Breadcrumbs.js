@@ -20,7 +20,7 @@ export default function Breadcrumb({ page }) {
         <div className={styles.pageTitle}>Acasa</div>
       </div>
       <div className={styles.buttonWrapper}>
-          <Link href="https://www.google.com/" className={styles.logoutButton}>
+          <Link href="/auth/login" className={styles.logoutButton}>
             <Image 
               src="/icons/buton-logout.png" 
               alt="Logout"

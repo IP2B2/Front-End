@@ -50,7 +50,7 @@ export const FormButton = ({ onClick, children }) => {
 
     const buttonBehaviour = (event) => {
         event.preventDefault();
-        onClick?.(e);
+        onClick?.(event);
     }
 
     return (
