@@ -4,8 +4,6 @@ import Breadcrumbs from './components/Breadcrumbs';
 
 export default function Home() {
     return (
-        <>
-         <Breadcrumbs page = "Acasa" />
-        </>
+        <div className={styles.homeContainer}>Test</div>
     );
 }

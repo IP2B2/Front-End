@@ -18,13 +18,7 @@ export default function RootHome() {
                 <Link href='/auth/login'>Login</Link>
             </li>
             <li>
-                <Link href='/auth/create-password'>Create Password</Link>
-            </li>
-            <li>
                 <Link href='/auth/extra-data-required'>Extra data required</Link>
-            </li>
-            <li>
-                <Link href='/auth/pending'>Pending</Link>
             </li>
             <li>
                 <Link href='/home/'>Home/Landing page</Link>

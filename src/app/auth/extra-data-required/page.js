@@ -1,12 +1,23 @@
 'use client';
 
+import { useState } from "react";
+
 import styles from "./registerPage.module.css";
 import '@/app/globals.css';
+import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButton } from "@/lib/components/form/Form";
 import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 import { useRouter } from 'next/navigation'; 
 
 export default function ExtraDataRequired() {
     const router = useRouter();
+
+    const [prenume, setPrenume] = useState("");
+    const [nume, setNume] = useState("");
+    const [rol, setRol] = useState("");
+    const [facultate, setFacultate] = useState("");
+
+    const [parola, setParola] = useState("");
+    const [confirmParola, setConfirmParola] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -15,42 +26,59 @@ export default function ExtraDataRequired() {
 
     return (
         <div className={styles.registerContainer}>
-            <div className={styles.formHeaderContainer}>
-                <div className={styles.title + " " + Inter700.className}>Mai avem nevoie de date</div>
-                <div className={styles.subtitle + " " + Inter500.className}>Introdu datele tale în formularul de mai jos pentru a finaliza crearea contului</div>
-            </div>
-
-            <form className={styles.form + " " + Inter600.className} onSubmit={handleSubmit}>
-                <div className={styles.formRow}>
-                    <div className={styles.formGroup}>
-                        <div className={styles.formLabel}>Prenume</div>
-                        <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="ex: Alexandru"></input>
-                    </div>
-                    <div className={styles.formGroup}>
-                        <div className={styles.formLabel}>Nume de familie</div>
-                        <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="ex: Popescu"></input>
-                    </div>
-                </div>
-
-                <div className={styles.formRow}>
-                    <div className={styles.formGroup}>
-                        <div className={styles.formLabel}>Rol</div>
-                        <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="ex: student"></input>
-                    </div>
-                    <div className={styles.formGroup}>
-                        <div className={styles.formLabel}>Facultate</div>
-                        <input type="text" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="ex: Facultatea de informatica Iasi"></input>
-                    </div>
-                </div>
-
-                <div className={styles.formLabel}>Parola</div>
-                <input type="password" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="***************"></input>
-                
-                <div className={styles.formLabel}>Confirmare parola</div>
-                <input type="password" className={"border-rounded" + " " + "border-gray" + " " + Inter500.className} placeholder="***************"></input>
-                
-                <button type="submit" className={styles.formButton + " " + "border-rounded" + " " + Inter500.className} onClick={handleSubmit}>Finalizeaza</button>
-            </form>
+            <DefaultFormLayout
+                title={"Mai avem nevoie de date"}
+                subtitle={"Introdu datele tale în formularul de mai jos pentru a finaliza crearea contului"}>
+                <FormContainer>
+                <FormMultiColumn cols={2}>
+                        <FormField 
+                            type={"text"} 
+                            label={"Prenume"} 
+                            placeholder={"ex: Alexandru"}
+                            setState={setPrenume} 
+                            trim
+                            />
+                        <FormField 
+                            type={"text"} 
+                            label={"Nume de familie"} 
+                            placeholder={"ex: Popescu"}
+                            setState={setNume} 
+                            trim
+                            /> 
+                    </FormMultiColumn>
+                    <FormMultiColumn cols={2}>
+                        <FormField 
+                            type={"text"} 
+                            label={"Rol"} 
+                            placeholder={"ex: student"}
+                            setState={setRol} 
+                            trim
+                            />
+                        <FormField 
+                            type={"text"} 
+                            label={"Facultate"} 
+                            placeholder={"ex: Facultatea de Informatica Iasi"}
+                            setState={setFacultate} 
+                            trim
+                            /> 
+                    </FormMultiColumn>
+                    <FormField 
+                        type={"password"} 
+                        label={"Parola"} 
+                        placeholder={"***************"}
+                        setState={setParola} 
+                        trim
+                        />
+                    <FormField 
+                        type={"text"} 
+                        label={"Confirmare parola"} 
+                        placeholder={"***************"}
+                        setState={setConfirmParola} 
+                        trim
+                        />
+                    <FormButton>Finalizaeaza </FormButton>
+                </FormContainer>
+            </DefaultFormLayout>
         </div>
     );
 }
