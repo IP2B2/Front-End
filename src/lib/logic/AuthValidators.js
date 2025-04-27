@@ -28,7 +28,7 @@ const testValidEmailFormat = (inputEmail) =>
  * @returns error or "" if no errors
  */
 export const testValidEmail = (inputEmail) => {
-    if(!inputEmail) return "";
+    if(typeof(inputEmail) === 'undefined') return "";
     if(!inputEmail.endsWith('uaic.ro')) {
         return "Furnizati un email uaic.ro";
     }
