@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import styles from "./registerPage.module.css";
 import '@/app/globals.css';
-import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButton } from "@/lib/components/form/Form";
+import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
 import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 import { useRouter } from 'next/navigation'; 
 
@@ -76,7 +76,8 @@ export default function ExtraDataRequired() {
                         setState={setConfirmParola} 
                         trim
                         />
-                    <FormButton>Finalizaeaza </FormButton>
+                    <FormButton onClick={handleSubmit}>Finalizaeaza</FormButton>
+                    <FormLink href="/auth/login">Inapoi</FormLink>
                 </FormContainer>
             </DefaultFormLayout>
         </div>
