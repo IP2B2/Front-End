@@ -15,9 +15,11 @@ export default function HomeLayout({ children }) {
             <Head>
                 <title>Acasa - Proiect IP</title>
             </Head>
-            <Sidebar />
+            <div className={styles.showDesktopOnly}>
+                <Sidebar />
+            </div>
             <div className={styles.mainContainer}>
-                <div className={styles.showDesktop}>
+                <div className={styles.showDesktopOnly}>
                     <Breadcrumbs page = "Acasa" />
                 </div>
                 <div className={styles.showStartTablet}>

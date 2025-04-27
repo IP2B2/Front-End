@@ -1,9 +1,46 @@
+
+import Image from 'next/image';
+
 import '@/app/globals.css'
 import styles from './homePage.module.css'
 import Breadcrumbs from './components/Breadcrumbs';
+import { Montserrat300Italic, Montserrat500, Montserrat900 } from '@/lib/fonts/Montserrat';
+
+
 
 export default function Home() {
     return (
-        <div className={styles.homeContainer}>Test</div>
+        <div className={styles.homeContainer}>
+            <div className={styles.statusCard}>Verificarea contului dumneavoastră este în curs. Vă mulțumim pentru înțelegere și răbdare!</div>
+            <div className={styles.welcomeCard}>
+                <div>
+                    <div className={Montserrat900.className}>Welcome to</div>
+                    <div className={styles.showDesktop}><Image
+                        src="/ISMA.svg"
+                        width={400}
+                        height={150}
+                        alt="ISMA"
+                    ></Image>
+                    </div>
+                    <div className={styles.showTablet}><Image
+                        src="/ISMA.svg"
+                        width={318}
+                        height={94}
+                        alt="ISMA"
+                    ></Image>
+                    </div>
+                    <div className={styles.showMobile}><Image
+                        src="/ISMA.svg"
+                        width={200}
+                        height={62}
+                        alt="ISMA"
+                    ></Image>
+                    </div>
+                </div>
+                <div className={Montserrat500.className}>
+                ISMA <div className={Montserrat300Italic.className}>centralizează procesele administrative legate de utilizarea echipamentelor științifice și tehnice. Principalul obiectiv este optimizarea accesului la echipamente și urmărirea trasabilității acestora printr-un sistem digital, intuitiv și structurat.</div>
+                </div>
+            </div>
+        </div>
     );
 }
