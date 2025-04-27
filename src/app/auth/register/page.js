@@ -21,13 +21,13 @@ function RegisterPage() {
 
     if (testValidEmail(emailField) === "" && testValidMatricol(matricolField) === "") {
       console.log("Register part 1 successful, redirecting...");
-      router.push('/auth/confirm-mail');
+      router.push('/auth/extra-data-required'); 
       return;
     } else {
       console.log("Register part 1 validation failed");
       setIsSubmitError(true);
     }
-  }, [emailField, router]);
+  }, [emailField, matricolField, router]);
 
   return (
     <div className={styles.registerContainer}>

@@ -76,7 +76,7 @@ export default function ExtraDataRequired() {
                         setState={setConfirmParola} 
                         trim
                         />
-                    <FormButton>Finalizaeaza </FormButton>
+                    <FormButton onClick={handleSubmit}>Finalizeaza</FormButton>
                 </FormContainer>
             </DefaultFormLayout>
         </div>
