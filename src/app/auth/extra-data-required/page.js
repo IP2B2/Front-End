@@ -8,6 +8,11 @@ import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButto
 import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 import { useRouter } from 'next/navigation'; 
 
+const emptyInvalidator = (input) => {
+    if(!input) return "Nu poate fi gol.";
+    return "";
+}
+
 export default function ExtraDataRequired() {
     const router = useRouter();
 
@@ -19,9 +24,17 @@ export default function ExtraDataRequired() {
     const [parola, setParola] = useState("");
     const [confirmParola, setConfirmParola] = useState("");
 
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        router.push('/home'); 
+        setHasSubmitted(true);
+        let errors = "";
+        [prenume, nume, rol, facultate, parola, confirmParola].forEach(input => {
+            errors += emptyInvalidator(input);
+        })
+        if(errors == "")
+            router.push('/home');
     };
 
     return (
@@ -35,7 +48,9 @@ export default function ExtraDataRequired() {
                             type={"text"} 
                             label={"Prenume"} 
                             placeholder={"ex: Alexandru"}
-                            setState={setPrenume} 
+                            setState={setPrenume}
+                            validator={emptyInvalidator}
+                            validate={hasSubmitted}
                             trim
                             />
                         <FormField 
@@ -44,6 +59,8 @@ export default function ExtraDataRequired() {
                             placeholder={"ex: Popescu"}
                             setState={setNume} 
                             trim
+                            validator={emptyInvalidator}
+                            validate={hasSubmitted}
                             /> 
                     </FormMultiColumn>
                     <FormMultiColumn cols={2}>
@@ -53,6 +70,8 @@ export default function ExtraDataRequired() {
                             placeholder={"ex: student"}
                             setState={setRol} 
                             trim
+                            validator={emptyInvalidator}
+                            validate={hasSubmitted}
                             />
                         <FormField 
                             type={"text"} 
@@ -60,6 +79,8 @@ export default function ExtraDataRequired() {
                             placeholder={"ex: Facultatea de Informatica Iasi"}
                             setState={setFacultate} 
                             trim
+                            validator={emptyInvalidator}
+                            validate={hasSubmitted}
                             /> 
                     </FormMultiColumn>
                     <FormField 
@@ -68,6 +89,8 @@ export default function ExtraDataRequired() {
                         placeholder={"***************"}
                         setState={setParola} 
                         trim
+                        validator={emptyInvalidator}
+                        validate={hasSubmitted}
                         />
                     <FormField 
                         type={"text"} 
@@ -75,6 +98,8 @@ export default function ExtraDataRequired() {
                         placeholder={"***************"}
                         setState={setConfirmParola} 
                         trim
+                        validator={emptyInvalidator}
+                        validate={hasSubmitted}
                         />
                     <FormButton onClick={handleSubmit}>Finalizaeaza</FormButton>
                     <FormLink href="/auth/login">Inapoi</FormLink>

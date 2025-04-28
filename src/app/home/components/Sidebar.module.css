@@ -1,5 +1,6 @@
 .sidebar {
   width: 300px;
+  height: 100%;
   border: 1px solid var(--border-gray);
   border-radius: var(--font-size-sm);
   background: var(--background);
@@ -17,10 +18,20 @@
 }
 
 .title {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-weight: bold;
   font-size: 18px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.title img {
+  width: 160px !important;  
+  height: 53px !important;  
 }
 
 .separator{
@@ -43,7 +54,7 @@
   align-items: center;
   gap: 8px;
   border-radius: 10px;
-  color: #bcbcbc;
+  color: #000000;
   text-decoration: none;
   font-weight: 400;
   user-select: none;
@@ -52,10 +63,6 @@
 .active {
   background-color: var(--foreground);
   color: var(--background);
-}
-
-.inactive {
-  opacity: 0.3;
 }
 
 .userBox {
@@ -68,7 +75,7 @@
 }
 
 .avatar {
-  width: 32px;
+  width: 32px !important;
   height: 32px;
   display: flex;
   align-items: center;

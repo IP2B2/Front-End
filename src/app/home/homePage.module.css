@@ -1,10 +1,109 @@
 
 .homeContainer {
   padding: 5px 10px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
 }
 
 .pageTitle {
-    font-size: 24px;
-    font-weight: bold;
-    padding-left: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 20px;
+}
+.statusCard {
+  padding: 15px 20px;
+
+  display: flex;
+  align-items: center;
+
+
+  background-color: #FF5075;
+  border-radius: 20px;
+
+  color: white;
+  font-size: var(--font-size-md);
+  font-weight: 400;
+}
+
+.welcomeCard {
+  padding: 60px 20px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  border-radius: 20px;
+  background-color: var(--foreground);
+
+  color: white;
+}
+.welcomeCard > * {
+  max-width: 950px;
+}
+.welcomeCard > *:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px; 
+  
+  font-size: 60px;
+}
+
+.welcomeCard > *:not(:first-child) {
+  display: inline;
+  font-size: 25px;
+}
+.welcomeCard > *:not(:first-child) > div {
+  display: inline;
+  font-size: 25px;
+}
+.showTablet {
+  display: none;
+}
+.showMobile {
+  display: none;
+}
+
+@media (max-width: 1150px) {
+  .welcomeCard {
+    align-items: flex-start;
   }
+  .welcomeCard > *:first-child {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px; 
+    
+    font-size: 60px;
+  }
+  .showTablet {
+    display: block;
+  }
+  .showDesktop {
+    display: none;
+  }
+}
+@media (max-width: 860px) {
+  .welcomeCard > *:first-child {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    gap: 10px; 
+    
+    font-size: 40px;
+  }
+  .welcomeCard > *:not(:first-child) > div {
+    font-size: 20px;
+  }
+  .showTablet {
+    display: none;
+  }
+  .showMobile {
+    display: block;
+  }
+}

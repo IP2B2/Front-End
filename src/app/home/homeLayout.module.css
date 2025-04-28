@@ -26,21 +26,11 @@
     gap: 10px;
 
 }
-
 .showStartTablet {
     display: none;
 }
-@media (max-width: 860px) {
-    .layoutContainer > *:not(.mainContainer) {
-        display: none;
-    }
-    .layoutContainer {
-        padding: 0px;
-    }
-    .mainContainer {
-        padding: 0px;
-    }
-    .showDesktop {
+@media (max-width: 1150px) {
+    .showDesktopOnly {
         display: none;
     }
     .showStartTablet {
@@ -48,4 +38,19 @@
         margin: 0;
         padding: 0;
     }
+    .layoutContainer {
+        padding: 0px;
+    }
+}
+@media (max-width: 860px) {
+    .layoutContainer > *:not(.mainContainer) {
+        display: none;
+    }
+    .mainContainer {
+        padding: 0px;
+    }
+    .showDesktop {
+        display: none;
+    }
+
 }
