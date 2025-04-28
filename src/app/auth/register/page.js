@@ -63,7 +63,7 @@ function RegisterPage() {
             Creeaza cont
         </FormButton>
 
-        <FormLink> Ai deja un cont? </FormLink>
+        <FormLink href={'/auth/login'}> Ai deja un cont? </FormLink>
 
       </FormContainer>
     </div>
