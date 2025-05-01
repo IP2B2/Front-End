@@ -14,8 +14,11 @@
 .mainContainer {
     flex-grow: 1;
     
-    padding: 10px 0 0 0;
+    padding: 10px;
     
+}
+.contentWrapper {
+    padding: 5px 0;
 }
 .showStartTablet {
     width: 100%;
@@ -40,15 +43,15 @@
     }
     .layoutContainer {
         padding: 0px;
+        flex-direction: column;
+        gap: 0px;
+    }
+    .tabletPadding {
+        padding: 5px 10px;
     }
 }
 @media (max-width: 860px) {
-    .layoutContainer > *:not(.mainContainer) {
-        display: none;
-    }
-    .mainContainer {
-        padding: 0px;
-    }
+
     .showDesktop {
         display: none;
     }

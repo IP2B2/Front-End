@@ -1,6 +1,5 @@
 .breadcrumbsContainer {
-  margin-bottom: 12px;
-  padding-left: 20px; 
+  padding-left: 5px; 
 
   display: flex;
   flex-flow: row nowrap;
