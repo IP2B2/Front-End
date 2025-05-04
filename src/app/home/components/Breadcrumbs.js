@@ -10,7 +10,7 @@ export default function Breadcrumbs({ page }) {
         <div className={styles.breadcrumbs}>
           <span className={styles.label}>Pagini</span>
           <Image
-            src="/icons/slash-icon.png"
+            src="/icons/slash-icon.svg"
             alt="/"
             width={16}
             height={16}
