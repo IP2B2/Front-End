@@ -1,7 +1,5 @@
 
 .homeContainer {
-  padding: 5px 10px;
-
   display: flex;
   flex-flow: column nowrap;
   gap: 10px;
