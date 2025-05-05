@@ -1,9 +1,6 @@
 .container {
-    width: 100vw;
     height: 100vh; 
     box-sizing: border-box;
-
-    padding: 10px 40px 10px 10px;
 
     display: flex;
     flex-direction: row;
@@ -14,12 +11,10 @@
 }
 
 .content {
-    width: 75%;
+    width: 100%;
     flex: 1;
     box-sizing: border-box;
     flex-grow: 1;
-
-    margin-top: -15px;
 
     position: relative;
 
@@ -99,7 +94,7 @@
 }
 
 .pageDescription {
-    width: 700px;
+    width: 100%;
     box-sizing: border-box;
 
     font-family: 'Inter', sans-serif;
@@ -124,7 +119,7 @@
 
 .actionButton {
     height: 40px;
-    width: 230px; 
+    width: 45%; 
 
     padding: 10px;
     margin-top: 25px;

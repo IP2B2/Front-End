@@ -1,13 +1,17 @@
+'use client'
 import styles from './Breadcrumbs.module.css'
 import Image from 'next/image'
 
 import UserBox from './UserBox'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react';
+import { useLayoutContent } from '@/lib/context'
 
 export default function Breadcrumbs({ page }) {
   const [breadcrumbs, setBreadCrumbs] = useState([]);
   const pathname = usePathname();
+
+  const { extraContent } = useLayoutContent();
 
   useEffect(() => {
     const pathSegments = pathname.split('/').filter(segment => segment);
@@ -37,7 +41,7 @@ export default function Breadcrumbs({ page }) {
             </span>
           ))}
         </div>
-        <div className={styles.pageTitle}>Acasa</div>
+        <div className={styles.pageTitle}>{extraContent?.pageTitle}</div>
       </div>
       <UserBox />
     </div>

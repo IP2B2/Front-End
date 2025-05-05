@@ -9,14 +9,12 @@ import UserBox from './components/UserBox';
 import TabletHeader from './components/TabletHeader';
 import TabletBreadcrumbs from './components/TabletBreadcrumbs';
 import { usePathname } from 'next/navigation';
+import { LayoutContentProvider } from '@/lib/context';
 
 export default function HomeLayout({ children }) {
     const pathname = usePathname();
-  
-    // Don't show breadcrumbs on the echipament page
-    const showBreadcrumbs = !pathname.includes('/echipamente/echipament');
-  
     return (
+        <LayoutContentProvider>
         <div className={styles.layoutContainer}>
             <Head>
                 <title>Acasa - Proiect IP</title>
@@ -26,7 +24,7 @@ export default function HomeLayout({ children }) {
             </div>
             <div className={styles.mainContainer}>
                 <div className={styles.showDesktopOnly}>
-                    {showBreadcrumbs && <Breadcrumbs page="Acasa" />}
+                    <Breadcrumbs page="Acasa" />
                 </div>
                 <div className={styles.showStartTablet}>
                     <TabletHeader />
@@ -38,5 +36,6 @@ export default function HomeLayout({ children }) {
                 </div>
             </div>
         </div>
+        </LayoutContentProvider>
     );
 }
