@@ -26,12 +26,6 @@ export default function RootHome() {
             <li>
                 <Link href='/auth/confirm-mail'>Confirm Mail</Link>
             </li>
-            <li>
-                <Link href='/auth/form-inchiriere-1'>Form Inchiriere Tip 1</Link>
-            </li>
-            <li>
-                <Link href='/auth/form-inchiriere-2'>Form Inchiriere Tip 2</Link>
-            </li>
         </ul>
     </div>
   );
