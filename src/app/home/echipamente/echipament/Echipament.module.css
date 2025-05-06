@@ -97,6 +97,8 @@
     width: 100%;
     box-sizing: border-box;
 
+    margin-top: 20px;
+
     font-family: 'Inter', sans-serif;
     font-size: 18px;
     font-weight: 500;
@@ -143,4 +145,137 @@
 
 .actionButton:hover {
     opacity: 0.9;
+}
+
+.pageTitleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 10px;
+  }
+  
+  .backArrow {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .imageWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .overlay {
+    position: absolute;
+    bottom: 50;
+    left: 0;
+    width: 100px;  
+    height: 30px;
+    border-radius: 3px;
+    background-color: #FF5342;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .overlayText {
+    color: white;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 13px;
+  }
+
+  .toggleContainer {
+    display: flex;
+    gap: 0px;
+    margin: 0;
+}
+
+.toggleButton {
+    width: 100px;
+    height: 36px;
+    padding: 0 15px;
+
+    margin-left: -220px;
+    margin-top: 420px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+    
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    
+    cursor: pointer;
+    background-color: var(--background);
+    color: var(--text-gray);
+}
+
+.activeToggle {
+    border-color: var(--foreground);
+    color: var(--foreground);
+    font-weight: 600;
+}
+
+.disabledToggle {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.dropdownsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 600px;
+}
+
+.dropdown {
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.dropdownHeader {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    color: var(--foreground);
+    cursor: pointer;
+    position: relative;
+}
+
+.dropdownHeader::after {
+    content: '▼';
+    font-size: 12px;
+    position: absolute;
+    right: 15px;
+}
+
+.dropdown[open] .dropdownHeader::after {
+    content: '▲';
+}
+
+.dropdownContent {
+    padding: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-size-sm);
+    color: var(--text-gray);
+    line-height: 1.5;
+    border-top: 1px solid var(--border-gray);
 }
