@@ -26,6 +26,9 @@ export default function RootHome() {
             <li>
                 <Link href='/auth/confirm-mail'>Confirm Mail</Link>
             </li>
+            <li>
+                <Link href='/auth/reset-password'>Reset Password</Link>
+            </li>
         </ul>
     </div>
   );
