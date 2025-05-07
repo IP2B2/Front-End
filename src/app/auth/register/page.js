@@ -51,7 +51,7 @@ function RegisterPage() {
 
         <FormField
           type={"password"}
-          label={"Numar de marca"}
+          label={"Numar de matricol / Numar de marca"}
           placeholder={"*************"}
           setState={setMatricolField}
           validator={testValidMatricol}

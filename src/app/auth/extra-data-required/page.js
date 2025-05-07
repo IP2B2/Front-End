@@ -75,7 +75,7 @@ export default function ExtraDataRequired() {
                             />
                         <FormField 
                             type={"text"} 
-                            label={"Centru"} 
+                            label={"Universitate / Centru"} 
                             placeholder={"ex: Facultatea de Informatica Iasi"}
                             setState={setFacultate} 
                             trim
