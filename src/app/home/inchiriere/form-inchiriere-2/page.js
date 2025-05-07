@@ -6,11 +6,29 @@ import '@/app/globals.css';
 import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
 import { useRouter } from 'next/navigation'; 
 
+const today = new Date().toISOString().split("T")[0];
+
 const cnpValidator = (input) => {
     if(!input) return "CNP-ul nu poate fi gol.";
     if(input.length !== 13 || !/^\d+$/.test(input)) return "CNP-ul trebuie să conțină exact 13 cifre.";
     return "";
 }
+
+const dateValidator = (input) => {
+    if (!input) return "Trebuie să selectați o dată de început pentru închiriere.";
+    
+    const rentalDate = new Date(input);
+    const today = new Date();
+    const maxDate = new Date("2050-12-31");
+    
+    today.setHours(0, 0, 0, 0);
+    maxDate.setHours(0, 0, 0, 0);
+    
+    if (rentalDate < today) return "Data de închiriere nu poate fi înainte de ziua de azi.";
+    if (rentalDate > maxDate) return "Data de închiriere nu poate depăși 31-12-2050.";
+
+    return "";
+};
 
 const daysValidator = (input) => {
     if(!input) return "Numărul de zile nu poate fi gol.";
@@ -34,16 +52,18 @@ export default function ProductRentalForm() {
     const [isDragging, setIsDragging] = useState(false);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
+    const [rentalDate, setRentalDate] = useState("");
     const [fileError, setFileError] = useState("");
 
     useEffect(() => {
-        setIsFormValid(
-            cnpValidator(cnp) === "" &&
-            emptyInvalidator(address) === "" &&
-            daysValidator(rentalDays) === "" &&
-            fileValidator(file) === ""
-        );
-    }, [cnp, address, rentalDays, file]);
+            setIsFormValid(
+                cnpValidator(cnp) === "" &&
+                emptyInvalidator(address) === "" &&
+                daysValidator(rentalDays) === "" &&
+                dateValidator(rentalDate) === "" &&
+                fileValidator(file) === ""
+            );
+        }, [cnp, address, rentalDays, file, rentalDate]);
 
     const handleDragEnter = (e) => {
         e.preventDefault();
@@ -155,6 +175,17 @@ export default function ProductRentalForm() {
                                 validator={daysValidator}
                                 validate={hasSubmitted}
                                 min="1"
+                            />
+
+                            <FormField
+                                type={"date"}
+                                label={"Data închiriere"}
+                                value={rentalDate}
+                                setState={setRentalDate}
+                                validator={dateValidator}
+                                validate={hasSubmitted}
+                                min={today}
+                                max="2050-12-31"
                             />
                 
                             {/* Zona de upload fisier */}
