@@ -80,7 +80,9 @@ export default function ProductRentalForm() {
                         <div className={styles.formButtonContainer}>
                             <button
                                 className={styles.calendarButton}
-                                onClick={() => alert("Aici s-ar deschide calendarul de disponibilitate")}
+                                onClick={(e) => {
+                                    e?.preventDefault();
+                                    alert("Aici s-ar deschide calendarul de disponibilitate")}}
                             >
                                 Calendar disponibilitate produs
                             </button>
