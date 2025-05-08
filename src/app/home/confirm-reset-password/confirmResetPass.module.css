@@ -5,13 +5,13 @@
    right: 0;
    bottom: 0;
 
+   padding: 20px;
+
    display: flex;
    justify-content: center;
    align-items: center;
 
    background-color: white;
-
-   padding: 20px;
 }
 
 .successContainer {
@@ -20,37 +20,34 @@
    height: auto;
    min-height: 580px; 
 
+   padding: 50px 60px; 
+
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
 
-   padding: 50px 60px; 
    text-align: center;
    box-sizing: border-box;
 }
 
 .pageTitle {
-   font-size: clamp(28px, 5vw, 36px); 
+    margin-bottom: 24px; 
 
-   margin-bottom: 24px; 
-   font-weight: 700; 
-
-   color: #000000;
+    font-size: clamp(28px, 5vw, 36px); 
+    font-weight: 700; 
+    color: #000000;
 }
 
 .pageDescription {
-
-   max-width: 600px; 
-   margin-bottom: 40px; 
-   line-height: 1.6; 
-
-   font-size: clamp(18px, 3vw, 22px);
-
-   padding: 0 40px;
-   
-
-   color: #666;
+    max-width: 600px; 
+    
+    margin-bottom: 40px; 
+    padding: 0 40px;
+    
+    font-size: clamp(18px, 3vw, 22px);
+    line-height: 1.6; 
+    color: #666;
 }
 
 .successButton {
@@ -64,15 +61,15 @@
 
    background-color: #000;
    color: white;
+   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 
    font-size: clamp(16px, 3vw, 20px); 
    font-weight: 700; 
-
    text-align: center;
-   cursor: pointer;
 
+   
+   cursor: pointer;
    transition: all 0.3s ease;
-   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .successButton:hover {
@@ -90,58 +87,67 @@
 
 @media (max-width: 1024px) { 
    .successContainer {
-       padding: 45px 50px;
        min-height: 520px;
+
+       padding: 45px 50px;
    }
 }
 
 @media (max-width: 768px) { 
    .successContainer {
-       padding: 40px;
        min-height: 480px;
        max-width: 600px;
+       
+       padding: 40px;
    }
    .pageTitle {
        margin-bottom: 20px;
    }
    .pageDescription {
        margin-bottom: 32px;
+       
        font-size: clamp(16px, 3vw, 20px);
    }
 }
 
 @media (max-width: 600px) {
    .successContainer {
-       padding: 35px 30px;
        min-height: 450px;
        max-width: 100%;
+       
+       padding: 35px 30px;
    }
 }
 
 @media (max-width: 480px) {
    .successContainer {
-       padding: 30px 25px;
        min-height: 420px;
+       
+       padding: 30px 25px;
    }
    .pageTitle {
        margin-bottom: 18px;
+       
        font-size: clamp(24px, 5vw, 30px);
    }
    .pageDescription {
        margin-bottom: 28px;
-       line-height: 1.5;
        padding: 0 10px;
+       
+       line-height: 1.5;
    }
    .successButton {
-       padding: 16px 20px;
        max-width: 320px;
+       
+       padding: 16px 20px;
    }
 }
 
 @media (max-width: 360px) {
    .successContainer {
-       padding: 25px 20px;
        min-height: 380px;
+       
+       padding: 25px 20px;
    }
    .pageDescription {
        font-size: 15px;
