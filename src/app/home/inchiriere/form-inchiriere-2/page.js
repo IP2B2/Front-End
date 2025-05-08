@@ -196,8 +196,6 @@ export default function ProductRentalForm() {
                                     onDragOver={(e) => e.preventDefault()}
                                     onDragLeave={handleDragLeave}
                                     onDrop={handleDrop}
-                                    validator={fileValidator}
-                                    validate={hasSubmitted}
                                 >
                                     <input
                                         type="file"
