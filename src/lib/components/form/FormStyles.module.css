@@ -99,6 +99,15 @@
     cursor: pointer;
 }
 
+.formHollowButton {
+    background-color: white;
+    border: 2px solid var(--foreground);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--foreground);
+}
+
 .formTitle {
     font-size: var(--font-size-lg);
 }
