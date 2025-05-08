@@ -19,8 +19,8 @@ jobs:
             const { pull_request } = context.payload;
             const prNumber = pull_request.number;
             const repo = context.repo;
-            const currentLabels = pull_request.labels.map(l => l.name);
 
+            const currentLabels = pull_request.labels.map(l => l.name);
 
             // Fetch latest reviews
             const { data: reviews } = await github.rest.pulls.listReviews({
