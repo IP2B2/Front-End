@@ -1,0 +1,152 @@
+.pageContainer {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   background-color: white;
+
+   padding: 20px;
+}
+
+.successContainer {
+   width: 100%;
+   max-width: 680px; 
+   height: auto;
+   min-height: 580px; 
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   padding: 50px 60px; 
+   text-align: center;
+   box-sizing: border-box;
+}
+
+.pageTitle {
+   font-size: clamp(28px, 5vw, 36px); 
+
+   margin-bottom: 24px; 
+   font-weight: 700; 
+
+   color: #000000;
+}
+
+.pageDescription {
+
+   max-width: 600px; 
+   margin-bottom: 40px; 
+   line-height: 1.6; 
+
+   font-size: clamp(18px, 3vw, 22px);
+
+   padding: 0 40px;
+   
+
+   color: #666;
+}
+
+.successButton {
+   width: 100%;
+   max-width: 380px;
+
+   padding: 18px 24px;
+
+   border: none;
+   border-radius: 8px; 
+
+   background-color: #000;
+   color: white;
+
+   font-size: clamp(16px, 3vw, 20px); 
+   font-weight: 700; 
+
+   text-align: center;
+   cursor: pointer;
+
+   transition: all 0.3s ease;
+   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.successButton:hover {
+   background: linear-gradient(
+       304.55deg,
+       #FCC6D2 10%,
+       #FF426B 30%,
+       #246EFF 80%
+   );
+
+   transform: translateY(-2px);
+   
+   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 1024px) { 
+   .successContainer {
+       padding: 45px 50px;
+       min-height: 520px;
+   }
+}
+
+@media (max-width: 768px) { 
+   .successContainer {
+       padding: 40px;
+       min-height: 480px;
+       max-width: 600px;
+   }
+   .pageTitle {
+       margin-bottom: 20px;
+   }
+   .pageDescription {
+       margin-bottom: 32px;
+       font-size: clamp(16px, 3vw, 20px);
+   }
+}
+
+@media (max-width: 600px) {
+   .successContainer {
+       padding: 35px 30px;
+       min-height: 450px;
+       max-width: 100%;
+   }
+}
+
+@media (max-width: 480px) {
+   .successContainer {
+       padding: 30px 25px;
+       min-height: 420px;
+   }
+   .pageTitle {
+       margin-bottom: 18px;
+       font-size: clamp(24px, 5vw, 30px);
+   }
+   .pageDescription {
+       margin-bottom: 28px;
+       line-height: 1.5;
+       padding: 0 10px;
+   }
+   .successButton {
+       padding: 16px 20px;
+       max-width: 320px;
+   }
+}
+
+@media (max-width: 360px) {
+   .successContainer {
+       padding: 25px 20px;
+       min-height: 380px;
+   }
+   .pageDescription {
+       font-size: 15px;
+   }
+   .successButton {
+       font-size: 15px;
+   }
+}
