@@ -32,6 +32,7 @@
 .showStartTablet {
     display: none;
 }
+
 @media (max-width: 1150px) {
     .showDesktopOnly {
         display: none;
@@ -55,5 +56,4 @@
     .showDesktop {
         display: none;
     }
-
 }
