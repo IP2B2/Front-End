@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 
@@ -9,6 +10,7 @@ import '@/app/globals.css';
 import { testValidEmail, testValidPassword } from "@/lib/logic/AuthValidators";
 
 import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
+import { AuthLogin } from '@/lib/logic/AuthCalls';
 
 
 export default function LoginPage() {
@@ -17,6 +19,7 @@ export default function LoginPage() {
     const [passwordField, setPasswordField] = useState("");
 
     const [isSubmitError, setIsSubmitError] = useState(false);
+    const [submitError, setSubmitError] = useState("");
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const handleLogin = async () => {
@@ -25,14 +28,21 @@ export default function LoginPage() {
         const emailError = testValidEmail(emailField);
         const passwordError = testValidPassword(passwordField);
 
-        if (!emailError && !passwordError) {
-            console.log("Login successful, redirecting...");
-            router.push('/home'); 
-            setIsSubmitError(false);
-        } else {
+        if (emailError || passwordError) {
             console.log("Login failed validation");
-            setIsSubmitError(true); 
+            setIsSubmitError(true);
+            return;
         }
+
+        const loginResolution = await AuthLogin(emailField, passwordField);
+        if(loginResolution.error) {
+            setIsSubmitError(true);
+            setSubmitError(loginResolution.payload);
+            return;
+        }
+        setIsSubmitError(false);
+        localStorage.setItem('authToken', loginResolution.payload);
+        return router.push('/home');
     };
 
     return (
@@ -41,7 +51,7 @@ export default function LoginPage() {
             title={"Autentificare"}
             subtitle={"Introdu datele de autentificare în formularul de mai jos"}
             showError={isSubmitError}
-            errorMessage={"Email sau parola invalida."}
+            errorMessage={submitError}
         >
             <FormContainer>
                 <FormField 
@@ -52,6 +62,7 @@ export default function LoginPage() {
                     trim
                     validator={testValidEmail}
                     validate={hasSubmitted}
+                    formInputId={"email"}
                     />
                 <FormField
                     type={"password"} 
@@ -60,6 +71,7 @@ export default function LoginPage() {
                     setState={setPasswordField}
                     validator={testValidPassword}
                     validate={hasSubmitted}
+                    formInputId={"password"}
                     />
                 <FormButton onClick={handleLogin}>
                     Autentificare
