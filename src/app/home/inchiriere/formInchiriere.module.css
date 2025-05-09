@@ -1,3 +1,36 @@
+.backButton 
+{
+  position: left;
+  top: 20px;
+  left: 20px;
+  width: 67px;
+  height: 67px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #FFFFFF;
+  box-shadow: 0px 1px 1px 0px #000E330D;
+
+  border: none;
+  border-radius: 80px;
+
+  cursor: pointer;
+}
+
+.backArrow 
+{
+  width: 17px;
+  height: 10px;
+
+  position: relative;
+  top: 3px;
+  left: 1px;
+
+  transform: rotate(90deg);
+}
+
 .rentalWrapper {
     width: 100%;
 
@@ -69,7 +102,7 @@
 
 .clearButton, .rentButton 
 {
-    width: 80%;
+    width: 100%;
     
     padding: 18px 24px;
     
@@ -183,3 +216,39 @@
     font-size: 14px;
     color: #6b7280;
 }
+
+
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+  }
+  
+  .dateInputWrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+  }
+  
+  .dateInput {
+    width: 100%;
+
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 1rem;
+  }
+  
+  .fileError {
+    font-weight: bold;
+    color: red;
+  }
