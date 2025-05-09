@@ -1,14 +1,24 @@
-
+'use client'
 import Image from 'next/image';
 
 import '@/app/globals.css'
 import styles from './homePage.module.css'
 import Breadcrumbs from './components/Breadcrumbs';
 import { Montserrat300Italic, Montserrat500, Montserrat900 } from '@/lib/fonts/Montserrat';
-
+import { useEffect } from 'react';
+import { useLayoutContent } from '@/lib/context';
 
 
 export default function Home() {
+
+     const { setExtraContent } = useLayoutContent();
+    useEffect(() => {
+      setExtraContent({
+        pageTitle: 'Acasa'
+      });
+      return () => setExtraContent({ pageTitle: '' }); // Cleanup when navigating away
+    }, []);
+
     return (
         <div className={styles.homeContainer}>
             <div className={styles.statusCard}>Verificarea contului dumneavoastră este în curs. Vă mulțumim pentru înțelegere și răbdare!</div>

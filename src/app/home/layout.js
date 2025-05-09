@@ -1,4 +1,4 @@
-
+'use client';
 import '@/app/globals.css'
 import styles from "./homeLayout.module.css"
 import Head from 'next/head'
@@ -8,9 +8,13 @@ import MobileNavbar from './components/MobileNavbar';
 import UserBox from './components/UserBox';
 import TabletHeader from './components/TabletHeader';
 import TabletBreadcrumbs from './components/TabletBreadcrumbs';
+import { usePathname } from 'next/navigation';
+import { LayoutContentProvider } from '@/lib/context';
 
 export default function HomeLayout({ children }) {
+    const pathname = usePathname();
     return (
+        <LayoutContentProvider>
         <div className={styles.layoutContainer}>
             <Head>
                 <title>Acasa - Proiect IP</title>
@@ -24,7 +28,7 @@ export default function HomeLayout({ children }) {
             </div>
             <div className={styles.mainContainer}>
                 <div className={styles.showDesktopOnly}>
-                    <Breadcrumbs page = "Acasa" />
+                    <Breadcrumbs page="Acasa" />
                 </div>
                 
                 <div className={styles.contentWrapper}>
@@ -35,5 +39,6 @@ export default function HomeLayout({ children }) {
                 </div>
             </div>
         </div>
+        </LayoutContentProvider>
     );
 }
