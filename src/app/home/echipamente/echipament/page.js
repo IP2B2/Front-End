@@ -1,13 +1,8 @@
 'use client'
 import styles from './Echipament.module.css';
-import UserBox from '../../components/UserBox';
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import Image from 'next/image'
-import { Inter700, Inter500, Inter400 } from '@/lib/fonts/Inter'
-import Breadcrumbs from '../../components/Breadcrumbs';
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLayoutContent } from '@/lib/context';
+import Image from 'next/image';
 
 export default function EchipamentPage() {
 
@@ -25,19 +20,23 @@ export default function EchipamentPage() {
             <div className={styles.content}>
             <div className={styles.layout}>
                 <div className={styles.pageTitleContainer}>
-                    <img 
-                        src="/icons/back-arrow.svg" 
-                        alt="Back" 
-                        className={styles.backArrow}
+                    <Image
+                        src="/icons/back-arrow.svg"
+                        alt="Back"
+                        width={20}
+                        height={20}
                     />
                 </div>
                 <div className={styles.imageContainer}>
                     <div className={styles.imageWrapper}>
-                        <img 
-                            src="/icons/Frame 1000005448.svg" 
-                            alt="Prelungitor Gri" 
-                            className={styles.image}
-                        />
+                        <div className={styles.image}>
+                            <Image
+                                src="/icons/Frame 1000005448.svg"
+                                alt="Prelungitor Gri"
+                                width={400}
+                                height={400}
+                            />
+                        </div>
                         <div className={styles.overlay}>
                             <span className={styles.overlayText}>FEEA</span>
                         </div>
