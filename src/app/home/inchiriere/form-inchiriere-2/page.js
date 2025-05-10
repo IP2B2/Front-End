@@ -38,9 +38,17 @@ const daysValidator = (input) => {
 }
 
 const fileValidator = (file) => {
-    if(!file) return "Trebuie să încărcați fișierul cererii suplimentare.";
+    if (!file) return "Trebuie să încărcați fișierul cererii suplimentare.";
+    
+    // Verificăm atât extensia cât și tipul MIME
+    const isPDF = file.name.toLowerCase().endsWith('.pdf') || file.type === 'application/pdf';
+    
+    if (!isPDF) {
+        return "⚠️ Fișierul încărcat nu este un PDF. Te rugăm să încarci un fișier .pdf.";
+    }
+    
     return "";
-}
+};
 
 export default function ProductRentalForm() {
     const router = useRouter();
@@ -56,14 +64,14 @@ export default function ProductRentalForm() {
     const [fileError, setFileError] = useState("");
 
     useEffect(() => {
-            setIsFormValid(
-                cnpValidator(cnp) === "" &&
-                emptyInvalidator(address) === "" &&
-                daysValidator(rentalDays) === "" &&
-                dateValidator(rentalDate) === "" &&
-                fileValidator(file) === ""
-            );
-        }, [cnp, address, rentalDays, file, rentalDate]);
+        setIsFormValid(
+            cnpValidator(cnp) === "" &&
+            emptyInvalidator(address) === "" &&
+            daysValidator(rentalDays) === "" &&
+            dateValidator(rentalDate) === "" &&
+            fileValidator(file) === ""
+        );
+    }, [cnp, address, rentalDays, file, rentalDate]);
 
     const handleDragEnter = (e) => {
         e.preventDefault();
@@ -78,15 +86,20 @@ export default function ProductRentalForm() {
     const handleDrop = (e) => {
         e.preventDefault();
         setIsDragging(false);
-        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-            setFile(e.dataTransfer.files[0]);
-            setFileError("");
+        const droppedFile = e.dataTransfer.files?.[0];
+        if (droppedFile) {
+            setFile(droppedFile);
+            setFileError(fileValidator(droppedFile));
         }
     };
 
     const handleFileChange = (e) => {
-        if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
+        const selectedFile = e.target.files?.[0];
+        if (selectedFile) {
+            setFile(selectedFile);
+            setFileError(fileValidator(selectedFile));
+        } else {
+            setFile(null);
             setFileError("");
         }
     };
@@ -95,7 +108,6 @@ export default function ProductRentalForm() {
         event.preventDefault();
         setHasSubmitted(true);
         
-        // Validare o fac dupa ce dau submit
         const currentFileError = fileValidator(file);
         setFileError(currentFileError);
         
@@ -188,7 +200,6 @@ export default function ProductRentalForm() {
                                 max="2050-12-31"
                             />
                 
-                            {/* Zona de upload fisier */}
                             <div className={styles.fileUploadWrapper}>
                                 <div
                                     className={`${styles.fileUploadContainer} ${isDragging ? styles.dragging : ''}`}
@@ -202,6 +213,7 @@ export default function ProductRentalForm() {
                                         id="file-upload"
                                         className={styles.fileInput}
                                         onChange={handleFileChange}
+                                        accept=".pdf,application/pdf"
                                     />
                                     <label htmlFor="file-upload" className={styles.fileUploadLabel}>
                                         {file ? (
@@ -217,8 +229,10 @@ export default function ProductRentalForm() {
                                         Echipamentul dorit este unul complex, așadar necesită încărcarea unei cereri suplimentare.
                                     </p>
                                 </div>
-                                {hasSubmitted && fileError && (
-                                    <p className={styles.fileError}>{fileError}</p>
+                                {(fileError || (hasSubmitted && fileValidator(file))) && (
+                                    <p className={styles.fileError}>
+                                        {fileError || fileValidator(file)}
+                                    </p>
                                 )}
                             </div>
 
