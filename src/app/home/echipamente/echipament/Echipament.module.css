@@ -109,6 +109,8 @@
     width: 80%;
     box-sizing: border-box;
 
+    margin-top: -20px;
+
     font-size: 18px;
     font-weight: 500;
     color: var(--foreground);
