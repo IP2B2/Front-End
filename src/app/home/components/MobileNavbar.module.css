@@ -41,7 +41,11 @@
 @media (max-width: 1150px) {
     .container {
         display: flex;
-        height: 113px;
+        height: 87px;
+    }
+    .buttonWrapper {
+        width: 47px;
+        height: 47px;
     }
 } 
 
