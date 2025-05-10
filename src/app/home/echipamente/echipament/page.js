@@ -9,6 +9,7 @@ import { Inter500, InterText } from '@/lib/fonts/Inter'
 import Breadcrumbs from '@/app/home/components/Breadcrumbs';
 import { Fragment } from 'react';
 import { useLayoutContent } from '@/lib/context';
+import Image from 'next/image';
 
 export default function EchipamentPage() {
     const { setExtraContent } = useLayoutContent();

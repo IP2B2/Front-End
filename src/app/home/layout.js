@@ -22,15 +22,18 @@ export default function HomeLayout({ children }) {
             <div className={styles.showDesktopOnly}>
                 <Sidebar />
             </div>
+            <div className={styles.showStartTablet}><TabletHeader /></div>
+            <div className={`${styles.showStartTablet} ${styles.tabletPadding}`}>
+                <TabletBreadcrumbs page = "Acasa" />
+            </div>
             <div className={styles.mainContainer}>
                 <div className={styles.showDesktopOnly}>
                     <Breadcrumbs page="Acasa" />
                 </div>
-                <div className={styles.showStartTablet}>
-                    <TabletHeader />
-                    <TabletBreadcrumbs page = "Acasa" />
+                
+                <div className={styles.contentWrapper}>
+                    {children}
                 </div>
-                {children}
                 <div className={styles.showStartTablet}>
                     <MobileNavbar />
                 </div>

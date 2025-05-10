@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import formStyles from "./FormStyles.module.css"
 import '@/app/globals.css';
-import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
+import { Inter700, Inter400, Inter500, Inter600 } from '@/lib/fonts/Inter';
 
 export const DefaultFormLayout = (
     { 
@@ -62,6 +62,24 @@ export const FormButton = ({ onClick, children }) => {
         </button>
     )
 }
+
+export const FormHollowButton = ({ onClick, children }) => {
+
+    const buttonBehaviour = (event) => {
+        event.preventDefault();
+        onClick?.(event);
+    }
+
+    return (
+        <button 
+            type={"submit"} 
+            onClick={buttonBehaviour} 
+            className={`${formStyles.formButton} border-rounded ${Inter500.className} ${formStyles.formHollowButton}`}>
+            {children}
+        </button>
+    )
+}
+
 export const FormMultiColumn = ({ cols, children }) => {
     return (
         <div className={`${formStyles.multiColumnContainer}`}

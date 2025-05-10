@@ -8,7 +8,7 @@ import '@/app/globals.css';
 
 import { testValidEmail, testValidPassword } from "@/lib/logic/AuthValidators";
 
-import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
+import { DefaultFormLayout, FormContainer, FormField, FormButton, FormHollowButton, FormLink } from "@/lib/components/form/Form";
 
 
 export default function LoginPage() {
@@ -34,6 +34,15 @@ export default function LoginPage() {
             setIsSubmitError(true); 
         }
     };
+
+    const handleRedirectForgotPassword = async () => {
+        console.log("Redirecting...");
+            router.push('/auth/forgot-password'); 
+    };
+
+
+
+
 
     return (
     <div className={styles.loginContainer}>
@@ -64,9 +73,12 @@ export default function LoginPage() {
                 <FormButton onClick={handleLogin}>
                     Autentificare
                 </FormButton>
+
+                <FormHollowButton onClick={handleRedirectForgotPassword}>
+                    Ai uitat parola?
+                </FormHollowButton>
             </FormContainer>
 
-            <FormLink href="#">Ai uitat parola?</FormLink>
             <FormLink href="/auth/register">Nu ai un cont?</FormLink>
 
         </DefaultFormLayout>

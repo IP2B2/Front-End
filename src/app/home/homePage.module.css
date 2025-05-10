@@ -1,7 +1,5 @@
 
 .homeContainer {
-  padding: 5px 10px;
-
   display: flex;
   flex-flow: column nowrap;
   gap: 10px;
@@ -11,24 +9,30 @@
   font-size: 24px;
   font-weight: bold;
   padding-left: 20px;
+  margin-top: 20px;
+  margin-top: 20px;
 }
+
 .statusCard {
-  padding: 15px 20px;
+  padding: 30px 30px;
 
   display: flex;
   align-items: center;
 
-
   background-color: #FF5075;
   border-radius: 20px;
+  margin-top: 20px;
+  margin-top: 20px;
 
+  justify-content: center;
   color: white;
   font-size: var(--font-size-md);
   font-weight: 400;
 }
 
 .welcomeCard {
-  padding: 60px 20px;
+  min-height: 619px;
+  padding: 60px 60px;
 
   display: flex;
   flex-flow: column nowrap;
@@ -38,21 +42,26 @@
 
   border-radius: 20px;
   background-color: var(--foreground);
+  margin-top: 20px;
+  margin-top: 20px;
 
   color: white;
 }
 .welcomeCard > * {
   max-width: 950px;
 }
-.welcomeCard > *:first-child {
+.welcomeMessage {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  gap: 10px; 
+  justify-content: flex-start;
+  gap: 30px; 
   
-  font-size: 60px;
-}
+  width: 100%;
 
+  font-size: 60px;
+  text-align: left;
+}
 .welcomeCard > *:not(:first-child) {
   display: inline;
   font-size: 25px;
@@ -68,18 +77,23 @@
   display: none;
 }
 
+
 @media (max-width: 1150px) {
+  .statusCard{
+    padding: 30px 30px;
+  }
   .welcomeCard {
     align-items: flex-start;
+    padding: 40px 60px;
   }
-  .welcomeCard > *:first-child {
+  .welcomeMessage{
     display: flex;
     flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-around;
-    gap: 10px; 
-    
-    font-size: 60px;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    font-size: 70px;
+    text-align: left;
   }
   .showTablet {
     display: block;
@@ -87,15 +101,25 @@
   .showDesktop {
     display: none;
   }
+  .showMobile{
+    display: none;
+  }
 }
 @media (max-width: 860px) {
-  .welcomeCard > *:first-child {
+  .statusCard{
+    padding: 30px 60px;
+  }
+  .welcomeCard {
+    align-items: flex-start;
+  }
+  .welcomeMessage {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-around;
-    gap: 10px; 
+    justify-content: flex-start;
+    gap: 20px;     
+    max-width: 100%;
     
-    font-size: 40px;
+    font-size: 60px;
   }
   .welcomeCard > *:not(:first-child) > div {
     font-size: 20px;

@@ -82,14 +82,6 @@ export default function Sidebar() {
         <div className={`${styles.userBox} ${Inter500.className}`}>
           <div className={styles.avatar}>AS</div>
           <span>Alex Serban</span>
-          <Link href="/auth/login" className={styles.logoutButton}>
-            <Image
-              src="/icons/buton-logout.svg"
-              alt="Logout"
-              width={40}
-              height={40}
-            />
-          </Link>
         </div>
       </div>
     </aside>

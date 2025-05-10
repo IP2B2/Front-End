@@ -207,7 +207,7 @@
     height:var(--font-size-lg);
 
     position: absolute;
-    bottom: 50;
+    bottom: 50px;
     left: 0;
 
     display: flex;
