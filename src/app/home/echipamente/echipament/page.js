@@ -1,15 +1,9 @@
 'use client'
 import { useState } from 'react';
 import styles from './Echipament.module.css';
-import UserBox from '../../components/UserBox';
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import Image from 'next/image'
-import { Inter500, InterText } from '@/lib/fonts/Inter'
-import Breadcrumbs from '@/app/home/components/Breadcrumbs';
-import { Fragment } from 'react';
+import { Inter500} from '@/lib/fonts/Inter'
 import { useLayoutContent } from '@/lib/context';
-import Image from 'next/image';
 
 export default function EchipamentPage() {
     const { setExtraContent } = useLayoutContent();
