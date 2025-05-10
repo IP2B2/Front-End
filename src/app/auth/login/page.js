@@ -36,7 +36,8 @@ export default function LoginPage() {
     };
 
     const handleRedirectForgotPassword = async () => {
-        alert("Pagina neimplementata...");
+        console.log("Redirecting...");
+            router.push('/auth/forgot-password'); 
     };
 
 

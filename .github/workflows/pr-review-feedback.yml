@@ -1,0 +1,53 @@
+name: Label Needs Work
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  label-review:
+    if: github.event.review.state == 'CHANGES_REQUESTED'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const repo = context.repo;
+
+            const { data: currentLabels } = await github.rest.issues.listLabelsOnIssue({
+              owner: repo.owner,
+              repo: repo.repo,
+              issue_number: pr.number
+            });
+            const labels = currentLabels.map(l => l.name);
+
+            // Do not apply 'needs-work' if PR has conflicts
+            if (labels.includes('has-conflicts')) {
+              console.log("Skipping 'needs-work' — PR has conflicts.");
+              return;
+            }
+
+            // Add 'needs-work' if missing
+            if (!labels.includes('needs-work')) {
+              await github.rest.issues.addLabels({
+                owner: repo.owner,
+                repo: repo.repo,
+                issue_number: pr.number,
+                labels: ['needs-work']
+              });
+            }
+
+            // Remove 'ready-to-run' if present
+            if (labels.includes('ready-to-run')) {
+              await github.rest.issues.removeLabel({
+                owner: repo.owner,
+                repo: repo.repo,
+                issue_number: pr.number,
+                name: 'ready-to-run'
+              }).catch(() => {});
+            }
