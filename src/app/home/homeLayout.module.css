@@ -4,7 +4,7 @@
     height: 100vh;
 
     overflow: hidden;
-    padding: 20px;
+    padding: 10px;
 
     display: flex;
     flex-flow: row nowrap;
@@ -12,6 +12,8 @@
 }
 
 .mainContainer {
+    min-width: 0;
+
     flex-grow: 1;
     
     padding: 10px 0 0 0;
