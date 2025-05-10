@@ -37,6 +37,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    padding: 80px 0; /* sa nu faca overlap cu butonul de back*/
 }
 .rentalContainer 
 {
@@ -222,11 +223,11 @@
 .formField {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
   }
   
   .label {
-      margin-bottom: 0.5rem;
+      margin-bottom: 8px;
       font-weight: 500;
   }
   
@@ -240,15 +241,104 @@
   .dateInput {
     width: 100%;
 
-    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+    padding: 12px 40px 12px 12px;
 
     border: 1px solid #ccc;
     border-radius: 6px;
 
-    font-size: 1rem;
+    font-size: 16px;
   }
   
   .fileError {
     font-weight: bold;
     color: red;
   }
+
+  @media (min-width: 1024px) {
+    .rentalContainer {
+        max-width: 700px;
+    }
+    
+    .calendarButton {
+        padding: 16px 24px;
+        font-size: 17px;
+    }
+    
+    .clearButton, .rentButton {
+        padding: 20px 28px;
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .rentalContainer {
+        gap: 24px;
+        max-width: 650px;
+    }
+    
+    .backButton {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .calendarButton, .clearButton, .rentButton {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+    
+    .fileUploadContainer {
+        padding: 18px;
+        min-height: 110px;
+    }
+    
+    .label {
+        font-size: 16px;
+    }
+    
+    .dateInput {
+        padding: 12px 40px 12px 12px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .rentalWrapper {
+        padding: 60px 0;
+    }
+    
+    .rentalContainer {
+        margin: 0 15px;
+        gap: 16px;
+    }
+    
+    .backButton {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+        left: 15px;
+    }
+    
+    .buttonGroup {
+        margin-top: 20px;
+        gap: 12px;
+    }
+    
+    .calendarButton, .clearButton, .rentButton {
+        padding: 14px 16px;
+        font-size: 15px;
+    }
+    
+    .label {
+        font-size: 15px;
+    }
+    
+    .dateInput {
+        padding: 10px 35px 10px 10px;
+        font-size: 15px;
+    }
+    
+    .fileUploadContainer {
+        padding: 15px;
+        min-height: 100px;
+    }
+}
