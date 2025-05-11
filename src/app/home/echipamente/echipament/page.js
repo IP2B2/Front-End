@@ -1,77 +1,56 @@
 'use client'
+import { useState } from 'react';
 import styles from './Echipament.module.css';
-import { useEffect } from 'react';
-import { useLayoutContent } from '@/lib/context';
-import Image from 'next/image';
+import Image from 'next/image'
+import { Inter500} from '@/lib/fonts/Inter'
+import '@/app/globals.css';
+import carouselStyles from './ProductImageCarousel.module.css';
 
 export default function EchipamentPage() {
-
-    const { setExtraContent } = useLayoutContent();
-
-    useEffect(() => {
-      setExtraContent({
-        pageTitle: 'Prelungitor Gri'
-      });
-      return () => setExtraContent({ pageTitle: '' }); // Cleanup when navigating away
-    }, []);
+    
+    const images = [
+      "/icons/Frame 1000005448.svg", 
+      "/icons/Frame 1000005450.svg",
+      "/icons/Frame 1000005450.svg",
+      "/icons/Frame 1000005450.svg"
+    ];
 
     return (
         <div className={styles.container}>
             <div className={styles.content}>
             <div className={styles.layout}>
-                <div className={styles.pageTitleContainer}>
-                    <Image
-                        src="/icons/back-arrow.svg"
-                        alt="Back"
+                <div className={styles.backButtonWrapper}>
+                    <Image 
+                        src="/icons/back-arrow.svg" 
+                        alt="Back" 
+                        className={styles.backArrow}
                         width={20}
                         height={20}
                     />
                 </div>
-                <div className={styles.imageContainer}>
-                    <div className={styles.imageWrapper}>
-                        <div className={styles.image}>
-                            <Image
-                                src="/icons/Frame 1000005448.svg"
-                                alt="Prelungitor Gri"
-                                width={400}
-                                height={400}
-                            />
-                        </div>
-                        <div className={styles.overlay}>
-                            <span className={styles.overlayText}>FEEA</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles.toggleContainer}>
-                    <button className={`${styles.toggleButton} ${styles.activeToggle}`}>
-                        Basic
-                    </button>
-                    <button className={`${styles.toggleButton} ${styles.disabledToggle}`} disabled>
-                        Complex
-                    </button>
-                </div>
+                <ProductImageCarousel imageLinkArray={images} />
 
                 <div className={styles.descriptionContainer}>
+                    <h1 className={styles.productTitle}>Prelungitor 20M cu mâner</h1>
                     <div className={styles.pageDescription}>
-                    Prelungitor gri cu 5 prize Schuko, cablu de 1.5 metri și întrerupător iluminat pentru control ușor. Suportă o putere maximă de 3680W și este ideal pentru utilizare casnică sau birou. Design compact, cu protecție la supratensiune integrată.
+                    Prelungitor Cube, roz, 2 prize Schuko, cablu flexibil, design modern și compact, perfect pentru birou sau living. Soluție elegantă pentru conectarea dispozitivelor dumneavoastră, combinând funcționalitatea cu estetica contemporană.
                     </div>
                     <div className={styles.buttonGroup}>
-                        <button className={styles.actionButton}>Vezi disponibilitate</button>
-                        <button className={styles.actionButton}>Inchiriaza</button>
+                        <button className={`${styles.actionButton} ${Inter500.className}`}>Vezi disponibilitate</button>
+                        <button className={`${styles.actionButton} ${Inter500.className}`}>Închiriază</button>
                     </div>
                     <div className={styles.dropdownsContainer}>
                         <details className={styles.dropdown}>
-                            <summary className={styles.dropdownHeader}>Mod de utilizare</summary>
+                            <summary className={`${styles.dropdownHeader} ${Inter500.className}`}>Mod de utilizare</summary>
                             <div className={styles.dropdownContent}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec ullamcorper diam, nec maximus lorem.
+                            Conectați ștecherul prelungitorului Cube la priza de perete, apoi folosiți cele două prize Schuko pentru alimentarea dispozitivelor electrice. Datorită designului compact, poate fi așezat pe birou sau podea, iar cablul lung asigură flexibilitate în poziționare.
                             </div>
                         </details>
                         
                         <details className={styles.dropdown}>
-                            <summary className={styles.dropdownHeader}>Material si intretinere</summary>
+                            <summary className={`${styles.dropdownHeader} ${Inter500.className}`}>Material si intretinere</summary>
                             <div className={styles.dropdownContent}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec ullamcorper diam, nec maximus lorem.
+                            Fabricat din plastic ABS de înaltă calitate, rezistent la uzură și temperaturi ridicate. Carcasa cu finisaj mat împiedică acumularea amprentelor. Pentru întreținere, deconectați de la sursa de curent și ștergeți cu o cârpă uscată. Nu folosiți agenți de curățare lichizi sau abrazivi.
                             </div>
                         </details>
                     </div>
@@ -80,4 +59,62 @@ export default function EchipamentPage() {
             </div>
         </div>
     );
+}
+
+const ProductImageCarousel = ({ imageLinkArray }) => {
+    
+    const [selectedImage, setSelectedImage] = useState(0);
+    
+    return (
+    <div className={carouselStyles.productImageSection}>
+        <div className={carouselStyles.imageContainer}>
+            <div className={carouselStyles.imageWrapper}>
+                <Image 
+                    src={imageLinkArray[selectedImage]} 
+                    alt="Prelungitor Gri" 
+                    className={carouselStyles.image}
+                    fill
+                    sizes="(max-width: 860px) 860px, 400px"
+                />
+                <div className={carouselStyles.overlay}>
+                    <span className={carouselStyles.overlayText}>FEEA</span>
+                </div>
+            
+                <div 
+                    className={carouselStyles.navArrow + ' ' + carouselStyles.leftArrow} 
+                    onClick={() => setSelectedImage(prevImage => (prevImage > 0 ? prevImage - 1 : imageLinkArray.length - 1))}
+                >
+                    <span>&#10094;</span>
+                </div>
+                
+                <div 
+                    className={carouselStyles.navArrow + ' ' + carouselStyles.rightArrow} 
+                    onClick={() => setSelectedImage(prevImage => (prevImage < imageLinkArray.length - 1 ? prevImage + 1 : 0))}
+                >
+                    <span>&#10095;</span>
+                </div>
+            </div>
+        </div>
+        
+        <div className={carouselStyles.carouselContainer}>
+            <div className={carouselStyles.thumbnailsContainer}>
+                {imageLinkArray.map((image, index) => (
+                    <div 
+                        key={index} 
+                        className={`${carouselStyles.thumbnailWrapper} ${selectedImage === index ? carouselStyles.selectedThumbnail : ''}`}
+                        onClick={() => setSelectedImage(index)}
+                    >
+                        <Image 
+                            src={image} 
+                            alt={`Thumbnail ${index + 1}`} 
+                            className={carouselStyles.thumbnailImage}
+                            width={70}
+                            height={70}
+                        />
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+    )
 }
