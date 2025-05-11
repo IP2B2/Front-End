@@ -1,0 +1,30 @@
+# Node dependencies
+node_modules/
+
+# Build output
+.next/
+out/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Local env files
+.env*
+*.local
+
+# Git
+.git
+.gitignore
+
+# OS/filesystem
+.DS_Store
+
+# Docker build files
+Dockerfile
+.dockerignore
+docker-compose.yml
+
