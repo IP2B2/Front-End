@@ -9,6 +9,7 @@ import { Montserrat300Italic, Montserrat500, Montserrat900 } from '@/lib/fonts/M
 
 import { useEffect } from 'react';
 import { useLayoutContent } from '@/lib/context';
+import { Calendar } from '@/lib/components/calendar/Calendar';
 
 export default function Home() {
 
@@ -23,7 +24,7 @@ export default function Home() {
     return (
         <div className={styles.homeContainer}>
             <div className={styles.statusCard}>Verificarea contului dumneavoastră este în curs. Vă mulțumim pentru înțelegere și răbdare!</div>
-            <div className={styles.welcomeCard}>
+            <div className={styles.welcomeCard} style={{ display: 'none' }}>
                 <div className={styles.welcomeMessage}>
                     <div className={Montserrat900.className}>Welcome to</div>
                     <div className={styles.showDesktop}><Image
@@ -52,6 +53,7 @@ export default function Home() {
                 ISMA <div className={Montserrat300Italic.className}>centralizează procesele administrative legate de utilizarea echipamentelor științifice și tehnice. Principalul obiectiv este optimizarea accesului la echipamente și urmărirea trasabilității acestora printr-un sistem digital, intuitiv și structurat.</div>
                 </div>
             </div>
+            <Calendar />
         </div>
     );
 }
