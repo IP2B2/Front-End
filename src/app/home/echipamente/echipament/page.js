@@ -103,7 +103,7 @@ export default function EchipamentPage() {
                         </details>
                         
                         <details className={styles.dropdown}>
-                            <summary className={`${styles.dropdownHeader} ${Inter500.className}`}>Material si intretinere</summary>
+                            <summary className={`${styles.dropdownHeader} ${Inter500.className}`}>Material și întreținere</summary>
                             <div className={styles.dropdownContent}>
                             Fabricat din plastic ABS de înaltă calitate, rezistent la uzură și temperaturi ridicate. Carcasa cu finisaj mat împiedică acumularea amprentelor. Pentru întreținere, deconectați de la sursa de curent și ștergeți cu o cârpă uscată. Nu folosiți agenți de curățare lichizi sau abrazivi.
                             </div>

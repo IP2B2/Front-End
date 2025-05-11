@@ -106,7 +106,7 @@
 }
 
 .pageDescription {
-    width: 80%;
+    width: 70%;
     box-sizing: border-box;
 
     margin-top: -20px;
@@ -121,7 +121,7 @@
     box-sizing: border-box;
 
     margin-top:var(--font-size-lg);
-    padding-right: 220px;
+    padding-right: 30%;
 
     display: flex;
     flex-direction: row; 
@@ -131,7 +131,7 @@
 
 .actionButton {
     height: 40px;
-    width: 220px; 
+    width: 80%; 
 
     padding: 20px;
 
@@ -228,7 +228,7 @@
   }
 
 .dropdownsContainer {
-    width: 500px;
+    width: 70%;
 
     margin-top: 10px;
 
@@ -387,3 +387,78 @@
 .navArrow:hover {
     background-color: rgba(255, 255, 255, 0.9);
 }
+
+/* Tablet responsiveness */
+@media (max-width: 1150px) {
+    .layout {
+      flex-direction: column;
+      gap: 30px;
+    }
+    
+    .descriptionContainer {
+      width: 100%;
+      max-height: none;
+
+      padding-bottom: 60px;
+    }
+    
+    .pageDescription {
+      width: 100%;
+
+      margin-top: 0;
+    }
+    
+    .buttonGroup {
+      padding-right: 0;
+
+      justify-content: space-between;
+    }
+
+    .actionButton:last-child {
+        background: linear-gradient(305.64deg, #FF4A4A 33.69%, #FF9900 75.7%, #FFD9A1 100.91%, #FFC671 107.63%, #FFC671 119.4%) !important;
+        opacity: 1;
+    }
+    
+    .dropdownsContainer {
+      width: 100%;
+
+      padding-bottom: 40px;
+      margin-bottom: 180px;
+    }
+    
+    .imageContainer {
+      margin: 0 auto;
+    }
+    
+    .carouselContainer {
+      margin: 0 auto;
+    }
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 680px) {
+    .imageContainer {
+      width: 100%;
+      height: auto;
+
+      aspect-ratio: 1/1;
+    }
+    
+    .carouselContainer {
+      width: 100%;
+    }
+    
+    .buttonGroup {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .actionButton {
+      width: 100%;
+    }
+
+    .actionButton:last-child {
+        background: linear-gradient(305.64deg, #FF4A4A 33.69%, #FF9900 75.7%, #FFD9A1 100.91%, #FFC671 107.63%, #FFC671 119.4%) !important;
+        opacity: 1;
+    }
+  }
