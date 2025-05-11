@@ -86,8 +86,8 @@ export default function EchipamentPage() {
                     Prelungitor Cube, roz, 2 prize Schuko, cablu flexibil, design modern și compact, perfect pentru birou sau living. Soluție elegantă pentru conectarea dispozitivelor dumneavoastră, combinând funcționalitatea cu estetica contemporană.
                     </div>
                     <div className={styles.buttonGroup}>
-                        <button className={styles.actionButton}>Vezi disponibilitate</button>
-                        <button className={styles.actionButton}>Închiriază</button>
+                        <button className={`${styles.actionButton} ${Inter500.className}`}>Vezi disponibilitate</button>
+                        <button className={`${styles.actionButton} ${Inter500.className}`}>Închiriază</button>
                     </div>
                     <div className={styles.dropdownsContainer}>
                         <details className={styles.dropdown}>
