@@ -9,7 +9,7 @@ export async function POST(request) {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
     const body = await request.json();
     try {
-        const res = await axios.post('https://88.80.135.141/api/auth/login', {
+        const res = await axios.post('https://88.80.135.108/api/auth/login', {
             username: 'user1',
             password: body?.password
         }, {

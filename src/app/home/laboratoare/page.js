@@ -1,19 +1,29 @@
 'use client'
 import { useCallback, useState, useEffect, Fragment } from 'react';
-import { getLabs } from './getLabs'
+import { useRouter } from 'next/navigation';
+
+import { getLabs } from '@/lib/logic/ApiCalls/LabCalls';
 
 import gtStyles from './GridTable.module.css'
 
 export default function LaboratoriesListPage() {
 
     const [data, setData] = useState([]);
+    const router = useRouter();
 
     const cb = useCallback(() => {
-        getLabs().then(data2 => {
-            console.log(data2);
-            setData(data2);
-        });
-    }, [setData]);
+        async function getData() {
+            const dataRes = await getLabs();
+            if(dataRes?.expiredToken || dataRes?.error) {
+                console.log("Token expired");
+                router.push('/auth/login');
+                return;
+            }
+            console.log("Data fetched: ", dataRes);
+            setData(dataRes?.payload);
+        }
+        getData();
+    }, [setData, router]);
 
     useEffect(cb, []);
 

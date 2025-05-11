@@ -10,7 +10,7 @@ import '@/app/globals.css';
 import { testValidEmail, testValidPassword } from "@/lib/logic/AuthValidators";
 
 import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
-import { AuthLogin } from '@/lib/logic/AuthCalls';
+import { AuthLogin } from '@/lib/logic/ApiCalls/AuthCalls';
 
 
 export default function LoginPage() {

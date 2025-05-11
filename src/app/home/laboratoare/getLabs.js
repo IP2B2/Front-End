@@ -13,7 +13,7 @@ export async function getLabs() {
             }
         });
         const { token } = response.data;
-        const response2 = await axios.get('https://88.80.135.141/api/laboratories', {
+        const response2 = await axios.get('https://88.80.135.141/api/laboratories/all', {
             headers: {
             Authorization: `Bearer ${token}`
             }
