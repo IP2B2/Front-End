@@ -18,7 +18,7 @@ export async function POST(request) {
             },
             validateStatus: status => {
                 return status === 200;
-            }
+            } 
         });
 
         const { token } = res.data;

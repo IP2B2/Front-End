@@ -9,7 +9,7 @@ import '@/app/globals.css';
 
 import { testValidEmail, testValidPassword } from "@/lib/logic/AuthValidators";
 
-import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
+import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink, FormHollowButton } from "@/lib/components/form/Form";
 import { AuthLogin } from '@/lib/logic/ApiCalls/AuthCalls';
 
 
@@ -44,6 +44,11 @@ export default function LoginPage() {
         localStorage.setItem('authToken', loginResolution.payload);
         return router.push('/home');
     };
+    const handleRedirectForgotPassword = async () => {
+        console.log("Redirecting...");
+            router.push('/auth/forgot-password'); 
+    };
+
 
     return (
     <div className={styles.loginContainer}>
