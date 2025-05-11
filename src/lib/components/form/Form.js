@@ -21,6 +21,9 @@ export const DefaultFormLayout = (
             <div className={formStyles.formHeaderWrapper}>
                 <div className={`${formStyles.formTitle} ${Inter700.className}`}>{title}</div>
                 <div className={`${formStyles.formSubtitle} ${Inter500.className}`}>{subtitle}</div>
+                { showError ? <div className={`${formStyles.formInputErrorMessage}`}>
+                    {errorMessage ? errorMessage : ''}
+                </div> : ''}
             </div>
             {children}
         </div>
@@ -89,7 +92,7 @@ export const FormMultiColumn = ({ cols, children }) => {
     )
 }
 
-export const FormField = ({ type, placeholder, validator, setState, trim, label, validate = true }) => {
+export const FormField = ({ type, placeholder, validator, setState, trim, label, validate = true, formInputId }) => {
 
     const [inputValue, setInputValue] = useState('');
     
@@ -124,7 +127,9 @@ export const FormField = ({ type, placeholder, validator, setState, trim, label,
                     className={`${formStyles.formInput} border-rounded border-gray ${Inter600.className} ${isInputError ? formStyles.formInputError : ''}`} 
                     placeholder={placeholder} 
                     type={type}
-                    onChange={handleInputChange}/>
+                    onChange={handleInputChange}
+                    id={formInputId}
+                    name={formInputId}/>
             </label>
             <div className={`${formStyles.formInputErrorMessage}`}>
                 { validate && isInputError ? inputError : ''}

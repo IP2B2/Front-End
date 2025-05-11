@@ -16,8 +16,8 @@
 
     flex-grow: 1;
     
-    padding: 10px 15px;
-    
+    padding: 10px;
+    overflow-y: scroll;
 }
 .contentWrapper {
     padding: 5px 0;
