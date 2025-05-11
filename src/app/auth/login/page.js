@@ -13,6 +13,7 @@ import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink } fro
 import { AuthLogin } from '@/lib/logic/ApiCalls/AuthCalls';
 
 
+
 export default function LoginPage() {
     const router = useRouter(); 
     const [emailField, setEmailField] = useState("");
@@ -45,6 +46,15 @@ export default function LoginPage() {
         return router.push('/home');
     };
 
+    const handleRedirectForgotPassword = async () => {
+        console.log("Redirecting...");
+            router.push('/auth/forgot-password'); 
+    };
+
+
+
+
+
     return (
     <div className={styles.loginContainer}>
         <DefaultFormLayout
@@ -76,9 +86,12 @@ export default function LoginPage() {
                 <FormButton onClick={handleLogin}>
                     Autentificare
                 </FormButton>
+
+                <FormHollowButton onClick={handleRedirectForgotPassword}>
+                    Ai uitat parola?
+                </FormHollowButton>
             </FormContainer>
 
-            <FormLink href="#">Ai uitat parola?</FormLink>
             <FormLink href="/auth/register">Nu ai un cont?</FormLink>
 
         </DefaultFormLayout>

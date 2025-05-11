@@ -1,3 +1,4 @@
+'use client'
 
 import Image from 'next/image';
 
@@ -6,18 +7,28 @@ import styles from './homePage.module.css'
 import Breadcrumbs from './components/Breadcrumbs';
 import { Montserrat300Italic, Montserrat500, Montserrat900 } from '@/lib/fonts/Montserrat';
 
-
+import { useEffect } from 'react';
+import { useLayoutContent } from '@/lib/context';
 
 export default function Home() {
+
+     const { setExtraContent } = useLayoutContent();
+    useEffect(() => {
+      setExtraContent({
+        pageTitle: 'Acasa'
+      });
+      return () => setExtraContent({ pageTitle: '' }); // Cleanup when navigating away
+    }, []);
+
     return (
         <div className={styles.homeContainer}>
             <div className={styles.statusCard}>Verificarea contului dumneavoastră este în curs. Vă mulțumim pentru înțelegere și răbdare!</div>
             <div className={styles.welcomeCard}>
-                <div>
+                <div className={styles.welcomeMessage}>
                     <div className={Montserrat900.className}>Welcome to</div>
                     <div className={styles.showDesktop}><Image
                         src="/ISMA.svg"
-                        width={400}
+                        width={350}
                         height={150}
                         alt="ISMA"
                     ></Image>
@@ -31,8 +42,8 @@ export default function Home() {
                     </div>
                     <div className={styles.showMobile}><Image
                         src="/ISMA.svg"
-                        width={200}
-                        height={62}
+                        width={270}
+                        height={80}
                         alt="ISMA"
                     ></Image>
                     </div>

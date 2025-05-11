@@ -1,7 +1,7 @@
 
 .layoutContainer {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
 
     overflow: hidden;
     padding: 20px;
@@ -32,6 +32,7 @@
 .showStartTablet {
     display: none;
 }
+
 @media (max-width: 1150px) {
     .showDesktopOnly {
         display: none;
@@ -42,7 +43,7 @@
         padding: 0;
     }
     .layoutContainer {
-        padding: 0px;
+        padding: 0px 0px 130px 0px;
         flex-direction: column;
         gap: 0px;
     }
@@ -55,5 +56,4 @@
     .showDesktop {
         display: none;
     }
-
 }

@@ -1,20 +1,29 @@
-FROM node:18-alpine
+# Builder image
+FROM node:18-alpine AS builder
 
-# Set working directory inside the container
 WORKDIR /app
-
-# Copy package.json and package-lock.json (or yarn.lock) for dependency installation
 COPY package.json package-lock.json ./
-RUN npm install --frozen-lockfile
+RUN npm ci --omit=dev
 
-# Copy the source code into the container
 COPY . .
-
-# Build the Next.js app
 RUN npm run build
 
-# Expose port 3000 (Next.js default)
-EXPOSE 3000
+# Runtime image
+FROM node:18-alpine
 
-# Start the Next.js app
+# Create non-root user
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+WORKDIR /app
+
+# Copy only what's needed from the builder stage
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/node_modules ./node_modules
+
+USER appuser
+
+EXPOSE 3000
 CMD ["npm", "start"]
+
