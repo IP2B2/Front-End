@@ -3,12 +3,10 @@ import { useState } from 'react';
 import styles from './Echipament.module.css';
 import Image from 'next/image'
 import { Inter500} from '@/lib/fonts/Inter'
-import { useLayoutContent } from '@/lib/context';
 import '@/app/globals.css';
+import carouselStyles from './ProductImageCarousel.module.css';
 
 export default function EchipamentPage() {
-    const { setExtraContent } = useLayoutContent();
-    const [selectedImage, setSelectedImage] = useState(0);
     
     const images = [
       "/icons/Frame 1000005448.svg", 
@@ -21,7 +19,7 @@ export default function EchipamentPage() {
         <div className={styles.container}>
             <div className={styles.content}>
             <div className={styles.layout}>
-                <div className={styles.pageTitleContainer}>
+                <div className={styles.backButtonWrapper}>
                     <Image 
                         src="/icons/back-arrow.svg" 
                         alt="Back" 
@@ -30,56 +28,7 @@ export default function EchipamentPage() {
                         height={20}
                     />
                 </div>
-                <div className={styles.productImageSection}>
-                    <div className={styles.imageContainer}>
-                        <div className={styles.imageWrapper}>
-                            <Image 
-                                src={images[selectedImage]} 
-                                alt="Prelungitor Gri" 
-                                className={styles.image}
-                                fill
-                                sizes="(max-width: 860px) 860px, 400px"
-                            />
-                            <div className={styles.overlay}>
-                                <span className={styles.overlayText}>FEEA</span>
-                            </div>
-                        
-                            <div 
-                                className={styles.navArrow + ' ' + styles.leftArrow} 
-                                onClick={() => setSelectedImage(prevImage => (prevImage > 0 ? prevImage - 1 : images.length - 1))}
-                            >
-                                <span>&#10094;</span>
-                            </div>
-                            
-                            <div 
-                                className={styles.navArrow + ' ' + styles.rightArrow} 
-                                onClick={() => setSelectedImage(prevImage => (prevImage < images.length - 1 ? prevImage + 1 : 0))}
-                            >
-                                <span>&#10095;</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div className={styles.carouselContainer}>
-                        <div className={styles.thumbnailsContainer}>
-                            {images.map((image, index) => (
-                                <div 
-                                    key={index} 
-                                    className={`${styles.thumbnailWrapper} ${selectedImage === index ? styles.selectedThumbnail : ''}`}
-                                    onClick={() => setSelectedImage(index)}
-                                >
-                                    <Image 
-                                        src={image} 
-                                        alt={`Thumbnail ${index + 1}`} 
-                                        className={styles.thumbnailImage}
-                                        width={70}
-                                        height={70}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+                <ProductImageCarousel imageLinkArray={images} />
 
                 <div className={styles.descriptionContainer}>
                     <h1 className={styles.productTitle}>Prelungitor 20M cu mâner</h1>
@@ -110,4 +59,62 @@ export default function EchipamentPage() {
             </div>
         </div>
     );
+}
+
+const ProductImageCarousel = ({ imageLinkArray }) => {
+    
+    const [selectedImage, setSelectedImage] = useState(0);
+    
+    return (
+    <div className={carouselStyles.productImageSection}>
+        <div className={carouselStyles.imageContainer}>
+            <div className={carouselStyles.imageWrapper}>
+                <Image 
+                    src={imageLinkArray[selectedImage]} 
+                    alt="Prelungitor Gri" 
+                    className={carouselStyles.image}
+                    fill
+                    sizes="(max-width: 860px) 860px, 400px"
+                />
+                <div className={carouselStyles.overlay}>
+                    <span className={carouselStyles.overlayText}>FEEA</span>
+                </div>
+            
+                <div 
+                    className={carouselStyles.navArrow + ' ' + carouselStyles.leftArrow} 
+                    onClick={() => setSelectedImage(prevImage => (prevImage > 0 ? prevImage - 1 : imageLinkArray.length - 1))}
+                >
+                    <span>&#10094;</span>
+                </div>
+                
+                <div 
+                    className={carouselStyles.navArrow + ' ' + carouselStyles.rightArrow} 
+                    onClick={() => setSelectedImage(prevImage => (prevImage < imageLinkArray.length - 1 ? prevImage + 1 : 0))}
+                >
+                    <span>&#10095;</span>
+                </div>
+            </div>
+        </div>
+        
+        <div className={carouselStyles.carouselContainer}>
+            <div className={carouselStyles.thumbnailsContainer}>
+                {imageLinkArray.map((image, index) => (
+                    <div 
+                        key={index} 
+                        className={`${carouselStyles.thumbnailWrapper} ${selectedImage === index ? carouselStyles.selectedThumbnail : ''}`}
+                        onClick={() => setSelectedImage(index)}
+                    >
+                        <Image 
+                            src={image} 
+                            alt={`Thumbnail ${index + 1}`} 
+                            className={carouselStyles.thumbnailImage}
+                            width={70}
+                            height={70}
+                        />
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+    )
 }
