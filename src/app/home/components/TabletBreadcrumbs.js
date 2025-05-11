@@ -20,7 +20,7 @@ export default function Breadcrumbs({ page }) {
       name: segment.charAt(0).toUpperCase() + segment.slice(1),
       path: '/' + pathSegments.slice(0, index + 1).join('/')
     })));
-  }, []);
+  }, [pathname]);
   
 
   return (
