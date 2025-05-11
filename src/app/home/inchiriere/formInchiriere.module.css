@@ -1,0 +1,344 @@
+.backButton 
+{
+  position: left;
+  top: 20px;
+  left: 20px;
+  width: 67px;
+  height: 67px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #FFFFFF;
+  box-shadow: 0px 1px 1px 0px #000E330D;
+
+  border: none;
+  border-radius: 80px;
+
+  cursor: pointer;
+}
+
+.backArrow 
+{
+  width: 17px;
+  height: 10px;
+
+  position: relative;
+  top: 3px;
+  left: 1px;
+
+  transform: rotate(90deg);
+}
+
+.rentalWrapper {
+    width: 100%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    padding: 80px 0; /* sa nu faca overlap cu butonul de back*/
+}
+.rentalContainer 
+{
+    width: 600px;
+    
+    margin: 0 20px;
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 28px;
+}
+
+.formButtonContainer 
+{
+    width: 100%;
+    
+    margin: 10px 0 20px;
+}
+
+.calendarButton 
+{
+    width: 100%;
+    
+    padding: 14px 16px;
+        
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(
+        304.55deg,
+        #FCC6D2 10%,
+        #FF426B 30%,
+        #246EFF 80%
+    );
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calendarButton:hover 
+{
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    
+    transform: translateY(-2px);
+}
+
+.buttonGroup 
+{
+    margin-top: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    
+}
+
+.clearButton, .rentButton 
+{
+    width: 100%;
+    
+    padding: 18px 24px;
+    
+    border: none;
+    border-radius: 8px;
+    
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clearButton 
+{
+    background: #f0f0f0;
+    
+    color: #333;
+}
+
+.clearButton:hover 
+{
+    background: #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    
+    transform: translateY(-2px);
+}
+
+.rentButton 
+{
+    background: #000000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
+    color: white;
+    
+    transition: all 0.4s ease;
+}
+
+.activeRentButton 
+{
+    background: linear-gradient(305.64deg, #FF4A4A 33.69%, #FF9900 75.7%, #FFD9A1 100.91%, #FFC671 107.63%, #FFC671 119.4%) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    
+    transform: translateY(-1px);
+}
+
+.activeRentButton:hover 
+{
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    
+    transform: translateY(-2px) scale(1.02);
+}
+
+
+.fileUploadContainer {
+    width: 100%;
+    min-height: 120px;
+
+    padding: 20px;
+    margin: 10px 0 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    background-color: #f9fafb;
+
+    text-align: center;
+    color: #4b5563;
+
+    transition: all 0.3s ease;
+}
+
+.fileUploadContainer.dragging {
+    border-color: #FF426B;
+    background-color: #fef2f2;
+}
+
+.fileInput {
+    display: none;
+}
+
+.fileUploadLabel {
+    font-size: 16px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.uploadIcon {
+    margin-bottom: 8px;
+    
+    display: block;
+
+    font-size: 24px;
+}
+
+.fileName {
+    color: #111827;
+    font-weight: 600;
+}
+
+.fileUploadHint {
+    margin-top: 8px;
+    
+    font-size: 14px;
+    color: #6b7280;
+}
+
+
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  
+  .label {
+      margin-bottom: 8px;
+      font-weight: 500;
+  }
+  
+  .dateInputWrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+  }
+  
+  .dateInput {
+    width: 100%;
+
+    padding: 12px 40px 12px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 16px;
+  }
+  
+  .fileError {
+    font-weight: bold;
+    color: red;
+  }
+
+  @media (min-width: 1024px) {
+    .rentalContainer {
+        max-width: 700px;
+    }
+    
+    .calendarButton {
+        padding: 16px 24px;
+        font-size: 17px;
+    }
+    
+    .clearButton, .rentButton {
+        padding: 20px 28px;
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .rentalContainer {
+        gap: 24px;
+        max-width: 650px;
+    }
+    
+    .backButton {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .calendarButton, .clearButton, .rentButton {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+    
+    .fileUploadContainer {
+        padding: 18px;
+        min-height: 110px;
+    }
+    
+    .label {
+        font-size: 16px;
+    }
+    
+    .dateInput {
+        padding: 12px 40px 12px 12px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .rentalWrapper {
+        padding: 60px 0;
+    }
+    
+    .rentalContainer {
+        margin: 0 15px;
+        gap: 16px;
+    }
+    
+    .backButton {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+        left: 15px;
+    }
+    
+    .buttonGroup {
+        margin-top: 20px;
+        gap: 12px;
+    }
+    
+    .calendarButton, .clearButton, .rentButton {
+        padding: 14px 16px;
+        font-size: 15px;
+    }
+    
+    .label {
+        font-size: 15px;
+    }
+    
+    .dateInput {
+        padding: 10px 35px 10px 10px;
+        font-size: 15px;
+    }
+    
+    .fileUploadContainer {
+        padding: 15px;
+        min-height: 100px;
+    }
+}

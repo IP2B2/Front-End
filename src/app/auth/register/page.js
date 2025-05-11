@@ -19,7 +19,7 @@ function RegisterPage() {
     event.preventDefault(); 
     setHasSubmitted(true);
 
-    if (testValidEmail(emailField) === "" && testValidMatricol(matricolField) === "") {
+    if (testValidEmail(emailField) == "" && testValidMatricol(matricolField) == "") {
       console.log("Register part 1 successful, redirecting...");
       router.push('/auth/confirm-mail');
       return;
@@ -27,7 +27,7 @@ function RegisterPage() {
       console.log("Register part 1 validation failed");
       setIsSubmitError(true);
     }
-  }, [emailField, router]);
+  }, [emailField, matricolField, router]);
 
   return (
     <div className={styles.registerContainer}>
@@ -51,7 +51,7 @@ function RegisterPage() {
 
         <FormField
           type={"password"}
-          label={"Numar matricol"}
+          label={"Numar de matricol / Numar de marca"}
           placeholder={"*************"}
           setState={setMatricolField}
           validator={testValidMatricol}

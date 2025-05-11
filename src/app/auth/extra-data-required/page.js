@@ -41,7 +41,7 @@ export default function ExtraDataRequired() {
         <div className={styles.registerContainer}>
             <DefaultFormLayout
                 title={"Mai avem nevoie de date"}
-                subtitle={"Introdu datele tale în formularul de mai jos pentru a finaliza crearea contului"}>
+                subtitle={"Introdu datele tale în formularul de mai jos pentru a finaliza crearea contului."}>
                 <FormContainer>
                 <FormMultiColumn cols={2}>
                         <FormField 
@@ -75,8 +75,8 @@ export default function ExtraDataRequired() {
                             />
                         <FormField 
                             type={"text"} 
-                            label={"Facultate"} 
-                            placeholder={"ex: Facultatea de Informatica Iasi"}
+                            label={"Universitate / Centru"} 
+                            placeholder={"ex: Facultatea de Informatică Iasi"}
                             setState={setFacultate} 
                             trim
                             validator={emptyInvalidator}
@@ -85,7 +85,7 @@ export default function ExtraDataRequired() {
                     </FormMultiColumn>
                     <FormField 
                         type={"password"} 
-                        label={"Parola"} 
+                        label={"Parolă"} 
                         placeholder={"***************"}
                         setState={setParola} 
                         trim
@@ -94,15 +94,15 @@ export default function ExtraDataRequired() {
                         />
                     <FormField 
                         type={"text"} 
-                        label={"Confirmare parola"} 
+                        label={"Confirmare parolă"} 
                         placeholder={"***************"}
                         setState={setConfirmParola} 
                         trim
                         validator={emptyInvalidator}
                         validate={hasSubmitted}
                         />
-                    <FormButton onClick={handleSubmit}>Finalizaeaza</FormButton>
-                    <FormLink href="/auth/login">Inapoi</FormLink>
+                    <FormButton onClick={handleSubmit}>Finalizează</FormButton>
+                    <FormLink href="/auth/login">Înapoi</FormLink>
                 </FormContainer>
             </DefaultFormLayout>
         </div>

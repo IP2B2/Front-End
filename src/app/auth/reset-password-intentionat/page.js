@@ -1,0 +1,139 @@
+'use client';
+
+import { useState } from "react";
+import { useRouter } from 'next/navigation';
+
+
+
+import '@/app/globals.css';
+
+import { testValidPassword } from "@/lib/logic/AuthValidators";
+import { FormContainer, FormField, FormButton } from "@/lib/components/form/Form";
+
+import styles from './resetPassword.module.css';
+
+export default function ResetPasswordPage() {
+
+   const router = useRouter(); 
+
+   const [currentPasswordField, setCurrentPasswordField] = useState("");
+   const [newPasswordField, setNewPasswordField] = useState("");
+   const [confirmPasswordField, setConfirmPasswordField] = useState("");
+
+   const [isSubmitError, setIsSubmitError] = useState(false);
+   const [hasSubmitted, setHasSubmitted] = useState(false);
+   const [errorMessage, setErrorMessage] = useState("");
+
+   const validateNewPassword = (value) => 
+       {
+       const standardValidation = testValidPassword(value);
+       if (standardValidation) return standardValidation;
+
+       if (value === currentPasswordField && value !== "") {
+           return "Parola nouă trebuie să fie diferită de parola actuală.";
+       }
+
+       return "";
+   };
+
+   const handleReset = (e) => {
+       e.preventDefault();
+       setHasSubmitted(true);
+
+       const currentPasswordError = testValidPassword(currentPasswordField);
+       const newPasswordError = validateNewPassword(newPasswordField);
+       const confirmError = newPasswordField !== confirmPasswordField ? "Parolele nu coincid." : "";
+
+       if (newPasswordField === currentPasswordField && newPasswordField !== "") {
+           setErrorMessage("Parola nouă trebuie să fie diferită de parola actuală.");
+           setIsSubmitError(true);
+           return;
+       }
+
+       if (!currentPasswordError && !newPasswordError && !confirmError) {
+           router.push('/home');
+           setIsSubmitError(false);
+           setErrorMessage("");
+       } else {
+           let message = "Date invalide. Verifică parolele introduse.";
+
+           if (currentPasswordError) {
+               message = currentPasswordError;
+           } else if (newPasswordError) {
+               message = newPasswordError;
+           } else if (confirmError) {
+               message = confirmError;
+           }
+
+           setErrorMessage(message);
+           setIsSubmitError(true);
+       }
+   };
+
+   const handleGoBack = () => {
+       router.back();
+   };
+
+   return (
+       <div className={styles.pageContainer}>
+           <button 
+               onClick={handleGoBack}
+               className={styles.backButton}
+           >
+               <div className={styles.backArrow}>
+                   <svg width="17" height="10" viewBox="0 0 17 10" fill="none">
+                       <path d="M1 1L8.5 8.5L16 1" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+                   </svg>
+               </div>
+           </button>
+
+           <div className={styles.formWrapper}>
+               <h1 className={styles.pageTitle}>Resetare parolă</h1>
+               <p className={styles.pageDescription}>
+                   Introdu parolele în formularul de mai jos
+               </p>
+
+               {isSubmitError && (
+                   <div className={styles.errorMessage}>
+                       {errorMessage}
+                   </div>
+               )}
+
+               <FormContainer>
+                   <FormField 
+                       type="password"
+                       label="Parolă actuală"
+                       placeholder="********"
+                       setState={setCurrentPasswordField}
+                       trim
+                       validator={testValidPassword}
+                       validate={hasSubmitted}
+                   />
+
+                   <FormField 
+                       type="password"
+                       label="Parolă nouă"
+                       placeholder="********"
+                       setState={setNewPasswordField}
+                       trim
+                       validator={validateNewPassword}
+                       validate={hasSubmitted}
+                   />
+
+                   <FormField
+                       type="password"
+                       label="Confirmare parolă nouă"
+                       placeholder="********"
+                       setState={setConfirmPasswordField}
+                       validator={(value) => value !== newPasswordField ? "Parolele nu coincid." : ""}
+                       validate={hasSubmitted}
+                   />
+
+                   <FormButton onClick={handleReset}>
+                       Resetează
+                   </FormButton>
+               </FormContainer>
+           </div>
+       </div>
+   );
+}

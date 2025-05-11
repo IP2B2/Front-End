@@ -76,9 +76,12 @@ export default function LoginPage() {
                 <FormButton onClick={handleLogin}>
                     Autentificare
                 </FormButton>
+
+                <FormHollowButton onClick={handleRedirectForgotPassword}>
+                    Ai uitat parola?
+                </FormHollowButton>
             </FormContainer>
 
-            <FormLink href="#">Ai uitat parola?</FormLink>
             <FormLink href="/auth/register">Nu ai un cont?</FormLink>
 
         </DefaultFormLayout>
