@@ -16,7 +16,7 @@
 
     flex-grow: 1;
     
-    padding: 10px;
+    padding: 10px 15px;
     
 }
 .contentWrapper {
@@ -54,8 +54,13 @@
     }
 }
 @media (max-width: 860px) {
-
     .showDesktop {
         display: none;
+    }
+    .layoutContainer {
+       padding: 0px 0px calc(5vh + 70px) 0px;
+    }
+    .mainContainer {
+        padding: 10px 20px;
     }
 }

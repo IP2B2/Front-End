@@ -4,6 +4,7 @@ import styles from './Echipament.module.css';
 import Image from 'next/image'
 import { Inter500} from '@/lib/fonts/Inter'
 import { useLayoutContent } from '@/lib/context';
+import '@/app/globals.css';
 
 export default function EchipamentPage() {
     const { setExtraContent } = useLayoutContent();
@@ -37,7 +38,7 @@ export default function EchipamentPage() {
                                 alt="Prelungitor Gri" 
                                 className={styles.image}
                                 fill
-                                sizes="400px"
+                                sizes="(max-width: 860px) 860px, 400px"
                             />
                             <div className={styles.overlay}>
                                 <span className={styles.overlayText}>FEEA</span>
