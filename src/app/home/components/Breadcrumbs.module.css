@@ -15,11 +15,18 @@
 
 .breadcrumbs {
   display: flex;
+  flex-flow: row wrap;
   align-items: center;
+
 
   font-size: var(--font-size-xs);
   line-height: var(--font-size-md);
   font-family: 'Inter', sans-serif;
+}
+.breadcrumbs > span {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 
 .label {
