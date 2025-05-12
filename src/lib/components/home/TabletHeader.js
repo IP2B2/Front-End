@@ -30,4 +30,4 @@ const TabletHeader = () => {
     )
 }
 
-export default TabletHeader
+export default TabletHeader;

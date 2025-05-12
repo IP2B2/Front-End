@@ -1,9 +1,11 @@
 'use client'
-import styles from './Sidebar.module.css'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import Image from 'next/image'
-import { Inter700, Inter500, Inter400 } from '@/lib/fonts/Inter'
+
+import { Inter500, Inter400 } from '@/lib/fonts/Inter'
+
+import styles from './Sidebar.module.css'
 
 export default function Sidebar() {
   const pathname = usePathname()
@@ -13,7 +15,7 @@ export default function Sidebar() {
       <div className={styles.sidebarContent}>
         <div className={styles.topSection}>
           <div className={styles.title}>
-            <Image src="/IsmaBlack.svg" alt="ISMA Logo" width={120} height={40} />
+            <Image src="/IsmaBlack.svg" alt="ISMA Logo" width={160} height={53} />
           </div>
           <hr className={styles.separator} />
           <nav className={`${styles.nav} ${Inter400.className}`}>
@@ -21,7 +23,7 @@ export default function Sidebar() {
               href="/"
               className={`${styles.navItem} ${pathname === '/' || pathname === '/home' ? styles.active : ''}`}
             >
-              <span className={styles.icon}>
+              <span>
                 <Image
                   src="/icons/mobilenav1.svg"
                   alt="Home"

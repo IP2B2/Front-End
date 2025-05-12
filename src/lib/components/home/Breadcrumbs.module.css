@@ -22,5 +22,6 @@
 
 .separator {
   margin: 0 4px;
+  
   color: var(--text-gray);     
 }
