@@ -2,6 +2,19 @@
   "name": "frontendip",
   "version": "0.1.0",
   "private": true,
+  "description": "",
+  "homepage": "https://github.com/IP2B2/Front-End#readme",
+  "bugs": {
+    "url": "https://github.com/IP2B2/Front-End/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IP2B2/Front-End.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -12,7 +25,8 @@
     "axios": "^1.8.4",
     "next": "15.2.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
