@@ -3,10 +3,9 @@
 import styles from '../formInchiriere.module.css';
 import { useState, useEffect } from "react";
 import '@/app/globals.css';
-import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
+import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField } from "@/lib/components/form/Form";
 import { usePathname, useRouter } from 'next/navigation'; 
 import { Calendar } from '@/lib/components/calendar/Calendar';
-import { ShowDesktopOnly, ShowDesktopTablet, ShowMobileOnly, ShowTabletOnly, ShowTabletStart } from '@/lib/components/globals/ResponsiveDivs';
 
 import { emptyInvalidator, cnpValidator, dateValidator, daysValidator } from "@/lib/logic/AuthValidators";
 

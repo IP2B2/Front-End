@@ -1,7 +1,7 @@
 
 
 
-const emailRegex = new RegExp(/^[a-zA-Z0-9\.\-]+@(?:[a-zA-Z0-9-]+\.)*uaic.ro$/);
+const emailRegex = new RegExp(/^[a-zA-Z0-9.-]+@(?:[a-zA-Z0-9-]+\.)*uaic\.ro$/);
 
 /**
  * Verifies if string is a valid email address
@@ -38,7 +38,7 @@ export const testValidEmail = (inputEmail) => {
     return "";
 }
 
-const validCharactersRegex = new RegExp(/^[A-Za-z0-9~`!@#$%^&*()_\-+={[}\ \]|\\:;"'<,>\.?/]+$/);
+const validCharactersRegex = new RegExp(/^[A-Za-z0-9~`!@#$%^&*()_\-+={[} \]|\\:;"'<,>.?/]+$/);
 
 const testValidPasswordCharacters = (inputPassword) => !!(validCharactersRegex.test(inputPassword));
 

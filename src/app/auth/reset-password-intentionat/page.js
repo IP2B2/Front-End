@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 
-
-
 import '@/app/globals.css';
 
 import { testValidPassword } from "@/lib/logic/AuthValidators";
