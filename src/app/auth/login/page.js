@@ -13,7 +13,6 @@ import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink, Form
 import { AuthLogin } from '@/lib/logic/ApiCalls/AuthCalls';
 
 
-
 export default function LoginPage() {
     const router = useRouter(); 
     const [emailField, setEmailField] = useState("");
@@ -45,14 +44,10 @@ export default function LoginPage() {
         localStorage.setItem('authToken', loginResolution.payload);
         return router.push('/home');
     };
-
     const handleRedirectForgotPassword = async () => {
         console.log("Redirecting...");
             router.push('/auth/forgot-password'); 
     };
-
-
-
 
 
     return (

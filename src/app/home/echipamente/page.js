@@ -2,17 +2,17 @@
 import { useCallback, useState, useEffect, Fragment } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { getLabs } from '@/lib/logic/ApiCalls/LabCalls';
+import { getEquipmentList } from '@/lib/logic/ApiCalls/EquipCalls';
 import { GridTable } from '@/lib/components/grid/GridTable';
 
-export default function LaboratoriesListPage() {
+export default function EchipamentePage() {
 
     const [data, setData] = useState([]);
     const router = useRouter();
 
     const cb = useCallback(() => {
         async function getData() {
-            const dataRes = await getLabs();
+            const dataRes = await getEquipmentList();
             if(dataRes?.expiredToken || dataRes?.error) {
                 console.log("Token expired");
                 router.push('/auth/login');
@@ -28,16 +28,17 @@ export default function LaboratoriesListPage() {
 
     return (
         <div>
-            <GridTable headerArray={['Denumire', 'Descriere', 'Locatie', 'Numar echipamente']}>
+            <GridTable headerArray={['Denumire', 'Numar Inventar', 'Data Achizitie', 'Cerinte de acces']}>
                 {
-                    data?.map((labData) => [
-                        labData.labName,
-                        labData.description,
-                        labData.location,
-                        labData.equipmentIds?.length
+                    data?.map((equipData) => [
+                        equipData.name,
+                        equipData.inventoryNumber,
+                        equipData.acquisitionDate,
+                        equipData.accessRequirements
                     ]).flat().map((divData, index) => <div key={index}>{divData}</div>)
                 }
             </GridTable>
         </div>
     )
 }
+

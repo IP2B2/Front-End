@@ -1,0 +1,13 @@
+
+.tableContainer {
+    width: 100%;
+
+    display: grid;
+}
+.tableContainer > * {
+    height: 50px;
+}
+
+.headerCell {
+    font-weight: 600;
+}
