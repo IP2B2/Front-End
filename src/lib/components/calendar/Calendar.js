@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 
 import calStyles from './Calendar.module.css';
 import { GetMonthDaysMondayFirst } from '@/lib/logic/CalendarLogic';

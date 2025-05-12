@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import formStyles from "./FormStyles.module.css"
 import '@/app/globals.css';
-import { Inter700, Inter400, Inter500, Inter600 } from '@/lib/fonts/Inter';
+import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 
 export const DefaultFormLayout = (
     { 
@@ -86,7 +86,7 @@ export const FormHollowButton = ({ onClick, children }) => {
 export const FormMultiColumn = ({ cols, children }) => {
     return (
         <div className={`${formStyles.multiColumnContainer}`}
-            style={{gridTemplateColumns: `repeat(${(parseInt(cols) != NaN ? cols : 2)}, 1fr)`}}>
+            style={{gridTemplateColumns: `repeat(${(!isNaN(parseInt(cols)) ? cols : 2)}, 1fr)`}}>
                 {children}
             </div>
     )
