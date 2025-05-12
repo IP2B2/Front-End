@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import "./ProductListPage.css";
 import ProductCard from "./ProductCard";
+import SearchBar from "./SearchBar";
 
 const mockProducts = [
   {
@@ -81,7 +82,9 @@ const mockProducts = [
 
 const facultyOptions = {
   FEAA: ["Toate", "Info economică", "Facultate 2"],
-  FII: ["Toate", "Informatică", "Matematică-Informatică"]
+  FII: ["Toate", "Informatică", "Matematică-Informatică"],
+  "Locatie 3": ["Toate"],
+  "Locatie 4": ["Toate"]
 };
 
 function ProductListPage() {
@@ -92,7 +95,7 @@ function ProductListPage() {
   const [openFaculty, setOpenFaculty] = useState("FEAA");
   const [availabilityFilter, setAvailabilityFilter] = useState({ Disponibil: false, Indisponibil: false });
   const [showAvailability, setShowAvailability] = useState(false);
-
+  const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     setProducts(mockProducts);
   }, []);
@@ -126,7 +129,7 @@ function ProductListPage() {
     }));
   };
 
-  const filteredProducts = products.filter((product) => {
+ const filteredProducts = products.filter((product) => {
   const facultySubs = selectedFaculties[product.faculty] || [];
   const isSimpleLocation = !facultyOptions[product.faculty] || facultyOptions[product.faculty].length === 0;
   const matchesFaculty = isSimpleLocation || facultySubs.includes(product.subfaculty);
@@ -135,10 +138,9 @@ function ProductListPage() {
     (availabilityFilter.Disponibil && product.availableTomorrow) ||
     (availabilityFilter.Indisponibil && !product.availableTomorrow);
   const matchesType = selectedTypes.length === 0 || selectedTypes.includes(product.type);
-  return matchesFaculty && availabilityOk && matchesType;
+  const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+  return matchesFaculty && availabilityOk && matchesType && matchesSearch;
 });
-
-
   return (
     <div className="pageWrapper">
       <div className="layoutContainer">
@@ -235,18 +237,21 @@ function ProductListPage() {
             )}
           </div>
         </div>
-        <div className="contentColumn">
-          <h1 className="echipamenteTitle">Echipamente</h1>
-         <div className="productGrid">
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <ProductCard key={product.id} {...product} />
-              ))
-            ) : (
-              <p className="no-products">Nu există produse care corespund filtrelor selectate.</p>
-            )}
-          </div>
-        </div>
+       <div className="contentColumn">
+        <div className="titleRow">
+           <h1 className="echipamenteTitle">Echipamente</h1>
+              <SearchBar onSearch={setSearchQuery} />
+      </div>
+  <div className="productGrid">
+    {filteredProducts.length > 0 ? (
+      filteredProducts.map((product) => (
+        <ProductCard key={product.id} {...product} />
+      ))
+    ) : (
+      <p className="no-products">Nu există produse care corespund filtrelor selectate.</p>
+    )}
+  </div>
+</div>
       </div>
     </div>
   );
