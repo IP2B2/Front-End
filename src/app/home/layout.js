@@ -10,11 +10,13 @@ import TabletHeader from './components/TabletHeader';
 import TabletBreadcrumbs from './components/TabletBreadcrumbs';
 import { usePathname } from 'next/navigation';
 import { LayoutContentProvider } from '@/lib/context';
+import { SelectedDayProvider } from '@/lib/components/calendar/Calendar';
 
 export default function HomeLayout({ children }) {
     const pathname = usePathname();
     return (
         <LayoutContentProvider>
+                                            <SelectedDayProvider>
         <div className={styles.layoutContainer}>
             <Head>
                 <title>Acasa - Proiect IP</title>
@@ -39,6 +41,8 @@ export default function HomeLayout({ children }) {
                 </div>
             </div>
         </div>
+            </SelectedDayProvider>
+
         </LayoutContentProvider>
     );
 }

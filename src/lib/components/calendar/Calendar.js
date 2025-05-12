@@ -1,17 +1,32 @@
 'use client';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 
 import calStyles from './Calendar.module.css';
 import { GetMonthDaysMondayFirst } from '@/lib/logic/CalendarLogic';
 import '@/app/globals.css';
+import { createContext, useContext } from 'react';
 
+const SelectedDayContext = createContext();
 
-export const Calendar = () => {
-    const [days, setDays] = useState(GetMonthDaysMondayFirst(2025, 1)?.map((day, index) => ({
+export const useSelectedDay = () => {
+    return useContext(SelectedDayContext);
+};
+
+export const SelectedDayProvider = ({ children }) => {
+    const [selectedDay, setSelectedDay] = useState(null);
+
+    return (
+        <SelectedDayContext.Provider value={{ selectedDay, setSelectedDay }}>
+            {children}
+        </SelectedDayContext.Provider>
+    );
+};
+export const Calendar = ({ daysAdvance = 4, startDate }) => {
+    const [days, setDays] = useState(GetMonthDaysMondayFirst(1, 2025)?.map((day, index) => ({
         ...day,
-        available: index % 3 === 1,
-        selected: false
+        available: index % 5 !== 1,
+        selected: startDate && new Date(day.year, day.month, day.date).toDateString() === new Date(startDate).toDateString()
     })));
     const [currentMonth, setCurrentMonth] = useState(1); // January (0-based index)
     const [currentYear, setCurrentYear] = useState(2025);
@@ -19,11 +34,12 @@ export const Calendar = () => {
     useEffect(() => {
         setDays(GetMonthDaysMondayFirst(currentYear, currentMonth)?.map((day, index) => ({
             ...day,
-            available: index % 3 === 1,
-            selected: false
+            available: index % 5 !== 1,
+            selected: startDate && new Date(day.year, day.month, day.date).toDateString() === new Date(startDate).toDateString()
         })));
-    }, [currentYear, currentMonth]);
+    }, [currentYear, currentMonth, daysAdvance, startDate]);
 
+    const selectedDayContext = useSelectedDay();
     const handlePreviousMonth = () => {
         let newMonth = currentMonth - 1;
         let newYear = currentYear;
@@ -83,8 +99,8 @@ export const Calendar = () => {
                 {days.map((day, index) => (
                     <div 
                         key={index} 
-                        className={`${day.currentMonth ? calStyles.currentMonthDay : ''} ${day.currentMonth && !day.available ? calStyles.busyDay : ''} ${day.selected ? calStyles.selectedDay : ''}`}
-                        onClick={() => setDays(days.map((d, i) => i === index ? { ...d, selected: !d.selected } : { ...d, selected: false }))}
+                        className={`${day.currentMonth ? calStyles.currentMonthDay : ''} ${day.currentMonth && !day.available ? calStyles.busyDay : ''} ${day.selected ? calStyles.selectedDay : ''} ${day.selectedPrimary ? calStyles.selectedPrimary : ''} ${day.selRightEdge ? calStyles.selectedRightEdge : ''}`}
+                        /* onClick={() => setDays(days.map((d, i) => i === index ? { ...d, selected: !d.selected } : { ...d, selected: false }))} */
                     >
                         <div>{day.date}</div>
                     </div>
