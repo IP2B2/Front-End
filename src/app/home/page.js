@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import '@/app/globals.css'
 import styles from './homePage.module.css'
-import Breadcrumbs from './components/Breadcrumbs';
+import Breadcrumbs from '@/lib/components/home/Breadcrumbs';
 import { Montserrat300Italic, Montserrat500, Montserrat900 } from '@/lib/fonts/Montserrat';
 
 import { useEffect } from 'react';

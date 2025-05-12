@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 import '@/app/globals.css';
 import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
 import { useRouter } from 'next/navigation'; 
-import { Calendar, SelectedDayProvider, useSelectedDay } from '@/lib/components/calendar/Calendar';
+import { Calendar } from '@/lib/components/calendar/Calendar';
+import { ShowDesktopOnly, ShowDesktopTablet, ShowMobileOnly, ShowTabletOnly, ShowTabletStart } from '@/lib/components/globals/ResponsiveDivs';
 
 const today = new Date().toISOString().split("T")[0];
 
@@ -57,10 +58,10 @@ export default function ProductRentalForm() {
         );
     }, [cnp, address, rentalDays, rentalDate]);
 
-    const selectDayContext = useSelectedDay();
+    //const selectDayContext = useSelectedDay();
 
     useEffect(() => {
-        selectDayContext.setSelectedDay(rentalDate);
+        //selectDayContext.setSelectedDay(rentalDate);
         
     }, [rentalDate, rentalDays]);
     
