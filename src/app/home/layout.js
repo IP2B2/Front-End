@@ -3,12 +3,11 @@ import '@/app/globals.css'
 import styles from "./homeLayout.module.css"
 import Head from 'next/head'
 import Sidebar from '@/lib/components/home/Sidebar'
-import Breadcrumbs from '@/lib/components/home/Breadcrumbs';
 import MobileNavbar from '@/lib/components/home/MobileNavbar';
 import TabletHeader from '@/lib/components/home/TabletHeader';
-import TabletBreadcrumbs from '@/lib/components/home/TabletBreadcrumbs';
 import { LayoutContentProvider } from '@/lib/context';
 import { ShowDesktopOnly, ShowTabletStart } from '@/lib/components/globals/ResponsiveDivs';
+import HomeHeader from '@/lib/components/home/HomeHeader';
 
 export default function HomeLayout({ children }) {
     return (
@@ -24,13 +23,7 @@ export default function HomeLayout({ children }) {
                 <TabletHeader />
             </ShowTabletStart>
             <div className={styles.mainContainer}>
-                <ShowTabletStart style={{ padding: "5px 10px" }}>
-                    <TabletBreadcrumbs/>
-                </ShowTabletStart>
-                <ShowDesktopOnly>
-                    <Breadcrumbs/>
-                </ShowDesktopOnly>
-                
+                <HomeHeader />
                 <div className={styles.contentWrapper}>
                     {children}
                 </div>

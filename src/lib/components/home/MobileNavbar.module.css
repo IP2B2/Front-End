@@ -53,7 +53,7 @@
     .container {
         display: flex;
         height: 67px;
-        left: 20px; right: 30px;
+        left: 10px; right: 30px;
     }
     .buttonWrapper {
         width: 37px;
