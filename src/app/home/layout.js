@@ -5,16 +5,12 @@ import Head from 'next/head'
 import Sidebar from '@/lib/components/home/Sidebar'
 import Breadcrumbs from '@/lib/components/home/Breadcrumbs';
 import MobileNavbar from '@/lib/components/home/MobileNavbar';
-import UserBox from '@/lib/components/home/UserBox';
 import TabletHeader from '@/lib/components/home/TabletHeader';
 import TabletBreadcrumbs from '@/lib/components/home/TabletBreadcrumbs';
-import { usePathname } from 'next/navigation';
 import { LayoutContentProvider } from '@/lib/context';
-import { SelectedDayProvider } from '@/lib/components/calendar/Calendar';
 import { ShowDesktopOnly, ShowTabletStart } from '@/lib/components/globals/ResponsiveDivs';
 
 export default function HomeLayout({ children }) {
-    const pathname = usePathname();
     return (
         <LayoutContentProvider>
         <div className={styles.layoutContainer}>
