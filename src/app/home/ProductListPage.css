@@ -1,0 +1,181 @@
+.pageWrapper {
+  padding: 1rem;
+}
+
+.layoutContainer {
+  display: flex;
+  padding: 0 1rem;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.filtersColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filterSection {
+  width: 306px;
+  background-color: #ffffff;
+  padding: 20px 20px;
+  border-radius: 5px;
+  border: 1px solid #e2e2e2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filterTitleWithLine {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titleLine {
+  width: 3px;
+  height: 24px;
+  background-color: #2d2d2d;
+  border-radius: 2px;
+}
+
+.filterTitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #2d2d2d;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.facultyDropdownIcon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.dropdownArrow {
+  font-size: 12px;
+  color: #73287e;
+  transition: transform 0.3s ease;
+}
+
+.dropdownArrow.rotated {
+  transform: rotate(180deg);
+}
+
+.accordionSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  color: #414141;
+  cursor: pointer;
+}
+
+.accordionHeader.disabled {
+  cursor: default;
+  color: #414141;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  user-select: none;
+}
+
+.accordionHeader.disabled .dropdownArrow {
+  color: #73287e;
+  transform: none !important;
+}
+
+.checkboxContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 10px;
+}
+
+.checkboxContainer label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #2d2d2d;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 276px);
+  gap: 24px;
+}
+.echipamenteTitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  color: #3D3D3D;
+  margin: 0 0 1.5rem 0;
+}
+/* Mobile: sub 768px */
+@media (max-width: 768px) {
+  .layoutContainer {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .filtersColumn {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  .filterSection {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+  }
+
+  .echipamenteTitle {
+    font-size: 28px;
+    text-align: center;
+  }
+}
+
+/* Tablet: între 768px și 1150px */
+@media (min-width: 769px) and (max-width: 1150px) {
+  .layoutContainer {
+    flex-direction: column;
+  }
+
+  .filtersColumn {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start;
+  }
+
+  .filterSection {
+    width: 48%;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+}
