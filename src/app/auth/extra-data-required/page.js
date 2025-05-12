@@ -8,10 +8,7 @@ import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButto
 import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 import { useRouter } from 'next/navigation'; 
 
-const emptyInvalidator = (input) => {
-    if(!input) return "Nu poate fi gol.";
-    return "";
-}
+import { emptyInvalidator } from "@/lib/logic/AuthValidators";
 
 export default function ExtraDataRequired() {
     const router = useRouter();

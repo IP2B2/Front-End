@@ -4,6 +4,8 @@ import styles from './rootPage.module.css'
 
 import Link from 'next/link'
 
+import routes from '@/lib/routes.js'
+
 export default function RootHome() {
   return (
     <div className={styles.container}>
@@ -11,27 +13,16 @@ export default function RootHome() {
             Link-uri importante sprint 1:
         </p>
         <ul className={styles.usefulLinksContainer}>
-            <li>
-                <Link href='/auth/register'>Register</Link>
-            </li>
-            <li>
-                <Link href='/auth/login'>Login</Link>
-            </li>
-            <li>
-                <Link href='/auth/extra-data-required'>Extra data required</Link>
-            </li>
-            <li>
-                <Link href='/home/'>Home/Landing page</Link>
-            </li>
-            <li>
-                <Link href='/auth/confirm-mail'>Confirm Mail</Link>
-            </li>
-            <li>
-                <Link href='/auth/reset-password'>Reset Password</Link>
-            </li>
-            <li>
-                <Link href='/auth/reset-password-intentionat'>Reset Password Intentionat</Link>
-            </li>
+            {
+                Object.keys(routes).map((key) => {
+                    const route = routes[key];
+                    return (
+                        <li key={key}>
+                            <Link href={route.route}>{route.title}</Link>
+                        </li>
+                    );
+                })
+            }
         </ul>
     </div>
   );

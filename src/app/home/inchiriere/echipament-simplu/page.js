@@ -4,43 +4,22 @@ import styles from '../formInchiriere.module.css';
 import { useState, useEffect } from "react";
 import '@/app/globals.css';
 import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
-import { useRouter } from 'next/navigation'; 
+import { usePathname, useRouter } from 'next/navigation'; 
 import { Calendar } from '@/lib/components/calendar/Calendar';
 import { ShowDesktopOnly, ShowDesktopTablet, ShowMobileOnly, ShowTabletOnly, ShowTabletStart } from '@/lib/components/globals/ResponsiveDivs';
 
+import { emptyInvalidator, cnpValidator, dateValidator, daysValidator } from "@/lib/logic/AuthValidators";
+
+
 const today = new Date().toISOString().split("T")[0];
-
-const cnpValidator = (input) => {
-    if(!input) return "CNP-ul nu poate fi gol.";
-    if(input.length !== 13 || !/^\d+$/.test(input)) return "CNP-ul trebuie să conțină exact 13 cifre.";
-    return "";
-}
-
-const dateValidator = (input) => {
-    if (!input) return "Trebuie să selectați o dată de început pentru închiriere.";
-    
-    const rentalDate = new Date(input);
-    const today = new Date();
-    const maxDate = new Date("2050-12-31");
-    
-    today.setHours(0, 0, 0, 0);
-    maxDate.setHours(0, 0, 0, 0);
-    
-    if (rentalDate < today) return "Data de închiriere nu poate fi înainte de ziua de azi.";
-    if (rentalDate > maxDate) return "Data de închiriere nu poate depăși 31-12-2050.";
-
-    return "";
-};
-
-const daysValidator = (input) => {
-    if(!input) return "Numărul de zile nu poate fi gol.";
-    if(!/^\d+$/.test(input)) return "Introduceți un număr valid.";
-    if(parseInt(input) <= 0) return "Numărul de zile trebuie să fie mai mare decât 0.";
-    return "";
-}
 
 export default function ProductRentalForm() {
     const router = useRouter();
+    const { pathname } = usePathname();
+
+    useEffect(() => {
+        console.log("Current path:", pathname);
+    }, [pathname]);
 
     const [cnp, setCnp] = useState("");
     const [address, setAddress] = useState("");
@@ -181,9 +160,4 @@ export default function ProductRentalForm() {
             </div>
         </div>
     );
-}
-
-function emptyInvalidator(input) {
-    if(!input) return "Câmpul nu poate fi gol.";
-    return "";
 }
