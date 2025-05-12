@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import '@/app/globals.css';
 import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
 import { useRouter } from 'next/navigation'; 
+import { Calendar, SelectedDayProvider, useSelectedDay } from '@/lib/components/calendar/Calendar';
 
 const today = new Date().toISOString().split("T")[0];
 
@@ -55,6 +56,13 @@ export default function ProductRentalForm() {
             dateValidator(rentalDate) === ""
         );
     }, [cnp, address, rentalDays, rentalDate]);
+
+    const selectDayContext = useSelectedDay();
+
+    useEffect(() => {
+        selectDayContext.setSelectedDay(rentalDate);
+        
+    }, [rentalDate, rentalDays]);
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -126,28 +134,32 @@ export default function ProductRentalForm() {
                                     Calendar disponibilitate produs
                                 </button>
                             </div>
-                            <FormField
-                                type={"number"}
-                                label={"Număr de zile pentru închiriere"}
-                                placeholder={"Introduceți un număr"}
-                                value={rentalDays}
-                                setState={setRentalDays}
-                                validator={daysValidator}
-                                validate={hasSubmitted}
-                                min="1"
-                            />
-
-                            <FormField
-                                type={"date"}
-                                label={"Data închiriere"}
-                                value={rentalDate}
-                                setState={setRentalDate}
-                                validator={dateValidator}
-                                validate={hasSubmitted}
-                                min={today}
-                                max="2050-12-31"
-                            />
-
+                            <FormMultiColumn cols={2}>
+                                    <FormField
+                                        type={"number"}
+                                        label={"Număr de zile pentru închiriere"}
+                                        placeholder={"Introduceți un număr"}
+                                        value={rentalDays}
+                                        setState={setRentalDays}
+                                        validator={daysValidator}
+                                        validate={hasSubmitted}
+                                        min="1"
+                                    />
+                                    <FormField
+                                        type={"date"}
+                                        label={"Data închiriere"}
+                                        value={rentalDate}
+                                        setState={setRentalDate}
+                                        validator={dateValidator}
+                                        validate={hasSubmitted}
+                                        min={today}
+                                        max="2050-12-31"
+                                    />
+                            </FormMultiColumn>
+                            
+                            <div className={styles.calendarContainer}>
+                                    <Calendar startDate={rentalDate} daysAdvance={rentalDays} />
+                            </div>
                             <div className={styles.buttonGroup}>
                                 <button
                                     className={styles.clearButton}
