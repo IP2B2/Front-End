@@ -143,7 +143,6 @@ function ProductListPage() {
     <div className="pageWrapper">
       <div className="layoutContainer">
         <div className="filtersColumn">
-          {/* Filtrele rămân la fel */}
           <div className="filterSection">
             <div className="filterTitleWithLine">
               <div className="titleLine" />
