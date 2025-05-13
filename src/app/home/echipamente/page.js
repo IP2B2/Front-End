@@ -1,5 +1,5 @@
 'use client'
-import { useCallback, useState, useEffect, Fragment } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { getEquipmentList } from '@/lib/logic/ApiCalls/EquipCalls';

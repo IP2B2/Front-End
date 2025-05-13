@@ -6,9 +6,7 @@
     gap: 10px;
 }
   
-.infoButton,
-.logoutButton,
-.userButton {
+.userBoxButton {
     width: 40px;
     height: 40px;
     min-width: 40px;

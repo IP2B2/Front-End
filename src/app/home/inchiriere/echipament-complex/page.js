@@ -3,41 +3,15 @@
 import styles from '../formInchiriere.module.css';
 import { useState, useEffect } from "react";
 import '@/app/globals.css';
-import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
-import { useRouter } from 'next/navigation'; 
+import { DefaultFormLayout, FormContainer, FormField, } from "@/lib/components/form/Form";
+
+import { emptyInvalidator, cnpValidator, dateValidator, daysValidator } from "@/lib/logic/AuthValidators";
+
+import { BackArrow } from "@/lib/components/globals/NavArrows";
 
 const today = new Date().toISOString().split("T")[0];
 
-const cnpValidator = (input) => {
-    if(!input) return "CNP-ul nu poate fi gol.";
-    if(input.length !== 13 || !/^\d+$/.test(input)) return "CNP-ul trebuie să conțină exact 13 cifre.";
-    return "";
-}
-
-const dateValidator = (input) => {
-    if (!input) return "Trebuie să selectați o dată de început pentru închiriere.";
-    
-    const rentalDate = new Date(input);
-    const today = new Date();
-    const maxDate = new Date("2050-12-31");
-    
-    today.setHours(0, 0, 0, 0);
-    maxDate.setHours(0, 0, 0, 0);
-    
-    if (rentalDate < today) return "Data de închiriere nu poate fi înainte de ziua de azi.";
-    if (rentalDate > maxDate) return "Data de închiriere nu poate depăși 31-12-2050.";
-
-    return "";
-};
-
-const daysValidator = (input) => {
-    if(!input) return "Numărul de zile nu poate fi gol.";
-    if(!/^\d+$/.test(input)) return "Introduceți un număr valid.";
-    if(parseInt(input) <= 0) return "Numărul de zile trebuie să fie mai mare decât 0.";
-    return "";
-}
-
-const fileValidator = (file) => {
+const filePdfValidator = (file) => {
     if (!file) return "Trebuie să încărcați fișierul cererii suplimentare.";
     
     // Verificăm atât extensia cât și tipul MIME
@@ -51,7 +25,6 @@ const fileValidator = (file) => {
 };
 
 export default function ProductRentalForm() {
-    const router = useRouter();
 
     const [cnp, setCnp] = useState("");
     const [address, setAddress] = useState("");
@@ -69,7 +42,7 @@ export default function ProductRentalForm() {
             emptyInvalidator(address) === "" &&
             daysValidator(rentalDays) === "" &&
             dateValidator(rentalDate) === "" &&
-            fileValidator(file) === ""
+            filePdfValidator(file) === ""
         );
     }, [cnp, address, rentalDays, file, rentalDate]);
 
@@ -89,7 +62,7 @@ export default function ProductRentalForm() {
         const droppedFile = e.dataTransfer.files?.[0];
         if (droppedFile) {
             setFile(droppedFile);
-            setFileError(fileValidator(droppedFile));
+            setFileError(filePdfValidator(droppedFile));
         }
     };
 
@@ -97,7 +70,7 @@ export default function ProductRentalForm() {
         const selectedFile = e.target.files?.[0];
         if (selectedFile) {
             setFile(selectedFile);
-            setFileError(fileValidator(selectedFile));
+            setFileError(filePdfValidator(selectedFile));
         } else {
             setFile(null);
             setFileError("");
@@ -107,8 +80,8 @@ export default function ProductRentalForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
         setHasSubmitted(true);
-        
-        const currentFileError = fileValidator(file);
+
+        const currentFileError = filePdfValidator(file);
         setFileError(currentFileError);
         
         if(isFormValid && currentFileError === "") {
@@ -126,22 +99,11 @@ export default function ProductRentalForm() {
         setFileError("");
     };
 
-    const handleGoBack = () => {
-        router.back();
-    };
-
     return (
         <div className={styles.pageContainer}>
-            <button 
-                onClick={handleGoBack}
-                className={styles.backButton}
-            >
-                <div className={styles.backArrow}>
-                    <svg width="17" height="10" viewBox="0 0 17 10" fill="none">
-                        <path d="M1 1L8.5 8.5L16 1" stroke="black" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
-                </div>
-            </button>
+            <div className={styles.backButton}>
+                <BackArrow arrowSize={20} />
+            </div>
 
             <div className={styles.rentalWrapper}>
                 <div className={styles.rentalContainer}>
@@ -229,9 +191,9 @@ export default function ProductRentalForm() {
                                         Echipamentul dorit este unul complex, așadar necesită încărcarea unei cereri suplimentare.
                                     </p>
                                 </div>
-                                {(fileError || (hasSubmitted && fileValidator(file))) && (
+                                {(fileError || (hasSubmitted && filePdfValidator(file))) && (
                                     <p className={styles.fileError}>
-                                        {fileError || fileValidator(file)}
+                                        {fileError || filePdfValidator(file)}
                                     </p>
                                 )}
                             </div>
@@ -256,9 +218,4 @@ export default function ProductRentalForm() {
             </div>
         </div>
     );
-}
-
-function emptyInvalidator(input) {
-    if(!input) return "Câmpul nu poate fi gol.";
-    return "";
 }

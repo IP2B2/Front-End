@@ -3,42 +3,21 @@
 import styles from '../formInchiriere.module.css';
 import { useState, useEffect } from "react";
 import '@/app/globals.css';
-import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
-import { useRouter } from 'next/navigation'; 
+import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField } from "@/lib/components/form/Form";
+import { usePathname} from 'next/navigation'; 
+import { Calendar } from '@/lib/components/calendar/Calendar';
+
+import { emptyInvalidator, cnpValidator, dateValidator, daysValidator } from "@/lib/logic/AuthValidators";
+import { BackArrow } from "@/lib/components/globals/NavArrows";
 
 const today = new Date().toISOString().split("T")[0];
 
-const cnpValidator = (input) => {
-    if(!input) return "CNP-ul nu poate fi gol.";
-    if(input.length !== 13 || !/^\d+$/.test(input)) return "CNP-ul trebuie să conțină exact 13 cifre.";
-    return "";
-}
-
-const dateValidator = (input) => {
-    if (!input) return "Trebuie să selectați o dată de început pentru închiriere.";
-    
-    const rentalDate = new Date(input);
-    const today = new Date();
-    const maxDate = new Date("2050-12-31");
-    
-    today.setHours(0, 0, 0, 0);
-    maxDate.setHours(0, 0, 0, 0);
-    
-    if (rentalDate < today) return "Data de închiriere nu poate fi înainte de ziua de azi.";
-    if (rentalDate > maxDate) return "Data de închiriere nu poate depăși 31-12-2050.";
-
-    return "";
-};
-
-const daysValidator = (input) => {
-    if(!input) return "Numărul de zile nu poate fi gol.";
-    if(!/^\d+$/.test(input)) return "Introduceți un număr valid.";
-    if(parseInt(input) <= 0) return "Numărul de zile trebuie să fie mai mare decât 0.";
-    return "";
-}
-
 export default function ProductRentalForm() {
-    const router = useRouter();
+    const { pathname } = usePathname();
+
+    useEffect(() => {
+        console.log("Current path:", pathname);
+    }, [pathname]);
 
     const [cnp, setCnp] = useState("");
     const [address, setAddress] = useState("");
@@ -55,6 +34,13 @@ export default function ProductRentalForm() {
             dateValidator(rentalDate) === ""
         );
     }, [cnp, address, rentalDays, rentalDate]);
+
+    //const selectDayContext = useSelectedDay();
+
+    useEffect(() => {
+        //selectDayContext.setSelectedDay(rentalDate);
+        
+    }, [rentalDate, rentalDays]);
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -74,22 +60,11 @@ export default function ProductRentalForm() {
         setHasSubmitted(false);
     };
 
-    const handleGoBack = () => {
-        router.back();
-    };
-
     return (
         <div>
-            <button 
-                onClick={handleGoBack}
-                className={styles.backButton}
-            >
-                <div className={styles.backArrow}>
-                    <svg width="17" height="10" viewBox="0 0 17 10" fill="none">
-                        <path d="M1 1L8.5 8.5L16 1" stroke="black" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
-                </div>
-            </button>
+            <div className={styles.backButton}>
+                <BackArrow arrowSize={20} />
+            </div>
         
             <div className={styles.rentalWrapper}>
                 <div className={styles.rentalContainer}>
@@ -126,28 +101,32 @@ export default function ProductRentalForm() {
                                     Calendar disponibilitate produs
                                 </button>
                             </div>
-                            <FormField
-                                type={"number"}
-                                label={"Număr de zile pentru închiriere"}
-                                placeholder={"Introduceți un număr"}
-                                value={rentalDays}
-                                setState={setRentalDays}
-                                validator={daysValidator}
-                                validate={hasSubmitted}
-                                min="1"
-                            />
-
-                            <FormField
-                                type={"date"}
-                                label={"Data închiriere"}
-                                value={rentalDate}
-                                setState={setRentalDate}
-                                validator={dateValidator}
-                                validate={hasSubmitted}
-                                min={today}
-                                max="2050-12-31"
-                            />
-
+                            <FormMultiColumn cols={2}>
+                                    <FormField
+                                        type={"number"}
+                                        label={"Număr de zile pentru închiriere"}
+                                        placeholder={"Introduceți un număr"}
+                                        value={rentalDays}
+                                        setState={setRentalDays}
+                                        validator={daysValidator}
+                                        validate={hasSubmitted}
+                                        min="1"
+                                    />
+                                    <FormField
+                                        type={"date"}
+                                        label={"Data închiriere"}
+                                        value={rentalDate}
+                                        setState={setRentalDate}
+                                        validator={dateValidator}
+                                        validate={hasSubmitted}
+                                        min={today}
+                                        max="2050-12-31"
+                                    />
+                            </FormMultiColumn>
+                            
+                            <div className={styles.calendarContainer}>
+                                    <Calendar startDate={rentalDate} daysAdvance={rentalDays} />
+                            </div>
                             <div className={styles.buttonGroup}>
                                 <button
                                     className={styles.clearButton}
@@ -168,9 +147,4 @@ export default function ProductRentalForm() {
             </div>
         </div>
     );
-}
-
-function emptyInvalidator(input) {
-    if(!input) return "Câmpul nu poate fi gol.";
-    return "";
 }

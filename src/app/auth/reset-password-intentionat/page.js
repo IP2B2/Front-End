@@ -3,12 +3,11 @@
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 
-
-
 import '@/app/globals.css';
 
 import { testValidPassword } from "@/lib/logic/AuthValidators";
 import { FormContainer, FormField, FormButton } from "@/lib/components/form/Form";
+import { BackArrow } from "@/lib/components/globals/NavArrows";
 
 import styles from './resetPassword.module.css';
 
@@ -76,18 +75,11 @@ export default function ResetPasswordPage() {
 
    return (
        <div className={styles.pageContainer}>
-           <button 
-               onClick={handleGoBack}
-               className={styles.backButton}
-           >
-               <div className={styles.backArrow}>
-                   <svg width="17" height="10" viewBox="0 0 17 10" fill="none">
-                       <path d="M1 1L8.5 8.5L16 1" stroke="black" strokeWidth="2" strokeLinecap="round"/>
-                   </svg>
-               </div>
-           </button>
+            <div className={styles.backButtonWrapper}>
+                <BackArrow onClick={handleGoBack} arrowSize={20} />
+            </div>
 
-           <div className={styles.formWrapper}>
+            <div className={styles.formWrapper}>
                <h1 className={styles.pageTitle}>Resetare parolă</h1>
                <p className={styles.pageDescription}>
                    Introdu parolele în formularul de mai jos

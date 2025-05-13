@@ -2,7 +2,6 @@
 
 
 import axios from 'axios';
-import { useRouter } from 'next/router';
 
 export async function getEquipmentList() {
     'use client'

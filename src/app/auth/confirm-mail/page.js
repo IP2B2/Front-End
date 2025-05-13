@@ -1,12 +1,12 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+
+import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
 
 import styles from './confirmMail.module.css';
 import '@/app/globals.css';
-import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
-
-import { useState, useEffect } from 'react';
 
 export default function ConfirmEmailPage() {
   const router = useRouter();

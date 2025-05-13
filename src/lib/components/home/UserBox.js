@@ -7,7 +7,7 @@ import styles from './UserBox.module.css'
 const UserBox = () => {
     return (
         <div className={styles.buttonWrapper}>
-        <Link href="/auth/login" className={styles.logoutButton}>
+        <Link href="/auth/login" className={styles.userBoxButton}>
           <Image 
             src="/icons/buton-logout.svg" 
             alt="Logout"
@@ -16,7 +16,7 @@ const UserBox = () => {
           />
         </Link>
   
-        <Link href="/home" target="_blank" className={styles.infoButton}>
+        <Link href="/home" target="_blank" className={styles.userBoxButton}>
           <Image
             src="/icons/buton-info.svg"
             alt="Information"
@@ -25,7 +25,7 @@ const UserBox = () => {
           />
         </Link>
   
-        <Link href="/home" target="_blank" className={styles.userButton}>
+        <Link href="/home" target="_blank" className={styles.userBoxButton}>
           <Image
             src="/icons/buton-user-name.svg"
             alt="User-name"
