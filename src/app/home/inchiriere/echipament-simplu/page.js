@@ -8,7 +8,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Calendar } from '@/lib/components/calendar/Calendar';
 
 import { emptyInvalidator, cnpValidator, dateValidator, daysValidator } from "@/lib/logic/AuthValidators";
-
+import { BackArrow } from "@/lib/components/globals/NavArrows";
 
 const today = new Date().toISOString().split("T")[0];
 
@@ -61,22 +61,11 @@ export default function ProductRentalForm() {
         setHasSubmitted(false);
     };
 
-    const handleGoBack = () => {
-        router.back();
-    };
-
     return (
         <div>
-            <button 
-                onClick={handleGoBack}
-                className={styles.backButton}
-            >
-                <div className={styles.backArrow}>
-                    <svg width="17" height="10" viewBox="0 0 17 10" fill="none">
-                        <path d="M1 1L8.5 8.5L16 1" stroke="black" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
-                </div>
-            </button>
+            <div className={styles.backButton}>
+                <BackArrow arrowSize={20} />
+            </div>
         
             <div className={styles.rentalWrapper}>
                 <div className={styles.rentalContainer}>

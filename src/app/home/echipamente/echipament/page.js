@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Inter500} from '@/lib/fonts/Inter'
 import '@/app/globals.css';
 import carouselStyles from './ProductImageCarousel.module.css';
+import { BackArrow } from '@/lib/components/globals/NavArrows';
 
 export default function EchipamentPage() {
     
@@ -16,48 +17,38 @@ export default function EchipamentPage() {
     ];
 
     return (
-        <div className={styles.container}>
-            <div className={styles.content}>
-            <div className={styles.layout}>
-                <div className={styles.backButtonWrapper}>
-                    <Image 
-                        src="/icons/back-arrow.svg" 
-                        alt="Back" 
-                        className={styles.backArrow}
-                        width={20}
-                        height={20}
-                    />
-                </div>
-                <ProductImageCarousel imageLinkArray={images} />
+    <div className={styles.layout}>
+        <div className={styles.backButtonWrapper}>
+            <BackArrow arrowSize={20} />
+        </div>
+        <ProductImageCarousel imageLinkArray={images} />
 
-                <div className={styles.descriptionContainer}>
-                    <h1 className={styles.productTitle}>Prelungitor 20M cu mâner</h1>
-                    <div className={styles.pageDescription}>
-                    Prelungitor Cube, roz, 2 prize Schuko, cablu flexibil, design modern și compact, perfect pentru birou sau living. Soluție elegantă pentru conectarea dispozitivelor dumneavoastră, combinând funcționalitatea cu estetica contemporană.
-                    </div>
-                    <div className={styles.buttonGroup}>
-                        <button className={`${styles.actionButton} ${Inter500.className}`}>Vezi disponibilitate</button>
-                        <button className={`${styles.actionButton} ${Inter500.className}`}>Închiriază</button>
-                    </div>
-                    <div className={styles.dropdownsContainer}>
-                        <details className={styles.dropdown}>
-                            <summary className={`${styles.dropdownHeader} ${Inter500.className}`}>Mod de utilizare</summary>
-                            <div className={styles.dropdownContent}>
-                            Conectați ștecherul prelungitorului Cube la priza de perete, apoi folosiți cele două prize Schuko pentru alimentarea dispozitivelor electrice. Datorită designului compact, poate fi așezat pe birou sau podea, iar cablul lung asigură flexibilitate în poziționare.
-                            </div>
-                        </details>
-                        
-                        <details className={styles.dropdown}>
-                            <summary className={`${styles.dropdownHeader} ${Inter500.className}`}>Material si intretinere</summary>
-                            <div className={styles.dropdownContent}>
-                            Fabricat din plastic ABS de înaltă calitate, rezistent la uzură și temperaturi ridicate. Carcasa cu finisaj mat împiedică acumularea amprentelor. Pentru întreținere, deconectați de la sursa de curent și ștergeți cu o cârpă uscată. Nu folosiți agenți de curățare lichizi sau abrazivi.
-                            </div>
-                        </details>
-                    </div>
-                </div>
+        <div className={styles.descriptionContainer}>
+            <h1 className={styles.productTitle}>Prelungitor 20M cu mâner</h1>
+            <div className={styles.pageDescription}>
+            Prelungitor Cube, roz, 2 prize Schuko, cablu flexibil, design modern și compact, perfect pentru birou sau living. Soluție elegantă pentru conectarea dispozitivelor dumneavoastră, combinând funcționalitatea cu estetica contemporană.
             </div>
+            <div className={styles.buttonGroup}>
+                <button className={`${styles.actionButton} ${Inter500.className}`}>Vezi disponibilitate</button>
+                <button className={`${styles.actionButton} ${Inter500.className}`}>Închiriază</button>
+            </div>
+            <div className={styles.dropdownsContainer}>
+                <details className={styles.dropdown}>
+                    <summary className={`${styles.dropdownHeader} ${Inter500.className}`}>Mod de utilizare</summary>
+                    <div className={styles.dropdownContent}>
+                    Conectați ștecherul prelungitorului Cube la priza de perete, apoi folosiți cele două prize Schuko pentru alimentarea dispozitivelor electrice. Datorită designului compact, poate fi așezat pe birou sau podea, iar cablul lung asigură flexibilitate în poziționare.
+                    </div>
+                </details>
+                
+                <details className={styles.dropdown}>
+                    <summary className={`${styles.dropdownHeader} ${Inter500.className}`}>Material si intretinere</summary>
+                    <div className={styles.dropdownContent}>
+                    Fabricat din plastic ABS de înaltă calitate, rezistent la uzură și temperaturi ridicate. Carcasa cu finisaj mat împiedică acumularea amprentelor. Pentru întreținere, deconectați de la sursa de curent și ștergeți cu o cârpă uscată. Nu folosiți agenți de curățare lichizi sau abrazivi.
+                    </div>
+                </details>
             </div>
         </div>
+    </div>
     );
 }
 

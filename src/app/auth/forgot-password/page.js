@@ -9,6 +9,7 @@
  import { testValidEmail } from "@/lib/logic/AuthValidators";
 
  import { DefaultFormLayout, FormContainer, FormField, FormButton } from "@/lib/components/form/Form";
+import { BackArrow } from "@/lib/components/globals/NavArrows";
 
  export default function ForgotPasswordPage() {
      const router = useRouter(); 
@@ -37,17 +38,9 @@
 
      return (
      <div className={styles.formWrapper}>
-        
-        <button 
-            onClick={handleGoBack}
-            className={styles.backButton}
-        >
-           <div className={styles.backArrow}>
-                <svg width="17" height="10" viewBox="0 0 17 10" fill="none">
-                    <path d="M1 1L8.5 8.5L16 1" stroke="black" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-           </div>
-        </button>
+        <div className={styles.backButtonWrapper}>
+            <BackArrow onClick={handleGoBack} arrowSize={20} />
+        </div>
 
 
         <DefaultFormLayout
