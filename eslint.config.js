@@ -3,7 +3,7 @@ import globals from "globals";
 import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
 
-const valconfig = pluginReact.configs.flat.recommended;
+const valconfig =  { ...pluginReact.configs.flat.recommended};
 valconfig.rules["react/react-in-jsx-scope"] = "off";
 valconfig.rules["react/prop-types"] = "off";
 valconfig.rules["no-unused-vars"] = "warn";
