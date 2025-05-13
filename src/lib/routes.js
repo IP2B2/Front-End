@@ -69,7 +69,12 @@ const routes = {
         title: 'Inchiriere echipament complex',
         requiresAuth: true,
         route: '/home/inchiriere/echipament-complex',
-    }
+    },
+    'inchiriere-cerere-preview': {
+        title: 'Cerere inchiriere preview (componenta)',
+        requiresAuth: true,
+        route: '/home/inchiriere/cerere-preview',
+    },
 }
 
 export default routes;

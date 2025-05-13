@@ -91,8 +91,7 @@ export const FormMultiColumn = ({ cols, children }) => {
             </div>
     )
 }
-
-export const FormField = ({ type, placeholder, validator, setState, trim, label, validate = true, formInputId }) => {
+export const FormField = ({ type, placeholder, validator, setState, trim, label, validate = true, formInputId, disabled }) => {
 
     const [inputValue, setInputValue] = useState('');
     
@@ -105,7 +104,7 @@ export const FormField = ({ type, placeholder, validator, setState, trim, label,
     }
 
     useEffect(() => {
-        setState(inputValue);
+        if(setState) setState(inputValue);
         if(!validate || !validator)
             return;
         
@@ -120,7 +119,8 @@ export const FormField = ({ type, placeholder, validator, setState, trim, label,
     }, [inputError])
 
     return (
-        <div className={`${formStyles.formInputGroup} ${Inter600.className}`}>
+        <div 
+            className={`${formStyles.formInputGroup} ${Inter600.className}`}>
             <label>
                 {label}
                 <input 
@@ -129,7 +129,8 @@ export const FormField = ({ type, placeholder, validator, setState, trim, label,
                     type={type}
                     onChange={handleInputChange}
                     id={formInputId}
-                    name={formInputId}/>
+                    name={formInputId}
+                    disabled={!!disabled}/>
             </label>
             <div className={`${formStyles.formInputErrorMessage}`}>
                 { validate && isInputError ? inputError : ''}
