@@ -4,7 +4,7 @@ import styles from '../formInchiriere.module.css';
 import { useState, useEffect } from "react";
 import '@/app/globals.css';
 import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField } from "@/lib/components/form/Form";
-import { usePathname, useRouter } from 'next/navigation'; 
+import { usePathname} from 'next/navigation'; 
 import { Calendar } from '@/lib/components/calendar/Calendar';
 
 import { emptyInvalidator, cnpValidator, dateValidator, daysValidator } from "@/lib/logic/AuthValidators";
@@ -13,7 +13,6 @@ import { BackArrow } from "@/lib/components/globals/NavArrows";
 const today = new Date().toISOString().split("T")[0];
 
 export default function ProductRentalForm() {
-    const router = useRouter();
     const { pathname } = usePathname();
 
     useEffect(() => {

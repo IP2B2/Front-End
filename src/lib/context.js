@@ -16,3 +16,18 @@ export function LayoutContentProvider({ children }) {
 export function useLayoutContent() {
   return useContext(LayoutContentContext);
 }
+
+const CalendarContext = createContext();
+
+export function CalendarProvider({ children }) {
+  const [selectedDay, setSelectedDay] = useState(null);
+
+  return (
+    <CalendarContext.Provider value={{ selectedDay, setSelectedDay }}>
+      {children}
+    </CalendarContext.Provider>
+  );
+}
+export function useSelectedDay() {
+  return useContext(CalendarContext);
+}

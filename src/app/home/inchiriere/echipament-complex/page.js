@@ -4,7 +4,6 @@ import styles from '../formInchiriere.module.css';
 import { useState, useEffect } from "react";
 import '@/app/globals.css';
 import { DefaultFormLayout, FormContainer, FormField, } from "@/lib/components/form/Form";
-import { useRouter } from 'next/navigation'; 
 
 import { emptyInvalidator, cnpValidator, dateValidator, daysValidator } from "@/lib/logic/AuthValidators";
 
@@ -26,7 +25,6 @@ const filePdfValidator = (file) => {
 };
 
 export default function ProductRentalForm() {
-    const router = useRouter();
 
     const [cnp, setCnp] = useState("");
     const [address, setAddress] = useState("");
