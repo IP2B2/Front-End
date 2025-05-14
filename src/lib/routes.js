@@ -70,14 +70,9 @@ const routes = {
         requiresAuth: true,
         route: '/home/inchiriere/echipament-complex',
     },
-    'inchiriere-cerere-preview': {
-        title: 'Cerere inchiriere preview (componenta)',
-        requiresAuth: true,
-        route: '/home/inchiriere/cerere-preview',
-    },
     'listare-cerere': {
         title: 'Testing: listare-cerere',
-        requiresAuth: true,
+        requiresAuth: false,
         route: '/home/testing/listare-cerere',
     }
 }
