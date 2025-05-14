@@ -75,6 +75,11 @@ const routes = {
         requiresAuth: true,
         route: '/home/inchiriere/cerere-preview',
     },
+    'listare-cerere': {
+        title: 'Testing: listare-cerere',
+        requiresAuth: true,
+        route: '/home/testing/listare-cerere',
+    }
 }
 
 export default routes;

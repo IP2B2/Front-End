@@ -1,6 +1,13 @@
 # Builder image
 FROM node:18-alpine AS builder
 
+# Define build arguments
+ARG BACKEND_URI
+
+# Set environment variables
+ENV BACKEND_URI=$BACKEND_URI
+
+
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
