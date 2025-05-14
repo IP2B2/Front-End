@@ -138,3 +138,20 @@ export const FormField = ({ type, placeholder, validator, setState, trim, label,
         </div>
     );
 }
+
+export const FormPreviewField = ({ type, placeholder, label, value }) => {
+    return (
+        <div 
+            className={`${formStyles.formInputGroup} ${Inter600.className}`}>
+            <label>
+                {label}
+                <input 
+                    className={`${formStyles.formInput} border-rounded border-gray ${Inter600.className} ${formStyles.formInputPreview}`} 
+                    placeholder={placeholder} 
+                    type={type}
+                    value={value}
+                    disabled/>
+            </label>
+        </div>
+    );
+}

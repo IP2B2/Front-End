@@ -1,26 +1,6 @@
 
-
-import { FormField, FormPreviewField } from "@/lib/components/form/Form";
-
+import { FormPreviewField } from "@/lib/components/form/FormPreviewField";
 import styles from "./cererePreview.module.css";
-
-export default function CererePreviewPage() {
-    return (
-        <div>
-            <h1>Preview Cerere</h1>
-            <p>Aici va fi afisata cererea de inchiriere.asdfads</p>
-            <div className={styles.cerereWrapper}>
-                <PreviewCerereSimplu
-                    startDate={Date.now()}
-                    returnDate={Date.now()
-                        + 1000 * 60 * 60 * 24 * 7} // +7 zile
-                    equipmentName={"Laptop"}
-                    borrowerName={"Popescu Andrei"}
-                    accessType={"Fizic"} />
-            </div>
-        </div>
-    );
-}
 
 const formatDate = (date) => {
     const d = new Date(date);
@@ -30,7 +10,7 @@ const formatDate = (date) => {
     return `${year}-${month}-${day}`;
 };
 
-const PreviewCerereSimplu = ({
+export const PreviewCerereSimplu = ({
     borrowerName,
     startDate,
     returnDate,

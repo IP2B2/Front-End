@@ -59,6 +59,9 @@
     font-size: var(--font-size-sm);
     font-weight: 600;
 }
+.formInputPreview {
+    color: initial;
+}
 
 .formInputError {
     border-color: #FF0000;
