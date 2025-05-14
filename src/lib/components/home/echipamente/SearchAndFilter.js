@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useState, useEffect, useContext } from "react";
 import Image from "next/image";
 
