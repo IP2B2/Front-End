@@ -1,0 +1,169 @@
+.product-card-wrapper.small {
+  width: 100%;
+}
+.product-card-wrapper {
+  height: 366px;
+  
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+.product-card.small {
+  width: 100%;
+  padding: 8px;
+  gap: 8px;
+}
+.product-image-container {
+  width: 200px;
+  height: 200px;
+
+  align-self: center;
+
+  overflow: hidden;
+}
+.product-image-wrapper {
+	width: 100%;
+	height: 100%;
+
+	position: relative;
+
+	border: 0px solid #f4f4f4;
+}
+.product-image {
+	width: 100%;
+	height: 100%;
+
+	border-radius: 8px;
+
+	object-fit: cover;
+}
+.product-card {
+  height: 400px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+
+  padding: 12px;
+  gap: 12px;
+
+  border-radius: 10px;
+
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  dragging: none;
+}
+
+.product-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 100%;
+  height: 17px;
+  color: #404040;
+  margin: 0;
+  text-align: center;
+}
+
+.product-name-outside {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: #404040;
+  text-align: center;
+  margin: 0 auto 4px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.product-card p {
+  font-size: 12px;
+  color: #414141;
+  margin: 0;
+  text-align: center;
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.badge.available {
+  color: green;
+}
+
+.badge.unavailable {
+  color: red;
+}
+
+.details-button,
+.details-button:link,
+.details-button:visited {
+  display: inline-block;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  height: 41px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FAFAFA;
+  background-color: #09090B;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.product-subtext {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  margin: 2px 0 4px;
+}
+
+.product-subtext span {
+  color: #FF0000;
+}
+.faculty-label-wrapper {
+  position: absolute;
+  flex-shrink: 0;
+  height: 25px !important;
+  bottom: 20%;
+}
+.faculty-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000000;
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 0.5px solid #E5E5E5;
+  background-color: #ffffff;
+  margin: 0 auto 4px auto;
+  width: fit-content;
+}
+
+@media (max-width: 768px) {
+  .details-button {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1150px) {
+  .product-card {
+    width: 90%;
+  }
+}
