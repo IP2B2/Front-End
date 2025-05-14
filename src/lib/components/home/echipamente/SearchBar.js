@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+
 import styles from "./SearchBar.module.css";
 
 export default function SearchBar({ onSearch }) {

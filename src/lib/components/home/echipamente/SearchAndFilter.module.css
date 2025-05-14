@@ -1,0 +1,144 @@
+.searchAndFilterContainer {
+	width: 100%;
+
+	display: flex;
+	flex-flow: row nowrap;
+
+  color: #3d3d3d;
+
+	gap: 32px;
+}
+.queryAndDataColumn {
+	flex-grow: 1;
+
+	display: flex;
+	flex-flow: column nowrap;
+
+	gap: 32px;
+}
+.queryAndDataColumn > * {
+	width: 100%;
+}
+
+.searchHeader {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.componentTitle {
+	font-size: var(--font-size-lg);
+	font-weight: 700;
+	line-height: 1;
+}
+
+.dataContainer {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	gap: 15px;
+}
+
+
+.filtersColumn {
+	width: 310px;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.filterSection {
+	width: 306px;
+	background-color: #ffffff;
+	padding: 20px 20px;
+	border-radius: 5px;
+	border: 1px solid #e2e2e2;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.filterTitleBox {
+	height: 24px;
+
+	padding: 2px 0 2px 10px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	border-left: 3px solid var(--foreground);
+
+	font-size: var(--font-size-base);
+}
+
+.dropdownArrow {
+  width: 12px;
+	font-size: 12px;
+	color: #73287e;
+
+	user-select: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.dropdownArrow.rotated {
+	transform: rotate(180deg);
+}
+
+.filterOptions {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding-left: 10px;
+}
+
+.filterOptions label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 15px;
+	font-weight: 400;
+	color: #2d2d2d;
+}
+
+.searchBar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 314px;
+	height: 56px;
+	padding: 8px 8px 8px 20px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 42px;
+	background: rgba(255, 255, 255, 0.75);
+	backdrop-filter: blur(22px);
+	-webkit-backdrop-filter: blur(22px);
+}
+
+.input {
+	flex-grow: 1;
+	border: none;
+	outline: none;
+	background: transparent;
+	font-size: 16px;
+}
+
+.iconButton {
+	background-color: #888;
+	color: white;
+	border: none;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	cursor: pointer;
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.iconImage {
+	width: 18px;
+	height: 18px;
+	object-fit: contain;
+}

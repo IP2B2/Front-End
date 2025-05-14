@@ -4,7 +4,7 @@
 
 .layoutContainer {
   display: flex;
-  padding: 0 1rem;
+  padding: 0 10px;
   margin-top: 1rem;
   gap: 1rem;
 }
@@ -114,10 +114,20 @@
 }
 
 .productGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 276px);
+  flex-grow: 1;
+
+  display: flex;
+  flex-flow: row wrap;
   gap: 24px;
 }
+.productGrid > * {
+  width: 276px;
+}
+
+.contentColumn {
+  flex-grow: 1;  
+}
+
 .echipamenteTitle {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
