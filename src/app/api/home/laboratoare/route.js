@@ -14,7 +14,7 @@ export async function GET(request) {
         });
     }
     try {
-        const response2 = await axios.get('https://88.80.135.108/api/laboratories/all', {
+        const response2 = await axios.get(process.env.BACKEND_URI + '/laboratories/all', {
             headers: {
                 Authorization: bearerHeader
             }
@@ -26,6 +26,7 @@ export async function GET(request) {
             }
         });
     } catch (error) {
+        console.log(error);
         if(error.response && error.response.status === 401) {
             return new Response(JSON.stringify({ error: "Unauthorized access" }), {
                 status: 401,
