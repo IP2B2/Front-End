@@ -74,6 +74,11 @@ const routes = {
         title: 'Testing: listare-cerere',
         requiresAuth: false,
         route: '/home/testing/listare-cerere',
+    },
+    'cerere-preview': {
+        title: 'Testing: cerere-preview',
+        requiresAuth: false,
+        route: '/home/testing/cerere-preview',
     }
 }
 

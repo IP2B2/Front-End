@@ -1,6 +1,6 @@
 
-import { FormPreviewField } from "@/lib/components/form/FormPreviewField";
-import styles from "./cererePreview.module.css";
+import { FormPreviewField } from "@/lib/components/form/Form";
+import styles from "./PreviewCerere.module.css";
 
 const formatDate = (date) => {
     const d = new Date(date);
