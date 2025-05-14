@@ -7,7 +7,7 @@ export default function CerereListing({ title, label, onClick }) {
 
   return (
     <div className={styles.container}
-    onClick={onClick ? onClick : () =>{}}>
+    onClick={onClick ??(() =>{})}>
 
       <div className={styles.title}>{title}</div>
       <div className={isValabil ? styles.greenLabel : styles.redLabel} >{label}</div>
