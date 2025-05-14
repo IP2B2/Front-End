@@ -69,6 +69,11 @@ const routes = {
         title: 'Inchiriere echipament complex',
         requiresAuth: true,
         route: '/home/inchiriere/echipament-complex',
+    },
+    'listare-cerere': {
+        title: 'Testing: listare-cerere',
+        requiresAuth: true,
+        route: '/home/testing/listare-cerere',
     }
 }
 
