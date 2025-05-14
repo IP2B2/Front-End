@@ -25,7 +25,8 @@ jobs:
         run: npm run build
 
       - name: Build frontend Docker image
-        run: docker build \
+        run: |
+          docker build \
            --build-arg BACKEND_URI=${{ secrets.BACKEND_URI }} \
            -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest .
 
