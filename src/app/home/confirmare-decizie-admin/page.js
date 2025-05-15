@@ -16,7 +16,6 @@ export default function Page() {
     return () => clearTimeout(timer);
   }, [router]);
 
-
   return (
     <div className={styles.container}>
       <div className={styles.contentBox}>
