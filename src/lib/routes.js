@@ -74,6 +74,11 @@ const routes = {
         title: 'Testing: listare-cerere',
         requiresAuth: true,
         route: '/home/testing/listare-cerere',
+    },
+    'produs-adaugat-succes': {
+        title: 'Produs adaugat cu succes',
+        requiresAuth: true,
+        route: '/home/produs-adaugat-succes',
     }
 }
 
