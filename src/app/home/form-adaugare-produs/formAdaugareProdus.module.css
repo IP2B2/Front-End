@@ -1,5 +1,3 @@
-/* Stiluri îmbunătățite pentru adăugarea produselor */
-
 .productForm {
   width: 100%;
   display: flex;
@@ -80,7 +78,6 @@
   display: none;
 }
 
-/* Stiluri îmbunătățite pentru galeria de imagini */
 .imageGallery {
   width: 100%;
   max-width: 600px;
@@ -118,7 +115,6 @@
   object-fit: contain;
 }
 
-/* Containere și navigare pentru miniaturi */
 .thumbnailsContainer {
   display: flex;
   align-items: center;
@@ -185,7 +181,6 @@
   object-fit: cover;
 }
 
-/* Butoane pentru navigare prin imagini și miniaturi */
 .imageNavButton {
   position: absolute;
   top: 50%;
@@ -256,7 +251,6 @@
   margin-left: 5px;
 }
 
-/* Buton îmbunătățit pentru ștergerea imaginii - X roșu elegant */
 .removeImageButton {
   position: absolute;
   top: 10px;
@@ -285,7 +279,6 @@
   transform: scale(1.1);
 }
 
-/* Contoare și limite pentru imagini */
 .imageCounter {
   text-align: center;
   font-size: 14px;
@@ -302,7 +295,6 @@
   font-weight: 500;
 }
 
-/* Stiluri pentru butoane */
 .addProductButton {
   background-color: #FFAEC0;
   color: #000;
@@ -342,7 +334,6 @@
   box-shadow: 0 8px 20px rgba(255, 66, 107, 0.4);
 }
 
-/* Container principal */
 .container {
   height: auto;
   min-height: 90vh;
@@ -356,7 +347,6 @@
   background-color: #ffffff;
 }
 
-/* Wrapper pentru butonul de back */
 .backButtonWrapper {
   position: absolute;
   top: 20px;
@@ -366,7 +356,6 @@
   z-index: 10;
 }
 
-/* Container portocaliu */
 .contentBox {
   width: 80%;
   max-width: 1000px;
@@ -383,7 +372,6 @@
   overflow-y: visible;
 }
 
-/* Titlu principal */
 .mainTitle {
   font-size: 36px;
   font-weight: 700;
@@ -393,7 +381,6 @@
   width: 100%;
 }
 
-/* Etichete pentru câmpuri */
 .fieldLabel {
   font-weight: 500;
   margin-bottom: 8px;
@@ -401,14 +388,12 @@
   color: #333;
 }
 
-/* Indicator pentru câmpuri obligatorii */
 .requiredField::after {
   content: '*';
   color: #FF426B;
   margin-left: 4px;
 }
 
-/* Stiluri responsive */
 @media screen and (max-width: 1024px) {
   .contentBox {
     width: 90%;

@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation';
 export default function Page() {
   const router = useRouter();
   
-  // Stare pentru formularul de adăugare produs
   const [formData, setFormData] = useState({
     numeProdus: '',
     descriere: '',
@@ -18,7 +17,6 @@ export default function Page() {
     imagini: []
   });
 
-  // Verificăm dacă toate câmpurile sunt completate
   const allFieldsFilled = 
     formData.numeProdus.trim() !== '' && 
     formData.descriere.trim() !== '' && 
@@ -26,17 +24,13 @@ export default function Page() {
     formData.materialSiIntretinere.trim() !== '' &&
     formData.imagini.length > 0;
 
-  // Stare pentru previzualizarea imaginilor
   const [previewImages, setPreviewImages] = useState([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   
-  // Pentru afișarea unui număr limitat de miniaturi
   const [startThumbnailIndex, setStartThumbnailIndex] = useState(0);
   const maxVisibleThumbnails = 5;
   
-  // Încărcăm datele salvate din sessionStorage la montarea componentei
   useEffect(() => {
-    // Încărcăm datele formularului
     const savedFormData = sessionStorage.getItem('productFormData');
     if (savedFormData) {
       try {
@@ -47,7 +41,6 @@ export default function Page() {
           descriere: parsedData.descriere || '',
           modUtilizare: parsedData.modUtilizare || '',
           materialSiIntretinere: parsedData.materialSiIntretinere || '',
-          // Imaginile se vor încărca separat
           imagini: [] 
         }));
       } catch (error) {
@@ -55,7 +48,6 @@ export default function Page() {
       }
     }
     
-    // Încărcăm URL-urile imaginilor
     const savedImageUrls = sessionStorage.getItem('productImageUrls');
 if (savedImageUrls) {
   try {
@@ -72,20 +64,16 @@ if (savedImageUrls) {
 
   }, []);
   
-  // Salvăm datele în sessionStorage când se modifică
   useEffect(() => {
-    // Salvăm datele de text ale formularului
     const formDataToSave = {
       numeProdus: formData.numeProdus,
       descriere: formData.descriere,
       modUtilizare: formData.modUtilizare,
       materialSiIntretinere: formData.materialSiIntretinere,
-      // Nu includem imaginile aici
     };
     
     sessionStorage.setItem('productFormData', JSON.stringify(formDataToSave));
     
-    // Salvăm URL-urile imaginilor separat
     if (previewImages.length > 0) {
       sessionStorage.setItem('productImageUrls', JSON.stringify(previewImages));
     } else {
@@ -93,7 +81,6 @@ if (savedImageUrls) {
     }
   }, [formData.numeProdus, formData.descriere, formData.modUtilizare, formData.materialSiIntretinere, previewImages]);
   
-  // Actualizarea datelor formularului
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -113,13 +100,12 @@ if (savedImageUrls) {
       return;
     }
 
-    // Convertim fiecare imagine în base64
     const readFileAsBase64 = (file) => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onloadend = () => resolve(reader.result);
         reader.onerror = reject;
-        reader.readAsDataURL(file); // asta generează un string base64
+        reader.readAsDataURL(file); 
       });
     };
 
@@ -137,75 +123,61 @@ if (savedImageUrls) {
   }
 };
 
-  // Eliminarea unei imagini
+
   const handleRemoveImage = (indexToRemove) => {
-    // Eliminăm imaginea din formData
     const updatedImages = [...formData.imagini];
     updatedImages.splice(indexToRemove, 1);
     
-    // Eliminăm URL-ul de previzualizare
     const updatedPreviews = [...previewImages];
     const urlToRevoke = updatedPreviews[indexToRemove];
     
-    // Doar revocăm URL-ul dacă pare a fi un blob URL (pentru URL-uri create local)
     if (urlToRevoke && urlToRevoke.startsWith('blob:')) {
       URL.revokeObjectURL(urlToRevoke);
     }
     
     updatedPreviews.splice(indexToRemove, 1);
     
-    // Actualizăm state-ul
     setFormData(prev => ({
       ...prev,
       imagini: updatedImages
     }));
     setPreviewImages(updatedPreviews);
     
-    // Actualizăm sessionStorage
     if (updatedPreviews.length > 0) {
       sessionStorage.setItem('productImageUrls', JSON.stringify(updatedPreviews));
     } else {
       sessionStorage.removeItem('productImageUrls');
     }
     
-    // Ajustăm indexul selectat dacă e necesar
     if (selectedImageIndex >= updatedPreviews.length) {
       setSelectedImageIndex(Math.max(0, updatedPreviews.length - 1));
     } else if (selectedImageIndex === indexToRemove && updatedPreviews.length > 0) {
-      // Menținem același index dacă este posibil
       setSelectedImageIndex(Math.min(selectedImageIndex, updatedPreviews.length - 1));
     }
     
-    // Ajustăm indexul de start pentru miniaturi dacă e necesar
     if (startThumbnailIndex > 0 && startThumbnailIndex >= updatedPreviews.length - maxVisibleThumbnails) {
       setStartThumbnailIndex(Math.max(0, updatedPreviews.length - maxVisibleThumbnails));
     }
   };
 
-  // Curățăm URL-urile de previzualizare și datele temporare la trimiterea formularului
   const handleAddProduct = () => {
-    // Curățăm toate URL-urile de blob din memorie
     previewImages.forEach(url => {
       if (url.startsWith('blob:')) {
         URL.revokeObjectURL(url);
       }
     });
     
-    // Curățăm datele din sessionStorage
     sessionStorage.removeItem('productFormData');
     sessionStorage.removeItem('productImageUrls');
     
-    // Aici se va implementa logica pentru adăugarea produsului
     console.log('Produs adăugat!', formData);
     router.push('/home/produs-adaugat-succes');
   };
 
-  // Restul codului rămâne neschimbat...
   const goToPreviousImage = () => {
     if (selectedImageIndex > 0) {
       setSelectedImageIndex(selectedImageIndex - 1);
       
-      // Actualizăm indexul de start pentru miniaturi dacă e necesar
       if (selectedImageIndex - 1 < startThumbnailIndex) {
         setStartThumbnailIndex(selectedImageIndex - 1);
       }
@@ -216,7 +188,6 @@ if (savedImageUrls) {
     if (selectedImageIndex < previewImages.length - 1) {
       setSelectedImageIndex(selectedImageIndex + 1);
       
-      // Actualizăm indexul de start pentru miniaturi dacă e necesar
       if (selectedImageIndex + 1 >= startThumbnailIndex + maxVisibleThumbnails) {
         setStartThumbnailIndex(selectedImageIndex + 1 - maxVisibleThumbnails + 1);
       }
@@ -238,7 +209,6 @@ if (savedImageUrls) {
     }
   };
 
-  // Cleanup la dezmontarea componentei
   useEffect(() => {
     return () => {
       previewImages.forEach(url => {
@@ -249,10 +219,8 @@ if (savedImageUrls) {
     };
   }, [previewImages]);
 
-  // Verificăm dacă trebuie să afișăm săgețile pentru miniaturi
   const shouldShowThumbnailNavigation = previewImages.length > maxVisibleThumbnails;
   
-  // Obținem miniaturile care trebuie afișate
   const visibleThumbnails = previewImages.slice(
     startThumbnailIndex,
     startThumbnailIndex + maxVisibleThumbnails
