@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: var(--background);
+  font-family: var(--font-family);
+  padding: 0px 100px; 
+  height: 90vh;
+}
+
+.contentBox {
+  background-color: #ffd799;
+  width: 50%;
+  height: 100%;  
+  padding: 100px 80px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.message {
+  font-weight: bold;
+  font-size: var(--font-size-lg);
+  text-align: center;
+  color: var(--foreground);
+}
