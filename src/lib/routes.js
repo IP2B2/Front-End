@@ -79,6 +79,7 @@ const routes = {
         title: 'Testing: cerere-preview',
         requiresAuth: false,
         route: '/home/testing/cerere-preview',
+    },
     'pagina-confirmare-decizie-admin': {
         title: 'Pagina confirmare decizie - ADMIN',
         requiresAuth: true,
