@@ -9,6 +9,7 @@ import styles from './Sidebar.module.css'
 
 export default function Sidebar() {
   const pathname = usePathname()
+  const isAdminPage = pathname === '/home/administrare'
   
   return (
     <aside className={styles.sidebar}>
@@ -19,6 +20,22 @@ export default function Sidebar() {
           </div>
           <hr className={styles.separator} />
           <nav className={`${styles.nav} ${Inter400.className}`}>
+            {isAdminPage && (
+              <Link
+                href="/home/administrare"
+                className={`${styles.navItem} ${styles.adminNavItem} ${pathname === '/home/administrare' ? styles.active : ''}`}
+              >
+                <span>
+                  <Image
+                    src="/icons/administrare-icon.svg"
+                    alt="Administrare"
+                    width={16}
+                    height={16}
+                  />
+                </span>
+                <span>Administrare</span>
+              </Link>
+            )}
             <Link
               href="/"
               className={`${styles.navItem} ${pathname === '/' || pathname === '/home' ? styles.active : ''}`}
