@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import styles from './Echipament.module.css';
 import Image from 'next/image'
-import { Inter500} from '@/lib/fonts/Inter'
+import { Inter500 } from '@/lib/fonts/Inter'
 import '@/app/globals.css';
 import carouselStyles from './ProductImageCarousel.module.css';
 import { BackArrow } from '@/lib/components/globals/NavArrows';
