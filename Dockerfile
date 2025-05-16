@@ -1,5 +1,5 @@
 # Builder image
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 # Define build arguments
 ARG BACKEND_URI
@@ -12,11 +12,14 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 
-COPY . .
+COPY ./src ./src 
+COPY ./public ./public
+COPY ./next.config.js ./next.config.js
+
 RUN npm run build
 
 # Runtime image
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Create non-root user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
