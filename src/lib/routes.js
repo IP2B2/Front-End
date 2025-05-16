@@ -79,6 +79,10 @@ const routes = {
         title: 'Produs adaugat cu succes',
         requiresAuth: true,
         route: '/home/produs-adaugat-succes',
+    'pagina-confirmare-decizie-admin': {
+        title: 'Pagina confirmare decizie - ADMIN',
+        requiresAuth: true,
+        route: '/home/confirmare-decizie-admin',
     }
 }
 
