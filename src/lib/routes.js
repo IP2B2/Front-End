@@ -74,6 +74,11 @@ const routes = {
         title: 'Testing: listare-cerere',
         requiresAuth: true,
         route: '/home/testing/listare-cerere',
+    },
+    'pagina-confirmare-decizie-admin': {
+        title: 'Pagina confirmare decizie - ADMIN',
+        requiresAuth: true,
+        route: '/home/confirmare-decizie-admin',
     }
 }
 
