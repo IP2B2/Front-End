@@ -10,12 +10,8 @@ ENV BACKEND_URI=$BACKEND_URI
 
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-
-COPY ./src ./src 
-COPY ./public ./public
-COPY ./next.config.js ./next.config.js
-
+RUN npm ci
+COPY . . 
 RUN npm run build
 
 # Runtime image
