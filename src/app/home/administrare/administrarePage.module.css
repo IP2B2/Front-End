@@ -61,7 +61,7 @@
   width: 100%;
   height: 60px;
   
-  line-height: 24px;
+  line-height:var(--font-size-md);
 
   border-radius: 2px;
 
@@ -91,7 +91,7 @@
     min-height: calc(100vh - 70px);
 
     padding: 20px 40px;
-    gap: 30px;
+    gap: var(--font-size-lg);
 
     justify-content: center;
   }
@@ -100,13 +100,13 @@
     width: 340px;
     height: 450px;
 
-    padding: 18px;
+    padding: var(--font-size-base);
   }
 
   .cardTitle {
     line-height: 32px;
 
-    margin-bottom: 18px;
+    margin-bottom: var(--font-size-base);
 
     font-size: 28px;
   }
@@ -114,7 +114,7 @@
   .button {
     height: 54px;
 
-    font-size: 18px;
+    font-size: var(--font-size-base);
   }
 
   .cardImage img {
@@ -147,13 +147,13 @@
 
     margin-bottom: 15px;
 
-    font-size: 24px;
+    font-size:var(--font-size-md);
   }
 
   .button {
     height: 48px;
 
-    font-size: 16px;
+    font-size: var(--font-size-sm);
   }
 
   .cardImage img {
@@ -177,7 +177,7 @@
   }
 
   .cardTitle {
-    line-height: 24px;
+    line-height:var(--font-size-md);
 
     margin-bottom: 12px;
 
@@ -187,7 +187,7 @@
   .button {
     height: 42px;
 
-    font-size: 14px;
+    font-size: var(--font-size-xs);
   }
 
   .cardImage img {

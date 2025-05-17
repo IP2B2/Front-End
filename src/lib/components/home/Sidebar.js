@@ -25,15 +25,16 @@ export default function Sidebar() {
                 href="/home/administrare"
                 className={`${styles.navItem} ${styles.adminNavItem} ${pathname === '/home/administrare' ? styles.active : ''}`}
               >
-                <span>
+                <span className={styles.icon}>
                   <Image
-                    src="/icons/administrare-icon.svg"
+                    src="/icons/icon-administrare.svg"
                     alt="Administrare"
-                    width={16}
-                    height={16}
+                    width={24}  
+                    height={24} 
+                    style={{ marginTop: '4px' }} 
                   />
                 </span>
-                <span>Administrare</span>
+                <span className={styles.adminText}>Administrare</span>
               </Link>
             )}
             <Link
