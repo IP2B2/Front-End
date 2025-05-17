@@ -68,6 +68,10 @@
   user-select: none;
 }
 
+.adminNavItem {
+  background-color: #FF4A4A;
+}
+
 .active {
   background-color: var(--foreground);
   color: var(--background);
@@ -97,4 +101,35 @@
 
   color: var(--background);
   font-weight: bold;
+}
+
+.adminIcon {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  display: inline-block;
+  background: white;
+  border-radius: 2px;
+}
+
+.adminIcon::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #000;
+  border-radius: 1px;
+}
+
+.adminIcon::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  width: 6px;
+  height: 6px;
+  background: #000;
+  border-radius: 1px;
 }
