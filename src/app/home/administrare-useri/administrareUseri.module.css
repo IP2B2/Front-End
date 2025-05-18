@@ -1,0 +1,168 @@
+.pageContainer {
+  width: 100%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.pageHeader {
+  margin-bottom: 20px;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.pageContent {
+  display: flex;
+  gap: 20px;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.filterSection {
+  background-color: #ffefd5;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.filterTitle {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.filterGroup {
+  margin-bottom: 15px;
+}
+
+.filterLabel {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.filterSelect {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.filterSelect:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.mainContent {
+  flex: 1;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  flex: 1;
+  max-width: 400px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.cereriButton {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cereriButton:hover {
+  background-color: #2980b9;
+}
+
+.usersListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.userListingContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #ffd6d6;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.userLabel {
+  padding: 5px 15px;
+  background-color: #c2d6ff;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.noResults {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.loading {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .pageContent {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+  }
+  
+  .searchContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  .searchInput {
+    max-width: none;
+  }
+}
