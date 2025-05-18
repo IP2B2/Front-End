@@ -89,11 +89,11 @@ export default function Page() {
     
     sessionStorage.setItem('productFormData', JSON.stringify(formDataToSave));
     
-    if (previewImages.length > 0) {
-      sessionStorage.setItem('productImageUrls', JSON.stringify(previewImages));
-    } else {
-      sessionStorage.removeItem('productImageUrls');
-    }
+    // if (previewImages.length > 0) {
+    //   sessionStorage.setItem('productImageUrls', JSON.stringify(previewImages));
+    // } else {
+       sessionStorage.removeItem('productImageUrls');
+    // }
   }, [isClient, formData.numeProdus, formData.descriere, formData.modUtilizare, formData.materialSiIntretinere, previewImages]);
   
   const handleChange = (e) => {

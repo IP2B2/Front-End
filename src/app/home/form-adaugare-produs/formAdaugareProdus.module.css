@@ -7,7 +7,8 @@
 
 .formField {
   width: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .textInput,
@@ -90,101 +91,64 @@
 
 .mainImage {
   width: 100%;
-  height: 350px;
+  height: 450px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  position: relative;
 }
 
 .imagePlaceholder {
   width: 100%;
   height: 100%;
   background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  grid-template-rows: 40px 1fr;
   border-radius: 12px;
   overflow: hidden;
-  position: relative;
 }
 
 .productImage {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 2;
+  z-index: 1;
+  padding: 10px;
 }
 
-.thumbnailsContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  position: relative;
-}
-
-.thumbnails {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: nowrap;
-  max-width: 450px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.thumbnail {
-  width: 70px;
-  height: 70px;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-  border: 3px solid transparent;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s ease;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.thumbnail:hover {
-  transform: scale(1.05);
-}
-
-.activeThumbnail {
-  border-color: #FF426B;
-}
-
-.thumbnailPlaceholder {
-  width: 100%;
-  height: 100%;
+.removeImageButton {
+  width: 24px;
+  height: 24px;
   background-color: white;
+  color: #FF426B;
+  border: 1px solid #FF426B;
+  border-radius: 50%;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  opacity: 0.8;
+  z-index: 10;
+  font-weight: bold;
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+  margin: 10px;
 }
 
-.thumbnailNumber {
-  position: absolute;
-  bottom: 3px;
-  right: 3px;
-  background-color: rgba(0, 0, 0, 0.5);
+.removeImageButton:hover {
+  opacity: 1;
+  background-color: #FF426B;
   color: white;
-  font-size: 12px;
-  padding: 2px 5px;
-  border-radius: 4px;
-}
-
-.thumbnailImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  transform: scale(1.1);
 }
 
 .imageNavButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background-color: rgba(255, 255, 255, 0.7);
   color: #333;
   border: none;
@@ -200,9 +164,23 @@
   z-index: 5;
 }
 
+.prevButton {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: center;
+  align-self: center;
+}
+
+.nextButton {
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: center;
+  align-self: center;
+}
+
 .imageNavButton:hover {
   background-color: rgba(255, 255, 255, 0.9);
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.1);
 }
 
 .imageNavButton:disabled {
@@ -210,14 +188,81 @@
   cursor: not-allowed;
 }
 
-.prevButton {
-  left: 10px;
+/* Corectarea container-ului de thumbnails și layout */
+.thumbnailsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Spațiere între elemente */
 }
 
-.nextButton {
-  right: 10px;
+/* Miniaturile aranjate orizontal */
+.thumbnails {
+  display: flex;
+  flex-direction: row; /* Asigură aranjarea pe orizontală */
+  flex-wrap: nowrap; /* Evită împărțirea pe rânduri */
+  gap: 12px; /* Spațiere între miniaturi */
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto; /* Permite derulare orizontală dacă sunt prea multe */
+  max-width: 450px;
+  padding: 5px; /* Spațiu pentru scroll */
+  scrollbar-width: thin;
 }
 
+/* Stilizarea fiecărei miniaturi */
+.thumbnail {
+  flex: 0 0 70px; /* Lățime fixă, nu se redimensionează */
+  height: 70px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.activeThumbnail {
+  border-color: #FF426B;
+}
+
+/* Container pentru imagine și număr */
+.thumbnailPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+}
+
+/* Imaginea miniatură */
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+/* Numărul miniatură */
+.thumbnailNumber {
+  grid-column: 2;
+  grid-row: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  margin: 2px;
+  z-index: 2;
+}
+
+/* Butoanele de navigare pentru miniaturi */
 .thumbnailNavButton {
   background-color: rgba(255, 146, 169, 0.7);
   color: white;
@@ -231,6 +276,7 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.2s;
+  flex-shrink: 0;
   z-index: 2;
 }
 
@@ -249,34 +295,6 @@
 
 .thumbnailNextButton {
   margin-left: 5px;
-}
-
-.removeImageButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 24px;
-  height: 24px;
-  background-color: white;
-  color: #FF426B;
-  border: 1px solid #FF426B;
-  border-radius: 50%;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  opacity: 0.8;
-  z-index: 10;
-  font-weight: bold;
-}
-
-.removeImageButton:hover {
-  opacity: 1;
-  background-color: #FF426B;
-  color: white;
-  transform: scale(1.1);
 }
 
 .imageCounter {
@@ -342,15 +360,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   overflow-y: auto;
   background-color: #ffffff;
 }
 
 .backButtonWrapper {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  align-self: flex-start;
+  margin: 20px 0 0 20px;
   width: 40px;
   height: 40px;
   z-index: 10;
@@ -361,7 +377,7 @@
   max-width: 1000px;
   height: auto;
   padding: 50px 40px;
-  margin-top: 70px;
+  margin-top: 30px;
   margin-bottom: 50px;
   display: flex;
   flex-direction: column;
@@ -406,7 +422,7 @@
   }
   
   .mainImage {
-    height: 300px;
+    height: 400px;
   }
 }
 
@@ -427,7 +443,7 @@
   }
   
   .thumbnail {
-    width: 50px;
+    flex: 0 0 50px;
     height: 50px;
   }
   
@@ -437,7 +453,7 @@
   }
   
   .mainImage {
-    height: 250px;
+    height: 350px;
   }
   
   .imageNavButton {
