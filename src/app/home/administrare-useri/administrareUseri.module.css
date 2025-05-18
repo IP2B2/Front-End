@@ -1,140 +1,64 @@
 .pageContainer {
   width: 100%;
   padding: 20px;
-  background-color: #f9f9f9;
-  min-height: 100vh;
 }
 
 .pageHeader {
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 0 15px;
+}
+
+.titleWrapper {
+  flex: 1;
 }
 
 .pageTitle {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
   color: #333;
 }
 
-.pageContent {
+.buttonWrapper {
   display: flex;
-  gap: 20px;
-}
-
-.sidebar {
-  width: 240px;
-  flex-shrink: 0;
-}
-
-.filterSection {
-  background-color: #ffefd5;
-  border-radius: 8px;
-  padding: 20px;
-}
-
-.filterTitle {
-  font-size: 18px;
-  margin-bottom: 15px;
-  font-weight: 500;
-  text-align: center;
-}
-
-.filterGroup {
-  margin-bottom: 15px;
-}
-
-.filterLabel {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.filterSelect {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.filterSelect:disabled {
-  background-color: #f0f0f0;
-  cursor: not-allowed;
-}
-
-.mainContent {
-  flex: 1;
-}
-
-.searchContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.searchInput {
-  flex: 1;
-  max-width: 400px;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  font-size: 14px;
+  justify-content: flex-end;
 }
 
 .cereriButton {
-  padding: 10px 20px;
-  background-color: #3498db;
+  padding: 12px 24px;
+  background: linear-gradient(
+    304.55deg,
+    #FCC6D2 10%,
+    #FF426B 30%,
+    #246EFF 80%
+  );
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.5px;
 }
 
 .cereriButton:hover {
-  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.usersListContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.cereriButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.userListingContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background-color: #ffd6d6;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.userName {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-}
-
-.userLabel {
-  padding: 5px 15px;
-  background-color: #c2d6ff;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-}
-
-.noResults {
-  padding: 20px;
-  text-align: center;
-  color: #666;
-  background-color: #f0f0f0;
-  border-radius: 5px;
+.searchAndFilterContainer {
+  width: 100%;
 }
 
 .loading {
@@ -147,22 +71,45 @@
   color: #555;
 }
 
+.userListingContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #ffd6d6;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.userLabel {
+  padding: 6px 16px;
+  background-color: #c2d6ff;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
 @media (max-width: 768px) {
-  .pageContent {
+  .pageHeader {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
   }
   
-  .sidebar {
+  .buttonWrapper {
     width: 100%;
   }
   
-  .searchContainer {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
-  
-  .searchInput {
-    max-width: none;
+  .cereriButton {
+    width: 100%;
   }
 }
