@@ -1,0 +1,551 @@
+.productForm {
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.formField {
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.textInput,
+.textarea {
+  width: 100%;
+  
+  padding: 16px;
+  
+  display: flex;
+  
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  
+  font-size: 16px;
+  color: #333;
+  
+  transition: all 0.3s ease;
+}
+
+.textInput:focus,
+.textarea:focus {
+  border-color: #FF92A9;
+  box-shadow: 0 2px 8px rgba(255, 146, 169, 0.2);
+  outline: none;
+}
+
+.textarea {
+  min-height: 120px;
+  
+  resize: vertical;
+  
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.imageUploadSection {
+  width: 100%;
+  
+  margin: 30px 0;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageUploadLabel {
+  width: 100%;
+  max-width: 500px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.uploadButtonWrapper {
+  width: 100%;
+  
+  padding: 18px 25px;
+  margin-bottom: 20px;
+  
+  display: inline-block;
+  
+  border: 2px dashed #FF92A9;
+  border-radius: 10px;
+  background-color: #fff;
+  
+  text-align: center;
+  font-weight: 500;
+  color: #333;
+  
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.uploadButtonWrapper:hover {
+  background-color: #FFF5F7;
+  border-color: #FF426B;
+  
+  transform: translateY(-2px);
+}
+
+.fileInput {
+  display: none;
+}
+
+.imageGallery {
+  width: 100%;
+  max-width: 600px;
+  
+  margin: 0 auto;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.mainImage {
+  width: 100%;
+  height: 450px;
+  
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  grid-template-rows: 40px 1fr;
+  
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  
+  padding: 10px;
+  
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 2;
+  
+  object-fit: contain;
+  z-index: 1;
+}
+
+.removeImageButton {
+  width: 24px;
+  height: 24px;
+  
+  margin: 10px;
+  
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  border: 1px solid #FF426B;
+  border-radius: 50%;
+  background-color: white;
+  
+  font-size: 12px;
+  font-weight: bold;
+  color: #FF426B;
+  
+  cursor: pointer;
+  opacity: 0.8;
+  z-index: 10;
+  transition: all 0.2s;
+}
+
+.removeImageButton:hover {
+  background-color: #FF426B;
+  
+  color: white;
+  
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.imageNavButton {
+  width: 40px;
+  height: 40px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  
+  font-size: 18px;
+  color: #333;
+  
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.2s;
+}
+
+.prevButton {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: center;
+  align-self: center;
+}
+
+.nextButton {
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: center;
+  align-self: center;
+}
+
+.imageNavButton:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  
+  transform: scale(1.1);
+}
+
+.imageNavButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.thumbnailsContainer {
+  width: 100%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.thumbnails {
+  max-width: 450px;
+  
+  padding: 5px;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; 
+  overflow-x: auto; 
+  
+  scrollbar-width: thin;
+}
+
+.thumbnail {
+  height: 70px;
+  
+  flex: 0 0 70px;
+  
+  border: 3px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.activeThumbnail {
+  border-color: #FF426B;
+}
+
+.thumbnailPlaceholder {
+  width: 100%;
+  height: 100%;
+  
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  
+  object-fit: cover;
+}
+
+.thumbnailNumber {
+  padding: 2px 5px;
+  margin: 2px;
+  
+  grid-column: 2;
+  grid-row: 2;
+  
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  
+  font-size: 12px;
+  color: white;
+  
+  z-index: 2;
+}
+
+.thumbnailNavButton {
+  width: 30px;
+  height: 30px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 146, 169, 0.7);
+  
+  font-size: 14px;
+  color: white;
+  
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s;
+}
+
+.thumbnailNavButton:hover {
+  background-color: rgba(255, 66, 107, 0.8);
+}
+
+.thumbnailNavButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.thumbnailPrevButton {
+  margin-right: 5px;
+}
+
+.thumbnailNextButton {
+  margin-left: 5px;
+}
+
+.imageCounter {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.imageLimit {
+  margin-top: 10px;
+  
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #777;
+}
+
+.addProductButton {
+  width: 100%;
+  max-width: 300px;
+  
+  padding: 16px 32px;
+  margin: 30px auto 10px;
+  
+  display: block;
+  
+  border: none;
+  border-radius: 10px;
+  background-color: #FFAEC0;
+  box-shadow: 0 4px 12px rgba(255, 174, 192, 0.3);
+  
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.addProductButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.gradientButton {
+  background: linear-gradient(
+    304.55deg,
+    #FCC6D2 10%,
+    #FF426B 30%,
+    #246EFF 80%
+  );
+  box-shadow: 0 4px 15px rgba(255, 66, 107, 0.3);
+  
+  color: white;
+}
+
+.gradientButton:hover {
+  box-shadow: 0 8px 20px rgba(255, 66, 107, 0.4);
+  
+  transform: translateY(-3px);
+}
+
+.container {
+  width: 100%;
+  height: auto;
+  min-height: 90vh;
+  
+  padding: 20px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  
+  background-color: #ffffff;
+}
+
+.backButtonWrapper {
+  width: 40px;
+  height: 40px;
+  
+  margin: 20px 0 0 20px;
+  
+  align-self: flex-start;
+  
+  z-index: 10;
+}
+
+.contentBox {
+  width: 80%;
+  max-width: 1000px;
+  height: auto;
+  
+  padding: 50px 40px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  border-radius: 16px;
+  background-color: #FFD799;
+  box-shadow: 0 8px 25px rgba(255, 215, 153, 0.3);
+  overflow-y: visible;
+}
+
+.mainTitle {
+  width: 100%;
+  
+  margin-bottom: 40px;
+  
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
+}
+
+.fieldLabel {
+  margin-bottom: 8px;
+  
+  display: block;
+  
+  font-weight: 500;
+  color: #333;
+}
+
+.requiredField::after {
+  margin-left: 4px;
+  
+  content: '*';
+  color: #FF426B;
+}
+
+@media screen and (max-width: 1024px) {
+  .contentBox {
+    width: 90%;
+    
+    padding: 40px 30px;
+  }
+  
+  .mainTitle {
+    margin-bottom: 30px;
+    
+    font-size: 30px;
+  }
+  
+  .mainImage {
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contentBox {
+    width: 95%;
+    
+    padding: 30px 20px;
+  }
+  
+  .mainTitle {
+    margin-bottom: 25px;
+    
+    font-size: 24px;
+  }
+  
+  .thumbnails {
+    max-width: 290px;
+    
+    gap: 8px;
+  }
+  
+  .thumbnail {
+    height: 50px;
+    
+    flex: 0 0 50px;
+  }
+  
+  .thumbnailNumber {
+    padding: 1px 4px;
+    
+    font-size: 10px;
+  }
+  
+  .mainImage {
+    height: 350px;
+  }
+  
+  .imageNavButton {
+    width: 30px;
+    height: 30px;
+    
+    font-size: 14px;
+  }
+  
+  .addProductButton {
+    padding: 14px 28px;
+    
+    font-size: 16px;
+  }
+}
