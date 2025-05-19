@@ -2,6 +2,7 @@
 
 import CerereListing from '@/lib/components/home/CerereListing';
 import CerereListingLaborant from '@/lib/components/home/echipamente/CerereListingLaborant';
+import ListareUser from '@/lib/components/home/echipamente/ListareUser';
 
 export default function Page() {
   return (
@@ -14,6 +15,14 @@ export default function Page() {
       <CerereListingLaborant title="Prelungitor 1" studentName="Prodan Beatrice" label="Pending"onClick={()=> console.log("clicked - just testing again")}/>
       <CerereListingLaborant title="Prelungitor 2" studentName="Prodan Beatrice" label="Accepted"onClick={()=> console.log("clicked - just testing again")}/>
       <CerereListingLaborant title="Prelungitor 3" studentName="Prodan Beatrice" label="Rejected"onClick={()=> console.log("clicked - just testing again")}/>
+
+      <p>Listare users: </p>
+      <ListareUser numeUser="Prodan Beatrice"  label="Approved"onClick={()=> console.log("clicked - just testing again")}/>
+      <ListareUser numeUser="Prodan Beatrice"  label="Rejected"onClick={()=> console.log("clicked - just testing again")}/>
+      <ListareUser numeUser="Prodan Beatrice"  label="FII"onClick={()=> console.log("clicked - just testing again")}/>
+      <ListareUser numeUser="Prodan Beatrice"  label="Pending"onClick={()=> console.log("clicked - just testing again")}/>
+
+    
     </div>
     
   );
