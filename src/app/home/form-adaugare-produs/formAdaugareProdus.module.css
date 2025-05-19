@@ -1,5 +1,6 @@
 .productForm {
   width: 100%;
+  
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -7,6 +8,7 @@
 
 .formField {
   width: 100%;
+  
   display: flex;
   flex-direction: column;
 }
@@ -14,13 +16,19 @@
 .textInput,
 .textarea {
   width: 100%;
+  
   padding: 16px;
+  
+  display: flex;
+  
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  font-size: 16px;
   background-color: white;
-  color: #333;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  
+  font-size: 16px;
+  color: #333;
+  
   transition: all 0.3s ease;
 }
 
@@ -32,46 +40,57 @@
 }
 
 .textarea {
-  resize: vertical;
   min-height: 120px;
+  
+  resize: vertical;
+  
   font-family: inherit;
   line-height: 1.5;
 }
 
 .imageUploadSection {
-  margin: 30px 0;
   width: 100%;
+  
+  margin: 30px 0;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .imageUploadLabel {
+  width: 100%;
+  max-width: 500px;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 500px;
 }
 
 .uploadButtonWrapper {
-  background-color: #fff;
-  color: #333;
-  padding: 18px 25px;
-  border-radius: 10px;
-  cursor: pointer;
-  display: inline-block;
-  margin-bottom: 20px;
-  border: 2px dashed #FF92A9;
-  transition: all 0.3s;
   width: 100%;
+  
+  padding: 18px 25px;
+  margin-bottom: 20px;
+  
+  display: inline-block;
+  
+  border: 2px dashed #FF92A9;
+  border-radius: 10px;
+  background-color: #fff;
+  
   text-align: center;
   font-weight: 500;
+  color: #333;
+  
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .uploadButtonWrapper:hover {
   background-color: #FFF5F7;
   border-color: #FF426B;
+  
   transform: translateY(-2px);
 }
 
@@ -82,7 +101,9 @@
 .imageGallery {
   width: 100%;
   max-width: 600px;
+  
   margin: 0 auto;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,6 +113,7 @@
 .mainImage {
   width: 100%;
   height: 450px;
+  
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -100,68 +122,84 @@
 .imagePlaceholder {
   width: 100%;
   height: 100%;
-  background-color: white;
+  
   display: grid;
   grid-template-columns: 40px 1fr 40px;
   grid-template-rows: 40px 1fr;
+  
   border-radius: 12px;
   overflow: hidden;
+  background-color: white;
 }
 
 .productImage {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  
+  padding: 10px;
+  
   grid-column: 1 / span 3;
   grid-row: 1 / span 2;
+  
+  object-fit: contain;
   z-index: 1;
-  padding: 10px;
 }
 
 .removeImageButton {
   width: 24px;
   height: 24px;
-  background-color: white;
-  color: #FF426B;
-  border: 1px solid #FF426B;
-  border-radius: 50%;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  opacity: 0.8;
-  z-index: 10;
-  font-weight: bold;
+  
+  margin: 10px;
+  
   grid-column: 3;
   grid-row: 1;
   justify-self: end;
   align-self: start;
-  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  border: 1px solid #FF426B;
+  border-radius: 50%;
+  background-color: white;
+  
+  font-size: 12px;
+  font-weight: bold;
+  color: #FF426B;
+  
+  cursor: pointer;
+  opacity: 0.8;
+  z-index: 10;
+  transition: all 0.2s;
 }
 
 .removeImageButton:hover {
-  opacity: 1;
   background-color: #FF426B;
+  
   color: white;
+  
+  opacity: 1;
   transform: scale(1.1);
 }
 
 .imageNavButton {
-  background-color: rgba(255, 255, 255, 0.7);
-  color: #333;
-  border: none;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  
   font-size: 18px;
+  color: #333;
+  
   cursor: pointer;
-  transition: all 0.2s;
   z-index: 5;
+  transition: all 0.2s;
 }
 
 .prevButton {
@@ -180,6 +218,7 @@
 
 .imageNavButton:hover {
   background-color: rgba(255, 255, 255, 0.9);
+  
   transform: scale(1.1);
 }
 
@@ -188,38 +227,42 @@
   cursor: not-allowed;
 }
 
-/* Corectarea container-ului de thumbnails și layout */
 .thumbnailsContainer {
-  display: flex;
   width: 100%;
+  
+  display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* Spațiere între elemente */
+  gap: 10px;
 }
 
-/* Miniaturile aranjate orizontal */
 .thumbnails {
+  max-width: 450px;
+  
+  padding: 5px;
+  
   display: flex;
-  flex-direction: row; /* Asigură aranjarea pe orizontală */
-  flex-wrap: nowrap; /* Evită împărțirea pe rânduri */
-  gap: 12px; /* Spațiere între miniaturi */
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  overflow-x: auto; /* Permite derulare orizontală dacă sunt prea multe */
-  max-width: 450px;
-  padding: 5px; /* Spațiu pentru scroll */
+  gap: 12px; 
+  overflow-x: auto; 
+  
   scrollbar-width: thin;
 }
 
-/* Stilizarea fiecărei miniaturi */
 .thumbnail {
-  flex: 0 0 70px; /* Lățime fixă, nu se redimensionează */
   height: 70px;
+  
+  flex: 0 0 70px;
+  
+  border: 3px solid transparent;
   border-radius: 8px;
   overflow: hidden;
-  cursor: pointer;
-  border: 3px solid transparent;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
@@ -231,53 +274,60 @@
   border-color: #FF426B;
 }
 
-/* Container pentru imagine și număr */
 .thumbnailPlaceholder {
   width: 100%;
   height: 100%;
+  
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: 1fr auto;
 }
 
-/* Imaginea miniatură */
 .thumbnailImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  
   grid-column: 1 / -1;
   grid-row: 1 / -1;
+  
+  object-fit: cover;
 }
 
-/* Numărul miniatură */
 .thumbnailNumber {
+  padding: 2px 5px;
+  margin: 2px;
+  
   grid-column: 2;
   grid-row: 2;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  font-size: 12px;
-  padding: 2px 5px;
+  
   border-radius: 4px;
-  margin: 2px;
+  background-color: rgba(0, 0, 0, 0.5);
+  
+  font-size: 12px;
+  color: white;
+  
   z-index: 2;
 }
 
-/* Butoanele de navigare pentru miniaturi */
 .thumbnailNavButton {
-  background-color: rgba(255, 146, 169, 0.7);
-  color: white;
-  border: none;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
   flex-shrink: 0;
+  
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 146, 169, 0.7);
+  
+  font-size: 14px;
+  color: white;
+  
+  cursor: pointer;
   z-index: 2;
+  transition: all 0.2s;
 }
 
 .thumbnailNavButton:hover {
@@ -298,37 +348,44 @@
 }
 
 .imageCounter {
-  text-align: center;
-  font-size: 14px;
   margin-top: 10px;
   margin-bottom: 15px;
+  
+  text-align: center;
+  font-size: 14px;
   color: #555;
 }
 
 .imageLimit {
+  margin-top: 10px;
+  
   text-align: center;
   font-size: 14px;
-  margin-top: 10px;
-  color: #777;
   font-weight: 500;
+  color: #777;
 }
 
 .addProductButton {
-  background-color: #FFAEC0;
-  color: #000;
-  border: none;
-  padding: 16px 32px;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 30px auto 10px;
-  display: block;
   width: 100%;
   max-width: 300px;
-  text-align: center;
-  transition: all 0.3s;
+  
+  padding: 16px 32px;
+  margin: 30px auto 10px;
+  
+  display: block;
+  
+  border: none;
+  border-radius: 10px;
+  background-color: #FFAEC0;
   box-shadow: 0 4px 12px rgba(255, 174, 192, 0.3);
+  
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .addProductButton:disabled {
@@ -343,32 +400,40 @@
     #FF426B 30%,
     #246EFF 80%
   );
-  color: white;
   box-shadow: 0 4px 15px rgba(255, 66, 107, 0.3);
+  
+  color: white;
 }
 
 .gradientButton:hover {
-  transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(255, 66, 107, 0.4);
+  
+  transform: translateY(-3px);
 }
 
 .container {
+  width: 100%;
   height: auto;
   min-height: 90vh;
-  width: 100%;
+  
   padding: 20px;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
+  
   background-color: #ffffff;
 }
 
 .backButtonWrapper {
-  align-self: flex-start;
-  margin: 20px 0 0 20px;
   width: 40px;
   height: 40px;
+  
+  margin: 20px 0 0 20px;
+  
+  align-self: flex-start;
+  
   z-index: 10;
 }
 
@@ -376,49 +441,59 @@
   width: 80%;
   max-width: 1000px;
   height: auto;
+  
   padding: 50px 40px;
   margin-top: 30px;
   margin-bottom: 50px;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #FFD799;
+  
   border-radius: 16px;
+  background-color: #FFD799;
   box-shadow: 0 8px 25px rgba(255, 215, 153, 0.3);
   overflow-y: visible;
 }
 
 .mainTitle {
+  width: 100%;
+  
+  margin-bottom: 40px;
+  
+  text-align: center;
   font-size: 36px;
   font-weight: 700;
-  text-align: center;
-  margin-bottom: 40px;
   color: #333;
-  width: 100%;
 }
 
 .fieldLabel {
-  font-weight: 500;
   margin-bottom: 8px;
+  
   display: block;
+  
+  font-weight: 500;
   color: #333;
 }
 
 .requiredField::after {
+  margin-left: 4px;
+  
   content: '*';
   color: #FF426B;
-  margin-left: 4px;
 }
 
 @media screen and (max-width: 1024px) {
   .contentBox {
     width: 90%;
+    
     padding: 40px 30px;
   }
   
   .mainTitle {
-    font-size: 30px;
     margin-bottom: 30px;
+    
+    font-size: 30px;
   }
   
   .mainImage {
@@ -429,27 +504,32 @@
 @media screen and (max-width: 768px) {
   .contentBox {
     width: 95%;
+    
     padding: 30px 20px;
   }
   
   .mainTitle {
-    font-size: 24px;
     margin-bottom: 25px;
+    
+    font-size: 24px;
   }
   
   .thumbnails {
-    gap: 8px;
     max-width: 290px;
+    
+    gap: 8px;
   }
   
   .thumbnail {
-    flex: 0 0 50px;
     height: 50px;
+    
+    flex: 0 0 50px;
   }
   
   .thumbnailNumber {
-    font-size: 10px;
     padding: 1px 4px;
+    
+    font-size: 10px;
   }
   
   .mainImage {
@@ -459,11 +539,13 @@
   .imageNavButton {
     width: 30px;
     height: 30px;
+    
     font-size: 14px;
   }
   
   .addProductButton {
     padding: 14px 28px;
+    
     font-size: 16px;
   }
 }

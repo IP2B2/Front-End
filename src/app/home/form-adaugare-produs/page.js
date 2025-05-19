@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation';
 export default function Page() {
   const router = useRouter();
   
-  // Flag pentru a determina dacă suntem pe client
   const [isClient, setIsClient] = useState(false);
   
   const [formData, setFormData] = useState({
@@ -34,12 +33,10 @@ export default function Page() {
   const [startThumbnailIndex, setStartThumbnailIndex] = useState(0);
   const maxVisibleThumbnails = 5;
   
-  // Setăm flag-ul isClient după prima renderizare
   useEffect(() => {
     setIsClient(true);
   }, []);
   
-  // Încărcăm datele din sessionStorage doar după ce componentul este montat pe client
   useEffect(() => {
     if (!isClient) return;
     
@@ -76,26 +73,21 @@ export default function Page() {
     }
   }, [isClient]);
   
-  // Salvăm datele în sessionStorage când se modifică
-  useEffect(() => {
-    if (!isClient) return;
-    
-    const formDataToSave = {
-      numeProdus: formData.numeProdus,
-      descriere: formData.descriere,
-      modUtilizare: formData.modUtilizare,
-      materialSiIntretinere: formData.materialSiIntretinere,
-    };
-    
-    sessionStorage.setItem('productFormData', JSON.stringify(formDataToSave));
-    
-    // if (previewImages.length > 0) {
-    //   sessionStorage.setItem('productImageUrls', JSON.stringify(previewImages));
-    // } else {
-       sessionStorage.removeItem('productImageUrls');
-    // }
-  }, [isClient, formData.numeProdus, formData.descriere, formData.modUtilizare, formData.materialSiIntretinere, previewImages]);
+useEffect(() => {
+  if (!isClient) return;
   
+  sessionStorage.setItem('FormData', JSON.stringify(formData));
+  
+  if (previewImages.length > 0) {
+    try {
+      sessionStorage.setItem('ImageUrls', JSON.stringify(previewImages));
+    } catch (error) {
+      console.error('Eroare la salvarea imaginilor:', error);
+    }
+  }
+}, [isClient, formData, previewImages]); 
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -104,7 +96,6 @@ export default function Page() {
     }));
   };
 
-  // Funcție pentru debounce
   const debounce = (func, delay) => {
     let timeoutId;
     return function(...args) {
@@ -117,16 +108,14 @@ export default function Page() {
     };
   };
 
-  // Funcție pentru validarea tipului de fișier
   const isValidImageFile = (file) => {
     const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp'];
     return validTypes.includes(file.type);
   };
 
   const processImages = async (files) => {
-    if (isUploading) return; // Evităm procesarea multiplă
+    if (isUploading) return; 
     
-    // Verificăm dacă avem fișiere valide
     if (!files || files.length === 0) return;
     
     setIsUploading(true);
@@ -143,7 +132,6 @@ export default function Page() {
         alert('Unele fișiere au fost ignorate deoarece nu sunt imagini.');
       }
       
-      // Verificăm limita de 3 imagini
       const totalImageCount = formData.imagini.length + validFiles.length;
       
       if (totalImageCount > 3) {
@@ -178,7 +166,6 @@ export default function Page() {
     }
   };
   
-  // Aplicăm debounce la handleImageUpload
   const handleImageUpload = debounce((e) => {
     processImages(e.target.files);
   }, 300);
@@ -193,21 +180,18 @@ export default function Page() {
     setFormData(prev => ({ ...prev, imagini: updatedImages }));
     setPreviewImages(updatedPreviews);
     
-    // Ajustăm indexul selectat dacă e necesar
     if (selectedImageIndex >= updatedPreviews.length) {
       setSelectedImageIndex(Math.max(0, updatedPreviews.length - 1));
     } else if (selectedImageIndex === indexToRemove && updatedPreviews.length > 0) {
       setSelectedImageIndex(Math.min(selectedImageIndex, updatedPreviews.length - 1));
     }
     
-    // Ajustăm indexul de start pentru miniaturi dacă e necesar
     if (startThumbnailIndex > 0 && startThumbnailIndex >= updatedPreviews.length - maxVisibleThumbnails) {
       setStartThumbnailIndex(Math.max(0, updatedPreviews.length - maxVisibleThumbnails));
     }
   };
 
   const handleAddProduct = () => {
-    // Nu mai revocăm URL-uri, deoarece folosim base64
     
     if (isClient) {
       sessionStorage.removeItem('productFormData');
@@ -270,7 +254,6 @@ export default function Page() {
         <h1 className={styles.mainTitle}>Adăugare produs nou</h1>
         
         <div className={styles.productForm}>
-          {/* Input pentru numele produsului */}
           <div className={styles.formField}>
             <input
               type="text"
@@ -283,7 +266,6 @@ export default function Page() {
             />
           </div>
           
-          {/* Secțiunea pentru încărcarea imaginilor */}
           <div className={styles.imageUploadSection}>
             <label className={styles.imageUploadLabel}>
               <div className={styles.uploadButtonWrapper}>
@@ -298,7 +280,6 @@ export default function Page() {
               </div>
             </label>
             
-            {/* Previzualizare imagini - doar pe client */}
             {isClient && previewImages.length > 0 && (
               <div className={styles.imageGallery}>
                 <div className={styles.mainImage}>
@@ -312,7 +293,6 @@ export default function Page() {
                       unoptimized={previewImages[selectedImageIndex].startsWith('data:')}
                     />
                     
-                    {/* Butoane pentru navigarea prin imagini */}
                     {previewImages.length > 1 && (
                       <>
                         <button 
@@ -335,7 +315,6 @@ export default function Page() {
                       </>
                     )}
                     
-                    {/* Buton X pentru ștergerea imaginii */}
                     <button 
                       className={styles.removeImageButton}
                       onClick={() => handleRemoveImage(selectedImageIndex)}
@@ -347,12 +326,10 @@ export default function Page() {
                   </div>
                 </div>
                 
-                {/* Contador imagini */}
                 <div className={styles.imageCounter}>
                   Imagine {selectedImageIndex + 1} din {previewImages.length} ({3 - previewImages.length} rămase)
                 </div>
                 
-                {/* Miniaturi cu navigare */}
                 {previewImages.length > 1 && (
                   <div className={styles.thumbnailsContainer}>
                     {shouldShowThumbnailNavigation && (
@@ -404,7 +381,6 @@ export default function Page() {
                   </div>
                 )}
                 
-                {/* Afișează numărul total de imagini */}
                 <div className={styles.imageLimit}>
                   {previewImages.length}/3 imagini adăugate
                 </div>
@@ -412,7 +388,6 @@ export default function Page() {
             )}
           </div>
           
-          {/* Câmpuri pentru detalii produs */}
           <div className={styles.formField}>
             <textarea
               name="descriere"
@@ -449,7 +424,6 @@ export default function Page() {
             />
           </div>
           
-          {/* Buton de adăugare produs */}
           <button 
             className={`${styles.addProductButton} ${allFieldsFilled ? styles.gradientButton : ''}`} 
             onClick={handleAddProduct}
