@@ -14,7 +14,7 @@ export default function ListareUser({ numeUser, label, onClick }) {
   };
 
   return (
-    <div className={styles.container} onClick={onClick ?? (() => {})}>
+    <div className={styles.container} onClick={onClick ?? undefined}>
       <div className={styles.numeUser}>{numeUser}</div>
       <div className={`${styles.label} ${getStatusClass()}`}>{label}</div>
     </div>
