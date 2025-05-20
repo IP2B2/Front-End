@@ -3,15 +3,8 @@
 import { useState, useEffect } from 'react';
 import styles from './administrareUseri.module.css';
 import { useRouter } from 'next/navigation';
-import dynamic from 'next/dynamic';
+import SearchAndFilter from '@/lib/components/home/echipamente/SearchAndFilter';
 
-// Importăm componenta SearchAndFilter folosind dynamic import
-const SearchAndFilter = dynamic(
-  () => import('@/lib/components/home/echipamente/SearchAndFilter'),
-  { ssr: false }
-);
-
-// Mock data pentru demonstrație - ACUM CU PROPRIETATEA name CORECTĂ
 const usersData = [
   { id: 1, nume: 'Popescu', prenume: 'Ion', facultate: 'FII', subfacultate: 'Informatica', name: 'Popescu Ion' },
   { id: 2, nume: 'Ionescu', prenume: 'Maria', facultate: 'FEEA', subfacultate: 'Management', name: 'Ionescu Maria' },
@@ -21,7 +14,6 @@ const usersData = [
   { id: 6, nume: 'Vasilescu', prenume: 'Mihai', facultate: 'Litere', subfacultate: 'Engleza', name: 'Vasilescu Mihai' },
 ];
 
-// Pregătim datele într-un format compatibil cu SearchAndFilter
 const usersCollection = {
   filterBy: {
     facultate: "Facultate",
@@ -30,7 +22,6 @@ const usersCollection = {
   items: usersData
 };
 
-// Componenta pentru fiecare utilizator din listă
 const UserItem = (props) => {
   const { nume, prenume, facultate } = props;
   
@@ -54,11 +45,6 @@ export default function AdministrareUseriPage() {
     setMounted(true);
   }, []);
 
-  const handleCereriClick = () => {
-    router.push('/home/cereri-utilizatori');
-  };
-
-  // Nu afișăm nimic până când componenta nu este montată
   if (!mounted) {
     return <div className={styles.loading}>Se încarcă...</div>;
   }
@@ -68,14 +54,6 @@ export default function AdministrareUseriPage() {
       <div className={styles.pageHeader}>
         <div className={styles.titleWrapper}>
           <h1 className={styles.pageTitle}>Administrare Utilizatori</h1>
-        </div>
-        <div className={styles.buttonWrapper}>
-          <button 
-            className={styles.cereriButton}
-            onClick={handleCereriClick}
-          >
-            Cereri utilizatori
-          </button>
         </div>
       </div>
       
