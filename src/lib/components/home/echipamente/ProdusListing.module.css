@@ -1,59 +1,80 @@
-.container {
-    width: 100%;
+.row {
+    min-width: 600px;
+    padding: 16px 0;
+    margin: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 12px 24px;
-
-    margin-bottom: 20px;
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    background-color: #fecdd3;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.title {
-    font-size: var(--font-size-md);
-    font-weight: bold;
+    border-bottom: 1px var(--border-gray);
+    background-color: var(--background);
     color: var(--foreground);
-}
+  }
 
-.label {
-    border-radius: 8px;
-    padding: 10px 12px;
-
-    color: white;
-    font-size: var(--font-size-md);
-    font-weight: 700;
-}
-
-.greenLabel {
-    background-color: #357a47;
-}
-
-.redLabel {
-    background-color: #e43e3e;
-}
-
-
-@media (max-width: 1150px) {
-    .container {
-        padding: 10px 20px;
+  .imageWrapper {
+    width: 50px;
+    height: 50px;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .placeholder {
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: black;
+    border-radius: 4px;
+  }
+  
+  .cell {
+    flex: 1;
+    padding: 0 12px;
+    white-space: nowrap;
+    font-size: var(--font-size-base);
+  }
+  
+  .header {
+    border-bottom: 1px var(--border-gray);
+    font-size: var(--font-size-base);
+  }
+  
+  .icon {
+    width: 40px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: #2563eb;
+    stroke-width: 2;
+    fill: none;
+  }
+  
+  @media (max-width: 1150px){
+    .cell, .header {
+      font-size: var(--font-size-sm);
     }
-}
-
-@media (max-width: 860px) {
-    .container {
-        gap: 12px;
-        padding: 12px 12px;
+  }
+  
+  @media (max-width: 860px) {
+    .cell, .header {
+      font-size: var(--font-size-xs);
     }
-
-    .title,
-    .label {
-        font-size: var(--font-size-sm);
-        padding: 8px 10px;
-    }
-
-}
+  }
+  
