@@ -39,4 +39,10 @@ ListareUser.propTypes = {
   facultate: PropTypes.string.isRequired,
   rol: PropTypes.string.isRequired,
   onClick: PropTypes.func,
+  showHeader: PropTypes.bool,
 };
+
+ListareUser.defaultProps = {
+  showHeader: false,
+};
+

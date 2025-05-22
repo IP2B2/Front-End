@@ -32,10 +32,7 @@ export default function Page() {
         facultate="Facultatea de Informatică Iași"
         rol="Student"
         onClick={() => alert('Edit')}
-        showHeader={false}
       />
-
-
 
     </div>
     
