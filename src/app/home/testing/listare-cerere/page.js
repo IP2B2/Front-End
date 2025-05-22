@@ -34,14 +34,14 @@ export default function Page() {
         denumire="Prelungitor gri"
         locatie="FII"
         data="20 Apr. 2025"
-        onEdit={() => alert('Editează produsul')}
+        onClick={() => alert('Editează produsul')}
         showHeader={true}
       />
       <ListareProdus
         denumire="Prelungitor gri"
         locatie="FII"
         data="20 Apr. 2025"
-        onEdit={() => alert('Editează produsul')}
+        onClick={() => alert('Editează produsul')}
         showHeader={false}
       />
     </div>
