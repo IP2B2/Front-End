@@ -1,0 +1,238 @@
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    background-color: rgba(0, 0, 0, 0.5);
+  
+    z-index: 1000;
+  }
+  
+  .popupContainer {
+    width: 707px;
+    max-height: 90vh;
+  
+    position: relative;
+    padding: 0; 
+  
+    border-radius: 10px !important;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+  
+    background-color: var(--background);
+  
+    overflow-y: auto;
+    overflow: hidden; 
+  }
+  
+  .popupContent {
+    max-height: 90vh;
+  
+    padding: var(--font-size-lg);
+    
+    overflow-y: auto;
+  }
+  
+  .popupContainer > * {
+    border-radius: inherit;
+  }
+  
+  .popupHeader {
+    margin-bottom: var(--font-size-lg);
+    position: relative;
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .popupTitle {
+    width: 100%;
+  
+    margin: 0;
+  
+    font-size: 36px;
+    line-height: 36px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .closeButton {
+    width: 43px;
+    height: 43px;
+  
+    position: absolute;
+    right: 0;
+    top: 0;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    border: none;
+  
+    background: transparent;
+    font-size: 32px;
+    color: #000000;
+  
+    cursor: pointer;
+  }
+  
+  .formGroup {
+    width: 100%;
+  
+    padding: 0;
+    margin-bottom: 20px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .formLabel {
+    font-size: 20px;
+    line-height: var(--font-size-md);
+    color: var(--foreground);
+    font-weight: 600;
+  }
+  
+  .formInput {
+    width: 100%;
+    min-height: 64px; 
+    height: auto;
+    box-sizing: border-box;
+   
+    padding: 20px;
+  
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    justify-content: center; 
+    gap: 10px;
+  
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+   
+    background: #F9F9F9;
+  }
+  
+  .inputText {
+    font-size: 20px;
+    line-height: var(--font-size-md);
+    color: #000000;
+    font-weight: 500;
+  }
+  
+  .productLink {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    text-decoration: none;
+
+    color: inherit;
+  }
+  
+  .productImage {
+    width: 80px;
+    height: 80px;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+    border: 1px solid #eaeaea;
+  }
+  
+  .pdfLink {
+    color: #0066cc;
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: var(--font-size-base);
+  }
+  
+  .statusContainer {
+    margin-top: 40px;
+
+    display: flex;
+    justify-content: center;
+  }
+  
+  .statusLabel {
+    width: 100%;
+    height: 55px;
+
+    padding: 10px var(--font-size-md);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    text-align: center;
+    color: white;
+  }
+  
+  .statusLabel.accepted {
+    background: #357a47;
+  }
+  
+  .statusLabel.rejected {
+    background: #e43e3e;
+  }
+  
+  .statusLabel.pending {
+    background: #f90;
+  }
+  
+  @media (max-width: 767px) {
+    .popupContainer {
+      width: 90%;
+      
+      padding: 20px;
+    }
+    
+    .popupTitle {
+      font-size: 28px;
+    }
+    
+    .formLabel, .inputText {
+      font-size: var(--font-size-sm);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .closeButton {
+      top: -var(--font-size-base) !important;
+    }
+  }
+  
+  @media (max-width: 480px) and (min-width: 390px) {
+    .closeButton {
+      top: -var(--font-size-base) !important;
+    }
+  }
+  
+  @media (max-width: 376px) {
+    .closeButton {
+      top: -5px;
+      right: -20px !important;
+      left: auto !important;
+    }
+  }
+  
+  @media (max-width: 361px) {
+    .closeButton {
+      top: -5px;
+      right: -20px !important;
+      left: auto !important;
+    }
+  }
