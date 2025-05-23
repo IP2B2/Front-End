@@ -1,0 +1,130 @@
+.layout {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.container {
+    position: relative;
+    height: 89vh;
+    width: 100%;
+
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--background);
+    font-family: var(--font-family);
+}
+
+.popupOverlay {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.popupOverlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: #BDBDBD;
+    opacity: 0.8;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.popupBox {
+    max-width: 800px;
+
+    position: absolute;
+    top: 18px;
+    bottom: 18px;
+    z-index: 1;
+
+    background: white;
+    border-radius: 8px;
+    padding: 5vh 5vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width: 1150px) {
+    .popupBox {
+        max-width: 600px;
+        width: 75%;
+
+        padding: 4vh 4vw;
+    }
+
+    .imageWrapper {
+        width: 220px;
+        height: 160px;
+    }
+
+
+}
+
+@media (max-width: 860px) {
+    .popupBox {
+        max-width: 600px;
+        width: 80%;
+
+        padding: 3vh 3vw;
+    }
+
+    .imageWrapper {
+        width: 160px;
+        height: 120px;
+    }
+}
+
+
+.xButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 21.5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.popupContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 250;
+    height: 180;
+}
+
+.successTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.successMessage {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 0.4rem;
+}
