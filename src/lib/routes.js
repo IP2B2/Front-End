@@ -72,8 +72,17 @@ const routes = {
     },
     'listare-cerere': {
         title: 'Testing: listare-cerere',
-        requiresAuth: true,
+        requiresAuth: false,
         route: '/home/testing/listare-cerere',
+    },
+    'produs-adaugat-succes': {
+        title: 'Produs adaugat cu succes',
+        requiresAuth: true,
+        route: '/home/produs-adaugat-succes',
+    }, 'cerere-preview': {
+        title: 'Testing: cerere-preview',
+        requiresAuth: false,
+        route: '/home/testing/cerere-preview',
     },
     'pagina-confirmare-decizie-admin': {
         title: 'Pagina confirmare decizie - ADMIN',
