@@ -21,7 +21,7 @@
     position: relative;
     padding: 0; 
   
-    border-radius: 10px !important;
+    border-radius: 10px;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
   
     background-color: var(--background);
@@ -211,28 +211,28 @@
   
   @media (max-width: 480px) {
     .closeButton {
-      top: -var(--font-size-base) !important;
+      top: -var(--font-size-base);
     }
   }
   
   @media (max-width: 480px) and (min-width: 390px) {
     .closeButton {
-      top: -var(--font-size-base) !important;
+      top: -var(--font-size-base);
     }
   }
   
   @media (max-width: 376px) {
     .closeButton {
       top: -5px;
-      right: -20px !important;
-      left: auto !important;
+      right: -20px;
+      left: auto;
     }
   }
   
   @media (max-width: 361px) {
     .closeButton {
       top: -5px;
-      right: -20px !important;
-      left: auto !important;
+      right: -20px;
+      left: auto;
     }
   }
