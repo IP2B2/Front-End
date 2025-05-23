@@ -27,10 +27,10 @@ export default function Sidebar() {
               >
                 <span>
                   <Image
-                    src="/icons/administrare-icon.svg"
+                    src="/icons/icon-administrare.svg"
                     alt="Administrare"
-                    width={16}
-                    height={16}
+                    width={18}
+                    height={18}
                   />
                 </span>
                 <span>Administrare</span>
