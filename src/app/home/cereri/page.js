@@ -24,16 +24,6 @@ const usersCollection = {
   items: usersData
 };
 
-const UserListingWrapper = ({ index, ...props }) => {
-  return (
-    <ListareUser 
-      {...props} 
-      showHeader={index === 0}
-      onClick={() => handleUserEdit(props.id)}
-    />
-  );
-};
-
 export default function AdministrareUseriPage() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
