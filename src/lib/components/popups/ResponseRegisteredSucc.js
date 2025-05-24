@@ -3,7 +3,7 @@
 import styles from './Popup.module.css';
 import Image from "next/image";
 
-export default function ProductAddedSucc({ open, onClose }) {
+export default function ResponseRegisteredSucc({ open, onClose }) {
     if (!open) return null;
 
     return (
@@ -13,16 +13,16 @@ export default function ProductAddedSucc({ open, onClose }) {
                 <div className={styles.popupContent}>
                     <div className={styles.imageWrapper}>
                         <Image
-                            src="/animated-characters/jumping.svg"
+                            src="/animated-characters/loving.svg"
                             alt="Character"
                             width={250}
                             height={180}
                             style={{ objectFit: "contain" }}
                         />
                     </div>
-                    <h2 className={styles.successTitle}>Produs adăugat cu succes!</h2>
+                    <h2 className={styles.successTitle}>Răspunsul tău a fost înregistrat cu succes!</h2>
                     <p className={styles.successMessage}>
-                        Ai adăugat produsul cu succes! Acesta va fi disponibil imediat în lista de produse.
+                        Răspunsul trimis a fost salvat. Acesta va fi luat în considerare de către echipă în cel mai scurt timp.
                     </p>
                 </div>
             </div>
