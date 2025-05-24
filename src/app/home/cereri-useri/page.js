@@ -1,7 +1,7 @@
 'use client'
 
 import SearchAndFilter from '@/lib/components/home/echipamente/SearchAndFilter';
-import CerereListing from '@/lib/components/home/CerereListing';
+import CerereListing from '@/lib/components/home/echipamente/CerereListingStudent';
 import styles from './cereriUseri.module.css';
 
 const userRequests = {
