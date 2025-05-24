@@ -1,75 +1,115 @@
 .container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 
-    margin-bottom: 20px;
-    border-radius: 6px;
+  padding: 12px 24px;
+  margin-bottom: 20px;
+  border-radius: 6px;
 
-    cursor: pointer;
+  background-color: var(--backgrroound);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    background-color: #fecdd3;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.imageWrapper {
+  width: 80px;
+  height: 80px;
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  color: black;
+  border-radius: 4px;
+}
+
+
+
+.details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  color: var(--foreground);
+}
+
+.location,
+.user {
+  font-size: var(--font-size-xs);
+  color: var(--foreground);
+}
+
+.statusContainer {
+  font-size: var(--font-size-xs);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.label {
+  border-radius: 8px;
+  padding: 3px 10px;
+  background-color: #416598;
+  color: white;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+}
+
+.greenLabel {
+  background-color: #357a47;
+}
+
+.redLabel {
+  background-color: #e43e3e;
+}
+
+.icon {
+  color: #416598;
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 860px) {
+  .container {
+    padding: 12px;
+    gap: 12px;
   }
-  
+
   .title {
-    font-size: var(--font-size-md);
-    font-weight: bold;
-    color: var(--foreground);
-  }
-
-  .stdName {
-    font-size: var(--font-size-sm);
-    font-weight: bold;
-    color: var(--foreground);
-    margin-top: 4px;
+    font-size: var(--font-size-xs);
   }
 
   .label {
-    border-radius: 8px;
-    padding: 10px 12px;
-
-    background-color: #416598;
-
-    color: white;
-    font-size: var(--font-size-md);
-    font-weight: 700;
-  }
-  
-  .greenLabel {
-    background-color: #357a47;
+    font-size: var(--font-size-xs);
+    padding: 4px 8px;
   }
 
-  .redLabel {
-    background-color: #e43e3e;
+  .location,
+  .user {
+    font-size: var(--font-size-xs);
   }
-  
-
-  @media (max-width: 1150px) {
-    .container {
-      padding: 10px 20px;
-    }
-  }
-
-  @media (max-width: 860px) {
-    .container {
-      gap: 12px;
-      padding: 12px 12px;  
-    }
-    .title{
-        font-size: var(--font-size-sm);
-    }
-
-    .label {
-      font-size: var(--font-size-sm);
-      padding: 8px 10px;
-    }
-
-    .stdName{
-        font-size: var(--font-size-xs);
-    }
-
-  }
-  
+}
