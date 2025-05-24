@@ -255,6 +255,7 @@ useEffect(() => {
         
         <div className={styles.productForm}>
           <div className={styles.formField}>
+            <label className={styles.fieldLabel}>Nume produs</label>
             <input
               type="text"
               name="numeProdus"
@@ -267,7 +268,9 @@ useEffect(() => {
           </div>
           
           <div className={styles.imageUploadSection}>
+            <label className={styles.fieldLabel}>Adăugare imagini</label>
             <label className={styles.imageUploadLabel}>
+              
               <div className={styles.uploadButtonWrapper}>
                 <span>Adaugă imagini produs</span>
                 <input 
@@ -389,6 +392,7 @@ useEffect(() => {
           </div>
           
           <div className={styles.formField}>
+            <label className={styles.fieldLabel}>Descriere produs</label>
             <textarea
               name="descriere"
               value={formData.descriere}
@@ -401,6 +405,7 @@ useEffect(() => {
           </div>
           
           <div className={styles.formField}>
+            <label className={styles.fieldLabel}>Mod de utilizare</label>
             <textarea
               name="modUtilizare"
               value={formData.modUtilizare}
@@ -413,6 +418,7 @@ useEffect(() => {
           </div>
           
           <div className={styles.formField}>
+            <label className={styles.fieldLabel}>Material și întreținere</label>
             <textarea
               name="materialSiIntretinere"
               value={formData.materialSiIntretinere}
