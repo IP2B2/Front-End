@@ -1,34 +1,9 @@
-.layout {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-}
-
-.container {
-    position: relative;
-    height: 89vh;
-    width: 100%;
-
-    padding: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: var(--background);
-    font-family: var(--font-family);
-}
-
 .popupOverlay {
     position: fixed;
-    left: 0;
-    bottom: 0;
-    top: 0;
-    right: 0;
     inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-
     z-index: 1000;
 }
 
@@ -44,28 +19,22 @@
 
 .popupBox {
     max-width: 800px;
-
     position: absolute;
     top: 18px;
     bottom: 18px;
-    z-index: 1;
-
     background: white;
     border-radius: 8px;
     padding: 5vh 5vw;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-
 @media (max-width: 1150px) {
     .popupBox {
         max-width: 600px;
         width: 75%;
-
         padding: 4vh 4vw;
     }
 
@@ -73,15 +42,12 @@
         width: 220px;
         height: 160px;
     }
-
-
 }
 
 @media (max-width: 860px) {
     .popupBox {
         max-width: 600px;
         width: 80%;
-
         padding: 3vh 3vw;
     }
 
@@ -90,7 +56,6 @@
         height: 120px;
     }
 }
-
 
 .xButton {
     position: absolute;
@@ -111,8 +76,8 @@
 
 .imageWrapper {
     position: relative;
-    width: 250;
-    height: 180;
+    width: 250px;
+    height: 180px;
 }
 
 .successTitle {
