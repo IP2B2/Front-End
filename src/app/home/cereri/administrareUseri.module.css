@@ -1,12 +1,12 @@
 .pageContainer {
   width: 100%;
-  
-  padding: 20px;
+  padding: 20px 30px;
+  box-sizing: border-box;
 }
 
 .pageHeader {
   margin-bottom: 30px;
-  padding: 0 15px;
+  padding: 0;
   
   display: flex;
   justify-content: space-between;
@@ -21,10 +21,41 @@
   font-size: 28px;
   font-weight: 600;
   color: #333;
+  margin: 0;
 }
 
 .searchAndFilterContainer {
   width: 100%;
+  overflow-x: auto;
+}
+
+.searchAndFilterContainer :global(.row) {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.searchAndFilterContainer :global(.header) {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  padding: 12px 0;
+  border-radius: 8px 8px 0 0;
+}
+
+.searchAndFilterContainer :global(.cell) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 12px;
+}
+
+.searchAndFilterContainer :global(.icon) {
+  transition: transform 0.2s;
+}
+
+.searchAndFilterContainer :global(.icon:hover) {
+  transform: scale(1.1);
 }
 
 .loading {
@@ -39,36 +70,19 @@
   color: #555;
 }
 
-.userListingContainer {
-  width: 100%;
+@media (max-width: 992px) {
+  .pageContainer {
+    padding: 15px 20px;
+  }
   
-  padding: 15px 20px;
-  margin-bottom: 12px;
+  .pageTitle {
+    font-size: 24px;
+  }
   
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  
-  border-radius: 8px;
-  background-color: #ffd6d6;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.userName {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-}
-
-.userLabel {
-  padding: 6px 16px;
-  
-  border-radius: 8px;
-  background-color: #c2d6ff;
-  
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
+  .searchAndFilterContainer :global(.cell) {
+    padding: 10px;
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -76,5 +90,25 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .pageContainer {
+    padding: 15px;
+  }
+  
+  .pageTitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 576px) {
+  .pageContainer {
+    padding: 10px;
+  }
+  
+  .searchAndFilterContainer {
+    overflow-x: auto;
+    padding-bottom: 10px; 
   }
 }
