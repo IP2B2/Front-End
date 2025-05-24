@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import SearchAndFilterAndButton from '@/lib/components/home/echipamente/SearchAndFilterAndButton';
 import ProdusListing from '@/lib/components/home/echipamente/ProdusListing';
 import styles from './listareProduseAdmin.module.css';
+import AdaugareProdusPopup from "@/lib/components/home/echipamente/AdaugareProdusPopup";
 
 const produseData = {
   filterBy: {
@@ -70,6 +71,7 @@ export default function ListareProduseAdminPage() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
+  const [showAddProductPopup, setShowAddProductPopup] = useState(false);
   
   useEffect(() => {
     setMounted(true);
@@ -79,9 +81,8 @@ export default function ListareProduseAdminPage() {
     return null; 
   }
   
-  const handleAddProduct = () => {
-    router.push('/home/form-adaugare-produs');
-  };
+  const handleAddProduct = () => setShowAddProductPopup(true);
+  const handleClosePopup = () => setShowAddProductPopup(false);
   
   const handleEditProduct = (id) => {
     console.log('Editare produs cu ID: ${id}');
@@ -89,22 +90,27 @@ export default function ListareProduseAdminPage() {
 
   return (
     <div className={styles.pageContainer}>
-      <SearchAndFilterAndButton 
-        title="Produse"
-        ItemComponent={({ denumire, locatie, data, id, imageSrc }) => (
-          <ProdusListing 
-            denumire={denumire}
-            locatie={locatie}
-            data={data}
-            imageSrc={imageSrc}
-            showHeader={showHeader && id === 1}
-            onClick={() => handleEditProduct(id)}
-          />
-        )}
-        collectionObject={produseData}
-        buttonText="Adăugare produs"
-        onButtonClick={handleAddProduct}
-      />
+      {!showAddProductPopup && (
+        <SearchAndFilterAndButton 
+          title="Produse"
+          ItemComponent={({ denumire, locatie, data, id, imageSrc }) => (
+            <ProdusListing 
+              denumire={denumire}
+              locatie={locatie}
+              data={data}
+              imageSrc={imageSrc}
+              showHeader={showHeader && id === 1}
+              onClick={() => handleEditProduct(id)}
+            />
+          )}
+          collectionObject={produseData}
+          buttonText="Adăugare produs"
+          onButtonClick={handleAddProduct}
+        />
+      )}
+      {showAddProductPopup && (
+        <AdaugareProdusPopup onClose={handleClosePopup} />
+      )}
     </div>
   );
 }
