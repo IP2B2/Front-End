@@ -81,11 +81,14 @@ export default function ListareProduseAdminPage() {
     return null; 
   }
   
-  const handleAddProduct = () => setShowAddProductPopup(true);
+  const handleAddProduct = () => {
+    console.log('Buton adăugare produs apăsat');
+  };
+  
   const handleClosePopup = () => setShowAddProductPopup(false);
   
   const handleEditProduct = (id) => {
-    console.log('Editare produs cu ID: ${id}');
+    setShowAddProductPopup(true);
   };
 
   return (
@@ -100,12 +103,12 @@ export default function ListareProduseAdminPage() {
               data={data}
               imageSrc={imageSrc}
               showHeader={showHeader && id === 1}
-              onClick={() => handleEditProduct(id)}
+              onClick={() => handleEditProduct(id)} 
             />
           )}
           collectionObject={produseData}
           buttonText="Adăugare produs"
-          onButtonClick={handleAddProduct}
+          onButtonClick={handleAddProduct} 
         />
       )}
       {showAddProductPopup && (

@@ -10,10 +10,8 @@ export default function Page() {
   const router = useRouter();
   
   const [isClient, setIsClient] = useState(false);
-  // Add this line to define the missing variable
-  const allFieldsFilled = true; // Always true since this is now a read-only view
+  const allFieldsFilled = true;
   
-  // Pre-defined product data - read only
   const productData = {
     numeProdus: 'Prelungitor 20M cu mâner',
     descriere: 'Prelungitor Cube, roz, 2 prize Schuko, cablu flexibil, design modern și compact, perfect pentru birou sau living. Soluție elegantă pentru conectarea dispozitivelor dumneavoastră, combinând funcționalitatea cu estetica contemporană.',
