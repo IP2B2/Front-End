@@ -48,7 +48,7 @@ export default function Page() {
         user="Prodan Beatrice"
         label="Rejected"
         onClick={()=> console.log("clicked - just checking if it works")} />
-
+  
 
       <p>Listare produs: </p>
       <ListareProdus
@@ -66,6 +66,5 @@ export default function Page() {
         showHeader={false}
       />
     </div>
-    
   );
 }

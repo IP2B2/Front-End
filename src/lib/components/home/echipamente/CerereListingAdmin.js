@@ -17,7 +17,7 @@ export default function CerereListingAdmin ({title, user, location, label, onCli
         </div>
       </div>
     </div>
-  );
+  ); 
 }
 
 CerereListingAdmin.propTypes = {
