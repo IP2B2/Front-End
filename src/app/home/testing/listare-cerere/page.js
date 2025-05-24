@@ -1,7 +1,9 @@
 'use client'
 
 import ListareProdus from '@/lib/components/home/echipamente/ProdusListing';
-import CerereListingStudent from '@/lib/components/home/echipamente/CerereListingStudent';
+import ListareUser from '@/lib/components/home/echipamente/ListareUser';
+import CerereListingStudent from '@/lib/components/home/echipamente/CerereListingStudent'
+import CerereListingLaborant from '@/lib/components/home/echipamente/CerereListingLaborant';
 import CerereListingAdmin from '@/lib/components/home/echipamente/CerereListingAdmin';
 
 export default function Page() {
