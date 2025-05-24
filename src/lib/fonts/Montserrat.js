@@ -10,6 +10,12 @@ export const Montserrat500 = Montserrat({
   subsets: ['latin'],
   weight: '500',
 });
+
+export const Montserrat600 = Montserrat({
+  subsets: ['latin'],
+  weight: '600',
+});
+
 export const Montserrat300Italic = Montserrat({
   subsets: ['latin'],
   weight: '300',
