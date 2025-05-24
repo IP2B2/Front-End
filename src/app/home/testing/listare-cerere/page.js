@@ -18,10 +18,23 @@ export default function Page() {
       <CerereListingLaborant title="Prelungitor 3" studentName="Prodan Beatrice" label="Rejected"onClick={()=> console.log("clicked - just testing again")}/>
 
       <p>Listare users: </p>
-      <ListareUser numeUser="Prodan Beatrice"  label="Approved"onClick={()=> console.log("clicked - just testing again")}/>
-      <ListareUser numeUser="Prodan Beatrice"  label="Rejected"onClick={()=> console.log("clicked - just testing again")}/>
-      <ListareUser numeUser="Prodan Beatrice"  label="FII"onClick={()=> console.log("clicked - just testing again")}/>
-      <ListareUser numeUser="Prodan Beatrice"  label="Pending"onClick={()=> console.log("clicked - just testing again")}/>
+      <ListareUser
+        nume="Popescu"
+        prenume="Ion"
+        facultate="Facultatea de Informatică Iași"
+        rol="Student"
+        onClick={() => alert('Edit')}
+        showHeader={true}
+      />
+
+      <ListareUser
+        nume="Ionescu"
+        prenume="Maria"
+        facultate="Facultatea de Informatică Iași"
+        rol="Student"
+        onClick={() => alert('Edit')}
+      />
+
 
       <p>Listare users: </p>
       <ListareUser numeUser="Prodan Beatrice"  label="Approved"onClick={()=> console.log("clicked - just testing again")}/>

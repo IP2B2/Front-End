@@ -90,5 +90,6 @@ const routes = {
         route: '/home/confirmare-decizie-admin',
     }
 }
+}
 
 export default routes;
