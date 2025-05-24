@@ -28,6 +28,24 @@ export default function Page() {
         location = "Facultatea de Informatica FII"
         onClick={()=> console.log("clicked - just checking if it works")} />
       
+      <p>Listare users: </p>
+      <ListareUser
+        nume="Popescu"
+        prenume="Ion"
+        facultate="Facultatea de Informatică Iași"
+        rol="Student"
+        onClick={() => alert('Edit')}
+        showHeader={true}
+      />
+
+      <ListareUser
+        nume="Ionescu"
+        prenume="Maria"
+        facultate="Facultatea de Informatică Iași"
+        rol="Student"
+        onClick={() => alert('Edit')}
+      />
+
 
 
       <p>Listare produs: </p>
