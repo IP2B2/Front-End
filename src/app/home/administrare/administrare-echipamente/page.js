@@ -85,7 +85,10 @@ export default function ListareProduseAdminPage() {
     console.log('Buton adăugare produs apăsat');
   };
   
-  const handleClosePopup = () => setShowAddProductPopup(false);
+  const handleClosePopup = () => {
+    setShowAddProductPopup(false);
+    router.push('/home/administrare/administrare-echipamente');
+  };
   
   const handleEditProduct = (id) => {
     setShowAddProductPopup(true);

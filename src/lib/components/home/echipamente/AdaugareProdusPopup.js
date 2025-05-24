@@ -6,7 +6,7 @@ import styles from './AdaugareProdusPopup.module.css';
 import { BackArrow } from '@/lib/components/globals/NavArrows';
 import { useRouter } from 'next/navigation';
 
-export default function Page() {
+export default function AdaugareProdusPopup({ onClose }) {
   const router = useRouter();
   
   const [isClient, setIsClient] = useState(false);
@@ -28,10 +28,18 @@ export default function Page() {
     // No action needed in read-only view
   };
 
+  const handleClosePopup = () => {
+    if (typeof onClose === 'function') {
+      onClose(); // Call the onClose function passed from parent
+    } else {
+      router.back(); // Fallback to router.back() if no onClose provided
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.backButtonWrapper}>
-        <BackArrow arrowSize={20} onClick={() => router.back()} />
+        <BackArrow arrowSize={20} onClick={handleClosePopup}/>
       </div>
       
       <div className={styles.contentBox}>
