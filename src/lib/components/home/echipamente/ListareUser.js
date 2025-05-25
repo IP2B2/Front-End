@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from './ListareUser.module.css';
+import { Montserrat500, Montserrat600 } from '@/lib/fonts/Montserrat';
 
 export default function ListareUser({ numeUser, nume, prenume, label, onClick }) {
   const isRejected = label === 'Rejected';
@@ -29,4 +30,10 @@ ListareUser.propTypes = {
   prenume: PropTypes.string,
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func,
+  showHeader: PropTypes.bool,
 };
+
+ListareUser.defaultProps = {
+  showHeader: false,
+};
+
