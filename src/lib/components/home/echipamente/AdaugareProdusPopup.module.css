@@ -375,7 +375,12 @@
     
     border: none;
     border-radius: 10px;
-    background-color: #09090b;
+    background: linear-gradient(
+      304.55deg,
+      #FCC6D2 10%,
+      #FF426B 30%,
+      #246EFF 80%
+    );
     box-shadow: 0 4px 12px rgba(255, 174, 192, 0.3);
     
     text-align: center;
@@ -385,21 +390,6 @@
     
     cursor: pointer;
     transition: all 0.3s;
-  }
-  
-  .addProductButton:hover {
-    background: linear-gradient(
-      304.55deg,
-      #FCC6D2 10%,
-      #FF426B 30%,
-      #246EFF 80%
-    );
-  }
-  
-  .gradientButton:hover {
-    box-shadow: 0 8px 20px rgba(255, 66, 107, 0.4);
-    
-    transform: translateY(-3px);
   }
   
   .container {
@@ -424,12 +414,14 @@
   .backButtonWrapper {
     width: 40px;
     height: 40px;
-    
-    position: absolute;
-    top: 5%; 
-    left: 5%;  
-    
+
+    margin-top: 0%;
+    margin-right: 100%;
+
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
   
   .contentBox {

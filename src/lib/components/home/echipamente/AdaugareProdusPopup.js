@@ -30,19 +30,20 @@ export default function AdaugareProdusPopup({ onClose }) {
 
   const handleClosePopup = () => {
     if (typeof onClose === 'function') {
-      onClose(); // Call the onClose function passed from parent
+      onClose(); 
     } else {
-      router.back(); // Fallback to router.back() if no onClose provided
+      router.back(); 
     }
   };
 
   return (
     <div className={styles.container}>
+       <div className={styles.contentBox}>
       <div className={styles.backButtonWrapper}>
         <BackArrow arrowSize={20} onClick={handleClosePopup}/>
       </div>
       
-      <div className={styles.contentBox}>
+     
         <div className={styles.contentBoxScroll}>
           <h1 className={styles.mainTitle}>Detalii produs</h1>
           
@@ -85,14 +86,12 @@ export default function AdaugareProdusPopup({ onClose }) {
               <label className={styles.fieldLabel}>Material și întreținere</label>
               <div className={styles.readOnlyTextarea}>{productData.materialSiIntretinere}</div>
             </div>
-
             <button 
-              className={`${styles.addProductButton} ${allFieldsFilled ? styles.gradientButton : ''}`} 
-              onClick={handleAddProduct}
-              disabled={!allFieldsFilled}
-            >
-              Adaugă produs
-            </button>
+                className={`${styles.addProductButton} ${styles.gradientButton}`} 
+                disabled={true}
+              >
+                În așteptare
+              </button>
           </div>
         </div>
       </div>
