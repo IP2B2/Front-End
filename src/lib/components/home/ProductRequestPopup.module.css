@@ -1,0 +1,337 @@
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    z-index: 1000;
+  }
+  
+  .popupContainer {
+    width: 707px;
+    max-height: 90vh;
+
+    position: relative;
+    padding: 0; 
+
+    border-radius: 10px !important;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+
+    background-color: var(--background);
+
+    overflow-y: auto;
+    overflow: hidden; 
+  }
+  
+  .popupContent {
+    max-height: 90vh;
+
+    padding: var(--font-size-lg);
+    
+    overflow-y: auto;
+  }
+  
+  .popupContainer > * {
+    border-radius: inherit;
+  }
+  
+  .popupHeader {
+    margin-bottom: var(--font-size-lg);
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .popupTitle {
+    width: 100%;
+
+    margin: 0;
+
+    font-size: 36px;
+    line-height: 36px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .closeButton {
+    width: 43px;
+    height: 43px;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    background: transparent;
+    font-size: 32px;
+    color: #000000;
+
+    cursor: pointer;
+  }
+  
+  .formGroup {
+    width: 100%;
+  
+    padding: 0;
+    margin-bottom: 20px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .formLabel {
+    font-size: 20px;
+    line-height: var(--font-size-md);
+    color: var(--foreground);
+    font-weight: 600;
+  }
+  
+  
+  .formInput {
+    width: 100%;
+    min-height: 64px; 
+    height: auto;
+    box-sizing: border-box;
+   
+    padding: 20px;
+  
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    justify-content: center; 
+    gap: 10px;
+  
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+   
+    background: #F9F9F9;
+  }
+
+  .customProductImage {
+    width: 80px;
+    height: 80px;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+    border: 1px solid #eaeaea;
+  }
+  
+  .inputText {
+    font-size: 20px;
+    line-height: var(--font-size-md);
+    color: #000000;
+    font-weight: 500;
+  }
+  
+  .buttonGroup {
+    margin-top: 40px;
+
+    display: flex;
+    gap: var(--font-size-xs);
+  }
+  
+  .approveButton, .rejectButton {
+    height: 52px;
+
+    padding: 12px var(--font-size-sm);
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 5px;
+   
+    font-size: 20px;
+    line-height: var(--font-size-md);
+    
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .approveButton {
+    border: none;
+
+    background: #000000;
+    color: var(--background);
+  }
+  
+  .rejectButton {
+    border: 0.5px solid #000000;
+
+    background: var(--background);
+    color: #000000;
+  }
+  
+  .approveButton:hover {
+    background: #333333;
+  }
+  
+  .rejectButton:hover {
+    background: #F5F5F5;
+  }
+
+.checkboxContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .checkboxLabel {
+    position: relative;
+    padding-left: 35px;
+
+    display: flex;
+    align-items: flex-start;
+
+    cursor: pointer;
+  }
+  
+  .checkbox {
+    height: 0;
+    width: 0;
+
+    position: absolute;
+
+    opacity: 0;
+
+    cursor: pointer;
+  }
+  
+  .checkmark {
+    height: 25px;
+    width: 25px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    border: 1px solid #000000;
+    border-radius: 3px;
+   
+    background: var(--background);
+  }
+  
+  .checkbox:checked ~ .checkmark {
+    background-color: var(--background);
+  }
+  
+  .checkmark:after {
+    position: absolute;
+    
+    display: none;
+
+    content: "";
+  }
+  
+  .checkbox:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .checkboxLabel .checkmark:after {
+    width: 6px;
+    height: 12px;
+
+    left: 8px;
+    top: 4px;
+   
+    border: solid #000000;
+    border-width: 0 2px 2px 0;
+
+    transform: rotate(45deg);
+  }
+  
+  .checkboxText {
+    font-size: var(--font-size-sm);
+    line-height: var(--font-size-md);
+    color: #000000;
+  }
+  
+  .approveButton:disabled, .rejectButton:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+  }
+
+  .productImage {
+    width: 80px;
+    height: 80px;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+    border: 1px solid #eaeaea;
+  }
+
+  .pdfLink {
+    color: #0066cc;
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: var(--font-size-base);
+  }
+  
+  @media (max-width: 767px) {
+    .popupContainer {
+      width: 90%;
+      
+      padding: 20px;
+    }
+    
+    .popupTitle {
+      font-size: 28px;
+    }
+    
+    .formLabel, .inputText {
+      font-size: var(--font-size-sm);
+    }
+    
+    .buttonGroup {
+      flex-direction: column;
+    }
+  }
+
+@media (max-width: 480px) {
+  .closeButton {
+    top: -var(--font-size-base) !important;
+  }
+}
+
+@media (max-width: 480px) and (min-width: 390px) {
+  .closeButton {
+    top: -var(--font-size-base) !important;
+  }
+}
+
+@media (max-width: 376px) {
+  .closeButton {
+    top: -5px;
+    right: -20px !important;
+    left: auto !important;
+  }
+}
+
+@media (max-width: 361px) {
+  .closeButton {
+    top: -5px;
+    right: -20px !important;
+    left: auto !important;
+  }
+}
+
