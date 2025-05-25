@@ -1,0 +1,50 @@
+/* src/app/home/testing/administrare/administrare-useri/page.module.css */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--foreground);
+    margin-bottom: 30px;
+  }
+  
+  .openPopupButton {
+    padding: 12px 24px;
+    
+    border: none;
+    border-radius: 5px;
+    background-color: #000000;
+    
+    font-size: 16px;
+    font-weight: 500;
+    color: #FFFFFF;
+    
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .openPopupButton:hover {
+    opacity: 0.9;
+  }
+  
+  .successMessage {
+    padding: 15px 20px;
+    margin-top: 20px;
+    
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    
+    font-size: 16px;
+    font-weight: 500;
+  }
