@@ -4,37 +4,24 @@ import { useState, useEffect } from 'react';
 import styles from './administrareUseri.module.css';
 import { useRouter } from 'next/navigation';
 import SearchAndFilter from '@/lib/components/home/echipamente/SearchAndFilter';
+import ListareUser from '@/lib/components/home/echipamente/ListareUser';
 
 const usersData = [
-  { id: 1, nume: 'Popescu', prenume: 'Ion', facultate: 'FII', subfacultate: 'Informatica', name: 'Popescu Ion' },
-  { id: 2, nume: 'Ionescu', prenume: 'Maria', facultate: 'FEEA', subfacultate: 'Management', name: 'Ionescu Maria' },
-  { id: 3, nume: 'Georgescu', prenume: 'Ana', facultate: 'FEEA', subfacultate: 'Economie', name: 'Georgescu Ana' },
-  { id: 4, nume: 'Marinescu', prenume: 'Andrei', facultate: 'FII', subfacultate: 'Calculatoare', name: 'Marinescu Andrei' },
-  { id: 5, nume: 'Dumitrescu', prenume: 'Elena', facultate: 'Litere', subfacultate: 'Romana', name: 'Dumitrescu Elena' },
-  { id: 6, nume: 'Vasilescu', prenume: 'Mihai', facultate: 'Litere', subfacultate: 'Engleza', name: 'Vasilescu Mihai' },
+  { id: 1, nume: 'Popescu', prenume: 'Ion', facultate: 'FII', subfacultate: 'Informatica', rol: 'Student', name: 'Popescu Ion' },
+  { id: 2, nume: 'Ionescu', prenume: 'Maria', facultate: 'FEEA', subfacultate: 'Management', rol: 'Student', name: 'Ionescu Maria' },
+  { id: 3, nume: 'Georgescu', prenume: 'Ana', facultate: 'FEEA', subfacultate: 'Economie', rol: 'Profesor', name: 'Georgescu Ana' },
+  { id: 4, nume: 'Marinescu', prenume: 'Andrei', facultate: 'FII', subfacultate: 'Calculatoare', rol: 'Student', name: 'Marinescu Andrei' },
+  { id: 5, nume: 'Dumitrescu', prenume: 'Elena', facultate: 'Litere', subfacultate: 'Romana', rol: 'Profesor', name: 'Dumitrescu Elena' },
+  { id: 6, nume: 'Vasilescu', prenume: 'Mihai', facultate: 'Litere', subfacultate: 'Engleza', rol: 'Administrator', name: 'Vasilescu Mihai' },
 ];
 
 const usersCollection = {
   filterBy: {
     facultate: "Facultate",
-    subfacultate: "Profil/Specializare"
+    subfacultate: "Profil/Specializare",
+    rol: "Rol"
   },
   items: usersData
-};
-
-const UserItem = (props) => {
-  const { nume, prenume, facultate } = props;
-  
-  return (
-    <div className={styles.userListingContainer}>
-      <div className={styles.userName}>
-        {nume} {prenume}
-      </div>
-      <div className={styles.userLabel}>
-        {facultate}
-      </div>
-    </div>
-  );
 };
 
 export default function AdministrareUseriPage() {
@@ -44,6 +31,11 @@ export default function AdministrareUseriPage() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleUserEdit = (userId) => {
+    console.log(`Editare utilizator cu ID: ${userId}`);
+
+  };
 
   if (!mounted) {
     return <div className={styles.loading}>Se încarcă...</div>;
@@ -59,8 +51,17 @@ export default function AdministrareUseriPage() {
       
       <div className={styles.searchAndFilterContainer}>
         <SearchAndFilter 
-          title=""
-          ItemComponent={UserItem} 
+          title="Utilizatori"
+          ItemComponent={(props) => {
+            const { index, ...userProps } = props;
+            return (
+              <ListareUser 
+                {...userProps}
+                showHeader={index === 0} 
+                onClick={() => handleUserEdit(userProps.id)}
+              />
+            );
+          }}
           collectionObject={usersCollection}
         />
       </div>

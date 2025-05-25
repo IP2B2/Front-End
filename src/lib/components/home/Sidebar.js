@@ -10,7 +10,6 @@ import styles from './Sidebar.module.css'
 export default function Sidebar() {
   const pathname = usePathname()
   const isAdminPage = pathname === '/home/administrare' || pathname.startsWith('/home/administrare/')
-  
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarContent}>
