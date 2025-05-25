@@ -22,10 +22,14 @@ export const Montserrat300Italic = Montserrat({
   style: 'italic'
 });
 
+export const Montserrat800 = Montserrat({
+  subsets: ['latin'],
+  weight: '800'
+});
 
-  export const Montserrat900 = Montserrat({
-    subsets: ['latin'],
-    weight: '900'
-  });
+export const Montserrat900 = Montserrat({
+  subsets: ['latin'],
+  weight: '900'
+});
 
 
