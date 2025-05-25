@@ -72,8 +72,8 @@ export default function ListareProduseAdminPage() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
-
   const [showPopup, setShowPopup] = useState(false);
+  const [showAddProductPopup, setShowAddProductPopup] = useState(false);
 
   useEffect(() => {
       const shouldShowPopup = localStorage.getItem('showSuccessPopup');
@@ -92,17 +92,21 @@ export default function ListareProduseAdminPage() {
   }
   
   const handleAddProduct = () => {
-    router.push('/home/form-adaugare-produs');
+    console.log('Buton adăugare produs apăsat');
+  };
+  
+  const handleClosePopup = () => {
+    setShowAddProductPopup(false);
+    router.push('/home/administrare/administrare-echipamente');
   };
   
   const handleEditProduct = (id) => {
-    console.log('Editare produs cu ID: ${id}');
+    console.log(`Editare produs cu ID: ${id}`);
     alert("Buton edit");
   };
 
   return (
     <div className={styles.pageContainer}>
-      
       <div className={styles.layoutWrapper}>
 
         <div className={styles.leftColumn}>
@@ -126,7 +130,7 @@ export default function ListareProduseAdminPage() {
                 data={data}
                 imageSrc={imageSrc}
                 showHeader={showHeader && id === 1}
-                onRowClick={() => router.push('/home/administarare/administrare-produse')}
+                onRowClick={() => router.push('/home/administrare/administrare-produse')}
                 onIconClick={() => handleEditProduct(id)}
               />
             )}
