@@ -70,7 +70,7 @@
 }
 
 .adminNavItem {
-  background-color: #FF4A4A;
+  background-color: var(--foreground);
 }
 
 .active {
@@ -105,32 +105,20 @@
 }
 
 .adminIcon {
+  width: 24px;
+  height: 24px;
+
   position: relative;
+
   display: inline-block;
-  background: white;
+  
   border-radius: 2px;
-  top: 4px;
 
+  background: white;
 }
 
-.adminIcon::before {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 3px;
-  width: 10px;
-  height: 10px;
-  border: 2px solid #000;
-  border-radius: 1px;
-}
+.adminText {
+  margin-left: -4px; 
 
-.adminIcon::after {
-  content: '';
-  position: absolute;
-  top: 4px;
-  left: 5px;
-  width: 6px;
-  height: 6px;
-  background: #000;
-  border-radius: 1px;
+  color: var(--background);
 }
