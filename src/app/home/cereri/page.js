@@ -61,7 +61,10 @@ export default function AdministrareUseriPage() {
 
       <div className={styles.leftColumn}>
           <div className={styles.backButtonWrapper}>
-            <BackArrow arrowSize={20} />
+            <BackArrow 
+            arrowSize={20} 
+            onClick={() => router.push('/home/administrare')}
+            />
           </div>
         </div>
 

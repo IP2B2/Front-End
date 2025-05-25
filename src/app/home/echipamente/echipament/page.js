@@ -34,7 +34,10 @@ export default function EchipamentPage() {
     return (
     <div className={styles.layout}>
         <div className={styles.backButtonWrapper}>
-            <BackArrow arrowSize={20} />
+            <BackArrow 
+                arrowSize={20} 
+                onClick={() => router.push('/home/administrare')}
+            />
         </div>
         <ProductImageCarousel imageLinkArray={images} />
 
