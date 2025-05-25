@@ -1,5 +1,6 @@
 
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./ProductCard.module.css";
 import { useEffect } from "react";
 
@@ -41,14 +42,12 @@ export default function ProductCard({ id, name, availableTomorrow, faculty, imag
             <p className={styles["product-subtext"]}>
               Disponibil: <span>imediat</span>
             </p>
-            <a
-              href="https://www.google.com"
+            <Link
+              href='/home/echipamente/echipament'
               className={styles["details-button"]}
-              target="_blank"
-              rel="noopener noreferrer"
             >
               Vezi detalii
-            </a>
+            </Link>
           </>
         )}
       </div>

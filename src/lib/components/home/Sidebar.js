@@ -37,7 +37,7 @@ export default function Sidebar() {
               </Link>
             )} */}
             <Link
-              href="/"
+              href="/home"
               className={`${styles.navItem} ${pathname === '/' || pathname === '/home' ? styles.active : ''}`}
             >
               <span>
@@ -52,8 +52,8 @@ export default function Sidebar() {
             </Link>
             
             <Link
-              href="/echipamente"
-              className={`${styles.navItem} ${pathname === '/echipamente' ? styles.active : styles.inactive}`}
+              href="/home/echipamente"
+              className={`${styles.navItem} ${pathname === '/home/echipamente' ? styles.active : styles.inactive}`}
             >
               <span className={styles.icon}>
                 <Image
@@ -82,8 +82,8 @@ export default function Sidebar() {
             </Link>
 
             <Link
-              href="/profil"
-              className={`${styles.navItem} ${pathname === '/profil' ? styles.active : styles.inactive}`}
+              href="/home/profil"
+              className={`${styles.navItem} ${pathname === '/home/profil' ? styles.active : styles.inactive}`}
             >
               <span className={styles.icon}>
                 <Image

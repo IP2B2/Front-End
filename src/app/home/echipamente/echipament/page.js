@@ -1,11 +1,14 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Echipament.module.css';
 import Image from 'next/image'
 import { Inter500 } from '@/lib/fonts/Inter'
 import '@/app/globals.css';
 import carouselStyles from './ProductImageCarousel.module.css';
 import { BackArrow } from '@/lib/components/globals/NavArrows';
+import { Calendar, SelectedDayProvider } from '@/lib/components/calendar/Calendar';
+import { useRouter } from 'next/navigation';
+import ResponseRegisteredSucc from '@/lib/components/popups/ResponseRegisteredSucc';
 
 export default function EchipamentPage() {
     
@@ -15,6 +18,18 @@ export default function EchipamentPage() {
       "/icons/Frame 1000005450.svg",
       "/icons/Frame 1000005450.svg"
     ];
+    const [showCalendar, setShowCalendar] = useState(false);
+    const router = useRouter();
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        const shouldShowPopup = localStorage.getItem('showSuccessPopup');
+        if (shouldShowPopup === 'true') {
+            setShowPopup(true);
+            localStorage.removeItem('showSuccessPopup');
+        }
+    }, []);
+
 
     return (
     <div className={styles.layout}>
@@ -23,15 +38,36 @@ export default function EchipamentPage() {
         </div>
         <ProductImageCarousel imageLinkArray={images} />
 
+        <ResponseRegisteredSucc open={showPopup} onClose={() => setShowPopup(false)} />
+
         <div className={styles.descriptionContainer}>
             <h1 className={styles.productTitle}>Prelungitor 20M cu mâner</h1>
             <div className={styles.pageDescription}>
             Prelungitor Cube, roz, 2 prize Schuko, cablu flexibil, design modern și compact, perfect pentru birou sau living. Soluție elegantă pentru conectarea dispozitivelor dumneavoastră, combinând funcționalitatea cu estetica contemporană.
             </div>
             <div className={styles.buttonGroup}>
-                <button className={`${styles.actionButton} ${Inter500.className}`}>Vezi disponibilitate</button>
-                <button className={`${styles.actionButton} ${Inter500.className}`}>Închiriază</button>
+                <button
+                    className={`${styles.actionButton} ${Inter500.className}`}
+                    onClick={() => setShowCalendar(!showCalendar)}
+                >
+                    Vezi disponibilitate
+                </button>
+
+                <button 
+                    className={`${styles.actionButton} ${Inter500.className}`}
+                    onClick={() => router.push('/home/inchiriere/echipament-simplu')} //provizoriu
+                            //o sa pun varianta pentru a ajunge si la celalalt formular
+                >
+                    Închiriază
+                </button>
             </div>
+            {showCalendar && (
+                <div className={styles.calendarWrapper}>
+                    <SelectedDayProvider>
+                    <Calendar />
+                    </SelectedDayProvider>
+                </div>
+                )}
             <div className={styles.dropdownsContainer}>
                 <details className={styles.dropdown}>
                     <summary className={`${styles.dropdownHeader} ${Inter500.className}`}>Mod de utilizare</summary>
@@ -49,6 +85,7 @@ export default function EchipamentPage() {
             </div>
         </div>
     </div>
+    
     );
 }
 

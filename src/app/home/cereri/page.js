@@ -5,6 +5,8 @@ import styles from './administrareUseri.module.css';
 import { useRouter } from 'next/navigation';
 import SearchAndFilter from '@/lib/components/home/echipamente/SearchAndFilter';
 import ListareUser from '@/lib/components/home/echipamente/ListareUser';
+import ResponseRegisteredSucc from '@/lib/components/popups/ResponseRegisteredSucc';
+import { BackArrow } from '@/lib/components/globals/NavArrows';
 
 const usersData = [
   { id: 1, nume: 'Popescu', prenume: 'Ion', facultate: 'FII', subfacultate: 'Informatica', rol: 'Student', name: 'Popescu Ion' },
@@ -27,6 +29,7 @@ const usersCollection = {
 export default function AdministrareUseriPage() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
   
   useEffect(() => {
     setMounted(true);
@@ -34,8 +37,18 @@ export default function AdministrareUseriPage() {
 
   const handleUserEdit = (userId) => {
     console.log(`Editare utilizator cu ID: ${userId}`);
-
+    alert("Buton edit");
   };
+
+    const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        const shouldShowPopup = localStorage.getItem('showSuccessPopup');
+        if (shouldShowPopup === 'true') {
+            setShowPopup(true);
+            localStorage.removeItem('showSuccessPopup');
+        }
+    }, []);
 
   if (!mounted) {
     return <div className={styles.loading}>Se încarcă...</div>;
@@ -43,28 +56,37 @@ export default function AdministrareUseriPage() {
 
   return (
     <div className={styles.pageContainer}>
-      <div className={styles.pageHeader}>
-        <div className={styles.titleWrapper}>
-          <h1 className={styles.pageTitle}>Administrare Utilizatori</h1>
+
+      <div className={styles.layoutWrapper}>
+
+      <div className={styles.leftColumn}>
+          <div className={styles.backButtonWrapper}>
+            <BackArrow arrowSize={20} />
+          </div>
         </div>
-      </div>
-      
-      <div className={styles.searchAndFilterContainer}>
-        <SearchAndFilter 
-          title="Utilizatori"
-          ItemComponent={(props) => {
-            const { index, ...userProps } = props;
-            return (
-              <ListareUser 
-                {...userProps}
-                showHeader={index === 0} 
-                onClick={() => handleUserEdit(userProps.id)}
-              />
-            );
-          }}
-          collectionObject={usersCollection}
-        />
-      </div>
+
+        <ResponseRegisteredSucc open={showPopup} onClose={() => setShowPopup(false)} />
+        
+        <div className={styles.rightColumn}>
+        <div className={styles.searchAndFilterContainer}>
+            <SearchAndFilter 
+              title="Utilizatori"
+              ItemComponent={(props) => {
+                const { index, ...userProps } = props;
+                return (
+                  <ListareUser 
+                    {...userProps}
+                    showHeader={showHeader && props.id == 1} 
+                    onRowClick={() => router.push('../home/administarare/administrare utilizatori')}
+                    onIconClick={() => handleUserEdit(userProps.id)}
+                  />
+                );
+              }}
+              collectionObject={usersCollection}
+            />
+          </div>
+        </div>
     </div>
+  </div>
   );
 }

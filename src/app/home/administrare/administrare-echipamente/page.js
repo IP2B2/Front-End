@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import SearchAndFilterAndButton from '@/lib/components/home/echipamente/SearchAndFilterAndButton';
 import ProdusListing from '@/lib/components/home/echipamente/ProdusListing';
 import styles from './listareProduseAdmin.module.css';
+import { BackArrow } from '@/lib/components/globals/NavArrows';
+import ProductAddedSucc from '@/lib/components/popups/ProductAddedSucc';
 
 const produseData = {
   filterBy: {
@@ -70,6 +72,16 @@ export default function ListareProduseAdminPage() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+      const shouldShowPopup = localStorage.getItem('showSuccessPopup');
+      if (shouldShowPopup === 'true') {
+          setShowPopup(true);
+          localStorage.removeItem('showSuccessPopup');
+      }
+  }, []);
   
   useEffect(() => {
     setMounted(true);
@@ -85,26 +97,44 @@ export default function ListareProduseAdminPage() {
   
   const handleEditProduct = (id) => {
     console.log('Editare produs cu ID: ${id}');
+    alert("Buton edit");
   };
 
   return (
     <div className={styles.pageContainer}>
-      <SearchAndFilterAndButton 
-        title="Produse"
-        ItemComponent={({ denumire, locatie, data, id, imageSrc }) => (
-          <ProdusListing 
-            denumire={denumire}
-            locatie={locatie}
-            data={data}
-            imageSrc={imageSrc}
-            showHeader={showHeader && id === 1}
-            onClick={() => handleEditProduct(id)}
+      
+      <div className={styles.layoutWrapper}>
+
+        <div className={styles.leftColumn}>
+          <div className={styles.backButtonWrapper}>
+            <BackArrow arrowSize={20} />
+          </div>
+        </div>
+        
+        <ProductAddedSucc open={showPopup} onClose={() => setShowPopup(false)} />
+
+        <div className={styles.rightColumn}>
+          <SearchAndFilterAndButton 
+            title="Produse"
+            ItemComponent={({ denumire, locatie, data, id, imageSrc }) => (
+              <ProdusListing 
+                denumire={denumire}
+                locatie={locatie}
+                data={data}
+                imageSrc={imageSrc}
+                showHeader={showHeader && id === 1}
+                onRowClick={() => router.push('/home/administarare/administrare-produse')}
+                onIconClick={() => handleEditProduct(id)}
+              />
+            )}
+            collectionObject={produseData}
+            buttonText="Adăugare produs"
+            onButtonClick={handleAddProduct}
           />
-        )}
-        collectionObject={produseData}
-        buttonText="Adăugare produs"
-        onButtonClick={handleAddProduct}
-      />
+        </div>
+      </div>
+  
     </div>
   );
+  
 }
