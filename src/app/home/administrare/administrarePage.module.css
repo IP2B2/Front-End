@@ -177,7 +177,9 @@
   }
 
   .cardTitle {
+
     line-height:var(--font-size-md);
+
 
     margin-bottom: 12px;
 
