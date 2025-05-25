@@ -1,4 +1,3 @@
-
 import { useLayoutContent } from '@/lib/context'
 
 import Breadcrumbs from './Breadcrumbs';
@@ -13,7 +12,7 @@ export default function HomeHeader() {
     <div className={styles.headerContainer}>
       <div>
         <Breadcrumbs />
-        <div className={styles.pageTitle}>{extraContent?.pageTitle}</div>
+          <div className={styles.pageTitle}>{extraContent?.pageTitle}</div>
       </div>
       <div className={styles.userBox}>
         <UserBox />
