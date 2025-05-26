@@ -4,24 +4,20 @@
   box-sizing: border-box;
 }
 
-.pageHeader {
-  margin-bottom: 30px;
-  padding: 0;
-  
+.layoutWrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: row;
+  gap: 20px;
 }
 
-.titleWrapper {
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.rightColumn {
   flex: 1;
-}
-
-.pageTitle {
-  font-size: 28px;
-  font-weight: 600;
-  color: #333;
-  margin: 0;
 }
 
 .searchAndFilterContainer {

@@ -2,11 +2,12 @@
 
 import styles from '../formInchiriere.module.css';
 import { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
 import '@/app/globals.css';
 import { DefaultFormLayout, FormContainer, FormField, } from "@/lib/components/form/Form";
 
 import { emptyInvalidator, cnpValidator, dateValidator, daysValidator } from "@/lib/logic/AuthValidators";
-
+import { Calendar, SelectedDayProvider } from '@/lib/components/calendar/Calendar';
 import { BackArrow } from "@/lib/components/globals/NavArrows";
 
 const today = new Date().toISOString().split("T")[0];
@@ -77,6 +78,8 @@ export default function ProductRentalForm() {
         }
     };
 
+    const router = useRouter();
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         setHasSubmitted(true);
@@ -86,7 +89,8 @@ export default function ProductRentalForm() {
         
         if(isFormValid && currentFileError === "") {
             console.log("Form submitted:", { cnp, address, rentalDays, file });
-            alert("Formularul a fost trimis cu succes!");
+            localStorage.setItem('showSuccessPopup', 'true');
+            router.push('/home/echipamente/echipament');
         }
     };
 
@@ -98,6 +102,8 @@ export default function ProductRentalForm() {
         setHasSubmitted(false);
         setFileError("");
     };
+
+    const [showCalendar, setShowCalendar] = useState(false);
 
     return (
         <div className={styles.pageContainer}>
@@ -135,11 +141,19 @@ export default function ProductRentalForm() {
                                     className={styles.calendarButton}
                                     onClick={(e) => {
                                         e?.preventDefault();
-                                        alert("Aici s-ar deschide calendarul de disponibilitate")}}
+                                        setShowCalendar(!showCalendar);
+                                    }}
                                 >
                                     Calendar disponibilitate produs
                                 </button>
                             </div>
+                            {showCalendar && (
+                            <div className={styles.calendarContainer}>
+                                <SelectedDayProvider>
+                                <Calendar />
+                                </SelectedDayProvider>
+                            </div>
+                            )}
                             <FormField
                                 type={"number"}
                                 label={"Număr de zile pentru închiriere"}

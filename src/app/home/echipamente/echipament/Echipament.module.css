@@ -171,6 +171,17 @@
 	line-height: 0.9;
 }
 
+.calendarWrapper 
+{
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
 @media (max-width: 860px) {
 	.layout {
 		flex-flow: column nowrap;

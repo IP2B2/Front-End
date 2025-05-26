@@ -199,7 +199,8 @@ useEffect(() => {
     }
     
     console.log('Produs adăugat!', formData);
-    router.push('../home/produs-adaugat-succes');
+    localStorage.setItem('showSuccessPopup', 'true');
+    router.push('../home/administrare/administrare-echipamente');
   };
 
   const goToPreviousImage = () => {

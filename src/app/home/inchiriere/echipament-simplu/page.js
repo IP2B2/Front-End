@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 import '@/app/globals.css';
 import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField } from "@/lib/components/form/Form";
 import { usePathname} from 'next/navigation'; 
-import { Calendar } from '@/lib/components/calendar/Calendar';
+import { Calendar, SelectedDayProvider } from '@/lib/components/calendar/Calendar';
 
 import { emptyInvalidator, cnpValidator, dateValidator, daysValidator } from "@/lib/logic/AuthValidators";
+import { useRouter } from 'next/navigation';
+
 import { BackArrow } from "@/lib/components/globals/NavArrows";
 
 const today = new Date().toISOString().split("T")[0];
@@ -41,6 +43,8 @@ export default function ProductRentalForm() {
         //selectDayContext.setSelectedDay(rentalDate);
         
     }, [rentalDate, rentalDays]);
+
+    const router = useRouter();
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -48,7 +52,8 @@ export default function ProductRentalForm() {
         
         if(isFormValid) {
             console.log("Form submitted:", { cnp, address, rentalDays, rentalDate });
-            alert("Formularul a fost trimis cu succes!");
+            localStorage.setItem('showSuccessPopup', 'true');
+            router.push('/home/echipamente/echipament');
         }
     };
 
@@ -59,6 +64,8 @@ export default function ProductRentalForm() {
         setRentalDate("");
         setHasSubmitted(false);
     };
+
+    const [showCalendar, setShowCalendar] = useState(false);
 
     return (
         <div>
@@ -96,11 +103,19 @@ export default function ProductRentalForm() {
                                     className={styles.calendarButton}
                                     onClick={(e) => {
                                         e?.preventDefault();
-                                        alert("Aici s-ar deschide calendarul de disponibilitate")}}
+                                        setShowCalendar(!showCalendar);
+                                    }}
                                 >
                                     Calendar disponibilitate produs
                                 </button>
                             </div>
+                            {showCalendar && (
+                            <div className={styles.calendarContainer}>
+                                <SelectedDayProvider>
+                                <Calendar />
+                                </SelectedDayProvider>
+                            </div>
+                            )}
                             <FormMultiColumn cols={2}>
                                     <FormField
                                         type={"number"}
@@ -127,6 +142,7 @@ export default function ProductRentalForm() {
                             <div className={styles.calendarContainer}>
                                     <Calendar startDate={rentalDate} daysAdvance={rentalDays} />
                             </div>
+
                             <div className={styles.buttonGroup}>
                                 <button
                                     className={styles.clearButton}

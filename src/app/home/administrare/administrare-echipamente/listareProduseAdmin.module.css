@@ -7,6 +7,27 @@
   flex-direction: column;
 }
 
+.layoutWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.rightColumn {
+  flex: 1;
+}
+
+.backButtonWrapper {
+  display: flex;
+  align-items: center;
+}
+
 @media (max-width: 768px) {
   .pageContainer {
     padding: 15px;

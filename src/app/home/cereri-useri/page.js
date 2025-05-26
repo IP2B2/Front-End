@@ -1,8 +1,10 @@
 'use client'
 
+import {useState} from 'react';
 import SearchAndFilter from '@/lib/components/home/echipamente/SearchAndFilter';
 import CerereListing from '@/lib/components/home/echipamente/CerereListingStudent';
 import styles from './cereriUseri.module.css';
+import RequestDetailsPopup from '@/lib/components/home/echipamente/RequestDetailsPopup';
 
 const userRequests = {
   filterBy: {
@@ -49,29 +51,39 @@ const userRequests = {
   ]
 };
 
-// Componenta de item pentru SearchAndFilter
-const RequestItem = ({ name, status }) => {
-  const handleClick = () => {
-    console.log(`Clicked on item: ${name}`);
-    // Aici poți adăuga logica pentru navigare către detalii sau alte acțiuni
+export default function CereriUseriPage() {
+  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+
+  // Componenta de item pentru SearchAndFilter
+  const RequestItem = ({ name, status }) => {
+    const handleClick = () => {
+      console.log(`Clicked on item: ${name}`);
+      setSelectedRequest({name});
+      setShowPopup(true);
+    };
+
+    return (
+      <CerereListing 
+        title={name}
+        label={status}
+        onClick={handleClick}
+      />
+    );
   };
 
-  return (
-    <CerereListing 
-      title={name}
-      label={status}
-      onClick={handleClick}
-    />
-  );
-};
-
-export default function CereriUseriPage() {
   return (
     <div className={styles.pageContainer}>
       <SearchAndFilter 
         title="Cereri" 
         ItemComponent={RequestItem}
         collectionObject={userRequests}
+      />
+
+      <RequestDetailsPopup 
+        open={showPopup} 
+        requestData={selectedRequest}
+        onClose={() => setShowPopup(false)}
       />
     </div>
   );
