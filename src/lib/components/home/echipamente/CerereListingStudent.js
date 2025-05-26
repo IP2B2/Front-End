@@ -5,7 +5,6 @@ import { Montserrat500 } from '@/lib/fonts/Montserrat';
 export default function CerereListingStudent ({ imageSrc, title, location, label, onClick }) {
   const isAccepted = label === 'Accepted';
   const isRejected = label === 'Rejected';
- 
   return (
     <div className={`${styles.container} ${Montserrat500}`} onClick={onClick ?? (() => {})}>
       <div className={styles.imageWrapper}>

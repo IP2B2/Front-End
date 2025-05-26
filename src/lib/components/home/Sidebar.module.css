@@ -70,7 +70,7 @@
 }
 
 .adminNavItem {
-  background-color: #FF4A4A;
+  background-color: var(--foreground);
 }
 
 .active {

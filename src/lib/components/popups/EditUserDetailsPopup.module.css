@@ -1,0 +1,204 @@
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    
+    overflow-y: auto;
+    padding: 20px;
+  }
+  
+  .popupContainer {
+    width: 100%;
+    max-width: 715px;
+    max-height: 90vh;
+    
+    display: flex;
+    flex-direction: column;
+    
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    
+    overflow: hidden;
+  }
+  
+  .popupHeader {
+    width: 100%;
+    padding: 30px 20px 20px;
+    
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    
+    border-bottom: 1px solid var(--border-gray);
+    gap: 16px;
+    position: relative; 
+  }
+  
+  .popupTitle {
+    margin: 0;
+    
+    font-size: 36px;
+    line-height: 36px;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .closeButton {
+    width: 43px;
+    height: 43px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: none;
+    background: transparent;
+    
+    font-size: 32px;
+    color: #000000;
+    
+    cursor: pointer;
+    margin-left: auto; 
+  }
+  
+  .popupContent {
+    flex: 1;
+    
+    padding: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    
+    overflow-y: auto;
+  }
+  
+  .formField {
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .fieldLabel {
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--foreground);
+  }
+  
+  .textInput {
+    width: 100%;
+    
+    padding: 20px;
+    
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    font-family: var(--font-family);
+  }
+  
+  .textInput:focus {
+    outline: none;
+    border-color: #246EFF;
+  }
+  
+  .buttonGroup {
+    width: 100%;
+    margin-top: 20px;
+    
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .saveButton,
+  .deleteButton {
+    padding: 20px 16px;
+    
+    border: none;
+    border-radius: 5px;
+    
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 65px; 
+  }
+  
+  .saveButton {
+    flex: 1;
+    background-color: #CCCCCC;
+    color: #FFFFFF;
+  }
+  
+  .activeButton {
+    background-color: #000000;
+  }
+  
+  .deleteButton {
+    padding: 20px 30px;
+    background-color: #e43e3e;
+    color: #FFFFFF;
+  }
+  
+  .saveButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .saveButton:not(:disabled):hover {
+    opacity: 0.9;
+  }
+  
+  .deleteButton:hover {
+    background-color: #c52e2e;
+  }
+  
+  @media (max-width: 500px) {
+    .popupContainer {
+      max-width: 95%;
+    }
+    
+    .popupTitle {
+      font-size: 28px;
+    }
+    
+    .fieldLabel, .textInput {
+      font-size: 16px;
+    }
+    
+    .saveButton, .deleteButton {
+      font-size: 16px;
+      padding: 15px 10px;
+    }
+  }
+  
+  @media (max-width: 350px) {
+    .closeButton {
+      right: 5px; 
+    }
+  }
+  
+  @media (min-width: 350px) {
+    .closeButton {
+      right: 15px; 
+    }
+  }

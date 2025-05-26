@@ -1,0 +1,39 @@
+.container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .title {
+    margin-bottom: 30px;
+    font-size: 32px;
+  }
+  
+  .usersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .userCard {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .userCard:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .userCard h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .userCard p {
+    margin: 5px 0;
+    color: #666;
+  }

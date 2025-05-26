@@ -1,0 +1,33 @@
+.container {
+    padding: 20px;
+    width: 100%;
+  }
+  
+  .pageTitle {
+    margin-bottom: 30px;
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--foreground);
+  }
+  
+  .usersList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  @media (max-width: 1150px) {
+    .container {
+      padding: 15px;
+    }
+    
+    .pageTitle {
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 680px) {
+    .container {
+      padding: 10px;
+    }
+  }
