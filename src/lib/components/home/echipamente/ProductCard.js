@@ -1,8 +1,8 @@
 
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./ProductCard.module.css";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function ProductCard({ id, name, availableTomorrow, faculty, image }) {
   const showNameOutside = !availableTomorrow && name === "Prelungitor 20M cu maner";
@@ -15,8 +15,8 @@ export default function ProductCard({ id, name, availableTomorrow, faculty, imag
   }, [id, name, availableTomorrow, faculty, image]);
 
   return (
-    <div className={wrapperClass}>
-      <div className={cardClass}>
+    <div className={styles["product-card-wrapper"]}>
+      <div className={styles["product-card"]}>
         <div className={styles["product-image-container"]}>
           <div className={styles["product-image-wrapper"]}>
             <Image
@@ -32,24 +32,16 @@ export default function ProductCard({ id, name, availableTomorrow, faculty, imag
           </div>
         </div>
 
-        {!availableTomorrow && (
-          <p className={styles["product-name-outside"]}>{name}</p>
-        )}
 
-        {availableTomorrow && (
           <>
             <h3 className={styles["product-name"]}>{name}</h3>
             <p className={styles["product-subtext"]}>
-              Disponibil: <span>imediat</span>
+              Disponibil: <span>{availableTomorrow ? "imediat" : "nu este disponibil"}</span>
             </p>
-            <Link
-              href='/home/echipamente/echipament'
-              className={styles["details-button"]}
-            >
+            <Link href={"/home/echipamente/echipament/" + id} className={styles["details-button"]}>
               Vezi detalii
             </Link>
           </>
-        )}
       </div>
     </div>
   );

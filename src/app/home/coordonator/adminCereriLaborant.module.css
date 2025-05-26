@@ -1,0 +1,40 @@
+.pageContainer {
+  width: 100%;
+  
+  padding: 20px 30px;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.pageContainer :global(.styles_componentTitle__x3Q7u) {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  margin-bottom: 15px !important;
+}
+
+.itemContainer {
+  width: 100%;
+  
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  
+  margin-bottom: 20px;
+}
+.itemContainer > div:first-child {
+  display: flex;
+  flex-direction: column;
+}
+.itemContainer > div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 15px;
+  }
+}

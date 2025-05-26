@@ -9,7 +9,6 @@ import { Montserrat800 } from '@/lib/fonts/Montserrat';
 
 import { useEffect } from 'react';
 import { useLayoutContent } from '@/lib/context';
-import { BackArrow } from '@/lib/components/globals/NavArrows';
 
 export default function Administrare() {
   const { setExtraContent } = useLayoutContent();
@@ -36,7 +35,7 @@ export default function Administrare() {
           />
         </div>
         <div className={styles.buttonContainer}>
-          <Link href="../home/administrare/administrare-echipamente" className={`${styles.button} ${styles.buttonEchipamente} ${Montserrat800.className}`}>
+          <Link href="/home/administrare/echipamente" className={`${styles.button} ${styles.buttonEchipamente} ${Montserrat800.className}`}>
             Mai departe
           </Link>
         </div>
@@ -55,7 +54,7 @@ export default function Administrare() {
           />
         </div>
         <div className={styles.buttonContainer}>
-          <Link href="../home/cereri" className={`${styles.button} ${styles.buttonUtilizatori} ${Montserrat800.className}`}>
+          <Link href="/home/administrare/utilizatori" className={`${styles.button} ${styles.buttonUtilizatori} ${Montserrat800.className}`}>
             Mai departe
           </Link>
         </div>

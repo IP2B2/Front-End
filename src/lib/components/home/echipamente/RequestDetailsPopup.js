@@ -4,8 +4,7 @@ import { useState } from 'react';
 import styles from './RequestDetailsPopup.module.css';
 import { Inter600, Inter500 } from '@/lib/fonts/Inter';
 
-export default function RequestDetailsPopup({ onClose, requestData, open }) {
-  if (!open) return null;
+export default function RequestDetailsPopup({ onClose, requestData }) {
   const [isAcknowledged, setIsAcknowledged] = useState(false);
 
   return (
