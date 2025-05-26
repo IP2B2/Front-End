@@ -28,9 +28,6 @@ jobs:
         run: |
           docker build \
            --build-arg BACKEND_URI=${{ secrets.BACKEND_URI }} \
-           --build-arg NODE_TLS_REJECT_UNAUTHORIZED=${{ secrets.NODE_TLS_REJECT_UNAUTHORIZED }} \
-           --build-arg IMGUR_CLIENT_ID=${{ secrets.IMGUR_CLIENT_ID }} \
-           --build-arg IMGUR_CLIENT_SECRET=${{ secrets.IMGUR_CLIENT_SECRET }} \
            -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest .
 
       - name: Log in to Docker Hub
@@ -49,8 +46,5 @@ jobs:
           script: |
             cd ~/DevOps
             export BACKEND_URI=${{ secrets.BACKEND_URI }}
-            export NODE_TLS_REJECT_UNAUTHORIZED=${{ secrets.NODE_TLS_REJECT_UNAUTHORIZED }}
-            export IMGUR_CLIENT_ID=${{ secrets.IMGUR_CLIENT_ID }}
-            export IMGUR_CLIENT_SECRET=${{ secrets.IMGUR_CLIENT_SECRET }}
             docker-compose pull frontend
             docker-compose up -d frontend

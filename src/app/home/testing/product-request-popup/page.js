@@ -42,6 +42,7 @@ export default function AdminProductRequestsPage() {
             label="Pending"
             onClick={() => handleUserClick(user)}
           />
+          
         ))}
       </div>
       

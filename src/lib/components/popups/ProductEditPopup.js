@@ -1,43 +1,103 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+
+import { useRouter } from 'next/navigation';
 import styles from './ProductEditPopup.module.css';
 import { Inter500, Inter600 } from '@/lib/fonts/Inter';
 
-export default function ProductEditPopup({ onClose, onDelete, onSave, productData }) {
+import { getEquipmentById } from '@/app/home/administrare/echipamente/getEquipmentById';
+import { updateEquipmentById, deleteEquipmentById } from '@/lib/service/EquipmentService';
+import { getAuthToken } from '@/lib/getAuthToken';
+
+export default function ProductEditPopup({ onClose, onDelete, onSave, productData, equipmentId }) {
+  const router = useRouter();
+
   const [isClient, setIsClient] = useState(false);
   const [isModified, setIsModified] = useState(false);
   const [formData, setFormData] = useState({
-    numeProdus: '',
-    descriere: '',
-    modUtilizare: '',
-    materialSiIntretinere: '',
+    name: '',
+    description: '',
+    usage: '',
+    material: '',
     status: 'Disponibil',
-    imagini: []
+    photo: []
   });
-  
+  const [equipment, setEquipment] = useState(null);
   const [previewImages, setPreviewImages] = useState([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   
+  const handleEqSave = async (data) => {
+    let eq = {
+      id: equipmentId,
+      inventoryNumber: equipment.inventoryNumber,
+      laboratoryId: equipment.laboratoryId,
+      availabilityStatus: "AVAILABLE",
+      ...formData
+    }
+    console.log("handleEqSave called with data:", eq);
+    delete eq.status;
+    await updateEquipmentById(getAuthToken(), eq);
+    router.refresh();
+  }
+
+  useEffect(() => { 
+    if(equipment) {
+      let reqJson = {
+        description: '',
+        usage: '',
+        material: ''
+      };
+      try {
+        reqJson = JSON.parse(equipment.accessRequirements);
+      } catch (error) {console.log("default");}
+
+      setFormData({
+        name: equipment.name || '',
+        description: equipment.description || '',
+        usage: equipment.usage || '',
+        material: equipment.material || '',
+        status: equipment.availabilityStatus || 'Disponibil',
+        photo: equipment.photo || []
+      });
+    }
+  }, [equipment]);
+
+  useEffect(() => {
+      async function fetchEquipment() {
+        try {
+          const data = await getEquipmentById({ id: equipmentId, token: localStorage.getItem('authToken') });
+          setEquipment(data);
+        } catch (error) {
+          console.error("Error fetching equipment:", error);
+        }
+      }
+  
+      fetchEquipment();
+    }, [equipmentId]);
+
+
   // Status options
   const statusOptions = ['Disponibil', 'În folosință', 'În mentenanță'];
 
   useEffect(() => {
     setIsClient(true);
     
+    
+
     if (productData) {
       setFormData({
-        numeProdus: productData.numeProdus || '',
-        descriere: productData.descriere || '',
-        modUtilizare: productData.modUtilizare || '',
-        materialSiIntretinere: productData.materialSiIntretinere || '',
+        name: productData.name || '',
+        description: productData.description || '',
+        usage: productData.usage || '',
+        material: productData.material || '',
         status: productData.status || 'Disponibil',
-        imagini: productData.imagini || []
+        photo: productData.photo || []
       });
       
-      if (productData.imagini && productData.imagini.length > 0) {
-        setPreviewImages(productData.imagini);
+      if (productData.photo && productData.photo.length > 0) {
+        setPreviewImages(productData.photo);
       }
     }
   }, [productData]);
@@ -52,17 +112,20 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
   };
 
   const handleSave = () => {
-    if (onSave && isModified) {
-      onSave(formData);
+    if (isModified) {
+      handleEqSave();
+    
     }
   };
+  const doRefresh = useCallback(() => {
+    router.push('/home/administrare/echipamente');
+  }, [router]);
 
-  const handleDelete = () => {
-    if (window.confirm('Sunteți sigur că doriți să ștergeți acest produs?')) {
-      if (onDelete) {
-        onDelete(productData.id);
-      }
-    }
+  const handleDelete = async () => {
+
+      deleteEquipmentById(getAuthToken(), equipmentId);
+      setTimeout(doRefresh, 1000);
+      onDelete();
   };
 
   const goToPreviousImage = () => {
@@ -90,8 +153,8 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
             <label className={`${styles.fieldLabel} ${Inter600.className}`}>Nume produs</label>
             <input
               type="text"
-              name="numeProdus"
-              value={formData.numeProdus}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               className={styles.textInput}
               placeholder="Nume produs"
@@ -114,7 +177,7 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
           
           {previewImages.length > 0 && (
             <div className={styles.imageSection}>
-              <label className={`${styles.fieldLabel} ${Inter600.className}`}>Imagini produs</label>
+              <label className={`${styles.fieldLabel} ${Inter600.className}`}>photo produs</label>
               <div className={styles.mainImage}>
                 <div className={styles.imageNavFlexContainer}>
                   <button className={styles.imageNavButton} onClick={goToPreviousImage}>&#10094;</button>
@@ -137,13 +200,13 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
           )}
           
           <div className={styles.formField}>
-            <label className={`${styles.fieldLabel} ${Inter600.className}`}>Descriere produs</label>
+            <label className={`${styles.fieldLabel} ${Inter600.className}`}>description produs</label>
             <textarea
-              name="descriere"
-              value={formData.descriere}
+              name="description"
+              value={formData.description}
               onChange={handleChange}
               className={styles.textarea}
-              placeholder="Descriere produs"
+              placeholder="description produs"
               rows={4}
             />
           </div>
@@ -151,8 +214,8 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
           <div className={styles.formField}>
             <label className={`${styles.fieldLabel} ${Inter600.className}`}>Mod de utilizare</label>
             <textarea
-              name="modUtilizare"
-              value={formData.modUtilizare}
+              name="usage"
+              value={formData.usage}
               onChange={handleChange}
               className={styles.textarea}
               placeholder="Mod de utilizare"
@@ -163,8 +226,8 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
           <div className={styles.formField}>
             <label className={`${styles.fieldLabel} ${Inter600.className}`}>Material și întreținere</label>
             <textarea
-              name="materialSiIntretinere"
-              value={formData.materialSiIntretinere}
+              name="material"
+              value={formData.material}
               onChange={handleChange}
               className={styles.textarea}
               placeholder="Material și întreținere"

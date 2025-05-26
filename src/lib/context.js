@@ -31,3 +31,21 @@ export function CalendarProvider({ children }) {
 export function useSelectedDay() {
   return useContext(CalendarContext);
 }
+
+export const RootCalendarContext = createContext();
+export function RootCalendarProvider({ children }) {
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedMonth, setSelectedMonth] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
+
+  const [unavailableDates, setUnavailableDates] = useState([]);
+
+  return (
+    <RootCalendarContext.Provider value={{ selectedDay, setSelectedDay, selectedMonth, setSelectedMonth, selectedYear, setSelectedYear, unavailableDates, setUnavailableDates }}>
+      {children}
+    </RootCalendarContext.Provider>
+  );
+}
+export function useRootCalendar() {
+  return useContext(RootCalendarContext);
+}

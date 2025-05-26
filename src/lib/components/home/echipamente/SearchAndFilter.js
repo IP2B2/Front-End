@@ -10,7 +10,7 @@ import "@/app/globals.css";
 
 export const SearchAndFilterContext = createContext({});
 
-export const SearchAndFilter = ({ ItemComponent, title, collectionObject }) => {
+export const SearchAndFilter = ({ ItemComponent, title, collectionObject, HeaderComponent}) => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [selectedFilters, setSelectedFilters] = useState({});
 	const [filters, setFilters] = useState({});
@@ -57,6 +57,7 @@ export const SearchAndFilter = ({ ItemComponent, title, collectionObject }) => {
 						<SearchBar />
 					</div>
 					<div className={styles.dataContainer}>
+						{HeaderComponent && <HeaderComponent key={-1} />}
 						{items.filter((item) => {
 							return (
 								item.name
@@ -175,7 +176,7 @@ const FilterOptionItem = ({ option, filterKey }) => {
 				checked={selected || false}
 				onChange={handleChange}
 			/>
-			{option}
+			{typeof option === "boolean" ? option ? "Da" : "Nu" : option}
 		</label>
 	);
 };

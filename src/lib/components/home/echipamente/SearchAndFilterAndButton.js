@@ -13,7 +13,8 @@ export const SearchAndFilterAndButton = ({
   title, 
   collectionObject,
   buttonText = "Adăugare produs",
-  onButtonClick 
+  onButtonClick,
+  HeaderComponent
 }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedFilters, setSelectedFilters] = useState({});
@@ -75,6 +76,7 @@ export const SearchAndFilterAndButton = ({
                         </div>
                     </div>
                     <div className={baseStyles.dataContainer}>
+                        {HeaderComponent && <HeaderComponent key={-1} />}
                         {items.filter((item) => {
                             return (
                                 item.name

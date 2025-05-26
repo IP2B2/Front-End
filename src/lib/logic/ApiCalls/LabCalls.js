@@ -7,7 +7,6 @@ export async function getLabs() {
         status: 0, error: false, payload: '', expiredToken: false
     }
     try {
-        process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
         const token = localStorage.getItem('authToken');
         if (!token) {
             resolution.error = true;
@@ -25,7 +24,7 @@ export async function getLabs() {
         console.log(response2.data);
         return resolution
     } catch (error) {
-        console.error('Error during the request:', error);
+        console.log('Error during the request:', error);
         resolution.error = true;
         resolution.payload = "Eroare interna. Incercati mai tarziu";
         return resolution;

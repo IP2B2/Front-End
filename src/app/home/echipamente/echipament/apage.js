@@ -1,14 +1,11 @@
 'use client'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './Echipament.module.css';
 import Image from 'next/image'
 import { Inter500 } from '@/lib/fonts/Inter'
 import '@/app/globals.css';
 import carouselStyles from './ProductImageCarousel.module.css';
 import { BackArrow } from '@/lib/components/globals/NavArrows';
-import { Calendar, SelectedDayProvider } from '@/lib/components/calendar/Calendar';
-import { useRouter } from 'next/navigation';
-import ResponseRegisteredSucc from '@/lib/components/popups/ResponseRegisteredSucc';
 
 export default function EchipamentPage() {
     
@@ -18,30 +15,13 @@ export default function EchipamentPage() {
       "/icons/Frame 1000005450.svg",
       "/icons/Frame 1000005450.svg"
     ];
-    const [showCalendar, setShowCalendar] = useState(false);
-    const router = useRouter();
-    const [showPopup, setShowPopup] = useState(false);
-
-    useEffect(() => {
-        const shouldShowPopup = localStorage.getItem('showSuccessPopup');
-        if (shouldShowPopup === 'true') {
-            setShowPopup(true);
-            localStorage.removeItem('showSuccessPopup');
-        }
-    }, []);
-
 
     return (
     <div className={styles.layout}>
         <div className={styles.backButtonWrapper}>
-            <BackArrow 
-                arrowSize={20} 
-                onClick={() => router.push('/home/administrare')}
-            />
+            <BackArrow arrowSize={20} />
         </div>
         <ProductImageCarousel imageLinkArray={images} />
-
-        <ResponseRegisteredSucc open={showPopup} onClose={() => setShowPopup(false)} />
 
         <div className={styles.descriptionContainer}>
             <h1 className={styles.productTitle}>Prelungitor 20M cu mâner</h1>
@@ -49,28 +29,9 @@ export default function EchipamentPage() {
             Prelungitor Cube, roz, 2 prize Schuko, cablu flexibil, design modern și compact, perfect pentru birou sau living. Soluție elegantă pentru conectarea dispozitivelor dumneavoastră, combinând funcționalitatea cu estetica contemporană.
             </div>
             <div className={styles.buttonGroup}>
-                <button
-                    className={`${styles.actionButton} ${Inter500.className}`}
-                    onClick={() => setShowCalendar(!showCalendar)}
-                >
-                    Vezi disponibilitate
-                </button>
-
-                <button 
-                    className={`${styles.actionButton} ${Inter500.className}`}
-                    onClick={() => router.push('/home/inchiriere/echipament-simplu')} //provizoriu
-                            //o sa pun varianta pentru a ajunge si la celalalt formular
-                >
-                    Închiriază
-                </button>
+                <button className={`${styles.actionButton} ${Inter500.className}`}>Vezi disponibilitate</button>
+                <button className={`${styles.actionButton} ${Inter500.className}`}>Închiriază</button>
             </div>
-            {showCalendar && (
-                <div className={styles.calendarWrapper}>
-                    <SelectedDayProvider>
-                    <Calendar />
-                    </SelectedDayProvider>
-                </div>
-                )}
             <div className={styles.dropdownsContainer}>
                 <details className={styles.dropdown}>
                     <summary className={`${styles.dropdownHeader} ${Inter500.className}`}>Mod de utilizare</summary>
@@ -88,25 +49,24 @@ export default function EchipamentPage() {
             </div>
         </div>
     </div>
-    
     );
 }
 
-const ProductImageCarousel = ({ imageLinkArray }) => {
-    
+export const ProductImageCarousel = ({ imageLinkArray }) => {
+    console.log("Image Link Array:", imageLinkArray);
     const [selectedImage, setSelectedImage] = useState(0);
     
     return (
     <div className={carouselStyles.productImageSection}>
         <div className={carouselStyles.imageContainer}>
             <div className={carouselStyles.imageWrapper}>
-                <Image 
-                    src={imageLinkArray[selectedImage]} 
+                { imageLinkArray && <Image 
+                    src={imageLinkArray[selectedImage] || "/icons/Frame 1000005450.svg"} 
                     alt="Prelungitor Gri" 
                     className={carouselStyles.image}
                     fill
                     sizes="(max-width: 860px) 860px, 400px"
-                />
+                />}
                 <div className={carouselStyles.overlay}>
                     <span className={carouselStyles.overlayText}>FEEA</span>
                 </div>
@@ -129,14 +89,14 @@ const ProductImageCarousel = ({ imageLinkArray }) => {
         
         <div className={carouselStyles.carouselContainer}>
             <div className={carouselStyles.thumbnailsContainer}>
-                {imageLinkArray.map((image, index) => (
+                {imageLinkArray?.filter(link => link != "").map((image, index) => (
                     <div 
                         key={index} 
                         className={`${carouselStyles.thumbnailWrapper} ${selectedImage === index ? carouselStyles.selectedThumbnail : ''}`}
                         onClick={() => setSelectedImage(index)}
                     >
                         <Image 
-                            src={image} 
+                            src={image || "/icons/Frame 1000005450.svg"} 
                             alt={`Thumbnail ${index + 1}`} 
                             className={carouselStyles.thumbnailImage}
                             width={70}

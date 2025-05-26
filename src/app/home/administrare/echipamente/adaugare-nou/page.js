@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -6,7 +6,143 @@ import styles from './formAdaugareProdus.module.css';
 import { BackArrow } from '@/lib/components/globals/NavArrows';
 import { useRouter } from 'next/navigation';
 
-export default function Page() {
+import stylesNew from './adaugareEchipament.module.css';
+import { DefaultFormLayout, FormContainer, FormField, FormButton, FormImageUploadMultiple } from '@/lib/components/form/Form';
+import { emptyInvalidator } from '@/lib/logic/AuthValidators';
+import ProductAddedSucc from '@/lib/components/popups/ProductAddedSucc';
+
+import { createEquipment } from '@/lib/service/EquipmentService';
+import { getAuthToken } from '@/lib/getAuthToken';
+import { acquisitionDateValidator } from '@/lib/validators/acquisitionDateValidator';
+
+export default function AdminAdaugareEchipament() {
+
+  const router = useRouter();
+
+  const [imageLinks, setImageLinks] = useState([]);
+
+  const [name, setName] = useState('');
+  const [inventoryNumber, setInventoryNumber] = useState('TST999'); 
+  
+  const [description, setDescription] = useState('');
+  const [usage, setUsage] = useState('');
+  const [material, setMaterial] = useState('');
+
+  const [acquisitionDate, setAcquisitionDate] = useState(new Date());
+
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
+  const [formSuccess, setFormSuccess] = useState(false);
+
+  useEffect(() => {
+    console.log('imaegeLinks', imageLinks);
+  }, [imageLinks]);
+
+  const handleSubmit = async () => {
+    setHasSubmitted(true);
+    try {
+      await createEquipment(getAuthToken(), {
+        name: name.trim(),
+        inventoryNumber: inventoryNumber.trim(),
+        availabilityStatus: 'AVAILABLE',
+        laboratoryId: 1, 
+        description: description.trim(),
+        usage: usage.trim(),
+        material: material.trim(),
+        photo: imageLinks.length > 0 ? imageLinks : [],
+        acquisitionDate: acquisitionDate
+      });
+      setFormSuccess(true);
+    } catch (error) {
+      console.error(error);
+      // FIXME add unathorized handling
+    }
+  };
+
+  return (
+    <div className={stylesNew.container}>
+      <ProductAddedSucc open={formSuccess} onClose={() => {
+        setFormSuccess(false);
+      }} />
+      <div className={styles.backButtonWrapper}>
+        <BackArrow />
+      </div>
+      <div className={stylesNew.formCard}>
+        <DefaultFormLayout
+          title={"Adaugare Echipament"}
+          subtitle={"Completeaza detaliile echipamentului"}
+          >
+          <FormContainer>
+            <FormField 
+              type={"text"}
+              label={"Nume"}
+              setState={setName}
+              formInputId={"name"}
+              placeholder={"Prelungitor fara maner"}
+              validator={emptyInvalidator}
+              validate={hasSubmitted}
+            />
+            <FormField 
+              type={"text"}
+              label={"Numar de Inventar"}
+              setState={setInventoryNumber}
+              formInputId={"inventoryNumber"}
+              placeholder={"TST999"}
+              validator={emptyInvalidator}
+              validate={hasSubmitted}
+            />
+            <FormField 
+              type={"textarea"}
+              label={"Descriere"}
+              setState={setDescription}
+              formInputId={"description"}
+              placeholder={"Un prelungitor de calitate superioara, cu 5 prize si protectie la suprasarcina."}
+              validator={emptyInvalidator}
+              validate={hasSubmitted}
+            />
+            <FormField
+                type={"date"}
+                label={"Data achizitiei"}
+                value={acquisitionDate}
+                setState={setAcquisitionDate}
+                validator={acquisitionDateValidator}
+                validate={hasSubmitted}
+            />
+            <FormField 
+              type={"textarea"}
+              label={"Mod de Utilizare"}
+              setState={setUsage}
+              formInputId={"usage"}
+              placeholder={"Pentru uz casnic si profesional."}
+              validator={emptyInvalidator}
+              validate={hasSubmitted}
+            />
+            <FormField
+              type={"textarea"}
+              label={"Material si Intretinere"}
+              setState={setMaterial}
+              formInputId={"material"}
+              placeholder={"Plastic, curatare usoara."}
+              validator={emptyInvalidator}
+              validate={hasSubmitted}
+            />
+            <FormImageUploadMultiple
+              setState={setImageLinks}
+              label={"Imagini"}
+              validate={true}
+            />
+            <FormButton
+              onClick={handleSubmit}
+            >Adauga Echipament</FormButton>
+          </FormContainer>
+        </DefaultFormLayout>
+      </div>
+    </div>
+  )
+}
+
+
+export function PageOld() {
   const router = useRouter();
   
   const [isClient, setIsClient] = useState(false);
@@ -199,8 +335,7 @@ useEffect(() => {
     }
     
     console.log('Produs adăugat!', formData);
-    localStorage.setItem('showSuccessPopup', 'true');
-    router.push('../home/administrare/administrare-echipamente');
+    router.push('../home/produs-adaugat-succes');
   };
 
   const goToPreviousImage = () => {

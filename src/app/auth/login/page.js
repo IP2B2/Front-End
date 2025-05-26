@@ -40,7 +40,8 @@ export default function LoginPage() {
             return;
         }
         setIsSubmitError(false);
-        localStorage.setItem('authToken', loginResolution.payload);
+        localStorage.setItem('authToken', loginResolution.payload.token);
+        localStorage.setItem('userRoles', JSON.stringify(loginResolution.payload.roles));
         return router.push('/home');
     };
     const handleRedirectForgotPassword = async () => {
