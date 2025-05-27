@@ -1,4 +1,5 @@
 .layout {
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	gap: 20px;
@@ -21,6 +22,7 @@
 }
 
 .descriptionContainer {
+	width: 100%;
 	max-width: 1000px;
 
 	display: flex;
@@ -63,6 +65,7 @@
 	padding: 25px 30px;
 
 	display: flex;
+	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: center;
 
@@ -80,9 +83,6 @@
 	cursor: pointer;
 }
 
-.actionButton:hover {
-	opacity: 0.9;
-}
 
 .actionButton:first-child {
 	background: linear-gradient(

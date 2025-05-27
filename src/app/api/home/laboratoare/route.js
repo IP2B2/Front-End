@@ -5,7 +5,6 @@ import axios from "axios";
  */
 
 export async function GET(request) {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
     const bearerHeader = request.headers.get('Authorization');
     if (!bearerHeader) {
         return new Response(JSON.stringify({ error: "Authorization header missing" }), {

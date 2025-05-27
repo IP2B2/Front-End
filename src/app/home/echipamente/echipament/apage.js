@@ -52,21 +52,21 @@ export default function EchipamentPage() {
     );
 }
 
-const ProductImageCarousel = ({ imageLinkArray }) => {
-    
+export const ProductImageCarousel = ({ imageLinkArray }) => {
+    console.log("Image Link Array:", imageLinkArray);
     const [selectedImage, setSelectedImage] = useState(0);
     
     return (
     <div className={carouselStyles.productImageSection}>
         <div className={carouselStyles.imageContainer}>
             <div className={carouselStyles.imageWrapper}>
-                <Image 
-                    src={imageLinkArray[selectedImage]} 
+                { imageLinkArray && <Image 
+                    src={imageLinkArray[selectedImage] || "/icons/Frame 1000005450.svg"} 
                     alt="Prelungitor Gri" 
                     className={carouselStyles.image}
                     fill
                     sizes="(max-width: 860px) 860px, 400px"
-                />
+                />}
                 <div className={carouselStyles.overlay}>
                     <span className={carouselStyles.overlayText}>FEEA</span>
                 </div>
@@ -89,14 +89,14 @@ const ProductImageCarousel = ({ imageLinkArray }) => {
         
         <div className={carouselStyles.carouselContainer}>
             <div className={carouselStyles.thumbnailsContainer}>
-                {imageLinkArray.map((image, index) => (
+                {imageLinkArray?.filter(link => link != "").map((image, index) => (
                     <div 
                         key={index} 
                         className={`${carouselStyles.thumbnailWrapper} ${selectedImage === index ? carouselStyles.selectedThumbnail : ''}`}
                         onClick={() => setSelectedImage(index)}
                     >
                         <Image 
-                            src={image} 
+                            src={image || "/icons/Frame 1000005450.svg"} 
                             alt={`Thumbnail ${index + 1}`} 
                             className={carouselStyles.thumbnailImage}
                             width={70}

@@ -1,23 +1,23 @@
+
+import Image from 'next/image';
+
 import PropTypes from 'prop-types';
 import styles from './ProdusListing.module.css';
 import { Montserrat500, Montserrat600 } from '@/lib/fonts/Montserrat';
 
-export default function ProdusListing({ imageSrc, denumire, locatie, data, onClick, showHeader}) {
+export default function ProdusListing({ imageSrc, denumire, locatie, data, onClick, admin}) {
+    console.log("ProdusListing", { imageSrc, denumire, locatie, data, onClick, admin });
     return (
         <>
-        {showHeader && (
-            <div className={`${styles.row} ${styles.header} ${Montserrat600.className}`}>
-                <div className={styles.imageWrapper}></div>
-                <div className={styles.cell}>Denumire</div>
-                <div className={styles.cell}>Locație</div>
-                <div className={styles.cell}>Ultima actualizare</div>
-                <div className={styles.icon}></div>
-            </div>
-        )}
         <div className={`${styles.row} ${Montserrat500.className}`}>
             <div className={styles.imageWrapper}>
-                {imageSrc ? (
-                    <img src={imageSrc} alt="Produs" className={styles.image} />
+                {imageSrc && imageSrc.length > 3 ? (
+                    <Image
+                        src={imageSrc}
+                        alt="Produs"
+                        className={styles.image}
+                        width={50}
+                        height={50} />
                     ) : (
                     <div className={styles.placeholder}>Imagine</div>
                 )}
@@ -37,6 +37,18 @@ export default function ProdusListing({ imageSrc, denumire, locatie, data, onCli
         </div>
         </>
     );
+}
+
+export function ProdusListingHeader() {
+    return (
+            <div className={`${styles.row} ${styles.header} ${Montserrat600.className}`}>
+                <div className={styles.imageWrapper}></div>
+                <div className={styles.cell}>Denumire</div>
+                <div className={styles.cell}>Locație</div>
+                <div className={styles.cell}>Ultima actualizare</div>
+                <div className={styles.icon}></div>
+            </div>
+        );
 }
 
 ProdusListing.propTypes = {

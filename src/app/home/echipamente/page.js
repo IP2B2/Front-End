@@ -8,53 +8,17 @@ import SearchAndFilter from '@/lib/components/home/echipamente/SearchAndFilter';
 import ProductCard from '@/lib/components/home/echipamente/ProductCard';
 
 import styles from './EchipamentePage.module.css';
-
-
-const collectionObject = {
-    filterBy: {
-        location: "Locatie",
-        availableTomorrow: "Disponibil maine",
-        type: "Tip Obiect",
-    },
-    items: [
-        {
-            name: "prelungitor 20M cu maner",
-            location: "FEEA - Facultate 2",
-            availableTomorrow: "Da",
-            faculty: "FEAA",
-            image: "/icons/prelungitor.jpg",
-            type: "Simplu",
-        },
-        {
-            name: "prelungitor rosu",
-            location: "FEEA - Informatica",
-            availableTomorrow: "Da",
-            faculty: "FEAA",
-            image: "/icons/prelungitor.jpg",
-            type: "Complex",
-        },
-        {
-            name: "prelungitor galben 3m",
-            location: "FEEA - Matematica-Informatică",
-            availableTomorrow: "Da",
-            faculty: "FEAA",
-            image: "/icons/prelungitor.jpg",
-            type: "Complex",
-        },
-        {
-            name: "prelungitor 20M cu maner",
-            location: "FEEA - Info economica",
-            faculty: "FEAA",
-            availableTomorrow: "Nu",
-            image: "/icons/prelungitor.jpg",
-            type: "Simplu",
-        },
-    ],
-};
+import { getAllEquipment } from '@/lib/service/EquipmentService';
 
 export default function EchipamentePage() {
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({
+        filterBy: {
+            location: "Facultate",
+            availableTomorrow: "Disponibil maine",
+        },
+        items: [],
+    });
     const router = useRouter();
 
     const cb = useCallback(() => {
@@ -62,31 +26,40 @@ export default function EchipamentePage() {
             const dataRes = await getEquipmentList();
             if(dataRes?.expiredToken || dataRes?.error) {
                 console.log("Token expired");
-                //router.push('/auth/login');
+                router.push('/auth/login');
                 return;
             }
-            console.log("Data fetched: ", dataRes);
-            setData(dataRes?.payload);
+            var data = [];
+            let eq = await getAllEquipment(localStorage.getItem('authToken'));
+
+            data = eq.map(item => ({
+                id: item.id,
+                name: item.name,
+                availableTomorrow: item.availableTomorrow === 'AVAILABLE',
+                labId: item.laboratoryId,
+                image: item.photo[0] || '/icons/prelungitor.jpg',
+                faculty: null
+            }));
+
+            let collectionObject = {
+                filterBy: {
+                    faculty: "Facultate",
+                    availableTomorrow: "Disponibil maine",
+                },
+                items: data,
+            };
+            setData(collectionObject);
         }
         getData();
     }, [setData, router]);
 
-    //useEffect(cb, []);
+    useEffect(cb, []);
+
+
 
     return (
         <div className={styles.echipamentePageContainer}>
-            {/* <GridTable headerArray={['Denumire', 'Numar Inventar', 'Data Achizitie', 'Cerinte de acces']}>
-                {
-                    data?.map((equipData) => [
-                        equipData.name,
-                        equipData.inventoryNumber,
-                        equipData.acquisitionDate,
-                        equipData.accessRequirements
-                    ]).flat().map((divData, index) => <div key={index}>{divData}</div>)
-                }
-            </GridTable> */}
-            <SearchAndFilter title="Echipamente" ItemComponent={ProductCard} collectionObject={collectionObject}/>
-            {/* <ProductSearchAndFilter /> */}
+            <SearchAndFilter title="Echipamente" ItemComponent={ProductCard} collectionObject={data}/>
         </div>
     )
 }

@@ -9,7 +9,6 @@ export async function getEquipmentList() {
         status: 0, error: false, payload: '', expiredToken: false
     }
     try {
-        process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
         const token = localStorage.getItem('authToken');
         if (!token) {
             resolution.error = true;
@@ -17,19 +16,26 @@ export async function getEquipmentList() {
             resolution.expiredToken = true;
             return resolution;
         }
-        const response2 = await axios.get('/api/home/echipamente', {
+
+        const response = await axios.get('/api/home/echipamente', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         });
-        resolution.status = response2.status;
-        resolution.payload = response2.data["_embedded"]["equipments"];
-        console.log(response2.data);
-        return resolution
+        resolution.status = response.status;
+        resolution.payload = response.data;
+        console.log(response.data);
+        return resolution;
     } catch (error) {
-        console.error('Error during the request:', error);
+        console.log('Error during the request:', error);
         resolution.error = true;
-        resolution.payload = "Eroare interna. Incercati mai tarziu";
+        if (error.response) {
+            resolution.payload = error.response.data || "Eroare interna. Incercati mai tarziu";
+            resolution.status = error.response.status;
+        } else {
+            resolution.payload = "Eroare de retea sau server indisponibil.";
+            resolution.status = 500;
+        }
         return resolution;
     }
 }

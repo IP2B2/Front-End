@@ -90,7 +90,7 @@
 
 .filterOptions {
 	display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	gap: 6px;
 	padding-left: 10px;
 }

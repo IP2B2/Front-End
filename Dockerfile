@@ -7,7 +7,6 @@ ARG BACKEND_URI
 # Set environment variables
 ENV BACKEND_URI=$BACKEND_URI
 
-
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -18,7 +17,8 @@ RUN npm run build
 FROM node:20-alpine
 
 # Create non-root user
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup -g 1200 appgroup && \
+    adduser -S -u 1200 -G appgroup appuser
 
 WORKDIR /app
 
@@ -28,6 +28,8 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/node_modules ./node_modules
 
+USER root
+RUN chown -R appuser:appgroup /app/
 USER appuser
 
 EXPOSE 3000

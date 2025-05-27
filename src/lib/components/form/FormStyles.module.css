@@ -51,6 +51,10 @@
 
     font-size: var(--font-size-sm);
 }
+textarea.formInput {
+    height: 100px;
+    resize: vertical;
+}
 .formInput:focus-visible {
     outline: none;
 }
@@ -118,6 +122,15 @@
 .formSubtitle {
     font-size: var(--font-size-sm);
     color: var(--text-gray);
+}
+
+.formImageUploadGroup {
+
+}
+.formImageUploadGroup > label {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 6px;
 }
 
 @media (max-width: 1150px) {

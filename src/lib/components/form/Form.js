@@ -3,9 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+import ProductImageCarousel from "../home/echipamente/ProductImageCarousel";
+import uploadImage from "@/lib/logic/imgurImageUpload";
+
+
 import formStyles from "./FormStyles.module.css"
 import '@/app/globals.css';
 import { Inter700, Inter500, Inter600 } from '@/lib/fonts/Inter';
+import classPack from "@/lib/classPack";
 
 export const DefaultFormLayout = (
     { 
@@ -91,6 +96,90 @@ export const FormMultiColumn = ({ cols, children }) => {
             </div>
     )
 }
+export const FormImageUploadMultiple = ({ setState, label, validate = true }) => {
+
+    const [preuploadFile, setPreuploadFile] = useState(null);
+
+    const [imageLinks, setImageLinks] = useState([]);
+    const [isInputError, setIsInputError] = useState(false);
+    const [inputError, setInputError] = useState("");
+
+    const handleImageUpload = async (e) => {
+        setInputError("");
+        setIsInputError(false);
+        let newLinks = [...imageLinks];
+        if (!preuploadFile) {
+            setInputError("Selectati o imagine");
+            setIsInputError(true);
+            return;
+        }
+        try {
+            const formData = new FormData();
+            formData.append("image", preuploadFile);
+            formData.append("type", "file");
+            formData.append("title", preuploadFile.name);
+            formData.append("description", "Uploaded via Next.js app");
+
+            const imageUrl = await uploadImage(formData);
+            if (!imageUrl || imageUrl.length < 1) {
+                setInputError("Eroare la upload imagine");
+                setIsInputError(true);
+                return;
+            }
+            newLinks.push(imageUrl);
+            setImageLinks(newLinks);
+        } catch(error) {
+            setInputError(error.message);
+            setIsInputError(true);
+            return;
+        }
+    }
+
+    useEffect(() => {
+        console.log("Image links updated:", imageLinks);
+        if (setState) {
+            setState(imageLinks);
+        }
+    }, [imageLinks]);
+
+    useEffect(() => {
+        console.log("preuploadFile changed:", preuploadFile);
+    }, [preuploadFile]);
+
+    const handlePreuploadFileChange = (event) => {
+        setPreuploadFile(event.target.files[0]);
+        console.log("Preupload file changed:", event.target.files[0]);
+    }
+
+    return (
+        <div className={classPack(formStyles.formImageUploadContainer, Inter600.className)}>
+            <div>
+                <div
+                    className={`${formStyles.formInputGroup} ${Inter600.className} ${formStyles.formImageUploadGroup}`}>
+                    <label>
+                        {label}
+                        <input
+                            className={`${formStyles.formInput} border-rounded border-gray ${Inter600.className} ${isInputError ? formStyles.formInputError : ''}`}
+                            type={"file"}
+                            onChange={handlePreuploadFileChange}
+                            accept={"image/png, image/jpeg, image/jpg, image/apng, image/gif, image/tiff"}
+                        />
+                    </label>
+                    <FormButton onClick={handleImageUpload}>Upload</FormButton>
+                    <div className={`${formStyles.formInputErrorMessage}`}>
+                        { validate && isInputError ? inputError : ''}
+                    </div>
+                </div>
+            </div>
+            { imageLinks.length > 0 &&(
+            <ProductImageCarousel 
+                imageLinkArray={imageLinks} 
+            />)
+            }
+        </div>
+    )
+}
+
 export const FormField = ({ type, placeholder, validator, setState, trim, label, validate = true, formInputId, disabled }) => {
 
     const [inputValue, setInputValue] = useState('');
@@ -123,6 +212,15 @@ export const FormField = ({ type, placeholder, validator, setState, trim, label,
             className={`${formStyles.formInputGroup} ${Inter600.className}`}>
             <label>
                 {label}
+                {type == 'textarea' ? 
+                <textarea
+                    className={`${formStyles.formInput} border-rounded border-gray ${Inter600.className} ${isInputError ? formStyles.formInputError : ''}`} 
+                    placeholder={placeholder} 
+                    onChange={handleInputChange}
+                    id={formInputId}
+                    name={formInputId}
+                    disabled={!!disabled}></textarea>
+            :
                 <input 
                     className={`${formStyles.formInput} border-rounded border-gray ${Inter600.className} ${isInputError ? formStyles.formInputError : ''}`} 
                     placeholder={placeholder} 
@@ -130,7 +228,7 @@ export const FormField = ({ type, placeholder, validator, setState, trim, label,
                     onChange={handleInputChange}
                     id={formInputId}
                     name={formInputId}
-                    disabled={!!disabled}/>
+                    disabled={!!disabled}/>}
             </label>
             <div className={`${formStyles.formInputErrorMessage}`}>
                 { validate && isInputError ? inputError : ''}

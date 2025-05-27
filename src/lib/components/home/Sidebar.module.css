@@ -70,7 +70,7 @@
 }
 
 .adminNavItem {
-  background-color: var(--foreground);
+  background-color: #FF4A4A;
 }
 
 .active {
@@ -105,16 +105,12 @@
 }
 
 .adminIcon {
-  width: 24px;
-  height: 24px;
-
   position: relative;
-
   display: inline-block;
-  
-  border-radius: 2px;
-
   background: white;
+  border-radius: 2px;
+  top: 4px;
+
 }
 
 .adminIcon::before {

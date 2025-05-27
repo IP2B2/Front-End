@@ -4,15 +4,23 @@ import styles from '../formInchiriere.module.css';
 import { useState, useEffect } from "react";
 import '@/app/globals.css';
 import { DefaultFormLayout, FormContainer, FormMultiColumn, FormField } from "@/lib/components/form/Form";
-import { usePathname} from 'next/navigation'; 
+import { redirect, usePathname} from 'next/navigation'; 
 import { Calendar } from '@/lib/components/calendar/Calendar';
-
+import { useRouter } from 'next/navigation';
 import { emptyInvalidator, cnpValidator, dateValidator, daysValidator } from "@/lib/logic/AuthValidators";
 import { BackArrow } from "@/lib/components/globals/NavArrows";
+import { CheckIsLoggedInAndRedirect, redirectToLogin } from '@/lib/logic/RedirectLogin';
+import { createCerereInchiriereSimplu } from '@/lib/logic/ApiCalls/InchiriereCalls';
 
 const today = new Date().toISOString().split("T")[0];
 
 export default function ProductRentalForm() {
+    const router = useRouter();
+
+    useEffect(() => {
+        CheckIsLoggedInAndRedirect(router);
+    }, []);
+    
     const { pathname } = usePathname();
 
     useEffect(() => {
@@ -42,13 +50,25 @@ export default function ProductRentalForm() {
         
     }, [rentalDate, rentalDays]);
     
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         setHasSubmitted(true);
         
-        if(isFormValid) {
-            console.log("Form submitted:", { cnp, address, rentalDays, rentalDate });
-            alert("Formularul a fost trimis cu succes!");
+        if(!isFormValid) {
+            return;
+        }
+        console.log("Form submitting");
+        const startDate = new Date(rentalDate);
+        const endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + parseInt(rentalDays, 10));
+        const resolution = await createCerereInchiriereSimplu(
+            rentalDate,
+            endDate.toISOString().split("T")[0],
+            1
+        );
+        if(resolution.status === 403 || resolution.status === 401) {
+            redirectToLogin(router);
+            return;
         }
     };
 
