@@ -41,7 +41,7 @@ export default function LoginPage() {
         }
         setIsSubmitError(false);
         localStorage.setItem('authToken', loginResolution.payload.token);
-        localStorage.setItem('userRoles', JSON.stringify(loginResolution.payload.roles));
+        localStorage.setItem('userRoles', JSON.stringify(loginResolution.payload.roles.roles));
         return router.push('/home');
     };
     const handleRedirectForgotPassword = async () => {
