@@ -1,6 +1,6 @@
 'use client';
 
- import { useState } from "react";
+ import { useState, useEffect } from "react";
  import { useRouter } from 'next/navigation';
 
  import styles from "./resetPassword.module.css";
@@ -17,6 +17,21 @@
 
      const [isSubmitError, setIsSubmitError] = useState(false);
      const [hasSubmitted, setHasSubmitted] = useState(false);
+
+     const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        const hasPassword = newPasswordField.trim() !== "";
+        const hasConfirmPassword = confirmPasswordField.trim() !== "";
+        const passwordsMatch = newPasswordField === confirmPasswordField;
+        
+        setIsFormValid(hasPassword && hasConfirmPassword && passwordsMatch);
+        
+        if (isSubmitError) {
+            setIsSubmitError(false);
+        }
+    }, [newPasswordField, confirmPasswordField, isSubmitError]);
+
 
      const handleReset = async () => {
          setHasSubmitted(true);
@@ -60,7 +75,7 @@
                      validator={(value) => value !== newPasswordField ? "Parolele nu coincid." : ""}
                      validate={hasSubmitted}
                      />
-                 <FormButton onClick={handleReset}>
+                 <FormButton onClick={handleReset} isValid={isFormValid}>
                      Resetează
                  </FormButton>
              </FormContainer>
