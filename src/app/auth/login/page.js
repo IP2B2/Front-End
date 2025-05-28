@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 
 import styles from "./loginPage.module.css";
@@ -20,6 +20,16 @@ export default function LoginPage() {
     const [isSubmitError, setIsSubmitError] = useState(false);
     const [submitError, setSubmitError] = useState("");
     const [hasSubmitted, setHasSubmitted] = useState(false);
+
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        const hasEmail = emailField.trim() !== "";
+        const hasPassword = passwordField.trim() !== "";
+        
+        setIsFormValid(hasEmail && hasPassword);
+    }, [emailField, passwordField]);
+
 
     const handleLogin = async () => {
         setHasSubmitted(true);
@@ -78,7 +88,11 @@ export default function LoginPage() {
                     validate={hasSubmitted}
                     formInputId={"password"}
                     />
-                <FormButton onClick={handleLogin}>
+                <FormButton 
+                onClick={handleLogin}
+                isValid={isFormValid}
+                disabled={!isFormValid}
+                >
                     Autentificare
                 </FormButton>
 

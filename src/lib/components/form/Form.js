@@ -54,18 +54,27 @@ export const FormLink = ({ href = '#', children }) => {
     );
 } 
 
-export const FormButton = ({ onClick, children }) => {
-
+export const FormButton = ({ onClick, children, isValid, className, disabled }) => {
     const buttonBehaviour = (event) => {
         event.preventDefault();
         onClick?.(event);
     }
 
+    // Adăugat isValid în definirea clasei
+    const buttonClass = `
+        ${formStyles.formButton} 
+        border-rounded 
+        ${Inter600.className} 
+        ${isValid ? formStyles.gradientButton : ''} 
+        ${className || ''}
+    `.trim();
+
     return (
         <button 
             type={"submit"} 
             onClick={buttonBehaviour} 
-            className={`${formStyles.formButton} border-rounded ${Inter600.className}`}>
+            disabled={disabled}
+            className={buttonClass}>
             {children}
         </button>
     )
