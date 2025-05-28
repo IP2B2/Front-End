@@ -7,7 +7,7 @@ export async function addEquipment(data) {
         delete newBody.token;
         const response = await axios.post(process.env.BACKEND_URI + `/equipment`, newBody, {
             headers: {
-                Authorization: `Bearer ${data.token}` // Assuming token is part of data
+                Authorization: `Bearer ${data.token}` 
             }
         });
         return response.data;
