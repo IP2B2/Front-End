@@ -34,7 +34,7 @@ export async function POST(request) {
             }
         });
 
-        if(!responseRoles.data || !Array.isArray(responseRoles.data)) {
+        if(!responseRoles.data || !responseRoles.data.roles || !Array.isArray(responseRoles.data.roles)) {
             return new Response(JSON.stringify({ error: "Invalid roles response" }), {
                 status: 500,
                 headers: { 'Content-Type': 'application/json' }
