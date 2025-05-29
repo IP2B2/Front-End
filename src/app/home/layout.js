@@ -10,6 +10,7 @@ import { ShowDesktopOnly, ShowTabletStart } from '@/lib/components/globals/Respo
 import HomeHeader from '@/lib/components/home/HomeHeader';
 
 export default function HomeLayout({ children }) {
+    
     return (
         <LayoutContentProvider>
         <div className={styles.layoutContainer}>
