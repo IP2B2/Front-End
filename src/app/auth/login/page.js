@@ -13,6 +13,9 @@ import { performLogin } from "@/lib/actions/performLogin";
 
 
 export default function LoginPage() {
+
+    const [submitting, setSubmitting] = useState(false);
+
     const [emailField, setEmailField] = useState("");
     const [passwordField, setPasswordField] = useState("");
 
@@ -21,7 +24,9 @@ export default function LoginPage() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const handleLogin = async () => {
+
         setHasSubmitted(true);
+        setSubmitting(true);
 
         const emailError = testValidEmail(emailField);
         const passwordError = testValidPassword(passwordField);
@@ -33,12 +38,14 @@ export default function LoginPage() {
         }
 
         const loginResolution = await performLogin(emailField, passwordField);
+        if(!loginResolution) return;
         if(loginResolution.status !== 200) {
             setIsSubmitError(true);
             setSubmitError(loginResolution.payload);
             return;
         }
         setIsSubmitError(false);
+        setSubmitting(false);
         redirect('/home');
     };
     const handleRedirectForgotPassword = async () => {
@@ -75,7 +82,7 @@ export default function LoginPage() {
                     validate={hasSubmitted}
                     formInputId={"password"}
                     />
-                <FormButton onClick={handleLogin}>
+                <FormButton onClick={handleLogin} disabled={submitting}>
                     Autentificare
                 </FormButton>
 

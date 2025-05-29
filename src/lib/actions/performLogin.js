@@ -60,7 +60,7 @@ export const performLogin = async (email, password) => {
 
         return {
             success: true,
-            status: response.status,
+            status: response.status || 200,
             payload: {
                 token: response.data.token,
                 roles: response.data.roles || []
