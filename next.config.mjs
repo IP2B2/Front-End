@@ -22,9 +22,13 @@ const nextConfig = {
       }
     ],
    },
-   trustHost: true,
    experimental: {
-    trustHost: true,
+    serverActions: {
+      allowedOrigins: [
+        'ismauaic.com',
+        'ismauaic.com:3101'
+      ]
+    }
    }
 };
 
