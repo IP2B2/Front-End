@@ -12,6 +12,11 @@ const nextConfig = {
    env: {
     BACKEND_URI: process.env.BACKEND_URI,
    },
+   allowedDevOrigins: [
+    'ismauaic.com',
+    'ismauaic.com:3101',
+    'localhost:3100'
+   ],
    images: {
     remotePatterns: [
       {
@@ -26,7 +31,8 @@ const nextConfig = {
     serverActions: {
       allowedOrigins: [
         'ismauaic.com',
-        'ismauaic.com:3101'
+        'ismauaic.com:3101',
+        'localhost:3100'
       ]
     }
    }
