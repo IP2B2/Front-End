@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import styles from "./registerPage.module.css";
 import '@/app/globals.css';
@@ -19,25 +19,98 @@ export default function ExtraDataRequired() {
 
     const [parola, setParola] = useState("");
     const [confirmParola, setConfirmParola] = useState("");
-
+    
+    const [isSubmitError, setIsSubmitError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    const [debouncedQuery, setDebouncedQuery] = useState({
+        prenume: "",
+        nume: "",
+        rol: "",
+        facultate: "",
+        parola: "",
+        confirmParola: ""
+    });
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedQuery({
+                prenume,
+                nume,
+                rol,
+                facultate,
+                parola,
+                confirmParola
+            });
+        }, 300);
+
+        return () => clearTimeout(timer);
+    }, [prenume, nume, rol, facultate, parola, confirmParola, isSubmitError]);
+
+
+    useEffect(() => {
+        const allFieldsHaveText = 
+            debouncedQuery.prenume.trim() !== "" && 
+            debouncedQuery.nume.trim() !== "" && 
+            debouncedQuery.rol.trim() !== "" && 
+            debouncedQuery.facultate.trim() !== "" && 
+            debouncedQuery.parola.trim() !== "" && 
+            debouncedQuery.confirmParola.trim() !== "";
+
+        const passwordsMatch = debouncedQuery.parola === debouncedQuery.confirmParola;
+
+        setIsFormValid(allFieldsHaveText && passwordsMatch);
+        
+        if (isSubmitError) {
+            setIsSubmitError(false);
+        }
+    }, [debouncedQuery, isSubmitError, hasSubmitted]);
+
+    const validateConfirmPassword = (value) => {
+        if (!value.trim()) {
+            return "Confirmarea parolei este obligatorie";
+        }
+        if (value !== parola) {
+            return "Parolele nu coincid";
+        }
+        return "";
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setHasSubmitted(true);
+        
         let errors = "";
-        [prenume, nume, rol, facultate, parola, confirmParola].forEach(input => {
+        [prenume, nume, rol, facultate, parola].forEach(input => {
             errors += emptyInvalidator(input);
-        })
-        if(errors == "")
-            router.push('/home');
+        });
+        
+        if (parola !== confirmParola) {
+            setIsSubmitError(true);
+            setErrorMessage("Parolele introduse nu coincid. Verificați și încercați din nou.");
+            return;
+        }
+        
+        if (errors !== "") {
+            setIsSubmitError(true);
+            setErrorMessage("Toate câmpurile sunt obligatorii. Verificați și încercați din nou.");
+            return;
+        }
+        
+        setIsSubmitError(false);
+        router.push('/home');
     };
 
     return (
         <div className={styles.registerContainer}>
             <DefaultFormLayout
                 title={"Mai avem nevoie de date"}
-                subtitle={"Introdu datele tale în formularul de mai jos pentru a finaliza crearea contului."}>
+                subtitle={"Introdu datele tale în formularul de mai jos pentru a finaliza crearea contului."}
+                showError={isSubmitError}
+                errorMessage={errorMessage}>
                 <FormContainer>
                 <FormMultiColumn cols={2}>
                         <FormField 
@@ -89,15 +162,20 @@ export default function ExtraDataRequired() {
                         validate={hasSubmitted}
                         />
                     <FormField 
-                        type={"text"} 
+                        type={"password"} 
                         label={"Confirmare parolă"} 
                         placeholder={"***************"}
                         setState={setConfirmParola} 
                         trim
-                        validator={emptyInvalidator}
+                        validator={validateConfirmPassword}
                         validate={hasSubmitted}
                         />
-                    <FormButton onClick={handleSubmit}>Finalizează</FormButton>
+                    <FormButton 
+                        onClick={handleSubmit} 
+                        isValid={isFormValid}
+                    >
+                        Finalizează
+                    </FormButton>
                     <FormLink href="/auth/login">Înapoi</FormLink>
                 </FormContainer>
             </DefaultFormLayout>

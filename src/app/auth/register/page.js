@@ -1,6 +1,6 @@
 'use client'
 
-import { useState,useCallback } from 'react';
+import { useState,useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; 
 import styles from './register.module.css';
 
@@ -14,6 +14,15 @@ function RegisterPage() {
 
   const [isSubmitError, setIsSubmitError] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+   useEffect(() => {
+    const hasEmail = emailField.trim() !== "";
+    const hasMatricol = matricolField.trim() !== "";
+    
+    setIsFormValid(hasEmail && hasMatricol);
+  }, [emailField, matricolField]);
 
   const handleSubmit = useCallback((event) => {
     event.preventDefault(); 
@@ -59,7 +68,7 @@ function RegisterPage() {
         >
         </FormField>
 
-        <FormButton onClick={handleSubmit}>
+        <FormButton isValid={isFormValid} onClick={handleSubmit}>
             Creeaza cont
         </FormButton>
 

@@ -34,6 +34,28 @@ export default function AdminAdaugareEchipament() {
 
   const [formSuccess, setFormSuccess] = useState(false);
 
+  const [isFormValid, setIsFormValid] = useState(false);
+
+// Înlocuiește useEffect-ul existent cu acesta:
+
+// Înlocuiește useEffect-ul existent cu acesta:
+
+useEffect(() => {
+  // Verifică doar câmpurile text, ignoră validitatea imaginilor
+  const isValid = 
+    name.trim() !== "" && 
+    inventoryNumber.trim() !== "" && 
+    description.trim() !== "" && 
+    usage.trim() !== "" && 
+    material.trim() !== "";
+  
+  // Nu mai verificăm acquisitionDate instanceof Date pentru a evita erori
+  // Trebuie doar să existe o valoare
+  const hasDate = acquisitionDate != null;
+  
+  setIsFormValid(isValid && hasDate);
+}, [name, inventoryNumber, description, usage, material, acquisitionDate]);
+
   useEffect(() => {
     console.log('imaegeLinks', imageLinks);
   }, [imageLinks]);
@@ -133,6 +155,7 @@ export default function AdminAdaugareEchipament() {
             />
             <FormButton
               onClick={handleSubmit}
+              isValid={isFormValid}
             >Adauga Echipament</FormButton>
           </FormContainer>
         </DefaultFormLayout>

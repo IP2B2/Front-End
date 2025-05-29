@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 
 import '@/app/globals.css';
@@ -22,6 +22,30 @@ export default function ResetPasswordPage() {
    const [isSubmitError, setIsSubmitError] = useState(false);
    const [hasSubmitted, setHasSubmitted] = useState(false);
    const [errorMessage, setErrorMessage] = useState("");
+
+   const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        const hasCurrentPassword = currentPasswordField.trim() !== "";
+        const hasNewPassword = newPasswordField.trim() !== "";
+        const hasConfirmPassword = confirmPasswordField.trim() !== "";
+        const passwordsMatch = newPasswordField === confirmPasswordField;
+        const passwordsDiffer = newPasswordField !== currentPasswordField || newPasswordField === "";
+        
+        setIsFormValid(
+            hasCurrentPassword && 
+            hasNewPassword && 
+            hasConfirmPassword && 
+            passwordsMatch && 
+            passwordsDiffer
+        );
+        
+        if (isSubmitError) {
+            setIsSubmitError(false);
+            setErrorMessage("");
+        }
+    }, [currentPasswordField, newPasswordField, confirmPasswordField, isSubmitError]);
+
 
    const validateNewPassword = (value) => 
        {
@@ -121,7 +145,8 @@ export default function ResetPasswordPage() {
                        validate={hasSubmitted}
                    />
 
-                   <FormButton onClick={handleReset}>
+                   <FormButton onClick={handleReset}  isValid={isFormValid}
+>
                        Resetează
                    </FormButton>
                </FormContainer>

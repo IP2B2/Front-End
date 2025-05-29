@@ -1,6 +1,6 @@
 'use client';
 
- import { useState } from "react";
+ import { useState, useEffect } from "react";
  import { useRouter } from 'next/navigation';
 
  import styles from "./forgotPassword.module.css";
@@ -9,13 +9,24 @@
  import { testValidEmail } from "@/lib/logic/AuthValidators";
 
  import { DefaultFormLayout, FormContainer, FormField, FormButton } from "@/lib/components/form/Form";
-import { BackArrow } from "@/lib/components/globals/NavArrows";
+ import { BackArrow } from "@/lib/components/globals/NavArrows";
 
  export default function ForgotPasswordPage() {
      const router = useRouter(); 
      const [emailField, setEmailField] = useState("");
      const [isSubmitError, setIsSubmitError] = useState(false);
      const [hasSubmitted, setHasSubmitted] = useState(false);
+
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        const isEmailValid = emailField.trim() !== "";
+        setIsFormValid(isEmailValid);
+        
+        if (isSubmitError) {
+            setIsSubmitError(false);
+        }
+    }, [emailField, isSubmitError]);
 
      const handleSubmit = async () => {
          setHasSubmitted(true);
@@ -59,7 +70,7 @@ import { BackArrow } from "@/lib/components/globals/NavArrows";
                     validator={testValidEmail}
                     validate={hasSubmitted}
                     />
-                <FormButton onClick={handleSubmit}>
+                <FormButton onClick={handleSubmit}  isValid={isFormValid} >
                     Trimite
                 </FormButton>
             </FormContainer>
