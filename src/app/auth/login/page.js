@@ -39,13 +39,13 @@ export default function LoginPage() {
 
         const loginResolution = await performLogin(emailField, passwordField);
         if(!loginResolution) return;
+        setSubmitting(false);
         if(loginResolution.status !== 200) {
             setIsSubmitError(true);
             setSubmitError(loginResolution.payload);
             return;
         }
         setIsSubmitError(false);
-        setSubmitting(false);
         redirect('/home');
     };
     const handleRedirectForgotPassword = async () => {
