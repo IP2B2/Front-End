@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 
 import { jwtDecode } from 'jwt-decode';
 
+const homePath = '/home';
+
 export async function middleware(request) {
 
     if(request.nextUrl.pathname === '/') {
@@ -27,32 +29,32 @@ export async function middleware(request) {
 
     if(request.nextUrl.pathname.startsWith('/auth')) {
         if (session && session.isAuth) {
-            return NextResponse.redirect(new URL('/home', request.url));
+            return NextResponse.redirect(new URL(homePath, request.url));
         }
         return NextResponse.next();
     }
 
-    if(request.nextUrl.pathname.startsWith('/home/administrare')) {
+    if(request.nextUrl.pathname.startsWith(homePath + '/administrare')) {
         if (!session || !session.isAuth || !session.roles.includes('ADMIN')) {
             if(session && session.isAuth) {
-                return NextResponse.redirect(new URL('/home', request.url));
+                return NextResponse.redirect(new URL(homePath, request.url));
             }
             return NextResponse.redirect(new URL('/auth/login', request.url));
         }
         return NextResponse.next();
     }
 
-    if(request.nextUrl.pathname.startsWith('/home/coordonator/')) {
+    if(request.nextUrl.pathname.startsWith(homePath + '/coordonator/')) {
         if (!session || !session.isAuth || !session.roles.includes('COORDONATOR')) {
             if(session && session.isAuth) {
-                return NextResponse.redirect(new URL('/home', request.url));
+                return NextResponse.redirect(new URL(homePath, request.url));
             }
             return NextResponse.redirect(new URL('/auth/login', request.url));
         }
         return NextResponse.next();
     }
 
-    if (request.nextUrl.pathname.startsWith('/home')) {
+    if (request.nextUrl.pathname.startsWith(homePath)) {
         if (!session || !session.isAuth) {
             return NextResponse.redirect(new URL('/auth/login', request.url));
         }
