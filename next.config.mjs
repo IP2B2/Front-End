@@ -21,6 +21,10 @@ const nextConfig = {
         pathname: '/**',
       }
     ],
+   },
+   trustHost: true,
+   experimental: {
+    trustHost: true,
    }
 };
 
