@@ -1,18 +1,27 @@
-import "@/app/globals.css";
-import styles from "./rootPage.module.css";
-
-import { useEffect } from "react";
-import { useRootContext } from "@/lib/context/RootContext";
-
 import Link from "next/link";
 
-import getRoutes from "@/lib/getRoutes";
+import "@/app/globals.css";
+import styles from "./rootPage.module.css";
+import BannerContainer from "@/lib/components/auth/authBannerContainer";
+
 
 export default function RootHome() {
 
 	return (
 		<div className={styles.container}>
-			TBD
+			<BannerContainer />
+			<div className={styles.authButtonsContainer}>
+				<Link href="/auth/login">
+					<div className={styles.authButtonWrapper}>
+						Autentificare
+					</div>
+				</Link>
+				<Link href="/auth/register">
+					<div className={styles.authButtonWrapper}>
+						Inregistrare
+					</div>
+				</Link>
+			</div>
 		</div>
 	);
 }
