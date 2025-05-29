@@ -26,23 +26,48 @@ export default function ExtraDataRequired() {
     
     const [isFormValid, setIsFormValid] = useState(false);
 
+    const [debouncedQuery, setDebouncedQuery] = useState({
+        prenume: "",
+        nume: "",
+        rol: "",
+        facultate: "",
+        parola: "",
+        confirmParola: ""
+    });
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedQuery({
+                prenume,
+                nume,
+                rol,
+                facultate,
+                parola,
+                confirmParola
+            });
+        }, 300);
+
+        return () => clearTimeout(timer);
+    }, [prenume, nume, rol, facultate, parola, confirmParola, isSubmitError]);
+
+
     useEffect(() => {
         const allFieldsHaveText = 
-            prenume.trim() !== "" && 
-            nume.trim() !== "" && 
-            rol.trim() !== "" && 
-            facultate.trim() !== "" && 
-            parola.trim() !== "" && 
-            confirmParola.trim() !== "";
-        
-        const passwordsMatch = parola === confirmParola;
-        
+            debouncedQuery.prenume.trim() !== "" && 
+            debouncedQuery.nume.trim() !== "" && 
+            debouncedQuery.rol.trim() !== "" && 
+            debouncedQuery.facultate.trim() !== "" && 
+            debouncedQuery.parola.trim() !== "" && 
+            debouncedQuery.confirmParola.trim() !== "";
+
+        const passwordsMatch = debouncedQuery.parola === debouncedQuery.confirmParola;
+
         setIsFormValid(allFieldsHaveText && passwordsMatch);
         
         if (isSubmitError) {
             setIsSubmitError(false);
         }
-    }, [prenume, nume, rol, facultate, parola, confirmParola, isSubmitError]);
+    }, [debouncedQuery, isSubmitError, hasSubmitted]);
 
     const validateConfirmPassword = (value) => {
         if (!value.trim()) {
