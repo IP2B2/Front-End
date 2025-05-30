@@ -16,6 +16,7 @@ export async function AuthLogin(email, password) {
                 return statusCode === 200;
             }
         });
+        console.log("Login response:", response);
         if (response.status === 200) {
             resolution.payload = {
                 token: response.data?.token,

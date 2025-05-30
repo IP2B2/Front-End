@@ -104,6 +104,17 @@ textarea.formInput {
     color: white;
 
     cursor: pointer;
+
+    transition: background-color 0.1s ease-out, color 0.1s ease-out, border-color 0.2s ease-out;
+}
+
+.formButton:disabled {
+    background-color: white;
+    border: 2px solid var(--foreground);
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-gray);
 }
 
 .formHollowButton {
