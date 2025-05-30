@@ -45,10 +45,6 @@ const nextConfig = {
           key: 'Access-Control-Allow-Headers',
           value: 'Content-Type, Authorization'
         },
-        {
-          key: 'x-forwarded-host',
-          value: 'ismauaic.com'
-        }
       ]
     }
    ],
@@ -57,17 +53,9 @@ const nextConfig = {
     serverActions: {
       allowedOrigins: [
         'ismauaic.com',
+        '*.ismauaic.com',
         'ismauaic.com:3101',
-        'localhost:3100',
-        'testing.ismauaic.com',
-        'testing.ismauaic.com:3101'
-      ],
-      allowedHosts: [
-        'ismauaic.com',
-        'ismauaic.com:3101',
-        'localhost:3100',
-        'testing.ismauaic.com',
-        'testing.ismauaic.com:3101'
+        '*.ismauaic.com:3101'
       ]
     }
    }
