@@ -11,12 +11,12 @@ const homePath = '/home';
 
 export async function middleware(request) {
 
-    console.log("Middleware triggered for request:", request.nextUrl.pathname);
-    console.log("Request headers:", request.headers);
+    console.log("Middleware triggered for request:", request.method, request.nextUrl.pathname);
     const headers = new Headers(request.headers);
     headers.set('x-forwarded-host', request.headers.get('host'));
 
-    console.log("Request headers before modification:", headers);
+    console.log("Request xfwd:", headers.get('x-forwarded-host'));
+    console.log("Request host:", headers.get('host'));
 
     if(request.nextUrl.pathname === '/') {
         return NextResponse.next({ request: { headers } });
