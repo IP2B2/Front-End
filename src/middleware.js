@@ -17,7 +17,6 @@ export async function middleware(request) {
     request.headers.forEach((value, key) => {
         headers[key] = value;
     });
-    console.log("Request headers:", headers);
 
     if(request.nextUrl.pathname === '/') {
         return NextResponse.next();
