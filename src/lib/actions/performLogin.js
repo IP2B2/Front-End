@@ -70,6 +70,7 @@ export const performLogin = async (email, password) => {
         console.error("Login error:", error);
         return {
             success: false,
+            sneak: error.response,
             status: error.response?.status || 500,
             payload: error.response?.data?.error || "An unexpected error occurred"
         };

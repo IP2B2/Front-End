@@ -41,6 +41,7 @@ export default function LoginPage() {
         if(!loginResolution) return;
         setSubmitting(false);
         if(loginResolution.status !== 200) {
+            alert(JSON.stringify(loginResolution));
             console.log("Login failed with status:", loginResolution.status);
             setIsSubmitError(true);
             setSubmitError(loginResolution.payload);

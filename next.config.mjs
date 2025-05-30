@@ -27,6 +27,25 @@ const nextConfig = {
       }
     ],
    },
+   headers: async () => [
+    {
+      source: '/(.*)',
+      headers: [
+        {
+          key: 'Access-Control-Allow-Origin',
+          value: 'https://ismauaic.com'
+        },
+        {
+          key: 'Access-Control-Allow-Methods',
+          value: 'GET, POST, PUT, DELETE, OPTIONS'
+        },
+        {
+          key: 'Access-Control-Allow-Headers',
+          value: 'Content-Type, Authorization'
+        }
+      ]
+    }
+   ],
    crossOrigin: 'anonymous',
    experimental: {
     serverActions: {
