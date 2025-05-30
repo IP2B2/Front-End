@@ -10,7 +10,7 @@ import axios from "axios";
 export const performInitialRegister = async (email, nrMarca) => {
     'use server'
     try {
-        const response = await axios(process.env.BACKEND_URI + '/auth/initial-register', {
+        const response = await axios(process.env.BACKEND_URI + '/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ export const performInitialRegister = async (email, nrMarca) => {
                 return status === 200 || status === 400 || status === 500;
             }
         });
-
+        console.log("Response from performInitialRegister:", response);
         if(response.status === 400) {
             return {
                 success: false,
@@ -35,7 +35,7 @@ export const performInitialRegister = async (email, nrMarca) => {
             return {
                 success: false,
                 status: 500,
-                payload: "Eroare interna. Incercati mai tarziu"
+                payload: response.data || "Eroare interna. Incercati mai tarziu"
             };
         }
 
@@ -48,7 +48,8 @@ export const performInitialRegister = async (email, nrMarca) => {
         return {
             success: false,
             status: 500,
-            payload: "Eroare de retea. Incercati mai tarziu"
+            payload: "Eroare de retea. Incercati mai tarziu",
+            errorPayload: error
         };
     }
 

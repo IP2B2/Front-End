@@ -28,7 +28,7 @@ export default function RootHome() {
 
 	return (
 		<div className={styles.container}>
-			<BannerContainer />
+			<BannerContainer keepWhite={true} />
 			<div className={styles.authButtonsContainer}>
 				{showLogin ? (
 					<>

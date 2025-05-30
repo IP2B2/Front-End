@@ -1,13 +1,30 @@
+'use client';
 
+import React, { useState } from "react";
 
-
+import SearchAndFilter from "@/lib/components/home/echipamente/SearchAndFilter";
+import styles from "./echipamentePage.module.css";
 
 export default function Echipamente() {
-    return (
-        <div>
-            <h1>Echipamente</h1>
-            <p>Aici vor fi afișate echipamentele tale.</p>
-            {/* Implementarea ulterioară va depinde de specificațiile aplicației */}
-        </div>
-    );
+	const [data, setData] = useState({
+		filterBy: {
+			location: "Facultate",
+			availableTomorrow: "Disponibil maine",
+		},
+		items: [],
+	});
+
+    
+
+
+	return (
+		<div className={styles.container}>
+			<div className={styles.pageWrapper}>
+				<SearchAndFilter
+					collectionObject={data}
+					title={"Echipamente"}
+				/>
+			</div>
+		</div>
+	);
 }

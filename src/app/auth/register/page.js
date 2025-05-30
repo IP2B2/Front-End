@@ -1,40 +1,48 @@
 'use client'
 
 import { useState,useCallback } from 'react';
-import { useRouter } from 'next/navigation'; 
+import { redirect } from 'next/navigation'; 
 import styles from './register.module.css';
 
 import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink } from "@/lib/components/form/Form";
 import { testValidEmail, testValidMatricol } from '@/lib/logic/AuthValidators';
+import { performInitialRegister } from '@/lib/actions/performInitialRegister';
 
 function RegisterPage() {
-  const router = useRouter(); 
   const [emailField, setEmailField] = useState("");
   const [matricolField, setMatricolField] = useState("");
 
   const [isSubmitError, setIsSubmitError] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
-  const handleSubmit = useCallback((event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); 
     setHasSubmitted(true);
 
+    console.log("Register part 1 submit with email:", emailField, "and matricol:", matricolField);
+
     if (testValidEmail(emailField) == "" && testValidMatricol(matricolField) == "") {
-      console.log("Register part 1 successful, redirecting...");
-      router.push('/auth/confirm-mail');
-      return;
+      const registerResolution = await performInitialRegister(emailField, matricolField);
+      if (!registerResolution) return;
+      if (registerResolution.status !== 200) {
+        setIsSubmitError(true);
+        console.log("Register part 1 failed with status:", registerResolution.status);
+        return;
+      }
+      redirect('/auth/confirm-mail');
     } else {
       console.log("Register part 1 validation failed");
       setIsSubmitError(true);
     }
-  }, [emailField, matricolField, router]);
+  };
 
   return (
     <div className={styles.registerContainer}>
       <DefaultFormLayout
         title={'Creeaza cont'}
         subtitle={'Completeaza formularul de mai jos pentru a crea un cont'}
-        showError={false}
+        showError={isSubmitError}
+        errorMessage={"Eroare interna. Incercati mai tarziu."}
       >
       </DefaultFormLayout>
       <FormContainer>
