@@ -66,6 +66,7 @@ export const ProductImageCarousel = ({ imageLinkArray }) => {
                     className={carouselStyles.image}
                     fill
                     sizes="860px"
+                    unoptimized
                 />}
                 <div className={carouselStyles.overlay}>
                     <span className={carouselStyles.overlayText}>FEEA</span>
@@ -101,6 +102,7 @@ export const ProductImageCarousel = ({ imageLinkArray }) => {
                             className={carouselStyles.thumbnailImage}
                             width={70}
                             height={70}
+                            unoptimized
                         />
                     </div>
                 ))}
