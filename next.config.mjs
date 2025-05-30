@@ -56,6 +56,9 @@ const nextConfig = {
         'testing.ismauaic.com:3101',
       ]
     }
+   },
+   compiler: {
+    removeConsole: false
    }
 };
 

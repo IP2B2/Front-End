@@ -1,10 +1,29 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 import { jwtDecode } from 'jwt-decode';
 
 const homePath = '/home';
 
+/**
+ * Middleware function to handle authentication and authorization.
+ * @param {NextRequest} request 
+ */
+
 export async function middleware(request) {
+
+    console.log("Middleware triggered for request:", request.nextUrl.pathname);
+    console.log("Request headers:", request.headers);
+    const headers = new Headers(request.headers);
+    headers.set('x-forwarded-host', request.headers.get('host'));
+
+    console.log("Request headers before modification:", request.headers);
+
+
+    if(!process.env.SETDEV) {
+        request.headers.set('x-forwarded-host', request.headers.get('origin'));
+    }
+
+    console.log("Request headers after modification:", request.headers);
 
     if(request.nextUrl.pathname === '/') {
         return NextResponse.next();
