@@ -20,7 +20,6 @@ export const performLogin = async (email, password) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-forwarded-host': 'ismauaic.com:3101'
             },
             data: {
                 username: email,
@@ -60,12 +59,13 @@ export const performLogin = async (email, password) => {
             path: '/'
         });
 
+        const decodedToken = jwtDecode(response.data.token);
+
         return {
             success: true,
             status: response.status || 200,
             payload: {
                 token: response.data.token,
-                roles: response.data.roles || []
             }
         }
     } catch (error) {
