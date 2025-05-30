@@ -65,7 +65,7 @@ export const ProductImageCarousel = ({ imageLinkArray }) => {
                     alt="Prelungitor Gri" 
                     className={carouselStyles.image}
                     fill
-                    sizes="(max-width: 860px) 860px, 400px"
+                    sizes="860px"
                 />}
                 <div className={carouselStyles.overlay}>
                     <span className={carouselStyles.overlayText}>FEEA</span>
