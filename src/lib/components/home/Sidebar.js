@@ -1,18 +1,17 @@
 "use client";
-import Fragment, { useEffect, useState } from "react";
+import { useEffect, useState, cache } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import { Inter500, Inter400 } from "@/lib/fonts/Inter";
 
 import styles from "./Sidebar.module.css";
-import { AuthGetRoles } from "@/lib/logic/ApiCalls/AuthCalls";
-import { redirectToLogin } from "@/lib/logic/RedirectLogin";
 
-export default function Sidebar() {
+import { verifySession } from "@/lib/dal";
+
+export const Sidebar = cache(() => {
 	const pathname = usePathname();
-	const router = useRouter();
 	// const isAdminPage = pathname === '/home/administrare'
 
 	const [isAdmin, setIsAdmin] = useState(false);
@@ -21,18 +20,19 @@ export default function Sidebar() {
 	const [isResearcher, setIsResearcher] = useState(false);
 
 	useEffect(() => {
-		const rolesResolution = AuthGetRoles();
-		console.log("Roles Resolution:", rolesResolution);
-		if (rolesResolution.error) {
-			redirectToLogin(router);
-		}
+		const checkSession = cache(async () => {
+			const session = await verifySession();
 
-		const roles = rolesResolution.payload || [];
-		setIsAdmin(roles.includes("ADMIN"));
-		setIsCoordonator(roles.includes("COORDONATOR"));
-		setIsStudent(roles.includes("STUDENT"));
-		setIsResearcher(roles.includes("RESEARCHER"));
+			const roles = session.roles || [];
+			setIsAdmin(roles.includes("ADMIN"));
+			setIsCoordonator(roles.includes("COORDONATOR"));
+			setIsStudent(roles.includes("STUDENT"));
+			setIsResearcher(roles.includes("RESEARCHER"));
+		});
+
+		checkSession();
 	}, []);
+
 	return (
 		<aside className={styles.sidebar}>
 			<div className={styles.sidebarContent}>
@@ -48,9 +48,9 @@ export default function Sidebar() {
 					<hr className={styles.separator} />
 					<nav className={`${styles.nav} ${Inter400.className}`}>
 						<Link
-							href="/home/"
+							href="/acasa/"
 							className={`${styles.navItem} ${
-								pathname === "/" || pathname === "/home"
+								pathname === "/" || pathname === "/acasa"
 									? styles.active
 									: ""
 							}`}
@@ -78,7 +78,9 @@ export default function Sidebar() {
 			</div>
 		</aside>
 	);
-}
+})
+
+export default Sidebar;
 
 const AdminRoutes = () => {
 	const pathname = usePathname();
@@ -147,9 +149,9 @@ const UserRoutes = () => {
 	return (
 		<>
 			<Link
-				href="/home/echipamente"
+				href="/acasa/echipamente"
 				className={`${styles.navItem} ${
-					pathname === "/home/echipamente"
+					pathname === "/acasa/echipamente"
 						? styles.active
 						: styles.inactive
 				}`}
@@ -166,9 +168,9 @@ const UserRoutes = () => {
 			</Link>
 
 			<Link
-				href="/home/cereri"
+				href="/acasa/cereri"
 				className={`${styles.navItem} ${
-					pathname === "/home/cereri"
+					pathname === "/acasa/cereri"
 						? styles.active
 						: styles.inactive
 				}`}

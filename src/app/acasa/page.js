@@ -1,4 +1,7 @@
 'use client'
+import { useContext } from 'react';
+
+import { useRootContext } from "@/lib/context/RootContext";
 
 import Image from 'next/image';
 
@@ -10,15 +13,7 @@ import { useEffect } from 'react';
 import { useLayoutContent } from '@/lib/context';
 
 export default function Home() {
-    const { setExtraContent } = useLayoutContent();
     
-    useEffect(() => {
-      setExtraContent({
-        pageTitle: 'Acasa'
-      });
-      return () => setExtraContent({ pageTitle: '' }); // Cleanup when navigating away
-    }, []);
-
     return (
         <div className={styles.homeContainer}>
             <div className={styles.statusCard}>Verificarea contului dumneavoastră este în curs. Vă mulțumim pentru înțelegere și răbdare!</div>

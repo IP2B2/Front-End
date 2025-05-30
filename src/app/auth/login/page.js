@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 import styles from "./loginPage.module.css";
 import '@/app/globals.css';
@@ -9,11 +9,13 @@ import '@/app/globals.css';
 import { testValidEmail, testValidPassword } from "@/lib/logic/AuthValidators";
 
 import { DefaultFormLayout, FormContainer, FormField, FormButton, FormLink, FormHollowButton } from "@/lib/components/form/Form";
-import { AuthLogin } from '@/lib/logic/ApiCalls/AuthCalls';
+import { performLogin } from "@/lib/actions/performLogin";
 
 
 export default function LoginPage() {
-    const router = useRouter(); 
+
+    const [submitting, setSubmitting] = useState(false);
+
     const [emailField, setEmailField] = useState("");
     const [passwordField, setPasswordField] = useState("");
 
@@ -22,7 +24,9 @@ export default function LoginPage() {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const handleLogin = async () => {
+
         setHasSubmitted(true);
+        setSubmitting(true);
 
         const emailError = testValidEmail(emailField);
         const passwordError = testValidPassword(passwordField);
@@ -33,20 +37,22 @@ export default function LoginPage() {
             return;
         }
 
-        const loginResolution = await AuthLogin(emailField, passwordField);
-        if(loginResolution.error) {
+        const loginResolution = await performLogin(emailField, passwordField);
+        if(!loginResolution) return;
+        alert(JSON.stringify(loginResolution));
+        setSubmitting(false);
+        if(loginResolution.status !== 200) {
+            console.log("Login failed with status:", loginResolution.status);
             setIsSubmitError(true);
             setSubmitError(loginResolution.payload);
             return;
         }
         setIsSubmitError(false);
-        localStorage.setItem('authToken', loginResolution.payload.token);
-        localStorage.setItem('userRoles', JSON.stringify(loginResolution.payload.roles));
-        return router.push('/home');
+        redirect('/home');
     };
     const handleRedirectForgotPassword = async () => {
         console.log("Redirecting...");
-            router.push('/auth/forgot-password'); 
+        redirect('/auth/forgot-password'); 
     };
 
 
@@ -78,7 +84,7 @@ export default function LoginPage() {
                     validate={hasSubmitted}
                     formInputId={"password"}
                     />
-                <FormButton onClick={handleLogin}>
+                <FormButton onClick={handleLogin} disabled={submitting}>
                     Autentificare
                 </FormButton>
 

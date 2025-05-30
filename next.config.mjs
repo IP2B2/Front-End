@@ -12,6 +12,13 @@ const nextConfig = {
    env: {
     BACKEND_URI: process.env.BACKEND_URI,
    },
+   allowedDevOrigins: [
+    'ismauaic.com',
+    'ismauaic.com:3101',
+    'localhost:3100',
+    'testing.ismauaic.com',
+    'testing.ismauaic.com:3101'
+   ],
    images: {
     remotePatterns: [
       {
@@ -21,6 +28,38 @@ const nextConfig = {
         pathname: '/**',
       }
     ],
+   },
+   headers: async () => [
+    {
+      source: '/(.*)',
+      headers: [
+        {
+          key: 'Access-Control-Allow-Origin',
+          value: 'https://ismauaic.com'
+        },
+        {
+          key: 'Access-Control-Allow-Methods',
+          value: 'GET, POST, PUT, DELETE, OPTIONS'
+        },
+        {
+          key: 'Access-Control-Allow-Headers',
+          value: 'Content-Type, Authorization'
+        },
+      ]
+    }
+   ],
+   crossOrigin: 'anonymous',
+   experimental: {
+    serverActions: {
+      allowedOrigins: [
+        'ismauaic.com',
+        'testing.ismauaic.com:3101',
+        'testing.ismauaic.com'
+      ]
+    }
+   },
+   compiler: {
+    removeConsole: false
    }
 };
 

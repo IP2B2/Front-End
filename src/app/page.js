@@ -1,29 +1,64 @@
+'use client'
 
-import '@/app/globals.css'
-import styles from './rootPage.module.css'
+import { useEffect, useState } from "react";
 
-import Link from 'next/link'
+import Link from "next/link";
 
-import routes from '@/lib/routes.js'
+import "@/app/globals.css";
+import styles from "./rootPage.module.css";
+import BannerContainer from "@/lib/components/auth/authBannerContainer";
+import { isSession, destroySession } from "@/lib/dal";
 
 export default function RootHome() {
-  return (
-    <div className={styles.container}>
-        <p>
-            Link-uri importante sprint 1:
-        </p>
-        <ul className={styles.usefulLinksContainer}>
-            {
-                Object.keys(routes).map((key) => {
-                    const route = routes[key];
-                    return (
-                        <li key={key}>
-                            <Link href={route.route}>{route.title}</Link>
-                        </li>
-                    );
-                })
-            }
-        </ul>
-    </div>
-  );
+	const [showLogin, setShowLogin] = useState(true);
+
+	useEffect(() => {
+		async function checkSession() {
+			const sessionExists = await isSession();
+			if (sessionExists) {
+				setShowLogin(false);
+			}
+		}
+		checkSession();
+	}, []);
+
+	const handleLogout = async () => {
+		await destroySession();
+	};
+
+	return (
+		<div className={styles.container}>
+			<BannerContainer keepWhite={true} />
+			<div className={styles.authButtonsContainer}>
+				{showLogin ? (
+					<>
+						<Link href="/auth/login">
+							<div className={styles.authButtonWrapper}>
+								Autentificare
+							</div>
+						</Link>
+						<Link href="/auth/register">
+							<div className={styles.authButtonWrapper}>
+								Inregistrare
+							</div>
+						</Link>
+					</>
+				) : (
+					<>
+						<Link href="/home">
+							<div className={styles.authButtonWrapper}>
+								Acasa
+							</div>
+						</Link>
+						<div
+							onClick={handleLogout}
+							className={styles.authButtonWrapper}
+						>
+							Deconectare
+						</div>
+					</>
+				)}
+			</div>
+		</div>
+	);
 }

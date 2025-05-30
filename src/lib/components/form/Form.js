@@ -54,10 +54,13 @@ export const FormLink = ({ href = '#', children }) => {
     );
 } 
 
-export const FormButton = ({ onClick, children }) => {
+export const FormButton = ({ onClick, children, disabled }) => {
 
     const buttonBehaviour = (event) => {
         event.preventDefault();
+        if (disabled) {
+            return;
+        }
         onClick?.(event);
     }
 
@@ -65,16 +68,21 @@ export const FormButton = ({ onClick, children }) => {
         <button 
             type={"submit"} 
             onClick={buttonBehaviour} 
-            className={`${formStyles.formButton} border-rounded ${Inter600.className}`}>
+            disabled={!!disabled}
+            className={`${formStyles.formButton} border-rounded ${Inter600.className}
+            ${disabled ? formStyles.formButtonDisabled : ''}`}>
             {children}
         </button>
     )
 }
 
-export const FormHollowButton = ({ onClick, children }) => {
+export const FormHollowButton = ({ onClick, children, disabled }) => {
 
     const buttonBehaviour = (event) => {
         event.preventDefault();
+        if(disabled) {
+            return;
+        }
         onClick?.(event);
     }
 
@@ -82,7 +90,8 @@ export const FormHollowButton = ({ onClick, children }) => {
         <button 
             type={"submit"} 
             onClick={buttonBehaviour} 
-            className={`${formStyles.formButton} border-rounded ${Inter500.className} ${formStyles.formHollowButton}`}>
+            disabled={!!disabled}
+            className={`${formStyles.formButton} border-rounded ${Inter500.className} ${formStyles.formHollowButton} ${disabled ? formStyles.formButtonDisabled : ''}`}>
             {children}
         </button>
     )
