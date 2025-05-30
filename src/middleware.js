@@ -7,19 +7,13 @@ const homePath = '/home';
 /**
  * Middleware function to handle authentication and authorization.
  * @param {NextRequest} request 
+ * @returns 
  */
 
 export async function middleware(request) {
 
-    console.log("Middleware triggered for request:", request.method, request.nextUrl.pathname);
-    const headers = new Headers(request.headers);
-    headers.set('x-forwarded-host', request.headers.get('host'));
-
-    console.log("Request xfwd:", headers.get('x-forwarded-host'));
-    console.log("Request host:", headers.get('host'));
-
     if(request.nextUrl.pathname === '/') {
-        return NextResponse.next({ request: { headers } });
+        return NextResponse.next();
     }
 
     const jwtCookie = request.cookies.get('session');
@@ -43,7 +37,7 @@ export async function middleware(request) {
         if (session && session.isAuth) {
             return NextResponse.redirect(new URL(homePath, request.url));
         }
-        return NextResponse.next({ request: { headers } });
+        return NextResponse.next();
     }
 
     if(request.nextUrl.pathname.startsWith(homePath + '/administrare')) {
@@ -53,7 +47,7 @@ export async function middleware(request) {
             }
             return NextResponse.redirect(new URL('/auth/login', request.url));
         }
-        return NextResponse.next({ request: { headers } });
+        return NextResponse.next();
     }
 
     if(request.nextUrl.pathname.startsWith(homePath + '/coordonator/')) {
@@ -63,14 +57,14 @@ export async function middleware(request) {
             }
             return NextResponse.redirect(new URL('/auth/login', request.url));
         }
-        return NextResponse.next({ request: { headers } });
+        return NextResponse.next();
     }
 
     if (request.nextUrl.pathname.startsWith(homePath)) {
         if (!session || !session.isAuth) {
             return NextResponse.redirect(new URL('/auth/login', request.url));
         }
-        return NextResponse.next({ request: { headers } });
+        return NextResponse.next();
     }
 
 }

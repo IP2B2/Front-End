@@ -54,6 +54,7 @@ const nextConfig = {
       allowedOrigins: [
         'ismauaic.com',
         'testing.ismauaic.com:3101',
+        'testing.ismauaic.com'
       ]
     }
    },
