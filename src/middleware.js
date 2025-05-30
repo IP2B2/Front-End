@@ -16,17 +16,10 @@ export async function middleware(request) {
     const headers = new Headers(request.headers);
     headers.set('x-forwarded-host', request.headers.get('host'));
 
-    console.log("Request headers before modification:", request.headers);
-
-
-    if(!process.env.SETDEV) {
-        request.headers.set('x-forwarded-host', request.headers.get('origin'));
-    }
-
-    console.log("Request headers after modification:", request.headers);
+    console.log("Request headers before modification:", headers);
 
     if(request.nextUrl.pathname === '/') {
-        return NextResponse.next();
+        return NextResponse.next({ request: { headers } });
     }
 
     const jwtCookie = request.cookies.get('session');
@@ -50,7 +43,7 @@ export async function middleware(request) {
         if (session && session.isAuth) {
             return NextResponse.redirect(new URL(homePath, request.url));
         }
-        return NextResponse.next();
+        return NextResponse.next({ request: { headers } });
     }
 
     if(request.nextUrl.pathname.startsWith(homePath + '/administrare')) {
@@ -60,7 +53,7 @@ export async function middleware(request) {
             }
             return NextResponse.redirect(new URL('/auth/login', request.url));
         }
-        return NextResponse.next();
+        return NextResponse.next({ request: { headers } });
     }
 
     if(request.nextUrl.pathname.startsWith(homePath + '/coordonator/')) {
@@ -70,14 +63,14 @@ export async function middleware(request) {
             }
             return NextResponse.redirect(new URL('/auth/login', request.url));
         }
-        return NextResponse.next();
+        return NextResponse.next({ request: { headers } });
     }
 
     if (request.nextUrl.pathname.startsWith(homePath)) {
         if (!session || !session.isAuth) {
             return NextResponse.redirect(new URL('/auth/login', request.url));
         }
-        return NextResponse.next();
+        return NextResponse.next({ request: { headers } });
     }
 
 }
