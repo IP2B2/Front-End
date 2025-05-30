@@ -8,6 +8,7 @@ import axios from "axios";
  * @throws {Error} - If the upload fails or the response is not successful
  */
 export default async function uploadImage(formData) {
+    console.log("Uploading image to Imgur");
 	try {
         const response = await axios.post(
             "https://api.imgur.com/3/image",
@@ -19,6 +20,7 @@ export default async function uploadImage(formData) {
                 },
             }
         );
+        console.log("Imgur upload response status:", response.status);
         console.log("Imgur upload response:", response.data);
 		if (response.data?.success !== true) {
             console.error("Imgur upload error:", response.data);
@@ -27,6 +29,7 @@ export default async function uploadImage(formData) {
 		return response.data.data.link;
 	} catch (error) {
         console.error("Imgur upload error catch:", error);
+        console.error("Imgur upload error response:", error.response);
         if (error.response && error.response.data) {
 			throw new Error(error.response.data.error || "An error occurred while uploading the image");
 		}
