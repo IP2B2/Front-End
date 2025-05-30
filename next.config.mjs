@@ -27,6 +27,7 @@ const nextConfig = {
       }
     ],
    },
+   crossOrigin: 'anonymous',
    experimental: {
     serverActions: {
       allowedOrigins: [
