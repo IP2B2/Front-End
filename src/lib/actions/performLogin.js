@@ -15,7 +15,7 @@ import { jwtDecode } from 'jwt-decode';
 export const performLogin = async (email, password) => {
     'use server'
     try {
-        const response = await axios(process.env.BACKEND_URI + '/auth/login', {
+        const response = await axios(process.env.SETDEV ? process.env.BACKEND_URI + '/auth/login' : '/backend-api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
