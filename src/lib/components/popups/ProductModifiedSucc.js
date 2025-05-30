@@ -20,9 +20,9 @@ export default function ProdustModifiedSucc({ open, onClose }) {
                             style={{ objectFit: "contain" }}
                         />
                     </div>
-                    <h2 className={styles.successTitle}>Produsul tău a fost modificat cu succes!</h2>
+                    <h2 className={styles.successTitle}>Echipamentul tău a fost modificat cu succes!</h2>
                     <p className={styles.successMessage}>
-                        Modificările au fost salvate. Noul produs actualizat este acum vizibil în listă.
+                        Modificările au fost salvate. Noul echipament actualizat este acum vizibil în listă.
                     </p>
                 </div>
             </div>

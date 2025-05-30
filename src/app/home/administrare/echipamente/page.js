@@ -147,7 +147,7 @@ export default function ListareProduseAdminPage() {
         title="Produse"
         ItemComponent={EchipamentListing}
         collectionObject={data}
-        buttonText="Adăugare produs"
+        buttonText="Adăugare echipament"
         onButtonClick={handleAddProduct}
         HeaderComponent={ProdusListingHeader}
       />

@@ -12,7 +12,7 @@ export const SearchAndFilterAndButton = ({
   ItemComponent, 
   title, 
   collectionObject,
-  buttonText = "Adăugare produs",
+  buttonText = "Adăugare echipament",
   onButtonClick,
   HeaderComponent
 }) => {

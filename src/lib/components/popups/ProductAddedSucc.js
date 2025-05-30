@@ -20,9 +20,9 @@ export default function ProductAddedSucc({ open, onClose }) {
                             style={{ objectFit: "contain" }}
                         />
                     </div>
-                    <h2 className={styles.successTitle}>Produs adăugat cu succes!</h2>
+                    <h2 className={styles.successTitle}>Echipament adăugat cu succes!</h2>
                     <p className={styles.successMessage}>
-                        Ai adăugat produsul cu succes! Acesta va fi disponibil imediat în lista de produse.
+                        Ai adăugat echipamentul cu succes! Acesta va fi disponibil imediat în lista de echipamente.
                     </p>
                 </div>
             </div>

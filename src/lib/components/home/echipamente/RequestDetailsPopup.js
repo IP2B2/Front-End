@@ -24,7 +24,7 @@ export default function RequestDetailsPopup({ onClose, requestData }) {
           </div>
 
           <div className={styles.formGroup}>
-            <label className={`${styles.formLabel} ${Inter600.className}`}>Produs</label>
+            <label className={`${styles.formLabel} ${Inter600.className}`}>Echipament</label>
             <div className={styles.formInput}>
               <a
                 href="/home/echipamente/echipament"
