@@ -53,9 +53,7 @@ const nextConfig = {
     serverActions: {
       allowedOrigins: [
         'ismauaic.com',
-        '*.ismauaic.com',
-        'ismauaic.com:3101',
-        '*.ismauaic.com:3101'
+        'testing.ismauaic.com',
       ]
     }
    }
