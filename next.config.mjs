@@ -11,6 +11,8 @@ const nextConfig = {
     } */
    env: {
     BACKEND_URI: process.env.BACKEND_URI,
+    IMGUR_CLIENT_ID: process.env.IMGUR_CLIENT_ID,
+    IMGUR_CLIENT_SECRET: process.env.IMGUR_CLIENT_SECRET,
    },
    allowedDevOrigins: [
     'ismauaic.com',
