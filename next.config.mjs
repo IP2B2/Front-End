@@ -51,6 +51,7 @@ const nextConfig = {
    crossOrigin: 'anonymous',
    experimental: {
     serverActions: {
+      bodySizeLimit: '10mb',
       allowedOrigins: [
         'ismauaic.com',
         'testing.ismauaic.com:3101',
