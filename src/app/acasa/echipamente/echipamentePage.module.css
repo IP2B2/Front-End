@@ -1,0 +1,20 @@
+
+
+.container {
+    width: 100%;
+
+    padding: 10px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+
+
+    font-size: var(--font-size-lg);
+}
+
+.pageWrapper {
+    width: 100%;
+
+}

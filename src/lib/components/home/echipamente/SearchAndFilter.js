@@ -96,6 +96,9 @@ const FiltersColumn = () => {
 
 	return (
 		<div className={styles.filtersColumn}>
+			<div className={styles.filterSection} key={-1}>
+				<div>Filtre</div>
+			</div>
 			{Object.keys(filters).map((filterKey) => (
 				<FilterItem key={filterKey} filterKey={filterKey} />
 			))}
