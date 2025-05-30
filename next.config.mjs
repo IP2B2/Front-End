@@ -61,6 +61,13 @@ const nextConfig = {
         'localhost:3100',
         'testing.ismauaic.com',
         'testing.ismauaic.com:3101'
+      ],
+      allowedHosts: [
+        'ismauaic.com',
+        'ismauaic.com:3101',
+        'localhost:3100',
+        'testing.ismauaic.com',
+        'testing.ismauaic.com:3101'
       ]
     }
    }
