@@ -14,10 +14,6 @@ const nextConfig = {
    },
    allowedDevOrigins: [
     'ismauaic.com',
-    'ismauaic.com:3101',
-    'localhost:3100',
-    'testing.ismauaic.com',
-    'testing.ismauaic.com:3101'
    ],
    images: {
     remotePatterns: [
@@ -54,7 +50,6 @@ const nextConfig = {
       bodySizeLimit: '10mb',
       allowedOrigins: [
         'ismauaic.com',
-        'testing.ismauaic.com:3101',
         'testing.ismauaic.com'
       ]
     }
