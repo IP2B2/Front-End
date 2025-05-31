@@ -1,0 +1,21 @@
+.pageContainer {
+  width: 100%;
+  
+  padding: 20px 0px;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageContainer {
+    padding: 10px;
+  }
+}
+
