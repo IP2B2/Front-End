@@ -52,7 +52,6 @@ export default function EchipamentePage() {
         }
         getData();
     }, [setData, router]);
-
     useEffect(cb, []);
 
 

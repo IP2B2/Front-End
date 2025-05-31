@@ -11,7 +11,7 @@ const homePath = '/home';
  */
 
 export async function middleware(request) {
-
+    return NextResponse.next();
     console.log("Middleware triggered for:", request.nextUrl.pathname);
     let headers = {};
     request.headers.forEach((value, key) => {

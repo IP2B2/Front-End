@@ -16,7 +16,6 @@ export const performLogin = async (email, password) => {
     'use server'
     try {
         const response = await axios(process.env.BACKEND_URI + '/auth/login', {
-            
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

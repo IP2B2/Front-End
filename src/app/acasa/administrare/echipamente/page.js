@@ -116,7 +116,7 @@ export default function ListareProduseAdminPage() {
       }
       setData(newCollectionObject);
     }
-  setShowEditPopup(false);  
+    setShowEditPopup(false);  
     fetchData();
   }, []);
   
