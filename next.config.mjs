@@ -48,7 +48,7 @@ const nextConfig = {
    ],
    experimental: {
     serverActions: {
-      bodySizeLimit: '100mb',
+      bodySizeLimit: '20mb',
       allowedOrigins: [
         'ismauaic.com',
       ]

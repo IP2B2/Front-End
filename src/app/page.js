@@ -46,7 +46,7 @@ export default function RootHome() {
 					</>
 				) : (
 					<>
-						<Link href="/home">
+						<Link href="/acasa">
 							<div className={styles.authButtonWrapper}>
 								Acasa
 							</div>

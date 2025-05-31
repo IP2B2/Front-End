@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import styles from './ProdusListing.module.css';
 import { Montserrat500, Montserrat600 } from '@/lib/fonts/Montserrat';
 
+import '@/app/globals.css'
+
 export default function ProdusListing({ imageSrc, denumire, locatie, data, onClick, admin}) {
     console.log("ProdusListing", { imageSrc, denumire, locatie, data, onClick, admin });
     return (

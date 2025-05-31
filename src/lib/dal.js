@@ -24,6 +24,7 @@ export const verifySession = cache(async () => {
 
     return {
         isAuth: true,
+        token: cookie,
         username: decoded?.sub,
         roles: decoded?.roles || [],
     }

@@ -48,7 +48,7 @@ export default function LoginPage() {
             return;
         }
         setIsSubmitError(false);
-        redirect('/home');
+        redirect('/acasa');
     };
     const handleRedirectForgotPassword = async () => {
         console.log("Redirecting...");

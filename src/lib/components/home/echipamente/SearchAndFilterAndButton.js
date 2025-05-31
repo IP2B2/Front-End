@@ -137,9 +137,9 @@ const FilterItem = ({ filterKey }) => {
             </div>
             {open && (
                 <div className={baseStyles.filterOptions}>
-                    {filters[filterKey].options.map((option) => (
+                    {filters[filterKey].options.map((option, index) => (
                         <FilterOptionItem
-                            key={option}
+                            key={index}
                             option={option}
                             filterKey={filterKey}
                         />

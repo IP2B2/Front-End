@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import SearchAndFilterAndButton from '@/lib/components/home/echipamente/SearchAndFilterAndButton';
 import ProdusListing, {ProdusListingHeader} from '@/lib/components/home/echipamente/ProdusListing';
 import styles from './listareProduseAdmin.module.css';
-import { getAllEquipments } from './getAllEquipments';
 import ProductEditPopup from '@/lib/components/popups/ProductEditPopup';
 import { getAllEquipment } from '@/lib/service/EquipmentService';
 import { verifySession } from '@/lib/dal';
@@ -94,7 +93,9 @@ export default function ListareProduseAdminPage() {
     setMounted(true);
 
     async function fetchData() {
-      let eq = await getAllEquipment(await verifySession()?.token);
+      let session = await verifySession();
+      console.log(session);
+      let eq = await getAllEquipment(session?.token);
       let newCollectionObject = {
         filterBy: {
           locatie: "Locație",

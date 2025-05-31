@@ -88,9 +88,9 @@ const AdminRoutes = () => {
 	return (
 		<>
 			<Link
-				href="/home/administrare"
+				href="/acasa/administrare"
 				className={`${styles.navItem} ${styles.adminNavItem} ${
-					pathname === "/home/administrare" ? styles.active : ""
+					pathname === "/acasa/administrare" ? styles.active : ""
 				}`}
 			>
 				<span>
@@ -104,9 +104,9 @@ const AdminRoutes = () => {
 				<span>Administrare</span>
 			</Link>
 			<Link
-				href="/home/administrare/echipamente"
+				href="/acasa/administrare/echipamente"
 				className={`${styles.navItem} ${styles.adminNavItem} ${
-					pathname === "/home/administrare/echipamente"
+					pathname === "/acasa/administrare/echipamente"
 						? styles.active
 						: ""
 				}`}
@@ -122,7 +122,7 @@ const AdminRoutes = () => {
 				<span>Admin Echipamente</span>
 			</Link>
 			<Link
-				href="/home/administrare/utilizatori"
+				href="/acasa/administrare/utilizatori"
 				className={`${styles.navItem} ${styles.adminNavItem} ${
 					pathname === "/home/administrare/utilizatori"
 						? styles.active
