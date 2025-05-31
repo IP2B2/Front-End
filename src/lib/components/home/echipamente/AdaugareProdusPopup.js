@@ -45,12 +45,12 @@ export default function AdaugareProdusPopup({ onClose }) {
       
      
         <div className={styles.contentBoxScroll}>
-          <h1 className={styles.mainTitle}>Detalii produs</h1>
+          <h1 className={styles.mainTitle}>Detalii echipament</h1>
           
           <div className={styles.productForm}>
             {/* Product Name - Read Only */}
             <div className={styles.formField}>
-              <label className={styles.fieldLabel}>Nume produs</label>
+              <label className={styles.fieldLabel}>Nume echipament</label>
               <div className={styles.readOnlyField}>{productData.numeProdus}</div>
             </div>
             
@@ -71,7 +71,7 @@ export default function AdaugareProdusPopup({ onClose }) {
             
             {/* Description - Read Only */}
             <div className={styles.formField}>
-              <label className={styles.fieldLabel}>Descriere produs</label>
+              <label className={styles.fieldLabel}>Descriere echipament</label>
               <div className={styles.readOnlyTextarea}>{productData.descriere}</div>
             </div>
             

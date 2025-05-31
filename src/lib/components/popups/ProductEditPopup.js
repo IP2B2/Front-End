@@ -144,25 +144,25 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
     <div className={styles.popupOverlay}>
       <div className={styles.popupContainer}>
         <div className={styles.popupHeader}>
-          <h2 className={`${styles.popupTitle} ${Inter600.className}`}>Editare produs</h2>
+          <h2 className={`${styles.popupTitle} ${Inter600.className}`}>Editare echipament</h2>
           <button className={styles.closeButton} onClick={onClose}>×</button>
         </div>
         
         <div className={styles.popupContent}>
           <div className={styles.formField}>
-            <label className={`${styles.fieldLabel} ${Inter600.className}`}>Nume produs</label>
+            <label className={`${styles.fieldLabel} ${Inter600.className}`}>Nume echipament</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               className={styles.textInput}
-              placeholder="Nume produs"
+              placeholder="Nume echipament"
             />
           </div>
           
           <div className={styles.formField}>
-            <label className={`${styles.fieldLabel} ${Inter600.className}`}>Status produs</label>
+            <label className={`${styles.fieldLabel} ${Inter600.className}`}>Status echipament</label>
             <select
               name="status"
               value={formData.status}
@@ -177,13 +177,13 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
           
           {previewImages.length > 0 && (
             <div className={styles.imageSection}>
-              <label className={`${styles.fieldLabel} ${Inter600.className}`}>photo produs</label>
+              <label className={`${styles.fieldLabel} ${Inter600.className}`}>photo echipament</label>
               <div className={styles.mainImage}>
                 <div className={styles.imageNavFlexContainer}>
                   <button className={styles.imageNavButton} onClick={goToPreviousImage}>&#10094;</button>
                   <Image 
                     src={previewImages[selectedImageIndex]}
-                    alt={`Imagine produs ${selectedImageIndex + 1}`}
+                    alt={`Imagine echipament ${selectedImageIndex + 1}`}
                     width={400}
                     height={300}
                     className={styles.productImage}
@@ -200,13 +200,13 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
           )}
           
           <div className={styles.formField}>
-            <label className={`${styles.fieldLabel} ${Inter600.className}`}>description produs</label>
+            <label className={`${styles.fieldLabel} ${Inter600.className}`}>description echipament</label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
               className={styles.textarea}
-              placeholder="description produs"
+              placeholder="description echipament"
               rows={4}
             />
           </div>
