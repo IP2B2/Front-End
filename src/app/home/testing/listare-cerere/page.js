@@ -98,19 +98,19 @@ export default function Page() {
       <ListareUser numeUser="Prodan Beatrice"  label="FII"onClick={()=> console.log("clicked - just testing again")}/>
       <ListareUser numeUser="Prodan Beatrice"  label="Pending"onClick={()=> console.log("clicked - just testing again")}/>
 
-      <p>Listare produs: </p>
+      <p>Listare echipament: </p>
       <ListareProdus
         denumire="Prelungitor gri"
         locatie="FII"
         data="20 Apr. 2025"
-        onClick={() => alert('Editează produsul')}
+        onClick={() => alert('Editează echipamentul')}
         showHeader={true}
       />
       <ListareProdus
         denumire="Prelungitor gri"
         locatie="FII"
         data="20 Apr. 2025"
-        onClick={() => alert('Editează produsul')}
+        onClick={() => alert('Editează echipamentul')}
         showHeader={false}
       />
     </div>

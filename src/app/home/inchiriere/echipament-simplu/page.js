@@ -89,8 +89,8 @@ export default function ProductRentalForm() {
             <div className={styles.rentalWrapper}>
                 <div className={styles.rentalContainer}>
                     <DefaultFormLayout
-                        title={"Formular Închiriere Produs"}
-                        subtitle={"Completează formularul de mai jos pentru a închiria produsul"}>
+                        title={"Formular Închiriere Echipament"}
+                        subtitle={"Completează formularul de mai jos pentru a închiria echipamentul"}>
                         <FormContainer>
                             <FormField
                                 type={"text"}
@@ -118,7 +118,7 @@ export default function ProductRentalForm() {
                                         e?.preventDefault();
                                         alert("Aici s-ar deschide calendarul de disponibilitate")}}
                                 >
-                                    Calendar disponibilitate produs
+                                    Calendar disponibilitate echipament 
                                 </button>
                             </div>
                             <FormMultiColumn cols={2}>

@@ -28,7 +28,7 @@ export default function ProductRequestPopup({ onClose, userData, onApprove, onRe
           </div>
 
           <div className={styles.formGroup}>
-            <label className={`${styles.formLabel} ${Inter600.className}`}>Nume produs</label>
+            <label className={`${styles.formLabel} ${Inter600.className}`}>Nume echipament</label>
             <div className={styles.formInput}>
               <a
                 href="/home/echipamente/echipament"

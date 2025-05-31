@@ -19,9 +19,9 @@ export default function AdminProductTestPage() {
   };
 
   const handleSave = (formData) => {
-    console.log('Produs modificat:', formData);
+    console.log('Echipament modificat:', formData);
     setShowPopup(false);
-    setSuccessMessage('Produsul a fost modificat cu succes!');
+    setSuccessMessage('Echipamentul a fost modificat cu succes!');
     
     setTimeout(() => {
       setSuccessMessage('');
@@ -29,9 +29,9 @@ export default function AdminProductTestPage() {
   };
 
   const handleDelete = (id) => {
-    console.log('Produs șters, id:', id);
+    console.log('Echipament șters, id:', id);
     setShowPopup(false);
-    setSuccessMessage('Produsul a fost șters cu succes!');
+    setSuccessMessage('Echipamentul a fost șters cu succes!');
 
     setTimeout(() => {
       setSuccessMessage('');
@@ -40,13 +40,13 @@ export default function AdminProductTestPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Administrare Produse</h1>
+      <h1 className={styles.title}>Administrare Echipamente</h1>
       
       <button 
         className={styles.openPopupButton}
         onClick={() => setShowPopup(true)}
       >
-        Deschide popup editare produs
+        Deschide popup editare echipament
       </button>
       
       {successMessage && (

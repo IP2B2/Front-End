@@ -334,7 +334,7 @@ useEffect(() => {
       sessionStorage.removeItem('productImageUrls');
     }
     
-    console.log('Produs adăugat!', formData);
+    console.log('Echipament adăugat!', formData);
     router.push('../home/produs-adaugat-succes');
   };
 
@@ -387,18 +387,18 @@ useEffect(() => {
       </div>
       
       <div className={styles.contentBox}>
-        <h1 className={styles.mainTitle}>Adăugare produs nou</h1>
+        <h1 className={styles.mainTitle}>Adăugare echipament nou</h1>
         
         <div className={styles.productForm}>
           <div className={styles.formField}>
-            <label className={styles.fieldLabel}>Nume produs</label>
+            <label className={styles.fieldLabel}>Nume echipament</label>
             <input
               type="text"
               name="numeProdus"
               value={formData.numeProdus}
               onChange={handleChange}
               className={styles.textInput}
-              placeholder="Nume produs"
+              placeholder="Nume echipament"
               required
             />
           </div>
@@ -408,7 +408,7 @@ useEffect(() => {
             <label className={styles.imageUploadLabel}>
               
               <div className={styles.uploadButtonWrapper}>
-                <span>Adaugă imagini produs</span>
+                <span>Adaugă imagini echipament</span>
                 <input 
                   type="file"
                   accept="image/*"
@@ -528,13 +528,13 @@ useEffect(() => {
           </div>
           
           <div className={styles.formField}>
-            <label className={styles.fieldLabel}>Descriere produs</label>
+            <label className={styles.fieldLabel}>Descriere echipament</label>
             <textarea
               name="descriere"
               value={formData.descriere}
               onChange={handleChange}
               className={styles.textarea}
-              placeholder="Descriere produs"
+              placeholder="Descriere echipament"
               required
               rows={4}
             />
@@ -571,7 +571,7 @@ useEffect(() => {
             onClick={handleAddProduct}
             disabled={!allFieldsFilled}
           >
-            Adaugă produs
+            Adaugă echipament
           </button>
         </div>
       </div>

@@ -16,7 +16,7 @@ export default function ProdusListing({ imageSrc, denumire, locatie, data, onCli
                 {imageSrc && imageSrc.length > 3 ? (
                     <Image
                         src={imageSrc}
-                        alt="Produs"
+                        alt="Echipament"
                         className={styles.image}
                         width={50}
                         height={50} />

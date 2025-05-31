@@ -21,7 +21,7 @@ export default function CerereListingLaborant({
 		>
 			<div className={styles.imageWrapper}>
 				{imageSrc ? (
-					<img src={imageSrc} alt="Produs" className={styles.image} />
+					<img src={imageSrc} alt="Echipament" className={styles.image} />
 				) : (
 					<div className={styles.placeholder}>Imagine</div>
 				)}

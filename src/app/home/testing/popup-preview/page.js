@@ -16,11 +16,11 @@ export default function Page() {
   return (
     <div className={styles.pageWrapper}>
       <button className={styles.prodAdSucButton} onClick={() => setShowProdAdSuc(true)}>
-        Produs adăugat cu succes
+        Echipament adăugat cu succes
       </button>
 
       <button className={styles.prodAdSucButton} onClick={() => setShowProdModSuc(true)}>
-        Produs modificat cu succes
+        Echipament modificat cu succes
       </button>
 
       <button className={styles.prodAdSucButton} onClick={() => setShowRespRegSuc(true)}>
