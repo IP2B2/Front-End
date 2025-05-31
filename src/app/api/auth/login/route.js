@@ -34,7 +34,7 @@ export async function POST(request) {
             }
         });
 
-        if(!responseRoles.data || !Array.isArray(responseRoles.data)) {
+        if(!responseRoles.data || !Array.isArray(responseRoles.data.roles)) {
             return new Response(JSON.stringify({ error: "Invalid roles response" }), {
                 status: 500,
                 headers: { 'Content-Type': 'application/json' }
@@ -43,7 +43,7 @@ export async function POST(request) {
 
 
         const { token } = res.data;
-        return new Response(JSON.stringify({ message: "Authentication successful", token: token, roles: responseRoles.data }), {
+        return new Response(JSON.stringify({ message: "Authentication successful", token: token, roles: responseRoles.data.roles }), {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',
