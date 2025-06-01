@@ -9,7 +9,7 @@ import {
 	FormMultiColumn,
 	FormField,
 } from "@/lib/components/form/Form";
-import { redirect, useParams, usePathname, useRouter } from "next/navigation";
+import { redirect, useParams, useRouter } from "next/navigation";
 import {
 	emptyInvalidator,
 	cnpValidator,
@@ -17,9 +17,7 @@ import {
 	daysValidator,
 } from "@/lib/logic/AuthValidators";
 import { BackArrow } from "@/lib/components/globals/NavArrows";
-import { useRootCalendar } from "@/lib/context";
 import { createAccessRequest } from "@/lib/actions/accessRequestsActions";
-import { getBusyDaysByEquipmentId } from "@/lib/actions/accessRequestsActions";
 const today = new Date().toISOString().split("T")[0];
 
 import { FormButton } from "@/lib/components/form/Form";
@@ -93,7 +91,7 @@ export default function ProductRentalForm() {
 				console.error("Failed to create access request:", accReq);
 			} else  {
                 console.log("Access request created successfully:", accReq);
-                router.push("/acasa/echipamente/echipament/" + equipmentId);
+                location.replace("/acasa/echipamente");
 			}
 		} catch (error) {
 			console.error("Error creating access request:", error);
@@ -209,9 +207,6 @@ export default function ProductRentalForm() {
 									Închiriază
 								</FormButton>
 							</div>
-							{ equipment?.isComplex && 
-								<div>Test</div>
-							}
 						</FormContainer>
 					</DefaultFormLayout>
 				</div>
