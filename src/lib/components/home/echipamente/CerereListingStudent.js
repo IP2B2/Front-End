@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styles from './CerereListingStudent.module.css';
 import { Montserrat500 } from '@/lib/fonts/Montserrat';
 
-export default function CerereListingStudent ({ imageSrc, title, location, label, onClick }) {
+export default function CerereListingStudent ({ imageSrc, title, location, label, onClick, dateStart, dateEnd }) {
   const isAccepted = label === 'Accepted';
   const isRejected = label === 'Rejected';
   return (
@@ -19,6 +19,10 @@ export default function CerereListingStudent ({ imageSrc, title, location, label
         <div className={styles.location}>Locatie: {location}</div>
         <div className={styles.statusContainer}>
           Status: <span className={`${styles.label} ${isAccepted ? styles.greenLabel : (isRejected ? styles.redLabel : styles.label)}`}>{label === 'Pending' ? 'În așteptare' : label}</span>
+        </div>
+        <div className={styles.dateContainer}>
+            <span>Data început: {dateStart}</span>
+            <span>Data sfârșit: {dateEnd}</span>
         </div>
       </div>
     </div>

@@ -3,8 +3,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import Image from "next/image";
 
-
-
 import styles from "./SearchAndFilter.module.css";
 import "@/app/globals.css";
 
