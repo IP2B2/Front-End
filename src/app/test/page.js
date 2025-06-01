@@ -15,6 +15,7 @@ export default function TestPage() {
         laboratoryId: 1,
         accessRequirements: "Badge999",
         photo: null,
+        isComplex: false,
         acquisitionDate: new Date().toISOString(),
         usage: "Research purposes",
         material: "Metal and glass",

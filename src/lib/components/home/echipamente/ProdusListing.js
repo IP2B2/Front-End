@@ -7,8 +7,9 @@ import { Montserrat500, Montserrat600 } from '@/lib/fonts/Montserrat';
 
 import '@/app/globals.css'
 
-export default function ProdusListing({ imageSrc, denumire, locatie, data, onClick, admin}) {
-    console.log("ProdusListing", { imageSrc, denumire, locatie, data, onClick, admin });
+export default function ProdusListing({ imageSrc, denumire, labId, data, onClick, admin}) {
+    // console.log("ProdusListing", { imageSrc, denumire, locatie, data, onClick, admin });
+
     return (
         <>
         <div className={`${styles.row} ${Montserrat500.className}`}>
@@ -25,8 +26,8 @@ export default function ProdusListing({ imageSrc, denumire, locatie, data, onCli
                 )}
             </div>
             <div className={styles.cell}>{denumire}</div>
-            <div className={styles.cell}>{locatie}</div>
-            <div className={styles.cell}>{data}</div>
+            <div className={styles.cell}>{labId}</div>
+            <div className={styles.cell}>{new Date(data).toLocaleDateString("ro-RO")}</div>
             <div className={styles.icon} onClick={onClick}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +48,7 @@ export function ProdusListingHeader() {
                 <div className={styles.imageWrapper}></div>
                 <div className={styles.cell}>Denumire</div>
                 <div className={styles.cell}>Locație</div>
-                <div className={styles.cell}>Ultima actualizare</div>
+                <div className={styles.cell}>Achizitie</div>
                 <div className={styles.icon}></div>
             </div>
         );

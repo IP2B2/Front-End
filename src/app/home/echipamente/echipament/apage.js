@@ -53,7 +53,6 @@ export default function EchipamentPage() {
 }
 
 export const ProductImageCarousel = ({ imageLinkArray }) => {
-    console.log("Image Link Array:", imageLinkArray);
     const [selectedImage, setSelectedImage] = useState(0);
     
     return (

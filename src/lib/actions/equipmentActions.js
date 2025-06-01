@@ -179,6 +179,7 @@ export const createEquipment = async (equipmentData) => {
         });
 
         if (response.status === 400) {
+            console.error("Invalid data for equipment:", response.data);
             return {
                 success: false,
                 status: 400,

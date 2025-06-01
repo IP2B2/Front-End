@@ -6,9 +6,13 @@ import styles from './NavArrows.module.css';
 import classPack from '@/lib/classPack';
 import { useRouter } from 'next/navigation';
 
-export const BackArrow = ({ onClick, className, style, arrowSize }) => {
+export const BackArrow = ({ onClick, className, style, arrowSize, backTo }) => {
     const router = useRouter();
     const handleGoBack = () => {
+        if (backTo) {
+            router.push(backTo);
+            return;
+        }
         router.back();
     };
 

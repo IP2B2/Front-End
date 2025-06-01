@@ -125,6 +125,14 @@ textarea.formInput {
     font-weight: 600;
     color: var(--foreground);
 }
+.formHollowButton:disabled {
+    background-color: white;
+    border: 1pt solid #caccd1;
+
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-gray);
+}
 
 .formTitle {
     font-size: var(--font-size-lg);

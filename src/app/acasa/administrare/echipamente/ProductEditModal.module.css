@@ -1,0 +1,76 @@
+
+.modalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    z-index: 1000;
+}
+
+.modalWrapper {
+    max-height: 99vh;
+
+    padding: 3px;
+
+    background-color: var(--background);
+    border-radius: 8px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    overflow: hidden;
+}
+
+.productEditModal {
+	width: 600px;
+    max-height: 90vh;
+
+    padding: 20px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+
+    background-color: var(--background);
+
+    overflow-y: auto;
+}
+
+.productEditModal > * {
+    width: 100%;
+}
+
+.productEditModalHeader {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    font-size: var(--font-size-md);
+}
+
+.popupCloseButton {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    /* border: 1pt solid #caccd1;
+    border-radius: 100%; */
+
+    cursor: pointer;
+
+    align-self: flex-end;
+}

@@ -36,7 +36,6 @@ export default function LoginPage() {
             setIsSubmitError(true);
             return;
         }
-
         const loginResolution = await performLogin(emailField, passwordField);
         if(!loginResolution) return;
         alert(JSON.stringify(loginResolution));

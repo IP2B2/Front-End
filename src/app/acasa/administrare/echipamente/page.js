@@ -1,138 +1,157 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
-import SearchAndFilterAndButton from '@/lib/components/home/echipamente/SearchAndFilterAndButton';
-import ProdusListing, {ProdusListingHeader} from '@/lib/components/home/echipamente/ProdusListing';
-import styles from './listareProduseAdmin.module.css';
-import ProductEditPopup from '@/lib/components/popups/ProductEditPopup';
-import { getAllEquipment } from '@/lib/service/EquipmentService';
-import { verifySession } from '@/lib/dal';
+import { useState, useEffect, useCallback } from "react";
+import { redirect, useRouter } from "next/navigation";
+import SearchAndFilterAndButton from "@/lib/components/home/echipamente/SearchAndFilterAndButton";
+import ProdusListing, {
+	ProdusListingHeader,
+} from "@/lib/components/home/echipamente/ProdusListing";
+import styles from "./listareProduseAdmin.module.css";
+import ProductEditPopup from "@/lib/components/popups/ProductEditPopup";
+import { verifySession } from "@/lib/dal";
+import { getEquipments } from "@/lib/actions/equipmentActions";
+
+import { ProductEditModal } from "./ProductEditModal";
+
+const initialCollectionObject = {
+	filterBy: {
+		locatie: "Locație",
+		status: "Status",
+		categorie: "Categorie",
+	},
+	items: [],
+};
 
 const produseData = {
-  filterBy: {
-    locatie: "Locație",
-    status: "Status",
-    categorie: "Categorie"
-  },
-  items: [
-    { 
-      id: 1,
-      name: "Microscop electronic",
-      denumire: "Microscop electronic",
-      locatie: "Laborator Fizică", 
-      data: "12 Mai 2025",
-      status: "Disponibil",
-      categorie: "Echipament științific",
-      imageSrc: null
-    },
-    { 
-      id: 2,
-      name: "Laptop Dell XPS",
-      denumire: "Laptop Dell XPS",
-      locatie: "Sala 332", 
-      data: "10 Mai 2025",
-      status: "În folosință",
-      categorie: "Computer",
-      imageSrc: null
-    },
-    { 
-      id: 3,
-      name: "Videoproiector Epson",
-      denumire: "Videoproiector Epson",
-      locatie: "Sala 210", 
-      data: "15 Mai 2025",
-      status: "Disponibil",
-      categorie: "Echipament multimedia",
-      imageSrc: null
-    },
-    { 
-      id: 4,
-      name: "Kit Arduino",
-      denumire: "Kit Arduino",
-      locatie: "Laborator Electronică", 
-      data: "8 Mai 2025",
-      status: "În mentenanță",
-      categorie: "Echipament electronic",
-      imageSrc: null
-    },
-    { 
-      id: 5,
-      name: "Monitor LG UltraFine",
-      denumire: "Monitor LG UltraFine",
-      locatie: "Sala 101", 
-      data: "5 Mai 2025",
-      status: "Disponibil",
-      categorie: "Computer",
-      imageSrc: null
-    }
-  ]
+	filterBy: {
+		locatie: "Locație",
+		status: "Status",
+		categorie: "Categorie",
+	},
+	items: [
+		{
+			id: 1,
+			name: "Microscop electronic",
+			denumire: "Microscop electronic",
+			locatie: "Laborator Fizică",
+			data: "12 Mai 2025",
+			status: "Disponibil",
+			categorie: "Echipament științific",
+			imageSrc: null,
+		},
+		{
+			id: 2,
+			name: "Laptop Dell XPS",
+			denumire: "Laptop Dell XPS",
+			locatie: "Sala 332",
+			data: "10 Mai 2025",
+			status: "În folosință",
+			categorie: "Computer",
+			imageSrc: null,
+		},
+		{
+			id: 3,
+			name: "Videoproiector Epson",
+			denumire: "Videoproiector Epson",
+			locatie: "Sala 210",
+			data: "15 Mai 2025",
+			status: "Disponibil",
+			categorie: "Echipament multimedia",
+			imageSrc: null,
+		},
+		{
+			id: 4,
+			name: "Kit Arduino",
+			denumire: "Kit Arduino",
+			locatie: "Laborator Electronică",
+			data: "8 Mai 2025",
+			status: "În mentenanță",
+			categorie: "Echipament electronic",
+			imageSrc: null,
+		},
+		{
+			id: 5,
+			name: "Monitor LG UltraFine",
+			denumire: "Monitor LG UltraFine",
+			locatie: "Sala 101",
+			data: "5 Mai 2025",
+			status: "Disponibil",
+			categorie: "Computer",
+			imageSrc: null,
+		},
+	],
 };
 
 export default function ListareProduseAdminPage() {
-  const router = useRouter();
-  const [mounted, setMounted] = useState(false);
-  const [showHeader, setShowHeader] = useState(true);
-  const [data, setData] = useState(produseData);
-  
-  const [editEquipmentId, setEditEquipmentId] = useState(null);
-  const [showEditPopup, setShowEditPopup] = useState(false);
+	const router = useRouter();
+	const [mounted, setMounted] = useState(false);
+	const [data, setData] = useState(initialCollectionObject);
 
-  const handleEditProduct = useCallback((id) => {
-    // router.push(`/home/administrare/echipamente/editare/${id}`);
-    setEditEquipmentId(id);
-  }, [router]);
+	const [editEquipmentId, setEditEquipmentId] = useState(2);
+	const [showEditPopup, setShowEditPopup] = useState(false);
 
-  useEffect(() => {
-    if (editEquipmentId) {
-      setShowEditPopup(true);
-    }
-  }, [editEquipmentId]);
+	const handleEditProduct = (id) => {
+		setEditEquipmentId(id);
+		setShowEditPopup(true);
+	};
 
-  useEffect(() => {
-    setMounted(true);
+	useEffect(() => {
+		if (editEquipmentId) {
+			setShowEditPopup(true);
+		}
+	}, [editEquipmentId]);
 
-    async function fetchData() {
-      let session = await verifySession();
-      console.log(session);
-      let eq = await getAllEquipment(session?.token);
-      let newCollectionObject = {
-        filterBy: {
-          locatie: "Locație",
-          status: "Status",
-          categorie: "Categorie"
-        },
-        items: eq.map(item => ({
-          id: item.id,
-          name: item.name,
-          denumire: item.name,
-          locatie: item.labName, // Assuming labId is the location
-          data: item.acquisitionDate, // Placeholder for date
-          status: item.availabilityStatus, // Assuming availabilityStatus is the status
-          categorie: "Echipament", // Placeholder for category
-          imageSrc: item.photo ? item.photo[0] : null, // Assuming photo is an array and we take the first image
-          onClick: () => handleEditProduct(item.id)
-        }))
-      }
-      setData(newCollectionObject);
-    }
-    setShowEditPopup(false);  
-    fetchData();
-  }, []);
-  
-  const handleAddProduct = () => {
-    router.push('/home/administrare/echipamente/adaugare-nou');
-  };
+	useEffect(() => {
+		setMounted(true);
 
-  const handleRefresh = () => {
-    setTimeout(() => {
-      location.reload();
-    }, 300);
-  }
+		async function fetchData() {
+			let session = await verifySession();
+			console.log(session);
+			// let eq = await getAllEquipment(session?.token);
+			let eq = await getEquipments();
+			let newCollectionObject = {
+				filterBy: {
+					locatie: "Locație",
+					status: "Status",
+					categorie: "Categorie",
+				},
+				items: eq.payload?.map((item) => ({
+					id: item.id,
+					name: item.name,
+					denumire: item.name,
+					locatie: item.labName, // Assuming labId is the location
+					data: item.acquisitionDate, // Placeholder for date
+					status: item.availabilityStatus, // Assuming availabilityStatus is the status
+					categorie: "Echipament", // Placeholder for category
+					imageSrc: item.photo ? item.photo[0] : null, // Assuming photo is an array and we take the first image
+					onClick: () => handleEditProduct(item.id),
+				})),
+			};
+			setData(newCollectionObject);
+		}
+		setShowEditPopup(false);
+		fetchData();
+	}, []);
 
-  return (
-    <div className={styles.pageContainer}>
-      {showEditPopup && (
+	const handleAddProduct = () => {
+    redirect('/acasa/administrare/echipamente/nou');
+	};
+
+	const handleRefresh = () => {
+		setTimeout(() => {
+			location.reload();
+		}, 300);
+	};
+
+	return (
+		<div className={styles.pageContainer}>
+			{showEditPopup && (
+				<ProductEditModal
+					equipmentId={editEquipmentId}
+					onClose={() => setShowEditPopup(false)}
+				/>
+			)}
+			{/* showEditPopup && (
         <ProductEditPopup
           equipmentId={editEquipmentId}
           onClose={() => {
@@ -144,25 +163,32 @@ export default function ListareProduseAdminPage() {
             setShowEditPopup(false);
           }}
         />
-      )}
-      <SearchAndFilterAndButton
-        title="Produse"
-        ItemComponent={EchipamentListing}
-        collectionObject={data}
-        buttonText="Adăugare produs"
-        onButtonClick={handleAddProduct}
-        HeaderComponent={ProdusListingHeader}
-      />
-    </div>
-  );
+      ) */}
+			<SearchAndFilterAndButton
+				title="Produse"
+				ItemComponent={EchipamentListing}
+				collectionObject={data}
+				buttonText="Adăugare produs"
+				onButtonClick={handleAddProduct}
+				HeaderComponent={ProdusListingHeader}
+			/>
+		</div>
+	);
 }
 
-const EchipamentListing = ({ denumire, locatie, data, id, imageSrc, onClick }) => (
-  <ProdusListing 
-    denumire={denumire}
-    locatie={locatie}
-    data={data}
-    imageSrc={imageSrc}
-    onClick={onClick}
-  />
+const EchipamentListing = ({
+	denumire,
+	locatie,
+	data,
+	id,
+	imageSrc,
+	onClick,
+}) => (
+	<ProdusListing
+		denumire={denumire}
+		locatie={locatie}
+		data={data}
+		imageSrc={imageSrc}
+		onClick={onClick}
+	/>
 );
