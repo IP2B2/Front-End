@@ -13,13 +13,12 @@ import { performFinishRegister } from "@/lib/actions/performFinishRegister";
 export default function ExtraDataRequired() {
     const searchParams = useSearchParams();
     const token = searchParams.get("token");
-    console.log("token:", token);
 
     const router = useRouter();
 
     const [prenume, setPrenume] = useState("");
     const [nume, setNume] = useState("");
-    const [rol, setRol] = useState("");
+    const [rol, setRol] = useState("STUDENT");
     const [facultate, setFacultate] = useState("");
 
     const [role, setRole] = useState("");
@@ -27,15 +26,18 @@ export default function ExtraDataRequired() {
     const [grupa, setGrupa] = useState("");
 
 
-
-
     const [parola, setParola] = useState("");
     const [confirmParola, setConfirmParola] = useState("");
 
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
         setHasSubmitted(true);
         let errors = "";
         [prenume, nume, rol, facultate, parola, confirmParola].forEach(input => {
@@ -47,6 +49,8 @@ export default function ExtraDataRequired() {
         if (parola !== confirmParola) {
             return;
         }
+        setIsError(false);
+        setErrorMessage("");
 
         let registerData = {
             firstName: prenume,
@@ -63,20 +67,26 @@ export default function ExtraDataRequired() {
             const registerResolution = await performFinishRegister(registerData);
             if (!registerResolution.success) {
                 console.error("Finish register failed:", registerResolution);
+                setIsError(true);
+                setErrorMessage(registerResolution.payload || "Eroare necunoscută");
                 return;
             }
-            redirect('/auth/login');
+            location.replace('/auth/login');
         } catch (error) {
             console.error("Error during finish register:", error);
+        } finally {
+            setIsLoading(false);
         }
-
     };
 
     return (
         <div className={styles.registerContainer}>
             <DefaultFormLayout
                 title={"Mai avem nevoie de date"}
-                subtitle={"Introdu datele tale în formularul de mai jos pentru a finaliza crearea contului."}>
+                subtitle={"Introdu datele tale în formularul de mai jos pentru a finaliza crearea contului."}
+                showError={isError}
+                errorMessage={errorMessage}
+                >
                 <FormContainer>
                 <FormMultiColumn cols={2}>
                         <FormField 
@@ -151,7 +161,7 @@ export default function ExtraDataRequired() {
                         validate={hasSubmitted}
                         />
                     <FormField 
-                        type={"text"} 
+                        type={"password"} 
                         label={"Confirmare parolă"} 
                         placeholder={"***************"}
                         setState={setConfirmParola} 
@@ -159,7 +169,7 @@ export default function ExtraDataRequired() {
                         validator={emptyInvalidator}
                         validate={hasSubmitted}
                         />
-                    <FormButton onClick={handleSubmit}>Finalizează</FormButton>
+                    <FormButton onClick={handleSubmit} disabled={isLoading}>Finalizează</FormButton>
                     <FormLink href="/auth/login">Înapoi</FormLink>
                 </FormContainer>
             </DefaultFormLayout>

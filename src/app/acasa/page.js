@@ -33,6 +33,12 @@ export default function Home() {
 		async function fetchMyUser() {
 			const userResolution = await serviceGetMyUser();
 			if (!userResolution.success) {
+				if (userResolution.status === 403) {
+					setUserActive(false);
+					setUserLoaded(true);
+					console.log("User is not active or does not have permissions.");
+					return;
+				}
 				console.error("Failed to fetch user:", userResolution);
 				return;
 			}
