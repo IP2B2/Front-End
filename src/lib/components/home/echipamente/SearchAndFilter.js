@@ -187,17 +187,31 @@ const FilterOptionItem = ({ option, filterKey }) => {
 const SearchBar = () => {
 	const { searchQuery, setSearchQuery } = useContext(SearchAndFilterContext);
 
+	const [query, setQuery] = useState(searchQuery);
+
+	useEffect(() => {
+		const handler = setTimeout(() => {
+			setSearchQuery(query);
+		}, 300);
+
+		return () => {
+			clearTimeout(handler);
+		};
+	}, [query]);
+
 	const handleSearch = (e) => {
 		e.preventDefault();
 	};
+
+
 
 	return (
 		<form className={styles.searchBar} onSubmit={handleSearch}>
 			<input
 				type="text"
 				placeholder="Cauta un echipament"
-				value={searchQuery}
-				onChange={(e) => setSearchQuery(e.target.value)}
+				value={query}
+				onChange={(e) => setQuery(e.target.value)}
 				className={styles.input}
 			/>
 			<button type="submit" className={styles.iconButton}>

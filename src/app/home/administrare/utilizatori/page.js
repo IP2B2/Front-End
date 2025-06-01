@@ -6,6 +6,8 @@ import SearchAndFilter from '@/lib/components/home/echipamente/SearchAndFilter';
 import styles from './adminUserPage.module.css'
 import aulStyles from './AdminUserListing.module.css';
 
+import ListareUser from '../../testing/componenta-cerere/ListareUser';
+
 const collectionObject ={
     filterBy: {
         active: "Cont activ",
@@ -49,7 +51,7 @@ export default function AdministrareUtilizatoriPage() {
     <div className={styles.container}>
       <SearchAndFilter 
         title="Administrare Utilizatori"
-        ItemComponent={AdminUserListing}
+        ItemComponent={ListareUser}
         HeaderComponent={AdminUserListingHeader}
         collectionObject={collectionObject}
       />

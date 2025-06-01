@@ -122,7 +122,7 @@ export default function ListareProduseAdminPage() {
 					data: item.acquisitionDate, // Placeholder for date
 					status: item.availabilityStatus, // Assuming availabilityStatus is the status
 					categorie: "Echipament", // Placeholder for category
-					imageSrc: item.photo ? item.photo[0] : null, // Assuming photo is an array and we take the first image
+					imageSrc: item.photo ? [...JSON.parse(item.photo)][0] : null, // Assuming photo is an array and we take the first image
 					onClick: () => handleEditProduct(item.id),
 				})),
 			};

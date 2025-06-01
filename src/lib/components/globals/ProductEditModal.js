@@ -32,6 +32,8 @@ export const ProductEditModal = ({ equipmentId, onClose }) => {
 	const [eqUsage, setEqUsage] = useState("");
 	const [eqMaterial, setEqMaterial] = useState("");
 
+
+	const [eqPhotos, setEqPhotos] = useState("");
 	const [eqIsComplex, setEqIsComplex] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -50,6 +52,7 @@ export const ProductEditModal = ({ equipmentId, onClose }) => {
 				setEqDescription(equipment.description);
 				setEqUsage(equipment.usage);
 				setEqMaterial(equipment.material);
+				setEqPhotos(equipment.photo);
 				setEqIsComplex(equipment.isComplex);
 			}
 			setIsLoading(false);
@@ -77,6 +80,7 @@ export const ProductEditModal = ({ equipmentId, onClose }) => {
 				usage: eqUsage || "",
 				material: eqMaterial || "",
 				isComplex: eqIsComplex || "",
+				photo: eqPhotos || "",
 			};
             console.log("Saving equipment data:", equipmentData);
 			const response = await updateEquipment(equipmentId, equipmentData);
@@ -138,7 +142,6 @@ export const ProductEditModal = ({ equipmentId, onClose }) => {
 							value={eqName}
 							validator={emptyInvalidator}
 							setState={setEqName}
-							trim={true}
 							formInputId={"eqName"}
 							placeholder={"Introduceți numele echipamentului"}
 						/>
@@ -168,7 +171,6 @@ export const ProductEditModal = ({ equipmentId, onClose }) => {
 							validator={emptyInvalidator}
 							value={eqDescription}
 							setState={setEqDescription}
-							trim={true}
 							formInputId={"eqDescription"}
 							placeholder={
 								"Introduceți descrierea echipamentului"
@@ -180,7 +182,6 @@ export const ProductEditModal = ({ equipmentId, onClose }) => {
 							validator={emptyInvalidator}
 							value={eqUsage}
 							setState={setEqUsage}
-							trim={true}
 							formInputId={"eqUsage"}
 							placeholder={
 								"Introduceți utilizarea echipamentului"
@@ -192,7 +193,6 @@ export const ProductEditModal = ({ equipmentId, onClose }) => {
 							validator={emptyInvalidator}
 							value={eqMaterial}
 							setState={setEqMaterial}
-							trim={true}
 							formInputId={"eqMaterial"}
 							placeholder={
 								"Introduceți materialul echipamentului"
