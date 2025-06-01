@@ -209,7 +209,7 @@ const SearchBar = () => {
 		<form className={styles.searchBar} onSubmit={handleSearch}>
 			<input
 				type="text"
-				placeholder="Cauta un echipament"
+				placeholder="Cautare"
 				value={query}
 				onChange={(e) => setQuery(e.target.value)}
 				className={styles.input}

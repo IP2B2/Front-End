@@ -20,7 +20,9 @@ export default function ProdusListing({ imageSrc, denumire, labId, data, onClick
                         alt="Produs"
                         className={styles.image}
                         width={50}
-                        height={50} />
+                        height={50} 
+                        unoptimized
+                        />
                     ) : (
                     <div className={styles.placeholder}>Imagine</div>
                 )}

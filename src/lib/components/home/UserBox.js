@@ -20,7 +20,7 @@ const UserBox = () => {
 				/>
 			</div>
 
-			<Link href="/home" target="_blank" className={styles.userBoxButton}>
+			{/* <Link href="/home" target="_blank" className={styles.userBoxButton}>
 				<Image
 					src="/icons/buton-info.svg"
 					alt="Information"
@@ -28,7 +28,7 @@ const UserBox = () => {
 					height={40}
 				/>
 			</Link>
-
+ */}
 			<Link href="/home" target="_blank" className={styles.userBoxButton}>
 				<Image
 					src="/icons/buton-user-name.svg"

@@ -14,7 +14,6 @@ export default function ProductCard({ id, name, availableTomorrow, faculty, imag
     console.log({ id, name, availableTomorrow, faculty, image });
   }, [id, name, availableTomorrow, faculty, image]);
 
-  console.log("image:", image);
   return (
     <div className={styles["product-card-wrapper"]}>
       <div className={styles["product-card"]}>

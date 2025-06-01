@@ -276,11 +276,107 @@ export const serviceRejectAccessRequest = async (accessRequestId) => {
     }
 };
 
+export const getAccessRequestsByEquipmentId = async (equipmentId) => {
+    'use server'
+    try {
+        const token = await getSessionToken();
+        if (!token) {
+            return {
+                success: false,
+                status: 401,
+                payload: "Nu sunteti autentificat"
+            };
+        }
+
+        const response = await axios.get
+
+    } catch (error) {
+        console.error("getAccessRequestsByEquipmentId error:", error);
+        return {
+            success: false,
+            status: error.response?.status || 500,
+            payload: error.response?.data?.error || 'An error occurred while fetching access requests by equipment ID'
+        };
+    }
+
+
+
+
+}
+
 export const getMyAccessRequests = async () => {};
 
 export const getAccessRequestById = async (accessRequestId) => {};
 
-export const createAccessRequest = async (accessRequestData) => {};
+export const createAccessRequest = async (accessRequestData) => {
+    'use server'
+    try {
+        const token = await getSessionToken();
+
+        if (!token) {
+            return {
+                success: false,
+                status: 401,
+                payload: "Nu sunteti autentificat"
+            };
+        }
+
+        const response = await axios.post(process.env.BACKEND_URI + '/access-requests', accessRequestData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            validateStatus: (status) => {
+                return status === 201 || status === 400 || status === 401 || status === 403 || status === 500;
+            }
+        });
+
+        if (response.status === 400) {
+            return {
+                success: false,
+                status: 400,
+                payload: response.data
+            };
+        }
+
+        if (response.status === 401) {
+            return {
+                success: false,
+                status: 401,
+                payload: "Sesiune expirata. Reautentificati-va"
+            };
+        }
+
+        if (response.status === 403) {
+            return {
+                success: false,
+                status: 403,
+                payload: "Nu aveti permisiuni pentru aceasta operatiune"
+            };
+        }
+
+        if (response.status === 500) {
+            return {
+                success: false,
+                status: 500,
+                payload: "Eroare interna. Incercati mai tarziu"
+            };
+        }
+
+        return {
+            success: true,
+            status: response.status || 201,
+            payload: response.data
+        };
+    } catch (error) {
+        console.error("createAccessRequest error:", error);
+        return {
+            success: false,
+            status: error.response?.status || 500,
+            payload: error.response?.data?.error || 'An error occurred while creating the access request'
+        };
+    }
+};
 
 export const updateAccessRequest = async (accessRequestId, accessRequestData) => {};
 

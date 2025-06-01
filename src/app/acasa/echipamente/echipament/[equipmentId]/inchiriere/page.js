@@ -157,7 +157,7 @@ export default function ProductRentalForm() {
                                 </button>
                             </div>
                             <div style={{ position: 'relative' }}>
-                                {showCalendar && <AbsoluteCalendar notAbsolute/>}
+                                {showCalendar && <AbsoluteCalendar notAbsolute />}
                             </div>
                             <FormMultiColumn cols={2}>
                                     <FormField
