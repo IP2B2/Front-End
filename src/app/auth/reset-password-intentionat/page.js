@@ -50,7 +50,7 @@ export default function ResetPasswordPage() {
        }
 
        if (!currentPasswordError && !newPasswordError && !confirmError) {
-           router.push('/home');
+           router.push('/acasa');
            setIsSubmitError(false);
            setErrorMessage("");
        } else {

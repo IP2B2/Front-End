@@ -102,7 +102,7 @@ export default function ProductRentalForm() {
         accReq = await createAccessRequest(getAuthToken(), accReq);
         console.log("Access Request Created:", accReq);
 
-        router.push('/home/');
+        router.push('/acasa/');
     };
 
     const handleClear = () => {

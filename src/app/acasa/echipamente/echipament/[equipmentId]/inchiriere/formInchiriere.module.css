@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.calendarWrapper {
+    padding: 10px 0 20px;
+}
+
 .backArrow 
 {
   width: 17px;
@@ -37,7 +41,6 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    padding: 80px 0; /* sa nu faca overlap cu butonul de back*/
 }
 .rentalContainer 
 {

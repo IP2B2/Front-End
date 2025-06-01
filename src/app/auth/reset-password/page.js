@@ -26,7 +26,7 @@
 
          if (!passwordError && !confirmError) {
              console.log("Password reset successful, redirecting...");
-             router.push('/home'); 
+             router.push('/acasa'); 
              setIsSubmitError(false);
          } else {
              console.log("Reset failed validation");

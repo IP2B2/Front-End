@@ -12,7 +12,6 @@ import { verifySession } from "@/lib/dal";
 
 export const Sidebar = cache(() => {
 	const pathname = usePathname();
-	// const isAdminPage = pathname === '/home/administrare'
 
 	const [isAdmin, setIsAdmin] = useState(false);
 	const [isCoordonator, setIsCoordonator] = useState(false);

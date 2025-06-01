@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { jwtDecode } from 'jwt-decode';
 
-const homePath = '/home';
+const homePath = '/acasa';
 
 /**
  * Middleware function to handle authentication and authorization.

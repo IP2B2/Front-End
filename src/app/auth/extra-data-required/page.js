@@ -30,7 +30,7 @@ export default function ExtraDataRequired() {
             errors += emptyInvalidator(input);
         })
         if(errors == "")
-            router.push('/home');
+            router.push('/acasa');
     };
 
     return (

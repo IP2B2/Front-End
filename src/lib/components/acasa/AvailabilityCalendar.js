@@ -1,145 +1,61 @@
 "use client";
-import { useEffect, useState, useRef, use } from "react";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { ProductImageCarousel } from "../apage";
-import { getEquipmentById } from "@/lib/actions/equipmentActions";
+import calStyles from "./AvailabilityCalendar.module.css";
 
-import styles from "../Echipament.module.css";
-import calStyles from "./AbsoluteCalendar.module.css";
-
-import { Inter500 } from "@/lib/fonts/Inter";
-import "@/app/globals.css";
-import { BackArrow } from "@/lib/components/globals/NavArrows";
-
-import { useParams, useRouter } from "next/navigation";
-import { getAuthToken } from "@/lib/getAuthToken";
+import { getBusyDaysByEquipmentId } from "@/lib/actions/accessRequestsActions";
 
 import { useRootCalendar } from "@/lib/context";
-import { AvailabilityCalendar } from "@/lib/components/acasa/AvailabilityCalendar";
 
-export default function EchipamentPage() {
-	const { equipmentId } = useParams();
-	const router = useRouter();
-
-	const images = [
-		"/icons/Frame 1000005448.svg",
-		"/icons/Frame 1000005450.svg",
-		"/icons/Frame 1000005450.svg",
-		"/icons/Frame 1000005450.svg",
-	];
-
-	const [equipment, setEquipment] = useState({});
+export const AvailabilityCalendar = ({ equipmentId, absolute, className }) => {
+	const [showCalendar, setShowCalendar] = useState(false);
 
 	const { setUnavailableDates, unavailableDates } = useRootCalendar();
 
 	useEffect(() => {
 		async function fetchEquipment() {
-			const authToken = getAuthToken();
 
-			const resolution = await getEquipmentById(equipmentId);
-			if (!resolution.success) {
-				console.error("Failed to fetch equipment:", resolution);
+			const busyDaysResolution = await getBusyDaysByEquipmentId(
+				equipmentId
+			);
+			if (!busyDaysResolution.success) {
+				console.error("Failed to fetch busy days:", busyDaysResolution);
 				return;
 			}
-			setEquipment({
-				...resolution.payload,
-				photo: resolution.payload.photo
-					? JSON.parse(resolution.payload.photo)
-					: [],
-			});
-			console.log("Fetched Equipment:", resolution.payload);
 
-			// const accData = await getAccessRequestsByEquipmentId(authToken, equipmentId);
-			// console.log("Fetched Access Requests:", accData);
-
-			// const unavailableDates = accData.map((request) => {
-			//     if (request.status === "APPROVED") {
-			//         return getDaysBetweenDates(
-			//             new Date(request.requestDate),
-			//             new Date(request.expectedReturnDate)
-			//         );
-			//     }
-			// }).flat().filter(date => date !== undefined);
-			// console.log("Unavailable Dates:", unavailableDates);
-			// setUnavailableDates(unavailableDates);
+			const unavailableDates = busyDaysResolution.payload;
+			console.log("Unavailable Dates:", unavailableDates);
+			setUnavailableDates(unavailableDates);
 		}
 		fetchEquipment();
 	}, []);
 
-	useEffect(() => {
-		console.log("unavailableDates:", unavailableDates);
-	}, [unavailableDates]);
-
 	return (
-		<div className={styles.layout}>
-			<div className={styles.backButtonWrapper}>
-				<BackArrow arrowSize={20} />
+		<>
+			<div className={calStyles.availabilityCalButton + " " + (className ? className : "")}>
+				<button
+					className={calStyles.calendarButton}
+					onClick={(e) => {
+						e?.preventDefault();
+						setShowCalendar(!showCalendar);
+					}}
+				>
+					Calendar disponibilitate produs
+				</button>
 			</div>
-			<ProductImageCarousel imageLinkArray={equipment?.photo} />
-
-			<div className={styles.descriptionContainer}>
-				<h1 className={styles.productTitle}>{equipment?.name}</h1>
-				<div className={styles.pageDescription}>
-					{equipment?.description}
-				</div>
-				<div className={styles.buttonGroup}>
-					{/* <button
-						className={`${styles.actionButton} ${Inter500.className}`}
-						onClick={handleClickCalShow}
-						ref={buttonRef}
-					>
-						<div>Vezi disponibilitate</div>
-					</button> */}
-						<AvailabilityCalendar equipmentId={equipmentId}  absolute={true} />
-					<button
-						className={`${styles.actionButton} ${Inter500.className}`}
-						onClick={() =>
-							router.push(
-								`/home/echipamente/echipament/${equipmentId}/inchiriere`
-							)
-						}
-                        >
-						Închiriază
-					</button>
-					</div>
-				{/* 
-						{showCalendar ? (
-							<AbsoluteCalendar
-								ref={calRef}
-								onClose={() => {
-                                    setShowCalendar(false);
-                                }}
-                                notAbsolute={true}
-							/>
-						) : null} */}
-				<div className={styles.dropdownsContainer}>
-					<details className={styles.dropdown}>
-						<summary
-							className={`${styles.dropdownHeader} ${Inter500.className}`}
-						>
-							Mod de utilizare
-						</summary>
-						<div className={styles.dropdownContent}>
-							{equipment?.usage}
-						</div>
-					</details>
-
-					<details className={styles.dropdown}>
-						<summary
-							className={`${styles.dropdownHeader} ${Inter500.className}`}
-						>
-							Material si intretinere
-						</summary>
-						<div className={styles.dropdownContent}>
-							{equipment?.material}
-						</div>
-					</details>
-				</div>
-			</div>
-		</div>
+			{showCalendar && (
+				<AbsoluteCalendar
+					onClose={() => {
+						setShowCalendar(false);
+					}}
+                    notAbsolute={!absolute}
+				/>
+			)}
+		</>
 	);
-}
+};
 
 export const AbsoluteCalendar = ({ children, notAbsolute, onClose }) => {
 	const {

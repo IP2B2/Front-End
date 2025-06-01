@@ -118,7 +118,7 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
     }
   };
   const doRefresh = useCallback(() => {
-    router.push('/home/administrare/echipamente');
+    router.push('/acasa/administrare/echipamente');
   }, [router]);
 
   const handleDelete = async () => {
