@@ -139,14 +139,14 @@ export const getEnrichedAccessRequests = async () => {
 		})
 	);
 	//console.log("enrichedAccessRequests:", enrichedAccessRequests);
-	if (enrichedAccessRequests.some((req) => !req.equipment || !req.user)) {
-		return {
-			success: false,
-			status: 500,
-			payload:
-				"Eroare la obtinerea echipamentelor sau utilizatorilor asociati cererilor de acces",
-		};
-	}
+	// if (enrichedAccessRequests.some((req) => !req.equipment || !req.user)) {
+	// 	return {
+	// 		success: false,
+	// 		status: 500,
+	// 		payload:
+	// 			"Eroare la obtinerea echipamentelor sau utilizatorilor asociati cererilor de acces",
+	// 	};
+	// }
 	return {
 		success: true,
 		status: 200,

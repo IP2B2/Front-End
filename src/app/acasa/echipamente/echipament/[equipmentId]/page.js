@@ -80,7 +80,7 @@ export default function EchipamentPage() {
 						className={`${styles.actionButton} ${Inter500.className}`}
 						onClick={() =>
 							router.push(
-								`/home/echipamente/echipament/${equipmentId}/inchiriere`
+								`/acasa/echipamente/echipament/${equipmentId}/inchiriere`
 							)
 						}
                         >
