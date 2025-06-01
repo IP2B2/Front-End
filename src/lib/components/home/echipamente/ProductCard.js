@@ -26,6 +26,7 @@ export default function ProductCard({ id, name, availableTomorrow, faculty, imag
               fill
               className={styles["product-image"]}
               draggable="false"
+              unoptimized
             />
             <div className={styles["faculty-label-wrapper"]}>
               {faculty ? <p className={styles["faculty-label"]}>{faculty}</p> : ''}
