@@ -18,11 +18,16 @@ export const Sidebar = cache(() => {
 	const [isStudent, setIsStudent] = useState(false);
 	const [isResearcher, setIsResearcher] = useState(false);
 
+	const [username, setUsername] = useState("");
+
 	useEffect(() => {
 		const checkSession = cache(async () => {
 			const session = await verifySession();
 
 			const roles = session.roles || [];
+
+			setUsername(session.username || "");
+
 			setIsAdmin(roles.includes("ADMIN"));
 			setIsCoordonator(roles.includes("COORDONATOR"));
 			setIsStudent(roles.includes("STUDENT"));
@@ -71,8 +76,8 @@ export const Sidebar = cache(() => {
 				</div>
 
 				<div className={`${styles.userBox} ${Inter500.className}`}>
-					<div className={styles.avatar}>AS</div>
-					<span>Alex Serban</span>
+					<div className={styles.avatar}>{username.length > 2 ? username[0] + username[1] : ""}</div>
+					<span>{username}</span>
 				</div>
 			</div>
 		</aside>

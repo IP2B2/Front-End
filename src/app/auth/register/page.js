@@ -15,8 +15,11 @@ function RegisterPage() {
   const [isSubmitError, setIsSubmitError] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (event) => {
     event.preventDefault(); 
+    setIsLoading(true);
     setHasSubmitted(true);
 
     console.log("Register part 1 submit with email:", emailField, "and matricol:", matricolField);
@@ -29,10 +32,12 @@ function RegisterPage() {
         console.log("Register part 1 failed with status:", registerResolution.status);
         return;
       }
+      setIsLoading(false);
       redirect('/auth/confirm-mail');
     } else {
       console.log("Register part 1 validation failed");
       setIsSubmitError(true);
+      setIsLoading(false);
     }
   };
 

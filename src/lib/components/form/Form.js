@@ -236,6 +236,33 @@ export const FormImageUploadMultiple = ({
 	);
 };
 
+export const FormDropdown = ({
+	options,
+	label,
+	setState,
+	validate = true,
+	validator,
+	hasSubmitted
+}) => {
+	return (
+		<div className={`${formStyles.formInputGroup} ${Inter600.className}`}>
+			<label>
+				{label}
+				<select
+					className={`${formStyles.formInput} border-rounded border-gray ${Inter600.className}`}
+					onChange={(e) => setState(e.target.value)}
+				>
+					{options.map((option) => (
+						<option key={option.value} value={option.value}>
+							{option.label}
+						</option>
+					))}
+				</select>
+			</label>
+		</div>
+	);
+};
+
 export const FormField = ({
 	type,
 	placeholder,

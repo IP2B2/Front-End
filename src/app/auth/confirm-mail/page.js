@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -43,7 +45,7 @@ export default function ConfirmEmailPage() {
         link-ul din mesaj pentru a-ți confirma contul.
       </div>
 
-      <div className={styles.resendContainer}>
+      {/* <div className={styles.resendContainer}>
         <div className={styles.resendText}>Nu ai primit emailul?</div>
         <button
           className={styles.resendButton + " " + Inter600.className}
@@ -52,11 +54,13 @@ export default function ConfirmEmailPage() {
         >
           Trimite din nou {timeLeft > 0 && `(${timeLeft}s)`}
         </button>
-      </div>
+      </div> */}
 
       <div className={styles.backToLogin}>
-        <button className={styles.backToLoginButton + " " + Inter600.className} onClick={() => router.push('/auth/login')}>
-          Înapoi la autentificare</button>
+        <Link href={"/"}>
+          <button className={styles.backToLoginButton + " " + Inter600.className}>
+            Înapoi</button>
+        </Link>
       </div>
     </div>
   );
