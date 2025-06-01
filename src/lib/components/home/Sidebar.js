@@ -190,9 +190,9 @@ const UserRoutes = () => {
 				<span>Cereri</span>
 			</Link>
 			<Link
-				href="/profil"
+				href="/acasa/profile"
 				className={`${styles.navItem} ${
-					pathname === "/profil" ? styles.active : styles.inactive
+					pathname === "/acasa/profile" ? styles.active : styles.inactive
 				}`}
 			>
 				<span className={styles.icon}>
