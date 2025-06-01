@@ -39,7 +39,7 @@ export default function CoordonatorPage() {
                     let result = {
                         enrichedAccessRequest: item,
                         imageSrc: item.equipment?.photo ? JSON.parse(item.equipment.photo)[0] : null,
-                        name: `${item.equipment?.name} ${item.equipment?.inventoryNumber} ${item.user.firstName ? item.user.firstName : ""} ${item.user.lastName ? item.user.lastName : ""} ${item.user.email ? item.user.email : ""} ${item.user.nrMarca ? item.user.nrMarca : ""}`,
+                        name: `${item.equipment?.name} ${item.equipment?.inventoryNumber} ${item.user? `${item.user.firstName ? item.user.firstName : ""} ${item.user.lastName ? item.user.lastName : ""} ${item.user.email ? item.user.email : ""} ${item.user.nrMarca ? item.user.nrMarca : ""}` : ""}`,
                         title: item.equipment?.name || "N/A",
                         location: item.equipment?.laboratory?.labName  + " " + item.equipment?.laboratory?.location || "N/A",
                         user: item.user.email || "N/A",
