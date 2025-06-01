@@ -164,10 +164,10 @@ export default function ListareProduseAdminPage() {
         />
       ) */}
 			<SearchAndFilterAndButton
-				title="Produse"
+				title="Echipamente"
 				ItemComponent={EchipamentListing}
 				collectionObject={data}
-				buttonText="Adăugare produs"
+				buttonText="Adăugare Echipament"
 				onButtonClick={handleAddProduct}
 				HeaderComponent={ProdusListingHeader}
 			/>

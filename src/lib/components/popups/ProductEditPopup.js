@@ -157,7 +157,7 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
               value={formData.name}
               onChange={handleChange}
               className={styles.textInput}
-              placeholder="Nume produs"
+              placeholder="Nume echipament"
             />
           </div>
           

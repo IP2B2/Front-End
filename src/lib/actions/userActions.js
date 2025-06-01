@@ -3,6 +3,7 @@
 import axios from 'axios';
 
 import { getSessionToken } from "@/lib/getSessionToken";
+import { jwtDecode } from 'jwt-decode';
 
 export const getAllUsers = async () => {
     'use server';
@@ -153,6 +154,52 @@ export const serviceApproveUser = async (userId) => {
 }
 
 // export const serviceRejectUser = async (userId) => {}
+
+export const serviceGetMyUser = async () => {
+    'use server';
+    try {
+        const token = await getSessionToken();
+        console.log("Token for serviceGetMyUser:", token);
+        if (!token) {
+            return {
+                success: false,
+                status: 401,
+                payload: "Nu sunteti autentificat"
+            };
+        }
+        const decodedToken = jwtDecode(token);
+        const username = decodedToken.sub;
+
+        const usersResolution = await getAllUsers();
+        if (!usersResolution.success) {
+            return {
+                success: false,
+                status: usersResolution.status,
+                payload: usersResolution.payload
+            };
+        }
+        const user = usersResolution.payload.find(user => user.username === username);
+        if (!user) {
+            return {
+                success: false,
+                status: 404,
+                payload: "User not found"
+            };
+        }
+        return {
+            success: true,
+            status: 200,
+            payload: user
+        };
+    } catch (error) {
+        console.error("Error serviceGetMyUser:", error);
+        return {
+            success: false,
+            status: error.response?.status || 500,
+            payload: error.response?.data?.error || "An error occurred while fetching user."
+        };
+    }
+}
 
 export const deleteUser = async (userId) => {
     'use server';

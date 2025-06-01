@@ -1,0 +1,179 @@
+
+.productImageSection {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.carouselContainer {
+	width: 400px;
+
+	display: flex;
+	justify-content: center;
+}
+
+.thumbnailsContainer {
+	max-width: 100%;
+
+	padding: 5px 0;
+
+	display: flex;
+	gap: 10px;
+
+	overflow-x: auto;
+}
+
+.thumbnailWrapper {
+	width: 70px;
+	height: 70px;
+	flex-shrink: 0;
+
+	border: 1px solid transparent;
+	border-radius: 4px;
+
+	transition: border-color 0.2s ease;
+
+	cursor: pointer;
+
+	overflow: hidden;
+}
+
+.thumbnailWrapper:hover {
+	border-color: #e0e0e0;
+}
+
+.selectedThumbnail {
+	border-color: var(--foreground);
+}
+
+.thumbnailImage {
+	width: 100%;
+	height: 100%;
+
+	object-fit: cover;
+}
+
+.navArrow {
+	width: 40px;
+	height: 40px;
+
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 50%;
+
+	background-color: rgba(255, 255, 255, 0.7);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	color: var(--foreground);
+	font-size: 18px;
+	font-weight: bold;
+
+	cursor: pointer;
+}
+
+.leftArrow {
+	left: 10px;
+}
+
+.rightArrow {
+	right: 10px;
+}
+
+.imageContainer {
+	width: 400px;
+	height: 400px;
+	flex-shrink: 0;
+
+	margin: 5px 10px;
+
+	border: 1px solid #f4f4f4;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+
+	overflow: hidden;
+}
+
+.image {
+	width: 100%;
+	height: 100%;
+
+	border-radius: 8px;
+
+	object-fit: cover;
+}
+
+.imageWrapper {
+	width: 100%;
+	height: 100%;
+
+	position: relative;
+
+	border: 0px solid #f4f4f4;
+}
+
+.image {
+	width: 100%;
+	height: 100%;
+
+	object-fit: cover;
+}
+
+.overlay {
+	width: 100px;
+	height: var(--font-size-lg);
+
+	position: absolute;
+	bottom: 50px;
+	left: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 4px;
+	border: 2px solid #e5e5e5;
+
+	background-color: white;
+}
+
+.overlayText {
+	color: var(--foreground);
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 13px;
+}
+
+.imageWrapper:hover .navArrow {
+	opacity: 1;
+}
+
+.navArrow:hover {
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+@media (max-width: 860px) {
+    .thumbnailsContainer {
+		width: 100%;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	.carouselContainer {
+		width: fit-content;
+	}
+	.productImageSection {
+		align-items: center;
+	}
+    .imageContainer {
+		width: 90vw;
+		max-width: 576px;
+		height: 90vw;
+		max-height: 576px;
+	}
+}

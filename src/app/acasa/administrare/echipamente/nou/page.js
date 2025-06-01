@@ -597,7 +597,7 @@ useEffect(() => {
             onClick={handleAddProduct}
             disabled={!allFieldsFilled}
           >
-            Adaugă produs
+            Adaugă Echipament
           </button>
         </div>
       </div>
