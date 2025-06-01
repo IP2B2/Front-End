@@ -12,7 +12,6 @@ import { emptyInvalidator } from '@/lib/logic/AuthValidators';
 import ProductAddedSucc from '@/lib/components/popups/ProductAddedSucc';
 
 import { createEquipment } from '@/lib/actions/equipmentActions';
-import { getAuthToken } from '@/lib/getAuthToken';
 import { acquisitionDateValidator } from '@/lib/validators/acquisitionDateValidator';
 
 export default function AdminAdaugareEchipament() {

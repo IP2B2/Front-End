@@ -13,7 +13,6 @@ import "@/app/globals.css";
 import { BackArrow } from "@/lib/components/globals/NavArrows";
 
 import { useParams, useRouter } from "next/navigation";
-import { getAuthToken } from "@/lib/getAuthToken";
 
 import { useRootCalendar } from "@/lib/context";
 import { AvailabilityCalendar } from "@/lib/components/acasa/AvailabilityCalendar";
