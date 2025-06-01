@@ -1,0 +1,48 @@
+
+
+.cererePreviewContainer {
+    width: 600px;
+    max-height: 90vh;
+
+    padding: 20px;
+    
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-start;
+
+    gap: 10px;
+
+    background-color: var(--background);
+
+    overflow-y: auto;
+}
+
+.cererePreviewContainer > .header {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalCloseButton {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    /* border: 1pt solid #caccd1;
+    border-radius: 100%; */
+
+    cursor: pointer;
+
+    align-self: flex-end;
+}
+
+.rejectButton {
+    background-color: var(--busy-red) !important;
+    border-color: var(--busy-red) !important;
+}

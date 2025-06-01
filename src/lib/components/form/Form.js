@@ -65,7 +65,7 @@ export const FormLink = ({ href = "#", children }) => {
 	);
 };
 
-export const FormButton = ({ onClick, children, disabled }) => {
+export const FormButton = ({ onClick, children, disabled, className }) => {
 	const buttonBehaviour = (event) => {
 		event.preventDefault();
 		if (disabled) {
@@ -81,8 +81,7 @@ export const FormButton = ({ onClick, children, disabled }) => {
 			disabled={!!disabled}
 			className={`${formStyles.formButton} border-rounded ${
 				Inter600.className
-			}
-            ${disabled ? formStyles.formButtonDisabled : ""}`}
+			} ${disabled ? formStyles.formButtonDisabled : ""} ${className ? className : ""}`}
 		>
 			{children}
 		</button>

@@ -26,7 +26,7 @@ export default function CerereListingLaborant({
 				)}
 			</div>
 			<div className={styles.details}>
-				<div className={styles.title}>{title}</div>
+				<div className={styles.title}>Echipament: {title}</div>
 				<div className={styles.location}>Locatie: {location}</div>
 				<div className={styles.user}>Utilizator: {user}</div>
 				<div className={styles.statusContainer}>

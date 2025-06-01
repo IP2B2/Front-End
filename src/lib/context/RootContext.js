@@ -7,10 +7,10 @@ export const RootContext = createContext();
 
 export const RootContextProvider = ({ children }) => {
 
-  const [testState, setTestState] = useState("test");
+  const [showNavbar, setShowNavbar] = useState(true);
 
   return (
-    <RootContext.Provider value={{ testState, setTestState }}>
+    <RootContext.Provider value={{ showNavbar, setShowNavbar }}>
       {children}
     </RootContext.Provider>
   );

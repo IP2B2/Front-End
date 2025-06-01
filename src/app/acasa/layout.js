@@ -9,7 +9,12 @@ import { LayoutContentProvider } from '@/lib/context';
 import { ShowDesktopOnly, ShowTabletStart } from '@/lib/components/globals/ResponsiveDivs';
 import HomeHeader from '@/lib/components/home/HomeHeader';
 
+import { useRootContext } from '@/lib/context/RootContext';
+
 export default function HomeLayout({ children }) {
+
+    const { showNavbar } = useRootContext();
+
     return (
         <LayoutContentProvider>
         <div className={styles.layoutContainer}>
@@ -27,9 +32,9 @@ export default function HomeLayout({ children }) {
                 <div className={styles.contentWrapper}>
                     {children}
                 </div>
-                <ShowTabletStart>
+                {showNavbar && <ShowTabletStart>
                     <MobileNavbar />
-                </ShowTabletStart>
+                </ShowTabletStart>}
             </div>
         </div>
         </LayoutContentProvider>
