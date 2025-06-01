@@ -35,8 +35,6 @@ export default function EchipamentPage() {
 
 	useEffect(() => {
 		async function fetchEquipment() {
-			const authToken = getAuthToken();
-
 			const resolution = await getEquipmentById(equipmentId);
 			if (!resolution.success) {
 				console.error("Failed to fetch equipment:", resolution);
@@ -49,20 +47,6 @@ export default function EchipamentPage() {
 					: [],
 			});
 			console.log("Fetched Equipment:", resolution.payload);
-
-			// const accData = await getAccessRequestsByEquipmentId(authToken, equipmentId);
-			// console.log("Fetched Access Requests:", accData);
-
-			// const unavailableDates = accData.map((request) => {
-			//     if (request.status === "APPROVED") {
-			//         return getDaysBetweenDates(
-			//             new Date(request.requestDate),
-			//             new Date(request.expectedReturnDate)
-			//         );
-			//     }
-			// }).flat().filter(date => date !== undefined);
-			// console.log("Unavailable Dates:", unavailableDates);
-			// setUnavailableDates(unavailableDates);
 		}
 		fetchEquipment();
 	}, []);
