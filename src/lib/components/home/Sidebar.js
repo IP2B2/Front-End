@@ -210,9 +210,9 @@ const CoordonatorRoutes = () => {
 
 	return (
 		<Link
-			href="/home/coordonator/"
+			href="/acasa/coordonator/"
 			className={`${styles.navItem} ${
-				pathname === "/home/coordonator" ? styles.active : styles.inactive
+				pathname === "/acasa/coordonator" ? styles.active : styles.inactive
 			}`}
 		>
 			<span className={styles.icon}>

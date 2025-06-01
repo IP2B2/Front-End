@@ -1,0 +1,178 @@
+.layout {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
+
+.backButtonWrapper {
+	width: 30px;
+	height: 30px;
+	flex-shrink: 0;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 100%;
+	box-shadow: 0px 2px 2px 0px #000e330d;
+
+	box-sizing: border-box;
+}
+
+.descriptionContainer {
+	width: 100%;
+	max-width: 1000px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	overflow-y: auto;
+}
+
+.descriptionContainer::-webkit-scrollbar {
+	display: none;
+}
+
+.pageDescription {
+	width: 100%;
+
+	margin-top: -20px;
+
+	font-size: 18px;
+	font-weight: 500;
+	color: var(--foreground);
+	line-height: 1.5;
+}
+
+.buttonGroup {
+	margin-top: var(--font-size-lg);
+
+	display: flex;
+	flex-direction: row;
+	gap: 7%;
+	justify-content: flex-end;
+}
+
+.actionButton {
+	height: 40px;
+	width: 80%;
+
+	padding: 25px 30px;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+	background-color: var(--foreground);
+	color: var(--background);
+
+	font-size: var(--font-size-xs);
+	font-weight: 500;
+	text-align: center;
+
+	cursor: pointer;
+}
+
+
+.actionButton:first-child {
+	background: linear-gradient(
+		304.55deg,
+		#fcc6d2 10%,
+		#ff426b 30%,
+		#246eff 80%
+	);
+	color: var(--background);
+}
+
+.actionButton:last-child:hover {
+	background: linear-gradient(
+		305.64deg,
+		#ff4a4a 33.69%,
+		#ff9900 75.7%,
+		#ffd9a1 100.91%,
+		#ffc671 107.63%,
+		#ffc671 119.4%
+	) !important;
+	opacity: 1;
+}
+
+
+
+
+
+.dropdownsContainer {
+	margin-top: 10px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.dropdown {
+	border: 1px solid var(--border-gray);
+	border-radius: 8px;
+
+	overflow: hidden;
+}
+
+.dropdownHeader {
+	padding: 15px;
+	position: relative;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	font-weight: 500;
+	font-size: var(--font-size-sm);
+	color: var(--foreground);
+
+	cursor: pointer;
+}
+
+.dropdownHeader::after {
+	position: absolute;
+	right: 15px;
+
+	content: "▼";
+	font-size: 12px;
+}
+
+.dropdown[open] .dropdownHeader::after {
+	content: "▲";
+}
+
+.dropdownContent {
+	padding: 15px;
+
+	border-top: 1px solid var(--border-gray);
+
+	font-size: var(--font-size-sm);
+	color: var(--text-gray);
+	line-height: 1.5;
+}
+
+.productTitle {
+	margin: 10px 0 -var(--font-size-lg) 0;
+
+	font-size: var(--font-size-lg);
+	font-weight: 600;
+	color: var(--foreground);
+	line-height: 0.9;
+}
+
+@media (max-width: 860px) {
+	.layout {
+		flex-flow: column nowrap;
+	}
+}

@@ -1,0 +1,59 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import styles from './coordonatorPage.module.css'
+import { getAccessRequests, getEnrichedAccessRequests } from '@/lib/actions/accessRequestsActions';
+
+import CerereListingLaborant from '@/lib/components/home/echipamente/CerereListingLaborant';
+import SearchAndFilter from '@/lib/components/home/echipamente/SearchAndFilter';
+
+const initCollectionObject = {
+    filterBy: {
+        location: "Locație",
+        label: "Status",
+        isComplex: "Complexitate",
+    },
+    items: [],
+};
+
+
+
+export default function CoordonatorPage() {
+
+    const [accessRequests, setAccessRequests] = useState(initCollectionObject);
+    
+    useEffect(() => {
+        async function fetchAccessRequests() {
+            let accReqsResolution = await getEnrichedAccessRequests();
+            console.log("Fetched access requests:", accReqsResolution);
+            console.log("Fetched access requests payload:", accReqsResolution.payload);
+
+            let newCollectionObject = {
+                filterBy: initCollectionObject.filterBy,
+                items: accReqsResolution.payload.map((item) => ({
+                    imageSrc: item.equipment?.photo ? JSON.parse(item.equipment.photo)[0] : null,
+                    name: item.equipment?.name || "N/A",
+                    title: item.equipment?.name || "N/A",
+                    location: item.equipment?.laboratory?.labName  + " " + item.equipment?.laboratory?.location || "N/A",
+                    user: item.user.email || "N/A",
+                    label: item.status === "PENDING" ? "Pending" : item.status === "ACCEPTED" ? "Accepted" : "Rejected",
+                    isComplex: item.equipment?.isComplex ? "Complex" : "Simplu",
+                    onClick: () => console.log("Clicked on access request:", item.id),
+                }))
+            };
+            setAccessRequests(newCollectionObject); 
+        }
+        fetchAccessRequests();
+    }, []);
+
+    return (
+        <div className={styles.coordonatorPage}>
+            <SearchAndFilter
+                title={"Cereri de acces"}
+                collectionObject={accessRequests}
+                ItemComponent={CerereListingLaborant}
+                />
+        </div>
+    );
+}

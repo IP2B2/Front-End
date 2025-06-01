@@ -14,6 +14,7 @@ export default function ProductCard({ id, name, availableTomorrow, faculty, imag
     console.log({ id, name, availableTomorrow, faculty, image });
   }, [id, name, availableTomorrow, faculty, image]);
 
+  console.log("image:", image);
   return (
     <div className={styles["product-card-wrapper"]}>
       <div className={styles["product-card"]}>
@@ -38,7 +39,7 @@ export default function ProductCard({ id, name, availableTomorrow, faculty, imag
             <p className={styles["product-subtext"]}>
               Disponibil: <span>{availableTomorrow ? "imediat" : "nu este disponibil"}</span>
             </p>
-            <Link href={"/home/echipamente/echipament/" + id} className={styles["details-button"]}>
+            <Link href={"/acasa/echipamente/echipament/" + id} className={styles["details-button"]}>
               Vezi detalii
             </Link>
           </>

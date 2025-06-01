@@ -9,7 +9,6 @@ export default function CerereListingLaborant({
 	user,
 	label,
 	onClick,
-  accessRequest
 }) {
 	const isAccepted = label === "Accepted";
 	const isRejected = label === "Rejected";

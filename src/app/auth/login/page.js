@@ -38,7 +38,7 @@ export default function LoginPage() {
         }
         const loginResolution = await performLogin(emailField, passwordField);
         if(!loginResolution) return;
-        alert(JSON.stringify(loginResolution));
+        // alert(JSON.stringify(loginResolution));
         setSubmitting(false);
         if(loginResolution.status !== 200) {
             console.log("Login failed with status:", loginResolution.status);

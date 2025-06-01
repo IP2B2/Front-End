@@ -90,10 +90,10 @@ const FiltersColumn = () => {
 		SearchAndFilterContext
 	);
 
-	useEffect(() => {
+	/* useEffect(() => {
 		console.log("Selected filters changed up: ", selectedFilters);
 	}, [selectedFilters]);
-
+ */
 	return (
 		<div className={styles.filtersColumn}>
 			<div className={styles.filterSection} key={-1}>
@@ -113,9 +113,9 @@ const FilterItem = ({ filterKey }) => {
 		SearchAndFilterContext
 	);
 
-	useEffect(() => {
+	/* useEffect(() => {
 		console.log("Selected filters changed: ", selectedFilters);
-	}, [open]);
+	}, [open]); */
 	return (
 		<div className={styles.filterSection} key={filterKey}>
 			<div
@@ -133,9 +133,9 @@ const FilterItem = ({ filterKey }) => {
 			</div>
 			{open && (
 				<div className={styles.filterOptions}>
-					{filters[filterKey].options.map((option) => (
+					{filters[filterKey].options.map((option, index) => (
 						<FilterOptionItem
-							key={option}
+							key={index}
 							option={option}
 							filterKey={filterKey}
 						/>

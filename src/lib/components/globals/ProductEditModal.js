@@ -17,13 +17,7 @@ import {
     deleteEquipment,
 } from "@/lib/actions/equipmentActions";
 
-export const ModalContainer = ({ children }) => {
-	return (
-		<div className={styles.modalContainer}>
-			<div className={styles.modalWrapper}>{children}</div>
-		</div>
-	);
-};
+import { ModalContainer } from "./ModalContainer";
 
 export const ProductEditModal = ({ equipmentId, onClose }) => {
 	const [eqName, setEqName] = useState("");

@@ -7,11 +7,10 @@ import ProdusListing, {
 	ProdusListingHeader,
 } from "@/lib/components/home/echipamente/ProdusListing";
 import styles from "./listareProduseAdmin.module.css";
-import ProductEditPopup from "@/lib/components/popups/ProductEditPopup";
 import { verifySession } from "@/lib/dal";
 import { getEquipments } from "@/lib/actions/equipmentActions";
 
-import { ProductEditModal } from "./ProductEditModal";
+import { ProductEditModal } from "@/lib/components/globals/ProductEditModal";
 
 const initialCollectionObject = {
 	filterBy: {
@@ -108,7 +107,7 @@ export default function ListareProduseAdminPage() {
 			let session = await verifySession();
 			console.log(session);
 			// let eq = await getAllEquipment(session?.token);
-			let eq = await getEquipments();
+			let eq = await getEquipments(); //FIXME add error validation
 			let newCollectionObject = {
 				filterBy: {
 					locatie: "Locație",
