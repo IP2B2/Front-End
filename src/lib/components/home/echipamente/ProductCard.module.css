@@ -1,7 +1,6 @@
-.product-card-wrapper.small {
-  width: 100%;
-}
+
 .product-card-wrapper {
+  width: 250px;
   height: 366px;
   
   display: flex;

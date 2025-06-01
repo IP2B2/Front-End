@@ -183,7 +183,7 @@ export default function ProductEditPopup({ onClose, onDelete, onSave, productDat
                   <button className={styles.imageNavButton} onClick={goToPreviousImage}>&#10094;</button>
                   <Image 
                     src={previewImages[selectedImageIndex]}
-                    alt={`Imagine produs ${selectedImageIndex + 1}`}
+                    alt={`Imagine echipament ${selectedImageIndex + 1}`}
                     width={400}
                     height={300}
                     className={styles.productImage}

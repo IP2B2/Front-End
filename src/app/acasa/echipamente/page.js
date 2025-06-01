@@ -22,7 +22,7 @@ export default function Echipamente() {
 		const fetchData = async () => {
 			const response = await getEquipments();
 			if(!response.success) {
-				console.error("Failed to fetch equipments:", response.error);
+				console.error("Failed to fetch equipments:", response);
 				return;
 			} 
 			setData((prevData) => ({
@@ -30,7 +30,7 @@ export default function Echipamente() {
 				items: response.payload.map((item) => ({
 					id: item.id,
 					name: item.name,
-					availableTomorrow: item.availableTomorrow,
+					availableTomorrow: item.availabilityStatus === "AVAILABLE",
 					faculty: "N/A",
 					image: item.photo && item.photo != "" ? JSON.parse(item.photo)[0] : "/icons/Frame 1000005448.svg", // Fallback image if none provided
 				})),

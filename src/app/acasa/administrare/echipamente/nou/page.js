@@ -361,7 +361,7 @@ useEffect(() => {
       sessionStorage.removeItem('productImageUrls');
     }
     
-    console.log('Produs adăugat!', formData);
+    console.log('Echipament adăugat!', formData);
     router.push('../home/produs-adaugat-succes');
   };
 
