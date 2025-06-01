@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import '@/app/globals.css'
-import styles from './administrarePage.module.css'
+import styles from '../administrarePage.module.css'
 import { Montserrat800 } from '@/lib/fonts/Montserrat';
 
 import { useEffect } from 'react';
